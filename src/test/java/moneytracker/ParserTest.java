@@ -1,10 +1,10 @@
-package seedu.duke;
+package moneytracker;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-class DukeTest {
+class ParserTest {
     @Test
     public void sampleTest() {
         assertTrue(true);
