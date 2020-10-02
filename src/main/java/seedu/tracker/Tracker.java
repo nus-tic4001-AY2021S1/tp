@@ -1,8 +1,8 @@
-package seedu.duke;
+package seedu.tracker;
 
 import java.util.Scanner;
 
-public class Duke {
+public class Tracker {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
