@@ -1,4 +1,4 @@
-package transaction;
+package moneytracker.transaction;
 
 public class Expense extends Transaction {
 }
