@@ -16,7 +16,8 @@ public class Expense extends Transaction {
      * @param description Description of an expense.
      * @param date Date of an expense.
      */
-    public Expense(double amount, String description, String date, String expenseCategory) throws MoneyTrackerException {
+    public Expense(double amount, String description,String date,
+                   String expenseCategory) throws MoneyTrackerException {
         super(amount, description, date);
         this.expenseCategory = expenseCategory;
     }
