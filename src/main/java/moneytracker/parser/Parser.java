@@ -33,7 +33,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) {
         String command = getCommand(fullCommand).toLowerCase();
-        switch(command) {
+        switch (command) {
         case "help":
             return new HelpCommand();
         case "addcati":
