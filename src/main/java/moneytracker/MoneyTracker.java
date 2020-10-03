@@ -13,7 +13,7 @@ public class MoneyTracker {
     private TransactionList tasks;
 
     /**
-     * Initializes a <code>moneytracker.MoneyTracker</code> object.
+     * Initializes a <code>MoneyTracker</code> object.
      *
      * @param filePath Path of the text file used for storing app data.
      */

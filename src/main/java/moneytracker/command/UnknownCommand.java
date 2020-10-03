@@ -7,9 +7,9 @@ import moneytracker.ui.Ui;
 
 public class UnknownCommand extends Command {
     /**
-     * Executes the invalid input moneytracker.command.
+     * Executes the invalid input command.
      *
-     * @param transactions List of <code>Transaction</> objects.
+     * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
      */

@@ -9,9 +9,9 @@ import moneytracker.ui.Ui;
  */
 public class ExitCommand extends Command {
     /**
-     * Executes the exit program moneytracker.command.
+     * Executes the exit program command.
      *
-     * @param transactions List of <code>Transaction</> objects.
+     * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
      */
@@ -21,7 +21,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Returns true so that Money Tracker will exist after this moneytracker.command is executed.
+     * Returns true so that Money Tracker will exist after this command is executed.
      */
     @Override
     public boolean isExit() {

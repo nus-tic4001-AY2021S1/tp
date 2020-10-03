@@ -1,10 +1,23 @@
 package moneytracker.parser;
 
-import moneytracker.command.*;
+import moneytracker.command.Command;
+import moneytracker.command.AddExpenseCategoryCommand;
+import moneytracker.command.AddIncomeCategoryCommand;
+import moneytracker.command.HelpCommand;
+import moneytracker.command.ListCategoryCommand;
+import moneytracker.command.DeleteCategoryCommand;
+import moneytracker.command.AddIncomeCommand;
+import moneytracker.command.AddExpenseCommand;
+import moneytracker.command.ListCommand;
+import moneytracker.command.DeleteCommand;
+import moneytracker.command.ClearCommand;
+import moneytracker.command.ReportCommand;
+import moneytracker.command.ExitCommand;
+import moneytracker.command.UnknownCommand;
 
 public class Parser {
     /**
-     * Gets the moneytracker.command word from user's input string.
+     * Gets the command word from user's input string.
      * @param fullCommand User's full input string.
      * @return Command word from user's input string.
      */
@@ -16,7 +29,7 @@ public class Parser {
      * Gets <code>Command</code> object from user's full input string.
      *
      * @param fullCommand User's full input string.
-     * @return <code>Command<Task></code> object.
+     * @return <code>Command</code> object.
      */
     public static Command parse(String fullCommand) {
         String command = getCommand(fullCommand).toLowerCase();
