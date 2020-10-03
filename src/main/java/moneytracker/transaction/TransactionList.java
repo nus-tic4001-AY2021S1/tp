@@ -19,5 +19,4 @@ public class TransactionList {
     public TransactionList(ArrayList<Transaction> transactions) {
         this.transactions = transactions;
     }
-
 }
