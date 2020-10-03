@@ -1,0 +1,22 @@
+package moneytracker.command;
+
+import moneytracker.storage.Storage;
+import moneytracker.transaction.TransactionList;
+import moneytracker.ui.Ui;
+
+/**
+ * Contains the method to show the URL of the user guide.
+ */
+public class HelpCommand extends Command {
+    /**
+     * Executes the help moneytracker.command.
+     *
+     * @param transactions List of <code>Transaction</> objects.
+     * @param ui <code>Ui</code> object for displaying user interactions.
+     * @param storage <code>Storage</code> object for loading and saving user data.
+     */
+    @Override
+    public void execute(TransactionList transactions, Ui ui, Storage storage) {
+        ui.printHelp();
+    }
+}

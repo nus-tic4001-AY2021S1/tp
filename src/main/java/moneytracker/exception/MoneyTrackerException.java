@@ -1,4 +1,4 @@
-package exception;
+package moneytracker.exception;
 
 /**
  * Overrides the Exception class's constructor to implement
