@@ -50,7 +50,7 @@ public class TransactionList {
     public void removeTransaction(int index) throws MoneyTrackerException {
         try {
             transactions.remove(transactions.get(index));
-        } catch(IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new MoneyTrackerException("Invalid index");
         }
     }
