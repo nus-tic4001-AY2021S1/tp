@@ -31,4 +31,9 @@ public class Income extends Transaction {
         super(amount, description);
         this.incomeCategory = incomeCategory;
     }
+
+    @Override
+    public String toString() {
+        return "[I] " + incomeCategory.toUpperCase() + " " + super.toString();
+    }
 }

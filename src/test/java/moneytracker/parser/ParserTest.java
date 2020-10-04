@@ -1,4 +1,4 @@
-package moneytracker;
+package moneytracker.parser;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

@@ -45,4 +45,11 @@ public abstract class Transaction {
         this.description = description;
         this.date = LocalDate.now();
     }
+
+    @Override
+    public String toString() {
+        return "$" + String.format("%.2f", amount) + " on "
+                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                + " (" + description + ")";
+    }
 }
