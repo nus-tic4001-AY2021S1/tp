@@ -9,7 +9,8 @@ public class IncomeCategoryList {
     /**
      * Initializes an empty <code>IncomeCategoryList</code> object.
      */
-    public IncomeCategoryList() { }
+    public IncomeCategoryList() {
+    }
 
     /**
      * Initializes a <code>IncomeCategoryList</code> object.
