@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * JUnit tests for Expense class
+ * JUnit tests for Expense class.
  */
 public class ExpenseTest {
     @Test
