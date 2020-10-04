@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
  * object has an amount, a description, a date and an expense category.
  */
 public class Expense extends Transaction {
-    private final String expenseCategory;
+    protected final String expenseCategory;
 
     /**
      * Initializes an <code>Expense</code> object.
