@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 public class IncomeCategoryList {
     private ArrayList<Income> incomeCategoryList;
+
     /**
      * Initializes an empty <code>IncomeCategoryList</code> object.
      */
     public IncomeCategoryList() {
     }
+
 
     /**
      * Initializes a <code>IncomeCategoryList</code> object.
