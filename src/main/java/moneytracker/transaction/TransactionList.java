@@ -60,12 +60,15 @@ public class TransactionList {
     public int getSize() {
         return transactions.size();
     }
+
     public void setIsInitialized(boolean isInitialized) {
         this.isInitialized = isInitialized;
     }
+
     public boolean getIsInitialized() {
         return isInitialized;
     }
+    
     public void clearSearchResultIndexes() {
         searchResultIndexes.clear();
     }
