@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class TransactionList {
     private ArrayList<Transaction> transactions = new ArrayList<>();
+    private final ArrayList<Integer> searchResultIndexes = new ArrayList<>();
+    private boolean isInitialized = false;
 
     /**
      * Initializes an empty <code>TransactionList</code> object.
@@ -54,4 +56,25 @@ public class TransactionList {
             throw new MoneyTrackerException("Invalid index");
         }
     }
+
+    public int getSize() {
+        return transactions.size();
+    }
+
+    public void setIsInitialized(boolean isInitialized) {
+        this.isInitialized = isInitialized;
+    }
+
+    public boolean getIsInitialized() {
+        return isInitialized;
+    }
+    
+    public void clearSearchResultIndexes() {
+        searchResultIndexes.clear();
+    }
+
+    public void addSearchResultIndex(int searchResultIndex) {
+        searchResultIndexes.add(searchResultIndex);
+    }
+
 }

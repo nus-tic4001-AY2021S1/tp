@@ -19,6 +19,12 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage) throws MoneyTrackerException {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+        for (int i = 0; i < transactions.getSize(); i++) {
+            transactions.addSearchResultIndex(i);
 
+        }
+        ui.printListTransaction(transactions);
     }
 }
