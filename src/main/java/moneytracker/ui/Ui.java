@@ -1,9 +1,12 @@
 package moneytracker.ui;
 
+import moneytracker.transaction.TransactionList;
+
 import java.util.Scanner;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________________";
+    public static final String INDENT = "      ";
 
     /**
      * Get the input stream from the user.
@@ -48,5 +51,22 @@ public class Ui {
 
     public void printLine() {
         System.out.println(LINE);
+    }
+
+    public void printIndentation() {
+        System.out.print(INDENT);
+    }
+
+    public void printListTransaction(TransactionList transactions) {
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your records:");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                printIndentation();
+                System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
+            }
+        }
+        printLine();
     }
 }
