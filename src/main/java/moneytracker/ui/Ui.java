@@ -65,4 +65,17 @@ public class Ui {
     public void printIndentation() {
         System.out.print(INDENT);
     }
+
+    public void printListTransaction(TransactionList transactions) {
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your records:");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                printIndentation();
+                System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
+            }
+        }
+        printLine();
+    }
 }
