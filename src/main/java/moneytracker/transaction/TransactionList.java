@@ -54,4 +54,12 @@ public class TransactionList {
             throw new MoneyTrackerException("Invalid index");
         }
     }
+
+    /**
+     * Get size of a <code>TransactionList</code> object.
+     * @return Size of a <code>TransactionList</code> object.
+     */
+    public int getSize() {
+        return transactions.size();
+    }
 }

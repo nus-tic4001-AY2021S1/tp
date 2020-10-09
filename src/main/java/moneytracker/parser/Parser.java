@@ -14,6 +14,8 @@ import moneytracker.command.ClearCommand;
 import moneytracker.command.ReportCommand;
 import moneytracker.command.ExitCommand;
 import moneytracker.command.UnknownCommand;
+import moneytracker.exception.MoneyTrackerException;
+import moneytracker.transaction.Income;
 
 public class Parser {
     /**
@@ -23,6 +25,40 @@ public class Parser {
      */
     public static String getCommand(String fullCommand) {
         return fullCommand.split(" ")[0];
+    }
+
+    public static Income createIncome(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = getCommandParameterString(fullCommand, "addi");
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The parameters of the command are missing.");
+        }
+        String amount = "";
+        String incomeCategory = "";
+        String date = "";
+        String description = "";
+        String[] commandParameters = commandParameterString.split("/");
+        for (String parameter : commandParameters) {
+            if (parameter.startsWith("a")) {
+                amount = parameter.substring(1).trim();
+            } else if (parameter.startsWith("c")) {
+                incomeCategory = parameter.substring(1).trim();
+            } else if (parameter.startsWith("d")) {
+                date = parameter.substring(1).trim();
+            } else if (parameter.startsWith("e")) {
+                description = parameter.substring(1).trim();
+            }
+        }
+        if (amount.isEmpty()) {
+            throw new MoneyTrackerException("The amount cannot be empty.");
+        }
+        if (incomeCategory.isEmpty()) {
+            throw new MoneyTrackerException("The income category cannot be empty.");
+        }
+        if (date.isEmpty()) {
+            return new Income(Double.parseDouble(amount), description, incomeCategory);
+        } else {
+            return new Income(Double.parseDouble(amount), description, date, incomeCategory);
+        }
     }
 
     /**
@@ -61,5 +97,9 @@ public class Parser {
         default:
             return new UnknownCommand();
         }
+    }
+
+    private static String getCommandParameterString(String fullCommand, String command) {
+        return fullCommand.replaceFirst("(?i)" + command, "").trim();
     }
 }
