@@ -10,7 +10,7 @@ import moneytracker.ui.Ui;
 public class MoneyTracker {
     private final Storage storage;
     private final Ui ui;
-    private TransactionList tasks;
+    private TransactionList transactions;
 
     /**
      * Initializes a <code>MoneyTracker</code> object.
@@ -21,10 +21,10 @@ public class MoneyTracker {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            tasks = new TransactionList(storage.loadTransactions(filePath));
+            transactions = new TransactionList(storage.loadTransactions(filePath));
         } catch (MoneyTrackerException e) {
             ui.printError(e.getMessage());
-            tasks = new TransactionList();
+            transactions = new TransactionList();
         }
     }
 
@@ -35,7 +35,7 @@ public class MoneyTracker {
             try {
                 String fullCommand = ui.readUserCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                c.execute(transactions, ui, storage);
                 isExit = c.isExit();
             } catch (MoneyTrackerException e) {
                 ui.printError(e.getMessage());
@@ -48,6 +48,6 @@ public class MoneyTracker {
      *  @param args Command line arguments. Not used.
      */
     public static void main(String[] args) {
-        new MoneyTracker("data/tasks.txt").run();
+        new MoneyTracker("data/transactions.txt").run();
     }
 }

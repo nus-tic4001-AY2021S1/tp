@@ -54,7 +54,7 @@ public class Parser {
         String date = commandParameters.get("date");
         String incomeCategory = commandParameters.get("category");
         try {
-            if (commandParameters.containsKey("amount")) {
+            if (commandParameters.containsKey("date")) {
                 return new Income(Double.parseDouble(amount), description, date, incomeCategory);
             } else {
                 return new Income(Double.parseDouble(amount), description, incomeCategory);
@@ -88,7 +88,7 @@ public class Parser {
         String date = commandParameters.get("date");
         String expenseCategory = commandParameters.get("category");
         try {
-            if (commandParameters.containsKey("amount")) {
+            if (commandParameters.containsKey("date")) {
                 return new Expense(Double.parseDouble(amount), description, date, expenseCategory);
             } else {
                 return new Expense(Double.parseDouble(amount), description, expenseCategory);
@@ -143,7 +143,7 @@ public class Parser {
             if (commandParameter.startsWith("a")) {
                 commandParametersMap.put("amount", commandParameter.substring(1).trim());
             } else if (commandParameter.startsWith("c")) {
-                commandParametersMap.put("category", commandParameter.substring(1).trim());
+                commandParametersMap.put("category", commandParameter.substring(1).toUpperCase().trim());
             } else if (commandParameter.startsWith("d")) {
                 commandParametersMap.put("date", commandParameter.substring(1).trim());
             } else if (commandParameter.startsWith("e")) {
