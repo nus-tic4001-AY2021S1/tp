@@ -24,6 +24,7 @@ public class AddIncomeCommand extends Command {
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage) throws MoneyTrackerException {
         transactions.addTransaction(Parser.createIncome(fullCommand));
+        storage.saveTransactions(transactions);
         ui.printAddedTransaction(transactions);
     }
 }

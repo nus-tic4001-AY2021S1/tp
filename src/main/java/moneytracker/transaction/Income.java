@@ -32,6 +32,15 @@ public class Income extends Transaction {
         this.incomeCategory = incomeCategory;
     }
 
+    /**
+     * Get the income category of a <code>Income</code> object.
+     *
+     * @return Income of a <code>Income</code> object.
+     */
+    public String getIncomeCategory() {
+        return incomeCategory;
+    }
+
     @Override
     public String toString() {
         return "[I] " + incomeCategory.toUpperCase() + " " + super.toString();

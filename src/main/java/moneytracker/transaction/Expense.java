@@ -33,6 +33,15 @@ public class Expense extends Transaction {
         this.expenseCategory = expenseCategory;
     }
 
+    /**
+     * Get the expense category of a <code>Expense</code> object.
+     *
+     * @return Deadline of a <code>Expense</code> object.
+     */
+    public String getExpenseCategory() {
+        return expenseCategory;
+    }
+
     @Override
     public String toString() {
         return "[E] " + expenseCategory.toUpperCase() + " " + super.toString();

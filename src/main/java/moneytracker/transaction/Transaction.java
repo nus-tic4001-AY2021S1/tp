@@ -46,6 +46,31 @@ public abstract class Transaction {
         this.date = LocalDate.now();
     }
 
+    /**
+     * Gets the amount of a <code>Transaction</code> object.
+     * @return Amount of a <code>Transaction</code> object.
+     */
+    public String getAmount() {
+        return String.valueOf(amount);
+    }
+
+    /**
+     * Gets the description of a <code>Transaction</code> object.
+     * @return Description of a <code>Transaction</code> object.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Get the date of a <code>Transaction</code> object.
+     *
+     * @return date of a <code>Transaction</code> object.
+     */
+    public String getDate() {
+        return date.toString();
+    }
+
     @Override
     public String toString() {
         String output = "$" + String.format("%.2f", amount) + " on "
