@@ -48,8 +48,12 @@ public abstract class Transaction {
 
     @Override
     public String toString() {
-        return "$" + String.format("%.2f", amount) + " on "
-                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                + " (" + description + ")";
+        String output = "$" + String.format("%.2f", amount) + " on "
+                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        if (description.isEmpty()) {
+            return output;
+        } else {
+            return output + " (" + description + ")";
+        }
     }
 }

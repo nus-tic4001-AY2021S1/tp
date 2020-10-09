@@ -16,6 +16,9 @@ import moneytracker.command.ExitCommand;
 import moneytracker.command.UnknownCommand;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Income;
+import moneytracker.transaction.Expense;
+
+import java.util.HashMap;
 
 public class Parser {
     /**
@@ -27,37 +30,71 @@ public class Parser {
         return fullCommand.split(" ")[0];
     }
 
+    /**
+     * Creates an <code>Income</code> object.
+     *
+     * @param fullCommand User's full input string.
+     * @return <code>Income</code> object.
+     * @throws MoneyTrackerException If amount or income category is missing.
+     */
     public static Income createIncome(String fullCommand) throws MoneyTrackerException {
-        String commandParameterString = getCommandParameterString(fullCommand, "addi");
+        String commandParameterString = fullCommand.replaceFirst("(?i)addi", "").trim();
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The parameters of the command are missing.");
         }
-        String amount = "";
-        String incomeCategory = "";
-        String date = "";
-        String description = "";
-        String[] commandParameters = commandParameterString.split("/");
-        for (String parameter : commandParameters) {
-            if (parameter.startsWith("a")) {
-                amount = parameter.substring(1).trim();
-            } else if (parameter.startsWith("c")) {
-                incomeCategory = parameter.substring(1).trim();
-            } else if (parameter.startsWith("d")) {
-                date = parameter.substring(1).trim();
-            } else if (parameter.startsWith("e")) {
-                description = parameter.substring(1).trim();
+        HashMap<String, String> commandParameters = getCommandParameters(commandParameterString);
+        if (!(commandParameters.containsKey("amount"))) {
+            throw new MoneyTrackerException("The amount parameter is missing.");
+        }
+        if (!(commandParameters.containsKey("category"))) {
+            throw new MoneyTrackerException("The income category parameter is missing.");
+        }
+        String amount = commandParameters.get("amount");
+        String description = commandParameters.get("description");
+        String date = commandParameters.get("date");
+        String incomeCategory = commandParameters.get("category");
+        try {
+            if (commandParameters.containsKey("amount")) {
+                return new Income(Double.parseDouble(amount), description, date, incomeCategory);
+            } else {
+                return new Income(Double.parseDouble(amount), description, incomeCategory);
             }
+        } catch (NumberFormatException e) {
+            throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
         }
-        if (amount.isEmpty()) {
-            throw new MoneyTrackerException("The amount cannot be empty.");
+    }
+
+    /**
+     * Creates an <code>Expense</code> object.
+     *
+     * @param fullCommand User's full input string.
+     * @return <code>Expense</code> object.
+     * @throws MoneyTrackerException If amount or expense category is missing.
+     */
+    public static Expense createExpense(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = fullCommand.replaceFirst("(?i)adde", "").trim();
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The parameters of the command are missing.");
         }
-        if (incomeCategory.isEmpty()) {
-            throw new MoneyTrackerException("The income category cannot be empty.");
+        HashMap<String, String> commandParameters = getCommandParameters(commandParameterString);
+        if (!(commandParameters.containsKey("amount"))) {
+            throw new MoneyTrackerException("The amount parameter is missing.");
         }
-        if (date.isEmpty()) {
-            return new Income(Double.parseDouble(amount), description, incomeCategory);
-        } else {
-            return new Income(Double.parseDouble(amount), description, date, incomeCategory);
+        if (!(commandParameters.containsKey("category"))) {
+            throw new MoneyTrackerException("The expense category parameter is missing.");
+        }
+        String amount = commandParameters.get("amount");
+        String description = commandParameters.get("description");
+        String date = commandParameters.get("date");
+        String expenseCategory = commandParameters.get("category");
+        try {
+            if (commandParameters.containsKey("amount")) {
+                return new Expense(Double.parseDouble(amount), description, date, expenseCategory);
+            } else {
+                return new Expense(Double.parseDouble(amount), description, expenseCategory);
+            }
+        } catch (NumberFormatException e) {
+            throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
         }
     }
 
@@ -99,7 +136,21 @@ public class Parser {
         }
     }
 
-    private static String getCommandParameterString(String fullCommand, String command) {
-        return fullCommand.replaceFirst("(?i)" + command, "").trim();
+    private static HashMap<String, String> getCommandParameters(String commandParameterString) {
+        HashMap<String, String> commandParametersMap = new HashMap<>();
+        String[] commandParametersArray = commandParameterString.split("/");
+        for (String commandParameter : commandParametersArray) {
+            if (commandParameter.startsWith("a")) {
+                commandParametersMap.put("amount", commandParameter.substring(1).trim());
+            } else if (commandParameter.startsWith("c")) {
+                commandParametersMap.put("category", commandParameter.substring(1).trim());
+            } else if (commandParameter.startsWith("d")) {
+                commandParametersMap.put("date", commandParameter.substring(1).trim());
+            } else if (commandParameter.startsWith("e")) {
+                commandParametersMap.put("description", commandParameter.substring(1).trim());
+            }
+        }
+        commandParametersMap.putIfAbsent("description", "");
+        return commandParametersMap;
     }
 }

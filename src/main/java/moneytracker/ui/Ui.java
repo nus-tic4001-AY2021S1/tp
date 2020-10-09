@@ -35,11 +35,11 @@ public class Ui {
     }
 
     public void printAddedTransaction(TransactionList transactions) {
-        System.out.println("Got it! I have added this income:");
+        System.out.println("Got it! I have added this transaction:");
         printIndentation();
         System.out.println(transactions.getTransaction(transactions.getSize() - 1).toString());
         printIndentation();
-        System.out.println("Now you have " + transactions.getSize() + " tasks in the list.");
+        System.out.println("Now you have " + transactions.getSize() + " transactions.");
         printLine();
     }
 
