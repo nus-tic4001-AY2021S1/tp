@@ -19,7 +19,7 @@ public abstract class Transaction {
     /**
      * Initializes a <code>Transaction</code> object.
      *
-     * @param amount Amount of money for a transaction.
+     * @param amount Amount of money in a transaction.
      * @param description Description of a transaction.
      * @param date Date of a transaction.
      */
@@ -37,7 +37,7 @@ public abstract class Transaction {
     /**
      * Initializes a <code>Transaction</code> object.
      *
-     * @param amount Amount of money for a transaction.
+     * @param amount Amount of money in a transaction.
      * @param description Description of a transaction.
      */
     public Transaction(double amount, String description) {
