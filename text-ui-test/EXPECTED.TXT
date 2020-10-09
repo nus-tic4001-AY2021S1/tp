@@ -8,7 +8,7 @@ ____________________________________________________________________
                           __/ |                                    
                          |___/                                     
 
-Money Tracker: Hello! What can I do for you?
+Hello! What can I do for you?
 ____________________________________________________________________
-You:  Money Tracker: Bye! Hope to see you again soon.
+You:  Bye! Hope to see you again soon.
 ____________________________________________________________________
