@@ -2,8 +2,6 @@ package moneytracker.transaction;
 
 import moneytracker.exception.MoneyTrackerException;
 
-import java.time.format.DateTimeFormatter;
-
 /**
  * Represents an expense that a user has incurred. An <code>Expense</code>
  * object has an amount, a description, a date and an expense category.
