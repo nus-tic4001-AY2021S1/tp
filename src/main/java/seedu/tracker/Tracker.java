@@ -2,7 +2,6 @@ package seedu.tracker;
 
 import seedu.tracker.command.Command;
 import seedu.tracker.command.Exit;
-import seedu.tracker.exception.TrackerException;
 import seedu.tracker.parser.Parser;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
