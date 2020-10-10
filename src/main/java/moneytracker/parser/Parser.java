@@ -73,7 +73,7 @@ public class Parser {
      * @throws MoneyTrackerException If amount or expense category is missing.
      */
     public static Expense createExpense(String fullCommand) throws MoneyTrackerException {
-       // assert !fullCommand.isBlank() : "fullCommand should not be blank";
+        //assert !fullCommand.isBlank() : "fullCommand should not be blank";
         String commandParameterString = fullCommand.replaceFirst("(?i)adde", "").trim();
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The parameters of the command are missing.");
