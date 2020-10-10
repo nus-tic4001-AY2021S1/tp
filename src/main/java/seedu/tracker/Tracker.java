@@ -2,11 +2,14 @@ package seedu.tracker;
 
 import seedu.tracker.command.Command;
 import seedu.tracker.command.Exit;
+import seedu.tracker.exception.TrackerException;
 import seedu.tracker.parser.Parser;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Tracker {
@@ -32,10 +35,14 @@ public class Tracker {
 
     private void readUserInput() {
         while (true) {
-            Command command = parser.parseInput(in.nextLine(), ui, projects, storage);
-            command.execute();
-            if (isExit(command)) {
-                return;
+            try {
+                Command command = parser.parseInput(in.nextLine(), ui, projects, storage);
+                command.execute();
+                if (isExit(command)) {
+                    return;
+                }
+            } catch (NoSuchElementException e) {
+                ui.printBorderline(e.getMessage());
             }
         }
     }
