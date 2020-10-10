@@ -1,9 +1,9 @@
 package seedu.tracker.project;
 
 import java.util.ArrayList;
+
 /**
- * Responsible for methods regarding the project list.
- * This class will use an ArrayList inside it.
+ * Responsible for methods regarding the project list. This class will use an ArrayList inside it.
  */
 public class ProjectList {
     private final ArrayList<Project> projects;

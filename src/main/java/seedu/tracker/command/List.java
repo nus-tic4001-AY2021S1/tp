@@ -2,6 +2,7 @@ package seedu.tracker.command;
 
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.ui.Ui;
+
 /**
  * A command to print out all tasks in the list.
  */

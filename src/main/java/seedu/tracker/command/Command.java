@@ -1,8 +1,9 @@
 package seedu.tracker.command;
 
-import seedu.tracker.storage.Storage;
 import seedu.tracker.project.ProjectList;
+import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
+
 /**
  * An abstract class that is inherited by every command.
  */

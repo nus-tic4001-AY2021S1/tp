@@ -34,7 +34,9 @@ public class Tracker {
         while (true) {
             Command command = parser.parseInput(in.nextLine(), ui, projects, storage);
             command.execute();
-            if (isExit(command)) return;
+            if (isExit(command)) {
+                return;
+            }
         }
     }
 
