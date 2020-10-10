@@ -1,4 +1,4 @@
-# Duke
+# Tracker
 
 {Give product intro here}
 
