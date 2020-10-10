@@ -101,6 +101,27 @@ public class Parser {
     }
 
     /**
+     * Gets transaction index from user's full input string.
+     *
+     * @param fullCommand User's full input string.
+     * @return Transaction index.
+     * @throws MoneyTrackerException If task index is missing or invalid.
+     */
+    public static int getTransactionIndex(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = fullCommand.replaceFirst("(?i)delete", "").trim();
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The transaction index is missing.");
+        }
+        int transactionIndex;
+        try {
+            transactionIndex = Integer.parseInt(commandParameterString);
+        } catch (NumberFormatException e) {
+            throw new MoneyTrackerException("The transaction index is invalid.");
+        }
+        return transactionIndex - 1;
+    }
+
+    /**
      * Gets <code>Command</code> object from user's full input string.
      *
      * @param fullCommand User's full input string.
