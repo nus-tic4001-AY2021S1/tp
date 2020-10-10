@@ -113,5 +113,6 @@ Click `Yes` if the system prompts you for confirmation of overwriting.
 * View help `help`
 * Add income `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eDESCRIPTION]`
 * Add expense `adde /aAMOUNT /cEXPENSE_CATEGORY [/dDATE] [/eDESCRIPTION]`
+* Delete income / expense `delete INDEX`
 * Clear data `clear`
 * Exit program `exit`
