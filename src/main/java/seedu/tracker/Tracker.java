@@ -7,6 +7,7 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Tracker {
@@ -30,7 +31,7 @@ public class Tracker {
         readUserInput();
     }
 
-    private void readUserInput() {
+    private void readUserInput() throws NoSuchElementException {
         while (true) {
             Command command = parser.parseInput(in.nextLine(), ui, projects, storage);
             command.execute();
