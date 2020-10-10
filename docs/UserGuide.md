@@ -2,41 +2,99 @@
 
 ## Introduction
 
-{Give a product intro}
+Money Tracker is a CLI application that allows users to keep track of their income and expenses.
+Users can record their inflows and outflows of money and then view monthly reports of these movements of money.
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `MoneyTracker.jar` [here](https://github.com/AY2021S1-TIC4001-2/tp/releases).
+3. Copy `MoneyTracker.jar` to the folder you want to use as the home folder for Money Tracker.
+4. Navigate to the home folder for Duke on your CLI program.
+5. Launch Money Tracker by running the command `java -jar MoneyTracker.jar`.
+6. Type the command in the CLI program and press `Enter` to execute it.
+<br>Some example commands you can try:
+    - `addcate lunch`: Adds an expense category.
+    - `listcat /te`: Lists all expense categories.
+    - `adde /a3.50 /cFood /d2020-09-20 /eLunch with boss.`: Adds an expense.
+    - `list /te /m2020-09`: Lists all expenses in Sep 2020.
+    - `report 2020-09`: Displays summary report for Sep 2020.
+7. Refer to **Features** below for details of each command.
 
 ## Features 
 
-{Give detailed description of each feature}
+Notes about the command format:
+- Words in UPPER_CASE are the parameters to be supplied by the user.<br />
+E.g. `DESCRIPTION` in the command `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eDESCRIPTION]`.
+- Parameters in square brackets are optional.<br />
+E.g. `TYPE` in the command `listcat [/tTYPE]` can be omitted.
+- Parameters can be in any order.<br />
+E.g. The command `list [/tTYPE] [/mMONTH]` can also be in this form: `list [/mMONTH] [/tTYPE]`.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Viewing help: `help`
+Shows the URL of the user manual.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `help`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Example of usage: `help`
 
-Example of usage: 
+Expected outcome:
+```
+Please refer this online user guide:
+https://ay2021s1-tic4001-2.github.io/tp/UserGuide.html
+```
 
-`todo n/Write the rest of the User Guide d/next week`
+### Adding income: `addi`
+Adds an income to the Money Tracker.
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Format: `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eDESCRIPTION]`
+- `AMOUNT` must be a positive integer or decimal. E.g. `4000`, `3000.75` `2000.5`.
+- `DATE` must be in yyyy-MM-dd format. E.g. `2020-09-20`.
+-  If `DATE` is omitted, the date of this income will be set to the current date of the system.
+- `INCOME_CATEGORY` is case-insensitive. E.g. `salary` will match `SALARY`.
+- If `DESCRIPTION` is omitted, the description of this income will be blank.
+
+Example of usage: `addi /a9000 /cSalary /d2020-09-01 /eGiven $4000 bonus!`
+
+Expected outcome:
+```
+Got it! I’ve added this transaction:
+    [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
+    Now you have 1 transactions in your list.
+```
+
+### Adding expense: `adde`
+Adds an expense to the Money Tracker.
+
+Format: `adde /aAMOUNT /cEXPENSE_CATEGORY [/dDATE] [/eDESCRIPTION]`
+- `AMOUNT` must be a positive integer or decimal. E.g. `400`, `3.50`, `4.5`.
+- `DATE` must be in yyyy-MM-dd format. E.g. `2020-09-20`.
+-  If `DATE` is omitted, the date of this expense will be set to the current date of the system.
+- `EXPENSE_CATEGORY` is case-insensitive. E.g. `Food` will match `FOOD`.
+- If `DESCRIPTION` is omitted, the description of this expense will be blank.
+
+Example of usage: `adde /a3.50 /cFood /d2020-09-20 /eLunch with boss.`
+
+Expected outcome:
+```
+Got it! I’ve added this transaction:
+    [E] FOOD $3.50 on 20 Sep 2020 (Lunch with boss.)
+    Now you have 2 transactions in your list.
+```
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**:
+How do I transfer my data to another computer? 
 
-**A**: {your answer here}
-
+**A**: 
+Go to Money Tracker's root folder in the current computer.
+Copy the data folder and paste it into the Money Tracker's root folder in the new computer.
+Click `Yes` if the system prompts you for confirmation of overwriting.
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* View help `help`
+* Add income `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eDESCRIPTION]`
+* Add expense `adde /aAMOUNT /cEXPENSE_CATEGORY [/dDATE] [/eDESCRIPTION]`
+* Clear data `clear`
+* Exit program `exit`
