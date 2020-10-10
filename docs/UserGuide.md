@@ -40,7 +40,7 @@ Example of usage: `help`
 
 Expected outcome:
 ```
-Please refer this online user guide:
+Please refer to this online user guide:
 https://ay2021s1-tic4001-2.github.io/tp/UserGuide.html
 ```
 
