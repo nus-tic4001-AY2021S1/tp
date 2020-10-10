@@ -57,8 +57,8 @@ public class Ui {
     }
 
     public void printNoFileFound() {
-        String message = "It looks like it's your first time as I could not find any existing project file.\n" +
-            "Get started by creating a project!";
+        String message = "It looks like it's your first time as I could not find any existing project file.\n"
+            + "Get started by creating a project!";
         printBorderline(message);
     }
 
