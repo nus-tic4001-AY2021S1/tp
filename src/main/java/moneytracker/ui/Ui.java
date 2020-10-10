@@ -39,7 +39,7 @@ public class Ui {
         printIndentation();
         System.out.println(transactions.getTransaction(transactions.getSize() - 1).toString());
         printIndentation();
-        System.out.println("Now you have " + transactions.getSize() + " transactions.");
+        System.out.println("Now you have " + transactions.getSize() + " transactions in your list.");
         printLine();
     }
 

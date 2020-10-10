@@ -38,6 +38,7 @@ public class Parser {
      * @throws MoneyTrackerException If amount or income category is missing.
      */
     public static Income createIncome(String fullCommand) throws MoneyTrackerException {
+        assert !fullCommand.isBlank() : "fullCommand should not be blank";
         String commandParameterString = fullCommand.replaceFirst("(?i)addi", "").trim();
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The parameters of the command are missing.");
@@ -72,6 +73,7 @@ public class Parser {
      * @throws MoneyTrackerException If amount or expense category is missing.
      */
     public static Expense createExpense(String fullCommand) throws MoneyTrackerException {
+        assert !fullCommand.isBlank() : "fullCommand should not be blank";
         String commandParameterString = fullCommand.replaceFirst("(?i)adde", "").trim();
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The parameters of the command are missing.");
@@ -137,6 +139,7 @@ public class Parser {
     }
 
     private static HashMap<String, String> getCommandParameters(String commandParameterString) {
+        assert !commandParameterString.isBlank() : "commandParameterString should not be blank";
         HashMap<String, String> commandParametersMap = new HashMap<>();
         String[] commandParametersArray = commandParameterString.split("/");
         for (String commandParameter : commandParametersArray) {
