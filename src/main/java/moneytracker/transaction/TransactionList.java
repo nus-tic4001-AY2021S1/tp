@@ -80,4 +80,8 @@ public class TransactionList {
     public void addSearchResultIndex(int searchResultIndex) {
         searchResultIndexes.add(searchResultIndex);
     }
+
+    public int getSearchResultIndex(int resultIndex) {
+        return searchResultIndexes.get(resultIndex);
+    }
 }

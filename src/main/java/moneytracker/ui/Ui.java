@@ -78,4 +78,13 @@ public class Ui {
         }
         printLine();
     }
+
+    public void printRemovedTransaction(int size, String transactionDescription) {
+        System.out.println("Noted! I've removed this transaction: ");
+        printIndentation();
+        System.out.println(transactionDescription);
+        printIndentation();
+        System.out.println("Now you have " + size + " transactions in the list.");
+        printLine();
+    }
 }
