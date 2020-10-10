@@ -1,2 +1,0 @@
-I | 8000.0 | 2020-09-01 | Given $4000 bonus! | SALARY
-E | 3.5 | 2020-09-20 | Lunch with boss. | FOOD
