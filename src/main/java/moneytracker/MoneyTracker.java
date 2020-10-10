@@ -18,7 +18,7 @@ public class MoneyTracker {
      * @param filePath Path of the text file used for storing app data.
      */
     public MoneyTracker(String filePath) {
-        //assert !filePath.isBlank() : "filePath should not be blank";
+        assert !filePath.isBlank() : "filePath should not be blank";
         ui = new Ui();
         storage = new Storage(filePath);
         try {
