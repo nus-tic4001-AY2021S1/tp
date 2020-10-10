@@ -1,4 +1,4 @@
 package seedu.tracker.project;
 
-public class project {
+public class OldProject {
 }

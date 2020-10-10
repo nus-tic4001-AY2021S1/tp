@@ -1,21 +1,44 @@
 package seedu.tracker;
 
+import seedu.tracker.command.Command;
+import seedu.tracker.command.Exit;
+import seedu.tracker.parser.Parser;
+import seedu.tracker.project.ProjectList;
+import seedu.tracker.storage.Storage;
+import seedu.tracker.ui.Ui;
+
 import java.util.Scanner;
 
 public class Tracker {
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the java.seedu.tracker.Tracker application.
      */
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+    private final Ui ui = new Ui();
+    private final Parser parser = new Parser();
+    private final Scanner in = new Scanner(System.in);
+    private final ProjectList projects = new ProjectList();
+    private final Storage storage = new Storage("projects.txt", projects, ui);
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+    public static void main(String[] args) {
+        new Tracker().run();
+    }
+
+    private void run() {
+        ui.printGreeting();
+        ui.printHelp();
+        storage.readStorage(projects, ui, storage);
+        readUserInput();
+    }
+
+    private void readUserInput() {
+        while (true) {
+            Command command = parser.parseInput(in.nextLine(), ui, projects, storage);
+            command.execute();
+            if (isExit(command)) return;
+        }
+    }
+
+    private boolean isExit(Command command) {
+        return Exit.class.isAssignableFrom(command.getClass());
     }
 }

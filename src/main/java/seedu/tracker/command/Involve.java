@@ -1,4 +1,4 @@
 package seedu.tracker.command;
 
-public class duedate {
+public class Involve {
 }
