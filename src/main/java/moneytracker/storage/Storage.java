@@ -11,6 +11,7 @@ import moneytracker.transaction.Expense;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,18 +38,9 @@ public class Storage {
 
     /**
      * Loads information of all <code>Transaction</code> objects from text file.
-     *
-     * @throws MoneyTrackerException If the directory creation failed.
      */
     public ArrayList<Transaction> loadTransactions(String filePath) throws MoneyTrackerException {
-        try {
-            Path path = Paths.get("data/");
-            if (!(Files.exists(path))) {
-                Files.createDirectory(path);
-            }
-        } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem creating the save directory!");
-        }
+        createDirectory("data/");
         ArrayList<Transaction> transactions = new ArrayList<>();
         ArrayList<String> lines;
         lines = getLines(filePath);
@@ -62,21 +54,11 @@ public class Storage {
 
     /**
      * Loads information of all income categories from text file.
-     *
-     * @throws MoneyTrackerException If the directory creation failed.
      */
     public ArrayList<String> loadIncomeCategories(String filePath) throws MoneyTrackerException {
-        try {
-            Path path = Paths.get("data/");
-            if (!(Files.exists(path))) {
-                Files.createDirectory(path);
-            }
-        } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem creating the save directory!");
-        }
+        createDirectory("data/");
         ArrayList<String> incomeCategories = new ArrayList<>();
-        ArrayList<String> lines;
-        lines = getLines(filePath);
+        ArrayList<String> lines = getLines(filePath);
         for (String line : lines) {
             if (!(line.trim().isEmpty())) {
                 incomeCategories.add((line));
@@ -87,21 +69,11 @@ public class Storage {
 
     /**
      * Loads information of all expense categories from text file.
-     *
-     * @throws MoneyTrackerException If the directory creation failed.
      */
     public ArrayList<String> loadExpenseCategories(String filePath) throws MoneyTrackerException {
-        try {
-            Path path = Paths.get("data/");
-            if (!(Files.exists(path))) {
-                Files.createDirectory(path);
-            }
-        } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem creating the save directory!");
-        }
+        createDirectory("data/");
         ArrayList<String> expenseCategories = new ArrayList<>();
-        ArrayList<String> lines;
-        lines = getLines(filePath);
+        ArrayList<String> lines = getLines(filePath);
         for (String line : lines) {
             if (!(line.trim().isEmpty())) {
                 expenseCategories.add((line));
@@ -205,6 +177,17 @@ public class Storage {
             return new Expense(Double.parseDouble(amount), description, date, category);
         default:
             throw new MoneyTrackerException("There is invalid data in the save file.");
+        }
+    }
+
+    private void createDirectory(String directoryPath) throws MoneyTrackerException {
+        try {
+            Path path = Paths.get(directoryPath);
+            if (!(Files.exists(path))) {
+                Files.createDirectory(path);
+            }
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I've problem creating the save directory!");
         }
     }
 }
