@@ -30,20 +30,20 @@ public class Parser {
         return fullCommand.split(" ")[0];
     }
 
-    public static String getExpenseCategory(String fullCommand) throws MoneyTrackerException {
-        String commandParameterString = fullCommand.replaceFirst("(?i)addcate", "").trim();
-        if (commandParameterString.isEmpty()) {
-            throw new MoneyTrackerException("The expense category parameter is missing.");
-        }
-        return commandParameterString;
-    }
-
     public static String getIncomeCategory(String fullCommand) throws MoneyTrackerException {
         String commandParameterString = fullCommand.replaceFirst("(?i)addcati", "").trim();
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The income category parameter is missing.");
         }
-        return commandParameterString;
+        return commandParameterString.toUpperCase();
+    }
+
+    public static String getExpenseCategory(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = fullCommand.replaceFirst("(?i)addcate", "").trim();
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The expense category parameter is missing.");
+        }
+        return commandParameterString.toUpperCase();
     }
 
     /**

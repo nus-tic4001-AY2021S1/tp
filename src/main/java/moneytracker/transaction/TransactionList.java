@@ -37,10 +37,10 @@ public class TransactionList {
     /**
      * Add a transaction to the <code>TransactionList</code> object.
      *
-     * @param t <code>Transaction</code> object.
+     * @param transaction <code>Transaction</code> object.
      */
-    public void addTransaction(Transaction t) {
-        transactions.add(t);
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
     }
 
     /**

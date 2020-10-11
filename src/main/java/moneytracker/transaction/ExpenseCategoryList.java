@@ -16,7 +16,7 @@ public class ExpenseCategoryList {
     /**
      * Initializes a <code>ExpenseCategoryList</code> object.
      *
-     * @param expenseCategories List of <code>Expense</code> objects.
+     * @param expenseCategories List of expense categories.
      */
     public ExpenseCategoryList(ArrayList<String> expenseCategories) {
         this.expenseCategoryList = expenseCategories;
@@ -25,8 +25,8 @@ public class ExpenseCategoryList {
     /**
      * Get <code>ExpenseCategory</code> object from the <code>ExpenseCategoryList</code>.
      *
-     * @param index Index of ExpenseCategory in the <code>ExpenseCategoryList</code>.
-     * @return <code>ExpenseCategory</code> object.
+     * @param index Index of an expense category in the <code>ExpenseCategoryList</code>.
+     * @return An expense category.
      */
     public String getExpenseCategory(int index) {
         return expenseCategoryList.get(index);
@@ -37,18 +37,18 @@ public class ExpenseCategoryList {
     }
 
     /**
-     * Add a ExpenseCategory to the <code>ExpenseCategoryList</code> object.
+     * Add an expense category to the <code>ExpenseCategoryList</code>.
      *
-     * @param expenseCategory <code>ExpenseCategory</code> object.
+     * @param expenseCategory An expense category.
      */
     public void addExpenseCategory(String expenseCategory) {
         expenseCategoryList.add(expenseCategory);
     }
 
     /**
-     * Remove a <code>ExpenseCategory</code> object from the <code>ExpenseCategoryList</code>.
+     * Remove an expense category from the <code>ExpenseCategoryList</code>.
      *
-     * @param index Index of a <code>ExpenseCategory</code> in <code>ExpenseCategoryList</code>.
+     * @param index Index of an expense category in <code>ExpenseCategoryList</code>.
      * @throws MoneyTrackerException If index is invalid.
      */
     public void removeExpenseCategory(int index) throws MoneyTrackerException {

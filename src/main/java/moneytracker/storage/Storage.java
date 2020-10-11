@@ -1,10 +1,7 @@
 package moneytracker.storage;
 
 import moneytracker.exception.MoneyTrackerException;
-import moneytracker.transaction.Income;
-import moneytracker.transaction.Expense;
-import moneytracker.transaction.Transaction;
-import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.*;
 
 
 import java.io.File;
@@ -17,19 +14,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    private final String filePath;
+    private final String transactionsFilePath;
+    private final String incomeCategoriesFilePath;
+    private final String expenseCategoriesFilePath;
 
     /**
      * Initializes a <code>Storage</code> object.
      *
-     * @param filePath Path of the text file used for storing app data.
+     * @param transactionsFilePath Path of the text file used for storing transactions.
+     * @param incomeCategoriesFilePath Path of the text file used for storing income categories.
+     * @param expenseCategoriesFilePath Path of the text file used for storing expense categories.
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage(String transactionsFilePath, String incomeCategoriesFilePath, String expenseCategoriesFilePath) {
+        this.transactionsFilePath = transactionsFilePath;
+        this.incomeCategoriesFilePath = incomeCategoriesFilePath;
+        this.expenseCategoriesFilePath = expenseCategoriesFilePath;
     }
 
     /**
-     * Saves information of all <code>Transaction</code> objects to text file.
+     * Loads information of all <code>Transaction</code> objects from text file.
      *
      * @throws MoneyTrackerException If the directory creation failed.
      */
@@ -54,6 +57,56 @@ public class Storage {
     }
 
     /**
+     * Loads information of all income categories from text file.
+     *
+     * @throws MoneyTrackerException If the directory creation failed.
+     */
+    public ArrayList<String> loadIncomeCategories(String filePath) throws MoneyTrackerException {
+        try {
+            Path path = Paths.get("data/");
+            if (!(Files.exists(path))) {
+                Files.createDirectory(path);
+            }
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I've problem creating the save directory!");
+        }
+        ArrayList<String> incomeCategories = new ArrayList<>();
+        ArrayList<String> lines;
+        lines = getLines(filePath);
+        for (String line : lines) {
+            if (!(line.trim().isEmpty())) {
+                incomeCategories.add((line));
+            }
+        }
+        return incomeCategories;
+    }
+
+    /**
+     * Loads information of all expense categories from text file.
+     *
+     * @throws MoneyTrackerException If the directory creation failed.
+     */
+    public ArrayList<String> loadExpenseCategories(String filePath) throws MoneyTrackerException {
+        try {
+            Path path = Paths.get("data/");
+            if (!(Files.exists(path))) {
+                Files.createDirectory(path);
+            }
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I've problem creating the save directory!");
+        }
+        ArrayList<String> expenseCategories = new ArrayList<>();
+        ArrayList<String> lines;
+        lines = getLines(filePath);
+        for (String line : lines) {
+            if (!(line.trim().isEmpty())) {
+                expenseCategories.add((line));
+            }
+        }
+        return expenseCategories;
+    }
+
+    /**
      * Saves information of all <code>Transaction</code> objects to text file.
      *
      * @throws MoneyTrackerException If text file is not found or inaccessible.
@@ -61,7 +114,7 @@ public class Storage {
     public void saveTransactions(TransactionList transactions) throws MoneyTrackerException {
         FileWriter fw;
         try {
-            fw = new FileWriter(filePath);
+            fw = new FileWriter(transactionsFilePath);
             for (int i = 0; i < transactions.getSize(); i++) {
                 String description = transactions.getTransaction(i).getDescription();
                 String amount = transactions.getTransaction(i).getAmount();
@@ -77,6 +130,42 @@ public class Storage {
                     throw new MoneyTrackerException("I've problem saving to the file.");
                 }
                 fw.write(lineToSave);
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I've problem saving to the file.");
+        }
+    }
+
+    /**
+     * Saves information of all income categories to text file.
+     *
+     * @throws MoneyTrackerException If text file is not found or inaccessible.
+     */
+    public void saveIncomeCategories(IncomeCategoryList incomeCategories) throws MoneyTrackerException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter(incomeCategoriesFilePath);
+            for (int i = 0; i < incomeCategories.getSize(); i++) {
+                fw.write(incomeCategories.getIncomeCategory(i) + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I've problem saving to the file.");
+        }
+    }
+
+    /**
+     * Saves information of all expense categories to text file.
+     *
+     * @throws MoneyTrackerException If text file is not found or inaccessible.
+     */
+    public void saveExpenseCategories(ExpenseCategoryList expenseCategories) throws MoneyTrackerException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter(expenseCategoriesFilePath);
+            for (int i = 0; i < expenseCategories.getSize(); i++) {
+                fw.write(expenseCategories.getExpenseCategory(i)  + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
