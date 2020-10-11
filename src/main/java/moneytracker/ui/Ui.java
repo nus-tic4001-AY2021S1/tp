@@ -6,6 +6,7 @@ import moneytracker.transaction.Income;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -98,4 +99,116 @@ public class Ui {
         System.out.println("Now you have " + size + " transactions in the list.");
         printLine();
     }
+
+    public void printFilteredTasks(TransactionList transactions) {
+        ArrayList<Integer> searchResultIndexes = transactions.getSearchResultIndexes();
+        {
+            for (int i = 0; i < searchResultIndexes.size(); i++) {
+                printIndentation();
+                System.out.println((i + 1) + ". " + transactions.getTransaction(searchResultIndexes.get(i)).toString());
+            }
+        }
+        printLine();
+    }
+
+
+    public void printListTransactionExpenseOnly(TransactionList transactions) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your expense records:");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                Transaction parentRecord = transactions.getTransaction(i);
+                if (parentRecord instanceof Expense) {
+                    transactions.addSearchResultIndex(i);
+                }
+            }
+
+        }
+
+        printFilteredTasks(transactions);
+
+    }
+
+    public void printListTransactionIncomeOnly(TransactionList transactions) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your income records:");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                Transaction parentRecord = transactions.getTransaction(i);
+                if (parentRecord instanceof Income) {
+                    transactions.addSearchResultIndex(i);
+                }
+            }
+        }
+
+        printFilteredTasks(transactions);
+    }
+
+
+    public void printListTransactionMonthOnly(TransactionList transactions, String listMonthName) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your records for " + listMonthName + " :");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                if (transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    transactions.addSearchResultIndex(i);   //// add matched index to a new list
+                }
+            }
+
+        }
+        printFilteredTasks(transactions);
+    }
+
+
+    public void printListTransactionIncomeByMonth(TransactionList transactions, String listMonthName) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your income records for " + listMonthName + " :");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                Transaction parentRecord = transactions.getTransaction(i);
+                if (parentRecord instanceof Income & transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    transactions.addSearchResultIndex(i);
+                }
+            }
+        }
+
+        printFilteredTasks(transactions);
+    }
+
+    public void printListTransactionExpenseByMonth(TransactionList transactions, String listMonthName) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+
+            System.out.println("Here are your expense records for " + listMonthName + " :");
+            for (int i = 0; i < transactions.getSize(); i++) {
+                Transaction parentRecord = transactions.getTransaction(i);
+                if (parentRecord instanceof Expense & transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    transactions.addSearchResultIndex(i);
+                }
+            }
+        }
+        printFilteredTasks(transactions);
+    }
+
+
 }

@@ -4,6 +4,8 @@ import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
+import moneytracker.transaction.ExpenseCategoryList;
+import moneytracker.transaction.IncomeCategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
@@ -11,6 +13,9 @@ public class MoneyTracker {
     private final Storage storage;
     private final Ui ui;
     private TransactionList transactions;
+    private IncomeCategoryList incomeCategories;
+    private ExpenseCategoryList expenseCategories;
+
 
     /**
      * Initializes a <code>MoneyTracker</code> object.
