@@ -18,3 +18,4 @@ text-ui-test/EXPECTED-UNIX.TXT
 data/transactions.txt
 data/expense_categories.txt
 data/income_categories.txt
+data/categories.txt
