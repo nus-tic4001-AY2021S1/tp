@@ -1,10 +1,11 @@
 package moneytracker.storage;
 
 import moneytracker.exception.MoneyTrackerException;
-import moneytracker.transaction.Expense;
 import moneytracker.transaction.Income;
+import moneytracker.transaction.Expense;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
+
 
 import java.io.File;
 import java.io.FileWriter;
