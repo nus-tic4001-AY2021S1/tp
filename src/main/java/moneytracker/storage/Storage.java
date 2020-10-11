@@ -36,7 +36,6 @@ public class Storage {
      * Loads information of all <code>Transaction</code> objects from text file.
      */
     public ArrayList<Transaction> loadTransactions(String filePath) throws MoneyTrackerException {
-        createDirectory();
         ArrayList<Transaction> transactions = new ArrayList<>();
         ArrayList<String> lines;
         try {
@@ -57,7 +56,6 @@ public class Storage {
      * Loads information of all categories from text file.
      */
     public ArrayList<Category> loadCategories(String filePath) throws MoneyTrackerException {
-        createDirectory();
         ArrayList<Category> categories = new ArrayList<>();
         ArrayList<String> lines;
         try {
@@ -177,7 +175,12 @@ public class Storage {
         }
     }
 
-    private void createDirectory() throws MoneyTrackerException {
+    /**
+     * Creates the directory for save files.
+     *
+     * @throws MoneyTrackerException If the creation of file directory fails.
+     */
+    public void createDirectory() throws MoneyTrackerException {
         try {
             Path path = Paths.get("data/");
             if (!(Files.exists(path))) {

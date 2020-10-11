@@ -24,6 +24,11 @@ public class MoneyTracker {
         ui = new Ui();
         storage = new Storage(transactionsFilePath, categoriesFilePath);
         try {
+            storage.createDirectory();
+        } catch (MoneyTrackerException e) {
+            ui.printError(e.getMessage());
+        }
+        try {
             categories = new CategoryList(storage.loadCategories(categoriesFilePath));
         } catch (MoneyTrackerException e) {
             ui.printError(e.getMessage());
