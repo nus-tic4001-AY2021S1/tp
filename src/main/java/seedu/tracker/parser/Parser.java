@@ -1,11 +1,6 @@
 package seedu.tracker.parser;
 
-import seedu.tracker.command.Command;
-import seedu.tracker.command.Delete;
-import seedu.tracker.command.Exit;
-import seedu.tracker.command.Help;
-import seedu.tracker.command.Invalid;
-import seedu.tracker.command.List;
+import seedu.tracker.command.*;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
@@ -26,6 +21,10 @@ public class Parser {
             return new Delete(lineWithoutCommand, projects, ui, storage);
         case List.word:
             return new List(projects, ui);
+            case Find.word:
+                return new Find(lineWithoutCommand, projects, ui, storage);
+            case InCharge.word:
+                return new InCharge(lineWithoutCommand, projects, ui, storage);
         case Exit.word:
         case "":        // also exits when user input is empty
             return new Exit(ui);
