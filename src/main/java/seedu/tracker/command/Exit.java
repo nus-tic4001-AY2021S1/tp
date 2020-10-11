@@ -1,6 +1,7 @@
 package seedu.tracker.command;
 
 import seedu.tracker.ui.Ui;
+
 /**
  * A command to exit the program.
  */

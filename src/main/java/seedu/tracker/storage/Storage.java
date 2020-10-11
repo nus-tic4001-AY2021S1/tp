@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 /**
  * Responsible for all interactions between the in-memory projects and the projects file.
  */
@@ -53,7 +54,8 @@ public class Storage {
         return list;
     }
 
-    public ProjectList extractProjects(ArrayList<String> lines, ProjectList projects, Ui ui, Storage storage) throws IOException {
+    public ProjectList extractProjects(ArrayList<String> lines, ProjectList projects, Ui ui, Storage storage)
+        throws IOException {
         for (String line : lines) {
             FileWriter fw = new FileWriter(fileName, true);
             // Format of a project line has to be implemented
