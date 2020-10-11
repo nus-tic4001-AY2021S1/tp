@@ -25,7 +25,6 @@ public class AddIncomeCategoryCommand extends Command {
                         IncomeCategoryList incomeCategories,
                         ExpenseCategoryList expenseCategories) throws MoneyTrackerException {
         incomeCategories.addIncomeCategory((Parser.getIncomeCategory(fullCommand)));
-        ui.printAddedExpenseCategory(expenseCategories);
         ui.printAddedIncomeCategory(incomeCategories);
     }
 }
