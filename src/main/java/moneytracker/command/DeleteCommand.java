@@ -3,6 +3,9 @@ package moneytracker.command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
+import moneytracker.transaction.Expense;
+import moneytracker.transaction.Income;
+import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
@@ -27,16 +30,30 @@ public class DeleteCommand extends Command {
             throw new MoneyTrackerException("Please run the list command first.");
         }
         int transactionIndex = Parser.getTransactionIndex(fullCommand);
-        String transactionDescription;
+        Transaction transactionToDelete;
         try {
-            transactionDescription =
-                    transactions.getTransaction(transactions.getSearchResultIndex(transactionIndex)).toString();
-            transactions.removeTransaction(transactions.getSearchResultIndex(transactionIndex));
-            transactions.setIsInitialized(false);
+            transactionToDelete =
+                    transactions.getTransaction(transactions.getSearchResultIndex(transactionIndex));
         } catch (IndexOutOfBoundsException e) {
             throw new MoneyTrackerException("The transaction index is invalid.");
         }
+        String transactionDescription = transactionToDelete.toString();;
+        String transactionType = getTransactionType(transactionToDelete);
+        transactions.removeTransaction(transactions.getSearchResultIndex(transactionIndex));
+        transactions.setIsInitialized(false);
         storage.saveTransactions(transactions);
-        ui.printRemovedTransaction(transactions.getSize(), transactionDescription);
+        ui.printRemovedTransaction(transactions.getSize(), transactionDescription, transactionType);
+    }
+
+    private String getTransactionType(Transaction transaction) throws MoneyTrackerException {
+        String transactionType;
+        if (transaction instanceof Income) {
+            transactionType = "Income";
+        } else if (transaction instanceof Expense) {
+            transactionType = "Expense";
+        } else {
+            throw new MoneyTrackerException("The transaction type is invalid");
+        }
+        return transactionType;
     }
 }
