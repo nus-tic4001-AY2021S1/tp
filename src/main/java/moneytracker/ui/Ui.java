@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________________";
-    public static final String INDENT = "      ";
+    public static final String INDENT = "   ";
 
     /**
      * Get the input stream from the user.
@@ -30,22 +30,31 @@ public class Ui {
 
         printLine();
         System.out.println(logo);
-        System.out.println("Money Tracker: Hello! What can I do for you?");
+        System.out.println("Hello! What can I do for you?");
+        printLine();
+    }
+
+    public void printAddedTransaction(TransactionList transactions) {
+        System.out.println("Got it! I have added this transaction:");
+        printIndentation();
+        System.out.println(transactions.getTransaction(transactions.getSize() - 1).toString());
+        printIndentation();
+        System.out.println("Now you have " + transactions.getSize() + " transactions in your list.");
         printLine();
     }
 
     public void printError(String errorMessage) {
-        System.out.println("Money Tracker: OOPS!! " + errorMessage);
+        System.out.println("OOPS!! " + errorMessage);
         printLine();
     }
 
     public void printHelp() {
-        System.out.println("Money Tracker: User guide will be available soon!");
+        System.out.println("User guide will be available soon!");
         printLine();
     }
 
     public void printGoodbye() {
-        System.out.println("Money Tracker: Bye! Hope to see you again soon.");
+        System.out.println("Bye! Hope to see you again soon.");
         printLine();
     }
 
@@ -67,6 +76,15 @@ public class Ui {
                 System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
             }
         }
+        printLine();
+    }
+
+    public void printRemovedTransaction(int size, String transactionDescription) {
+        System.out.println("Noted! I've removed this transaction: ");
+        printIndentation();
+        System.out.println(transactionDescription);
+        printIndentation();
+        System.out.println("Now you have " + size + " transactions in the list.");
         printLine();
     }
 }

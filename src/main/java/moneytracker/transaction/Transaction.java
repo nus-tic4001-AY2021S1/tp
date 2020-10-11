@@ -19,7 +19,7 @@ public abstract class Transaction {
     /**
      * Initializes a <code>Transaction</code> object.
      *
-     * @param amount Amount of money for a transaction.
+     * @param amount Amount of money in a transaction.
      * @param description Description of a transaction.
      * @param date Date of a transaction.
      */
@@ -37,7 +37,7 @@ public abstract class Transaction {
     /**
      * Initializes a <code>Transaction</code> object.
      *
-     * @param amount Amount of money for a transaction.
+     * @param amount Amount of money in a transaction.
      * @param description Description of a transaction.
      */
     public Transaction(double amount, String description) {
@@ -46,10 +46,39 @@ public abstract class Transaction {
         this.date = LocalDate.now();
     }
 
+    /**
+     * Gets the amount of a <code>Transaction</code> object.
+     * @return Amount of a <code>Transaction</code> object.
+     */
+    public String getAmount() {
+        return String.valueOf(amount);
+    }
+
+    /**
+     * Gets the description of a <code>Transaction</code> object.
+     * @return Description of a <code>Transaction</code> object.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Get the date of a <code>Transaction</code> object.
+     *
+     * @return date of a <code>Transaction</code> object.
+     */
+    public String getDate() {
+        return date.toString();
+    }
+
     @Override
     public String toString() {
-        return "$" + String.format("%.2f", amount) + " on "
-                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                + " (" + description + ")";
+        String output = "$" + String.format("%.2f", amount) + " on "
+                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        if (description.isEmpty()) {
+            return output;
+        } else {
+            return output + " (" + description + ")";
+        }
     }
 }

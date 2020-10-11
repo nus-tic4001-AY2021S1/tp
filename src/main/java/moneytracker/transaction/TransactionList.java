@@ -57,6 +57,10 @@ public class TransactionList {
         }
     }
 
+    /**
+     * Get size of a <code>TransactionList</code> object.
+     * @return Size of a <code>TransactionList</code> object.
+     */
     public int getSize() {
         return transactions.size();
     }
@@ -77,4 +81,7 @@ public class TransactionList {
         searchResultIndexes.add(searchResultIndex);
     }
 
+    public int getSearchResultIndex(int resultIndex) {
+        return searchResultIndexes.get(resultIndex);
+    }
 }

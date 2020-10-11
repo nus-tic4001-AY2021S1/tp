@@ -1,10 +1,14 @@
 package moneytracker.command;
 
 import moneytracker.exception.MoneyTrackerException;
+import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Contains the methods for user to delete a transaction.
+ */
 public class DeleteCommand extends Command {
     private final String fullCommand;
 
@@ -19,6 +23,20 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage) throws MoneyTrackerException {
-
+        if (!(transactions.getIsInitialized())) {
+            throw new MoneyTrackerException("Please run the list command first.");
+        }
+        int transactionIndex = Parser.getTransactionIndex(fullCommand);
+        String transactionDescription;
+        try {
+            transactionDescription =
+                    transactions.getTransaction(transactions.getSearchResultIndex(transactionIndex)).toString();
+            transactions.removeTransaction(transactions.getSearchResultIndex(transactionIndex));
+            transactions.setIsInitialized(false);
+        } catch (IndexOutOfBoundsException e) {
+            throw new MoneyTrackerException("The transaction index is invalid.");
+        }
+        storage.saveTransactions(transactions);
+        ui.printRemovedTransaction(transactions.getSize(), transactionDescription);
     }
 }

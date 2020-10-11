@@ -2,8 +2,6 @@ package moneytracker.transaction;
 
 import moneytracker.exception.MoneyTrackerException;
 
-import java.time.format.DateTimeFormatter;
-
 /**
  * Represents an expense that a user has incurred. An <code>Expense</code>
  * object has an amount, a description, a date and an expense category.
@@ -33,6 +31,15 @@ public class Expense extends Transaction {
     public Expense(double amount, String description, String expenseCategory) {
         super(amount, description);
         this.expenseCategory = expenseCategory;
+    }
+
+    /**
+     * Get the expense category of a <code>Expense</code> object.
+     *
+     * @return Deadline of a <code>Expense</code> object.
+     */
+    public String getExpenseCategory() {
+        return expenseCategory;
     }
 
     @Override

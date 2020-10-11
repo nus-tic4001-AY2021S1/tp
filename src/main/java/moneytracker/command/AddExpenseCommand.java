@@ -1,12 +1,14 @@
 package moneytracker.command;
 
 import moneytracker.exception.MoneyTrackerException;
+import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
-import moneytracker.transaction.Expense;
-import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Contains the methods for user to add an expense.
+ */
 public class AddExpenseCommand extends Command {
     private final String fullCommand;
 
@@ -21,7 +23,8 @@ public class AddExpenseCommand extends Command {
 
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage) throws MoneyTrackerException {
-  
-
+        transactions.addTransaction(Parser.createExpense(fullCommand));
+        storage.saveTransactions(transactions);
+        ui.printAddedTransaction(transactions);
     }
 }
