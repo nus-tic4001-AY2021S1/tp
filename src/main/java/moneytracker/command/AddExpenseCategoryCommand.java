@@ -22,8 +22,8 @@ public class AddExpenseCategoryCommand extends Command {
 
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                                 IncomeCategoryList incomeCategories,
-                                 ExpenseCategoryList expenseCategories) throws MoneyTrackerException {
+                        IncomeCategoryList incomeCategories,
+                        ExpenseCategoryList expenseCategories) throws MoneyTrackerException {
         expenseCategories.addExpenseCategory(Parser.getExpenseCategory(fullCommand));
         ui.printAddedExpenseCategory(expenseCategories);
     }
