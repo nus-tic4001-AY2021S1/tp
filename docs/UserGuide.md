@@ -3,7 +3,7 @@
 ## Introduction
 
 Project Tracker is a desktop app for managing and tracking projects , optimized for use via a Command Line Interface (CLI). It will help the project manager to track the status of each project such as how many projects have been done per year or within a period.
-
+You can refer to [online user guid](https://ay2021s1-tic4001-1.github.io/tp/UserGuide.html) as well.
 
 ## Quick Start
 
