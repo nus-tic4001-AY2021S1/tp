@@ -5,6 +5,7 @@ import moneytracker.exception.MoneyTrackerException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 
 /**
  * Represents a transaction that a user has made. A <code>Transaction</code> object has an amount,
@@ -69,6 +70,14 @@ public abstract class Transaction {
      */
     public String getDate() {
         return date.toString();
+    }
+
+
+
+    public String setMonth() {
+        DateTimeFormatter formattedMonth = DateTimeFormatter.ofPattern("yyyy-MM", Locale.ENGLISH);
+        String monthName = formattedMonth.format(this.date);
+        return monthName;
     }
 
     @Override
