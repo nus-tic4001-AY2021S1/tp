@@ -1,10 +1,10 @@
 package moneytracker.ui;
 
-import moneytracker.transaction.ExpenseCategoryList;
-import moneytracker.transaction.IncomeCategoryList;
 import moneytracker.exception.MoneyTrackerException;
-import moneytracker.transaction.Expense;
+import moneytracker.transaction.Category;
+import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.Income;
+import moneytracker.transaction.Expense;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 
@@ -34,8 +34,6 @@ public class Ui {
                 + "|_|  |_|\\___/|_| |_|\\___|\\__, |    |_|_|  \\__,_|\\___|_|\\_\\___|_|   " + System.lineSeparator()
                 + "                          __/ |                                    " + System.lineSeparator()
                 + "                         |___/                                     " + System.lineSeparator();
-
-        printLine();
         System.out.println(logo);
         System.out.println("Hello! What can I do for you?");
         printLine();
@@ -57,21 +55,19 @@ public class Ui {
         printLine();
     }
 
-    public void printAddedExpenseCategory(ExpenseCategoryList expenseCategories) {
-        System.out.println("Got it! I’ve added this expense category:");
+    public void printAddedCategory(CategoryList categories) throws MoneyTrackerException {
+        Category categoryToPrint = categories.getCategory(categories.getSize() - 1);
+        if (categoryToPrint.getType().equals("INCOME")) {
+            System.out.println("Got it! I’ve added this income category:");
+        } else if (categoryToPrint.getType().equals("EXPENSE")) {
+            System.out.println("Got it! I’ve added this expense category:");
+        } else {
+            throw new MoneyTrackerException("The category type is invalid");
+        }
         printIndentation();
-        System.out.println(expenseCategories.getExpenseCategory(expenseCategories.getSize() - 1).toString());
+        System.out.println(categoryToPrint);
         printIndentation();
-        System.out.println("Now you have " + expenseCategories.getSize() + " expense categories in your list.");
-        printLine();
-    }
-
-    public void printAddedIncomeCategory(IncomeCategoryList incomeCategories) {
-        System.out.println("Got it! I’ve added this income category:");
-        printIndentation();
-        System.out.println(incomeCategories.getIncomeCategory(incomeCategories.getSize() - 1).toString());
-        printIndentation();
-        System.out.println("Now you have " + incomeCategories.getSize() + " income categories in your list.");
+        System.out.println("Now you have " + categories.getSize() + " categories in your list.");
         printLine();
     }
 

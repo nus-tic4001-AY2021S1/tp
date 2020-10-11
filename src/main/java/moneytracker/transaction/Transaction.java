@@ -72,8 +72,6 @@ public abstract class Transaction {
         return date.toString();
     }
 
-
-
     public String setMonth() {
         DateTimeFormatter formattedMonth = DateTimeFormatter.ofPattern("yyyy-MM", Locale.ENGLISH);
         String monthName = formattedMonth.format(this.date);
