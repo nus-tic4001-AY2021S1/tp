@@ -153,10 +153,16 @@ public class Storage {
         return result;
     }
 
-    private Category createCategory(String line) {
-        String name = line.split("\\|")[0].trim();
-        String type = line.split("\\|")[1].trim();
-        return new Category(name, type);
+    private Category createCategory(String line) throws MoneyTrackerException {
+        String type = line.split("\\|")[0].trim();
+        String name = line.split("\\|")[1].trim();
+        if (type.equals("I")) {
+            return new Category(name, "INCOME");
+        } else if (type.equals("E")) {
+            return new Category(name, "EXPENSE");
+        } else {
+            throw new MoneyTrackerException("There is invalid data in the save file.");
+        }
     }
 
     private Transaction createTransaction(String line) throws MoneyTrackerException {
