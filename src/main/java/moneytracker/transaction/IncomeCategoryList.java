@@ -8,7 +8,7 @@ public class IncomeCategoryList {
     private ArrayList<String> incomeCategoryList = new ArrayList<>();
 
     /**
-     * Initializes an empty code>IncomeCategoryList</code> object.
+     * Initializes an empty <code>IncomeCategoryList</code> object.
      */
     public IncomeCategoryList() {
     }
@@ -25,7 +25,7 @@ public class IncomeCategoryList {
     /**
      * Get incomeCategory from the IncomeCategoryList.
      *
-     * @param index Index of an income category in the code>IncomeCategoryList</code>.
+     * @param index Index of an income category in the <code>IncomeCategoryList</code>.
      * @return An income category.
      */
     public String getIncomeCategory(int index) {
@@ -37,7 +37,7 @@ public class IncomeCategoryList {
     }
 
     /**
-     * Add a incomeCategory to the code>IncomeCategoryList</code>.
+     * Add a incomeCategory to the <code>IncomeCategoryList</code>.
      *
      * @param incomeCategory An income category.
      */
