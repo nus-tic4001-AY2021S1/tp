@@ -41,8 +41,12 @@ public class CategoryList {
      *
      * @param category A category to be added.
      */
-    public void addCategory(Category category) {
-        categoryList.add(category);
+    public void addCategory(Category category) throws MoneyTrackerException {
+        if (!checkIfCategoryExists(category.getName(), category.getType())) {
+            categoryList.add(category);
+        } else {
+            throw new MoneyTrackerException("This category already exists.");
+        }
     }
 
     /**
@@ -57,5 +61,20 @@ public class CategoryList {
         } catch (IndexOutOfBoundsException e) {
             throw new MoneyTrackerException("Invalid index");
         }
+    }
+
+    /**
+     * Checks whether the category already exists in <code>CategoryList</code>.
+     *
+     * @param name Name of the category.
+     * @param type Type of the category.
+     */
+    public boolean checkIfCategoryExists(String name, String type) {
+        for (Category category : categoryList) {
+            if (name.equals(category.getName()) && type.equals(category.getType())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

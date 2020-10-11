@@ -4,6 +4,8 @@ import moneytracker.exception.MoneyTrackerException;
 
 import java.util.ArrayList;
 
+import moneytracker.transaction.CategoryList;
+
 public class TransactionList {
     private ArrayList<Transaction> transactions = new ArrayList<>();
     private final ArrayList<Integer> searchResultIndexes = new ArrayList<>();
@@ -39,8 +41,22 @@ public class TransactionList {
      *
      * @param transaction <code>Transaction</code> object.
      */
-    public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
+    public void addTransaction(Transaction transaction, CategoryList categories) throws MoneyTrackerException {
+        String category;
+        String type;
+        if (transaction instanceof Income) {
+            category = ((Income) transaction).getIncomeCategory();
+            type = "INCOME";
+            categories.checkIfCategoryExists(category, type);
+        } else {
+            category = ((Expense) transaction).getExpenseCategory();
+            type = "EXPENSE";
+        }
+        if (categories.checkIfCategoryExists(category, type)) {
+            transactions.add(transaction);
+        } else {
+            throw new MoneyTrackerException("The category \"" + category + "\" does not exist.");
+        }
     }
 
     /**
