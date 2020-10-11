@@ -16,7 +16,6 @@ public class MoneyTracker {
     private IncomeCategoryList incomeCategories;
     private ExpenseCategoryList expenseCategories;
 
-
     /**
      * Initializes a <code>MoneyTracker</code> object.
      *
@@ -28,6 +27,8 @@ public class MoneyTracker {
         storage = new Storage(filePath);
         try {
             transactions = new TransactionList(storage.loadTransactions(filePath));
+            incomeCategories = new IncomeCategoryList();
+            expenseCategories = new ExpenseCategoryList();
         } catch (MoneyTrackerException e) {
             ui.printError(e.getMessage());
             transactions = new TransactionList();
@@ -41,7 +42,7 @@ public class MoneyTracker {
             try {
                 String fullCommand = ui.readUserCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(transactions, ui, storage);
+                c.execute(transactions, ui, storage, incomeCategories, expenseCategories);
                 isExit = c.isExit();
             } catch (MoneyTrackerException e) {
                 ui.printError(e.getMessage());

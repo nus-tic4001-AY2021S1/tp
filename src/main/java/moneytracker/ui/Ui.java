@@ -1,5 +1,7 @@
 package moneytracker.ui;
 
+import moneytracker.transaction.ExpenseCategoryList;
+import moneytracker.transaction.IncomeCategoryList;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Expense;
 import moneytracker.transaction.Income;
@@ -54,6 +56,25 @@ public class Ui {
         System.out.println("Now you have " + transactions.getSize() + " transactions in your list.");
         printLine();
     }
+
+    public void printAddedExpenseCategory(ExpenseCategoryList expenseCategories) {
+        System.out.println("Got it! I’ve added this expense category:");
+        printIndentation();
+        System.out.println(expenseCategories.getExpenseCategory(expenseCategories.getSize() - 1).toString());
+        printIndentation();
+        System.out.println("Now you have " + expenseCategories.getSize() + " expense categories in your list.");
+        printLine();
+    }
+
+    public void printAddedIncomeCategory(IncomeCategoryList incomeCategories) {
+        System.out.println("Got it! I’ve added this income category:");
+        printIndentation();
+        System.out.println(incomeCategories.getIncomeCategory(incomeCategories.getSize() - 1).toString());
+        printIndentation();
+        System.out.println("Now you have " + incomeCategories.getSize() + " income categories in your list.");
+        printLine();
+    }
+
 
     public void printError(String errorMessage) {
         System.out.println("OOPS!! " + errorMessage);

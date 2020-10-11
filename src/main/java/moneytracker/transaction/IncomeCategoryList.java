@@ -5,47 +5,51 @@ import moneytracker.exception.MoneyTrackerException;
 import java.util.ArrayList;
 
 public class IncomeCategoryList {
-    private ArrayList<Income> incomeCategoryList;
+    private ArrayList<String> incomeCategoryList = new ArrayList<>();
 
     /**
-     * Initializes an empty <code>IncomeCategoryList</code> object.
+     * Initializes an empty IncomeCategoryList.
      */
     public IncomeCategoryList() {
     }
 
 
     /**
-     * Initializes a <code>IncomeCategoryList</code> object.
+     * Initializes a IncomeCategoryList object.
      *
-     * @param incomeCategory List of <code>Expense</code> objects.
+     * @param incomeCategories List of incomeCategoryList objects.
      */
-    public IncomeCategoryList(ArrayList<Income> incomeCategory) {
-        this.incomeCategoryList = incomeCategory;
+    public IncomeCategoryList(ArrayList<String> incomeCategories) {
+        this.incomeCategoryList = incomeCategories;
     }
 
     /**
-     * Get <code>incomeCategory</code> object from the <code>IncomeCategoryList</code>.
+     * Get incomeCategory  from the IncomeCategoryList.
      *
-     * @param index Index of incomeCategory in the <code>IncomeCategoryList</code>.
-     * @return <code>incomeCategory</code> object.
+     * @param index Index of incomeCategory in the IncomeCategoryList.
+     * @return Income category.
      */
-    public Income getIncomeCategory(int index) {
+    public String getIncomeCategory(int index) {
         return incomeCategoryList.get(index);
     }
 
-    /**
-     * Add a incomeCategory to the <code>IncomeCategoryList</code> object.
-     *
-     * @param i <code>incomeCategory</code> object.
-     */
-    public void addIncomeCategory(Income i) {
-        incomeCategoryList.add(i);
+    public int getSize() {
+        return incomeCategoryList.size();
     }
 
     /**
-     * Remove a <code>incomeCategory</code> object from the <code>IncomeCategoryList</code>.
+     * Add a incomeCategory to the IncomeCategoryList object.
      *
-     * @param index Index of a <code>incomeCategory</code> in <code>IncomeCategoryList</code>.
+     * @param incomeCategory incomeCategory.
+     */
+    public void addIncomeCategory(String incomeCategory) {
+        incomeCategoryList.add(incomeCategory);
+    }
+
+    /**
+     * Remove a incomeCategory from the IncomeCategoryList.
+     *
+     * @param index Index of a incomeCategory in IncomeCategoryList.
      * @throws MoneyTrackerException If index is invalid.
      */
     public void removeIncomeCategory(int index) throws MoneyTrackerException {

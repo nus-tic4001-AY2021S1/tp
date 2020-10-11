@@ -5,7 +5,7 @@ import moneytracker.exception.MoneyTrackerException;
 import java.util.ArrayList;
 
 public class ExpenseCategoryList {
-    private ArrayList<Expense> expenseCategoryList;
+    private ArrayList<String> expenseCategoryList = new ArrayList<>();
 
     /**
      * Initializes an empty <code>ExpenseCategoryList</code> object.
@@ -16,10 +16,10 @@ public class ExpenseCategoryList {
     /**
      * Initializes a <code>ExpenseCategoryList</code> object.
      *
-     * @param expenseCategory List of <code>Expense</code> objects.
+     * @param expenseCategories List of <code>Expense</code> objects.
      */
-    public ExpenseCategoryList(ArrayList<Expense> expenseCategory) {
-        this.expenseCategoryList = expenseCategory;
+    public ExpenseCategoryList(ArrayList<String> expenseCategories) {
+        this.expenseCategoryList = expenseCategories;
     }
 
     /**
@@ -28,17 +28,21 @@ public class ExpenseCategoryList {
      * @param index Index of ExpenseCategory in the <code>ExpenseCategoryList</code>.
      * @return <code>ExpenseCategory</code> object.
      */
-    public Expense getExpenseCategory(int index) {
+    public String getExpenseCategory(int index) {
         return expenseCategoryList.get(index);
+    }
+
+    public int getSize() {
+        return expenseCategoryList.size();
     }
 
     /**
      * Add a ExpenseCategory to the <code>ExpenseCategoryList</code> object.
      *
-     * @param e <code>ExpenseCategory</code> object.
+     * @param expenseCategory <code>ExpenseCategory</code> object.
      */
-    public void addExpenseCategory(Expense e) {
-        expenseCategoryList.add(e);
+    public void addExpenseCategory(String expenseCategory) {
+        expenseCategoryList.add(expenseCategory);
     }
 
     /**
