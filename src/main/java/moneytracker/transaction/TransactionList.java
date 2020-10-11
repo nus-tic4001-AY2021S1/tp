@@ -81,6 +81,10 @@ public class TransactionList {
         searchResultIndexes.add(searchResultIndex);
     }
 
+    public ArrayList<Integer> getSearchResultIndexes() {
+        return searchResultIndexes;
+    }
+
     public int getSearchResultIndex(int resultIndex) {
         return searchResultIndexes.get(resultIndex);
     }

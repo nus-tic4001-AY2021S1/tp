@@ -7,6 +7,8 @@ import moneytracker.transaction.IncomeCategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+import java.util.Arrays;
+
 public class ListCommand extends Command {
     private final String fullCommand;
 
@@ -27,8 +29,38 @@ public class ListCommand extends Command {
         transactions.clearSearchResultIndexes();
         for (int i = 0; i < transactions.getSize(); i++) {
             transactions.addSearchResultIndex(i);
-
         }
-        ui.printListTransaction(transactions);
+
+
+        String listMonthName = null;
+
+        int len = this.fullCommand.split(" ").length;
+
+
+        String[] lineArr = this.fullCommand.split(" ", 4);
+        assert lineArr.length == 4 : "OOPS!!! There are multiple description inputs.";
+
+        for (String inner : lineArr) {
+            if (inner.toLowerCase().contains("/m")) {
+                listMonthName = inner.replace("/m", "").trim();
+            }
+        }
+
+
+        if (len == 1) {
+            ui.printListTransaction(transactions);
+        } else if ((len == 2) & (lineArr[1].toLowerCase().equals("/te"))) {
+            ui.printListTransactionExpenseOnly(transactions);
+        } else if ((len == 2) & (lineArr[1].toLowerCase().equals("/ti"))) {
+            ui.printListTransactionIncomeOnly(transactions);
+        } else if ((len == 2) & (lineArr[1].toLowerCase().contains("/m"))) {
+            ui.printListTransactionMonthOnly(transactions,listMonthName);
+        } else if ((len == 3) & (Arrays.toString(lineArr).contains("/te"))) {
+            ui.printListTransactionExpenseByMonth(transactions,listMonthName);
+        } else if ((len == 3) & (Arrays.toString(lineArr).contains("/ti"))) {
+            ui.printListTransactionIncomeByMonth(transactions,listMonthName);
+        } else if (len < 1) {
+            ui.printError("OOPS!!! The description cannot be empty.");
+        }
     }
 }
