@@ -8,26 +8,25 @@ public class IncomeCategoryList {
     private ArrayList<String> incomeCategoryList = new ArrayList<>();
 
     /**
-     * Initializes an empty IncomeCategoryList.
+     * Initializes an empty <code>IncomeCategoryList</code> object.
      */
     public IncomeCategoryList() {
     }
 
-
     /**
-     * Initializes a IncomeCategoryList object.
+     * Initializes a <code>IncomeCategoryList</code> object.
      *
-     * @param incomeCategories List of incomeCategoryList objects.
+     * @param incomeCategories List of income categories.
      */
     public IncomeCategoryList(ArrayList<String> incomeCategories) {
         this.incomeCategoryList = incomeCategories;
     }
 
     /**
-     * Get incomeCategory  from the IncomeCategoryList.
+     * Get incomeCategory from the IncomeCategoryList.
      *
-     * @param index Index of incomeCategory in the IncomeCategoryList.
-     * @return Income category.
+     * @param index Index of an income category in the <code>IncomeCategoryList</code>.
+     * @return An income category.
      */
     public String getIncomeCategory(int index) {
         return incomeCategoryList.get(index);
@@ -38,18 +37,18 @@ public class IncomeCategoryList {
     }
 
     /**
-     * Add a incomeCategory to the IncomeCategoryList object.
+     * Add a incomeCategory to the <code>IncomeCategoryList</code>.
      *
-     * @param incomeCategory incomeCategory.
+     * @param incomeCategory An income category.
      */
     public void addIncomeCategory(String incomeCategory) {
         incomeCategoryList.add(incomeCategory);
     }
 
     /**
-     * Remove a incomeCategory from the IncomeCategoryList.
+     * Remove an income category from the <code>IncomeCategoryList</code>.
      *
-     * @param index Index of a incomeCategory in IncomeCategoryList.
+     * @param index Index of an income category in <code>IncomeCategoryList</code>.
      * @throws MoneyTrackerException If index is invalid.
      */
     public void removeIncomeCategory(int index) throws MoneyTrackerException {

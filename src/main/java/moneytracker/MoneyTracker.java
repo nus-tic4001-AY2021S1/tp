@@ -19,19 +19,22 @@ public class MoneyTracker {
     /**
      * Initializes a <code>MoneyTracker</code> object.
      *
-     * @param filePath Path of the text file used for storing app data.
+     * @param transactionsFilePath Path of the text file used for storing app data.
      */
-    public MoneyTracker(String filePath) {
-        assert !filePath.isBlank() : "filePath should not be blank";
+    public MoneyTracker(String transactionsFilePath,
+                        String incomeCategoriesFilePath, String expenseCategoriesFilePath) {
+        assert !transactionsFilePath.isBlank() : "filePath should not be blank";
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(transactionsFilePath, incomeCategoriesFilePath, expenseCategoriesFilePath);
         try {
-            transactions = new TransactionList(storage.loadTransactions(filePath));
-            incomeCategories = new IncomeCategoryList();
-            expenseCategories = new ExpenseCategoryList();
+            transactions = new TransactionList(storage.loadTransactions(transactionsFilePath));
+            incomeCategories = new IncomeCategoryList(storage.loadIncomeCategories(incomeCategoriesFilePath));
+            expenseCategories = new ExpenseCategoryList(storage.loadExpenseCategories(expenseCategoriesFilePath));
         } catch (MoneyTrackerException e) {
             ui.printError(e.getMessage());
             transactions = new TransactionList();
+            incomeCategories = new IncomeCategoryList();
+            expenseCategories = new ExpenseCategoryList();
         }
     }
 
@@ -55,6 +58,8 @@ public class MoneyTracker {
      *  @param args Command line arguments. Not used.
      */
     public static void main(String[] args) {
-        new MoneyTracker("data/transactions.txt").run();
+        new MoneyTracker("data/transactions.txt",
+                "data/income_categories.txt",
+                "data/expense_categories.txt").run();
     }
 }
