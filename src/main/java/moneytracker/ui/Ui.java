@@ -74,7 +74,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your records:");
+            System.out.println("Here are your transactions:");
             for (int i = 0; i < transactions.getSize(); i++) {
                 printIndentation();
                 System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
@@ -111,7 +111,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your expense records:");
+            System.out.println("Here are your expenses:");
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Expense) {
@@ -132,7 +132,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your income records:");
+            System.out.println("Here are your incomes:");
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Income) {
@@ -152,7 +152,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your records for " + listMonthName + " :");
+            System.out.println("Here are your transactions for " + listMonthName + " :");
             for (int i = 0; i < transactions.getSize(); i++) {
                 if (transactions.getTransaction(i).setMonth().equals(listMonthName)) {
                     transactions.addSearchResultIndex(i);   //// add matched index to a new list
