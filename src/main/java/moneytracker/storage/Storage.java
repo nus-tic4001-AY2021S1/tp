@@ -11,7 +11,6 @@ import moneytracker.transaction.Expense;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -146,6 +145,21 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             throw new MoneyTrackerException("I've problem saving to the file.");
+        }
+    }
+
+    public void clearAllData() throws MoneyTrackerException {
+        clearDataInFile(transactionsFilePath);
+        clearDataInFile(incomeCategoriesFilePath);
+        clearDataInFile(expenseCategoriesFilePath);
+    }
+
+    private void clearDataInFile(String filePath) throws MoneyTrackerException {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            fw.close();
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I've problem clearing data in this file: " + filePath);
         }
     }
 

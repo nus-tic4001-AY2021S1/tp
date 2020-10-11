@@ -26,6 +26,15 @@ public class DeleteCommand extends Command {
         this.fullCommand = fullCommand;
     }
 
+    /**
+     * Executes the delete transaction command.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param ui <code>Ui</code> object for displaying user interactions.
+     * @param storage <code>Storage</code> object for loading and saving user data.
+     * @param incomeCategories List of income categories.
+     * @param expenseCategories List of expense categories.
+     */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
                         IncomeCategoryList incomeCategories,

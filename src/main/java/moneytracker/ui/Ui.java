@@ -91,6 +91,11 @@ public class Ui {
         printLine();
     }
 
+    public void printClearAllData() {
+        System.out.println("Noted! I have cleared all data.");
+        printLine();
+    }
+
     public void printLine() {
         System.out.println(LINE);
     }
