@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class CategoryList {
     private ArrayList<Category> categoryList = new ArrayList<>();
+    private final ArrayList<Integer> searchResultIndexes = new ArrayList<>();
+    private boolean isInitialized = false;
 
     /**
      * Initializes an empty <code>CategoryList</code> object.
@@ -76,5 +78,34 @@ public class CategoryList {
             }
         }
         return false;
+    }
+
+    /**
+     *Add search result index to a list.
+     * @param searchResultIndex The index of search result.
+     */
+    public void addSearchResultIndex(int searchResultIndex) {
+        searchResultIndexes.add(searchResultIndex);
+    }
+
+    /**
+     *Check initial status.
+     */
+    public void setIsInitialized(boolean isInitialized) {
+        this.isInitialized = isInitialized;
+    }
+
+    /**
+     *Clear search result index in a list.
+     */
+    public void clearSearchResultIndexes() {
+        searchResultIndexes.clear();
+    }
+
+    /**
+     *Get search result index from the list.
+     */
+    public ArrayList<Integer> getSearchResultIndexes() {
+        return searchResultIndexes;
     }
 }
