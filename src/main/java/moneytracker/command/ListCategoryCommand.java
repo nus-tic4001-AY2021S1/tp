@@ -19,7 +19,7 @@ public class ListCategoryCommand extends Command {
     }
 
     /**
-     * Executes the delete category command.
+     * Executes the list categories command.
      *
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.

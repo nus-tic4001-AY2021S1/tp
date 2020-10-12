@@ -192,6 +192,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Gets command parameters from transaction user input string.
+     *
+     * @param commandParameterString User's full input string.
+     * @return
+     */
     private static HashMap<String, String> getCommandParameters(String commandParameterString) {
         assert !commandParameterString.isBlank() : "commandParameterString should not be blank";
         HashMap<String, String> commandParametersMap = new HashMap<>();
