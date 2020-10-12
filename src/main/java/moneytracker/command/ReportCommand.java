@@ -5,6 +5,9 @@ import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Contains the methods for user to generate summary report.
+ */
 public class ReportCommand extends Command {
     private final String fullCommand;
 

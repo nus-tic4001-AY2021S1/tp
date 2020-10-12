@@ -4,7 +4,7 @@ import moneytracker.exception.MoneyTrackerException;
 
 /**
  * Represents an income that a user has earned. An <code>Income</code>
- * object has an amount, a description, a date and an income category.
+ * object has an amount, a description, a date and a category.
  */
 public class Income extends Transaction {
     private final String incomeCategory;
@@ -12,7 +12,7 @@ public class Income extends Transaction {
     /**
      * Initializes an <code>Income</code> object.
      *
-     * @param amount Amount of money for an income.
+     * @param amount Amount of money of an income.
      * @param description Description of an income.
      * @param date Date of an income.
      */
@@ -24,7 +24,7 @@ public class Income extends Transaction {
     /**
      * Initializes an <code>Income</code> object.
      *
-     * @param amount Amount of money for an income.
+     * @param amount Amount of money of an income.
      * @param description Description of an income.
      */
     public Income(double amount, String description, String incomeCategory) {
@@ -33,14 +33,17 @@ public class Income extends Transaction {
     }
 
     /**
-     * Get the income category of a <code>Income</code> object.
+     * Gets the category of an <code>Income</code> object.
      *
-     * @return Income of a <code>Income</code> object.
+     * @return Category of an <code>Income</code> object.
      */
     public String getIncomeCategory() {
         return incomeCategory;
     }
 
+    /**
+     * Gets the String representation of an <code>Income</code>.
+     */
     @Override
     public String toString() {
         return "[I] " + incomeCategory.toUpperCase() + " " + super.toString();

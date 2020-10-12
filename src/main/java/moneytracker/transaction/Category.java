@@ -1,14 +1,19 @@
 package moneytracker.transaction;
 
+/**
+ * Represents a category for grouping incomes and expenses.
+ * A <code>Category</code> object has a name and type indicating whether
+ * it is an income or expense.
+ */
 public class Category {
-    private String name;
-    private String type;
+    private final String name;
+    private final String type;
 
     /**
      * Initializes a <code>Category</code> object.
      *
-     * @param name categories' name
-     * @param type categories' type INCOME OR EXPENSE
+     * @param name Name of a <code>Category</code>.
+     * @param type Type of a <code>Category</code>, either INCOME or EXPENSE.
      */
     public Category(String name, String type) {
         assert type.equals("INCOME") || type.equals("EXPENSE") : "type should be INCOME or EXPENSE";
@@ -17,23 +22,26 @@ public class Category {
     }
 
     /**
-     * Get the category name of a <code>category</code> object.
+     * Gets the name of a <code>Category</code>.
      *
-     * @return
+     * @return Name of a <code>Category</code>
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Get the category type of a <code>category</code> object.
+     * Gets the type of a <code>Category</code>.
      *
-     * @return
+     * @return Type of a <code>Category</code>.
      */
     public String getType() {
         return type;
     }
 
+    /**
+     * Gets the String representation of a <code>Category</code>.
+     */
     @Override
     public String toString() {
         String symbol = "";

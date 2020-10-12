@@ -1,6 +1,5 @@
 package moneytracker.command;
 
-import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
@@ -8,6 +7,9 @@ import moneytracker.ui.Ui;
 
 import java.util.Arrays;
 
+/**
+ * Contains the methods for user to list all transactions.
+ */
 public class ListCommand extends Command {
     private final String fullCommand;
 

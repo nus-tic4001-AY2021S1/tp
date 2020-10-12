@@ -169,7 +169,7 @@ class ParserTest {
      */
     @Test
     public void testGetTransactionIndex() throws MoneyTrackerException {
-        assertEquals(6, Parser.getTransactionIndex("delete 7"));
+        assertEquals(6, Parser.getIndex("delete 7"));
     }
 
     /**
@@ -179,11 +179,11 @@ class ParserTest {
     public void testGetTransactionIndexWithMissingValue() {
         String errorMessage = "";
         try {
-            Parser.getTransactionIndex("delete");
+            Parser.getIndex("delete");
         } catch (MoneyTrackerException e) {
             errorMessage = e.getMessage();
         }
-        assertEquals("The transaction index is missing.", errorMessage);
+        assertEquals("The index is missing.", errorMessage);
     }
 
     /**
@@ -193,10 +193,10 @@ class ParserTest {
     public void testGetTransactionIndexWithInvalidValue() {
         String errorMessage = "";
         try {
-            Parser.getTransactionIndex("delete WEIRD");
+            Parser.getIndex("delete WEIRD");
         } catch (MoneyTrackerException e) {
             errorMessage = e.getMessage();
         }
-        assertEquals("The transaction index is invalid.", errorMessage);
+        assertEquals("The index is invalid.", errorMessage);
     }
 }

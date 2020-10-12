@@ -7,6 +7,9 @@ import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Contains the methods for user to add an expense category.
+ */
 public class AddExpenseCategoryCommand extends Command {
     private final String fullCommand;
 

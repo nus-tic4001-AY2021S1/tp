@@ -8,6 +8,10 @@ import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Implements an application that allows users to manage monetary transactions.
+ * It contains methods that allow the creation, modification and storage of monetary transactions.
+ */
 public class MoneyTracker {
     private final Storage storage;
     private final Ui ui;

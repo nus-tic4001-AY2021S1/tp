@@ -21,6 +21,9 @@ import moneytracker.transaction.Expense;
 
 import java.util.HashMap;
 
+/**
+ * Contains methods that deal with parsing user commands to extract meaningful details from them.
+ */
 public class Parser {
     /**
      * Gets the command word from user's input string.
@@ -32,7 +35,7 @@ public class Parser {
     }
 
     /**
-     * Creates a <code>Category</code> object.
+     * Creates an income <code>Category</code> object.
      *
      * @param fullCommand User's full input string.
      * @return <code>Category</code> object.
@@ -48,7 +51,7 @@ public class Parser {
     }
 
     /**
-     * Creates a <code>Category</code> object.
+     * Creates an expense <code>Category</code> object.
      *
      * @param fullCommand User's full input string.
      * @return <code>Category</code> object.
@@ -134,24 +137,26 @@ public class Parser {
     }
 
     /**
-     * Gets transaction index from user's full input string.
+     * Gets transaction/category index from user's full input string.
      *
      * @param fullCommand User's full input string.
-     * @return Transaction index.
-     * @throws MoneyTrackerException If task index is missing or invalid.
+     * @return Index of transaction/category.
+     * @throws MoneyTrackerException If index is missing or invalid.
      */
-    public static int getTransactionIndex(String fullCommand) throws MoneyTrackerException {
-        String commandParameterString = fullCommand.replaceFirst("(?i)delete", "").trim();
+    public static int getIndex(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString =
+                fullCommand.replaceFirst("(?i)deletecat", "")
+                        .replaceFirst("(?i)delete", "").trim();
         if (commandParameterString.isEmpty()) {
-            throw new MoneyTrackerException("The transaction index is missing.");
+            throw new MoneyTrackerException("The index is missing.");
         }
-        int transactionIndex;
+        int index;
         try {
-            transactionIndex = Integer.parseInt(commandParameterString);
+            index = Integer.parseInt(commandParameterString);
         } catch (NumberFormatException e) {
-            throw new MoneyTrackerException("The transaction index is invalid.");
+            throw new MoneyTrackerException("The index is invalid.");
         }
-        return transactionIndex - 1;
+        return index - 1;
     }
 
     /**
@@ -192,12 +197,6 @@ public class Parser {
         }
     }
 
-    /**
-     * Gets command parameters from transaction user input string.
-     *
-     * @param commandParameterString User's full input string.
-     * @return
-     */
     private static HashMap<String, String> getCommandParameters(String commandParameterString) {
         assert !commandParameterString.isBlank() : "commandParameterString should not be blank";
         HashMap<String, String> commandParametersMap = new HashMap<>();
