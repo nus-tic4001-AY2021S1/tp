@@ -4,6 +4,11 @@ import moneytracker.exception.MoneyTrackerException;
 
 import java.util.ArrayList;
 
+/**
+ * Manages the in-memory transaction list. It contains an ArrayList that stores
+ * individual <code>Transaction</code> objects and methods to perform operations
+ * such as adding and deleting transactions.
+ */
 public class TransactionList {
     private ArrayList<Transaction> transactions = new ArrayList<>();
     private final ArrayList<Integer> searchResultIndexes = new ArrayList<>();
@@ -25,9 +30,9 @@ public class TransactionList {
     }
 
     /**
-     * Get <code>Transaction</code> object from the <code>TransactionList</code>.
+     * Gets a <code>Transaction</code> object from the <code>TransactionList</code>.
      *
-     * @param index Index of Transaction in the <code>TransactionList</code>.
+     * @param index Index of <code>Transaction</code> in the <code>TransactionList</code>.
      * @return <code>Transaction</code> object.
      */
     public Transaction getTransaction(int index) {
@@ -35,9 +40,9 @@ public class TransactionList {
     }
 
     /**
-     * Add a transaction to the <code>TransactionList</code> object.
+     * Adds a transaction to the <code>TransactionList</code>.
      *
-     * @param transaction <code>Transaction</code> object.
+     * @param transaction <code>Transaction</code>.
      */
     public void addTransaction(Transaction transaction, CategoryList categories) throws MoneyTrackerException {
         String category;
@@ -72,33 +77,52 @@ public class TransactionList {
     }
 
     /**
-     * Get size of a <code>TransactionList</code> object.
-     * @return Size of a <code>TransactionList</code> object.
+     * Gets the size of a <code>TransactionList</code>.
+     * @return Size of a <code>TransactionList</code>.
      */
     public int getSize() {
         return transactions.size();
     }
 
+    /**
+     * Gets the status of whether the list command has been used.
+     */
+    public boolean getIsInitialized() {
+        return isInitialized;
+    }
+
+    /**
+     * Sets the status that the list command has just been used.
+     */
     public void setIsInitialized(boolean isInitialized) {
         this.isInitialized = isInitialized;
     }
 
-    public boolean getIsInitialized() {
-        return isInitialized;
-    }
-    
-    public void clearSearchResultIndexes() {
-        searchResultIndexes.clear();
-    }
-
+    /**
+     * Adds index for a particular transaction listed by the list command.
+     * @param searchResultIndex Index of category listed by the list command.
+     */
     public void addSearchResultIndex(int searchResultIndex) {
         searchResultIndexes.add(searchResultIndex);
     }
 
+    /**
+     * Clears the indexes from the list command.
+     */
+    public void clearSearchResultIndexes() {
+        searchResultIndexes.clear();
+    }
+
+    /**
+     * Gets the indexes from the list command.
+     */
     public ArrayList<Integer> getSearchResultIndexes() {
         return searchResultIndexes;
     }
 
+    /**
+     * Gets the index for a particular transaction listed by the list command.
+     */
     public int getSearchResultIndex(int resultIndex) {
         return searchResultIndexes.get(resultIndex);
     }

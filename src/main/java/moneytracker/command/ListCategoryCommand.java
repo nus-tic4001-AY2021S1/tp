@@ -1,13 +1,13 @@
 package moneytracker.command;
 
-import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
-import moneytracker.transaction.Expense;
-import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Contains the methods for user to list all categories.
+ */
 public class ListCategoryCommand extends Command {
     private final String fullCommand;
 
@@ -31,6 +31,11 @@ public class ListCategoryCommand extends Command {
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
                         CategoryList categories) {
+        categories.setIsInitialized(true);
+        categories.clearSearchResultIndexes();
+        for (int i = 0; i < categories.getSize(); i++) {
+            categories.addSearchResultIndex(i);
+        }
 
         int len = this.fullCommand.split(" ").length;
         String[] lineArr = this.fullCommand.split(" ", 4);

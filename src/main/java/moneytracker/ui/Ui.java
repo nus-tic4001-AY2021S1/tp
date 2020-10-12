@@ -11,12 +11,16 @@ import moneytracker.transaction.TransactionList;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Contains methods that interacts with the users such as obtaining commands
+ * from user input and displaying messages to the users.
+ */
 public class Ui {
     public static final String LINE = "____________________________________________________________________";
     public static final String INDENT = "   ";
 
     /**
-     * Get the input stream from the user.
+     * Gets the input stream from the user.
      * @return Input stream from the user.
      */
     public String readUserCommand() {
@@ -71,14 +75,14 @@ public class Ui {
         printLine();
     }
 
-
     public void printError(String errorMessage) {
         System.out.println("OOPS!! " + errorMessage);
         printLine();
     }
 
     public void printHelp() {
-        System.out.println("User guide will be available soon!");
+        System.out.println("Please refer this online user guide:");
+        System.out.println("https://ay2021s1-tic4001-2.github.io/tp/UserGuide.html");
         printLine();
     }
 
@@ -113,10 +117,19 @@ public class Ui {
         printLine();
     }
 
-    public void printRemovedTransaction(int size, String transactionDescription, String transactionType) {
-        System.out.println("Noted! I have removed this " + transactionType + ": ");
+    public void printRemoveCategory(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
         printIndentation();
-        System.out.println(transactionDescription);
+        System.out.println(description);
+        printIndentation();
+        System.out.println("Now you have " + size + " categories in the list.");
+        printLine();
+    }
+
+    public void printRemoveTransaction(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
+        printIndentation();
+        System.out.println(description);
         printIndentation();
         System.out.println("Now you have " + size + " transactions in the list.");
         printLine();

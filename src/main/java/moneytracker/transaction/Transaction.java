@@ -64,9 +64,9 @@ public abstract class Transaction {
     }
 
     /**
-     * Get the date of a <code>Transaction</code> object.
+     * Gets the date of a <code>Transaction</code>.
      *
-     * @return date of a <code>Transaction</code> object.
+     * @return date of a <code>Transaction</code>.
      */
     public String getDate() {
         return date.toString();
@@ -78,6 +78,9 @@ public abstract class Transaction {
         return monthName;
     }
 
+    /**
+     * Gets the String representation of a <code>Transaction</code>.
+     */
     @Override
     public String toString() {
         String output = "$" + String.format("%.2f", amount) + " on "

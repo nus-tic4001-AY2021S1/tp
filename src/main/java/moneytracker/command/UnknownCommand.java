@@ -1,11 +1,13 @@
 package moneytracker.command;
 
-import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
+/**
+ * Contains the method to inform user if the command is invalid.
+ */
 public class UnknownCommand extends Command {
 
     /**
