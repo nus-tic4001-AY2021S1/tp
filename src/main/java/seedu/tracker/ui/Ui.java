@@ -31,10 +31,11 @@ public class Ui {
 
     public void printHelp() {
         String help = "What you can tell me to do is listed below:\n"
-            + "  ⬢  See all commands          | " + colorGreen("--help\n")
-            + "  ⬡  Delete a project          | " + colorGreen("--delete < project index number>\n")
-            + "  ⬢  List down all projects    | " + colorGreen("--list\n")
-            + "  ⬡  Exit my program           | " + colorGreen("--exit or hit Enter");
+            + "    -See all commands          | " + colorGreen("--help\n")
+            + "    -Delete a project          | " + colorGreen("--delete < project index number>\n")
+            + "    -List down all projects    | " + colorGreen("--list\n")
+            + "    -Find word in projects     | " + colorGreen("--find<word>\n")
+            + "    -Exit my program           | " + colorGreen("--exit or hit Enter");
         printBorderline(help);
     }
 
@@ -66,4 +67,6 @@ public class Ui {
         String message = "An existing project file is found!";
         printBorderline(message);
     }
+
+
 }

@@ -1,9 +1,9 @@
 package seedu.tracker.project;
 
-public abstract class Project {
+public class Project {
     String description;
 
-    Project(String input) {
+    public Project(String input) {
         description = input;
     }
 
