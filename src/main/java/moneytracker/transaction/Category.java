@@ -5,6 +5,7 @@ public class Category {
     private String type;
 
     public Category(String name, String type) {
+        assert type.equals("INCOME") || type.equals("EXPENSE") : "type should be INCOME or EXPENSE";
         this.name = name;
         this.type = type;
     }

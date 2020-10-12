@@ -4,8 +4,6 @@ import moneytracker.exception.MoneyTrackerException;
 
 import java.util.ArrayList;
 
-import moneytracker.transaction.CategoryList;
-
 public class TransactionList {
     private ArrayList<Transaction> transactions = new ArrayList<>();
     private final ArrayList<Integer> searchResultIndexes = new ArrayList<>();
