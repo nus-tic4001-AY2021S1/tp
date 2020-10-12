@@ -16,8 +16,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Storage {
+    private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private final String transactionsFilePath;
     private final String categoriesFilePath;
 
@@ -154,8 +157,15 @@ public class Storage {
     }
 
     private Category createCategory(String line) throws MoneyTrackerException {
-        String type = line.split("\\|")[0].trim();
-        String name = line.split("\\|")[1].trim();
+        String type = "";
+        String name = "";
+        try {
+            type = line.split("\\|")[0].trim();
+            name = line.split("\\|")[1].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.SEVERE, "Error reading categories.txt", e);
+            System.exit(1);
+        }
         if (type.equals("I")) {
             return new Category(name, "INCOME");
         } else if (type.equals("E")) {
@@ -166,11 +176,21 @@ public class Storage {
     }
 
     private Transaction createTransaction(String line) throws MoneyTrackerException {
-        String transactionType = line.split("\\|")[0].trim();
-        String amount = line.split("\\|")[1].trim();
-        String date = line.split("\\|")[2].trim();
-        String description = line.split("\\|")[3].trim();
-        String category = line.split("\\|")[4].trim();
+        String transactionType = "";
+        String amount = "";
+        String date = "";
+        String description = "";
+        String category = "";
+        try {
+            transactionType = line.split("\\|")[0].trim();
+            amount = line.split("\\|")[1].trim();
+            date = line.split("\\|")[2].trim();
+            description = line.split("\\|")[3].trim();
+            category = line.split("\\|")[4].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.SEVERE, "Error reading transactions.txt", e);
+            System.exit(1);
+        }
         switch (transactionType) {
         case "I":
             return new Income(Double.parseDouble(amount), description, date, category);

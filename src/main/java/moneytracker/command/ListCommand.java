@@ -21,17 +21,16 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Executes the list all events command.
+     * Executes the list transactions command.
      *
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
      * @param categories List of categories.
-     * @throws MoneyTrackerException when this exceptional condition happens
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories) throws MoneyTrackerException {
+                        CategoryList categories) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
         for (int i = 0; i < transactions.getSize(); i++) {

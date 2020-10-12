@@ -19,3 +19,5 @@ data/transactions.txt
 data/expense_categories.txt
 data/income_categories.txt
 data/categories.txt
+META-INF/MANIFEST.MF
+src/main/java/META-INF/MANIFEST.MF
