@@ -2,6 +2,7 @@ package moneytracker.command;
 
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
+import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
@@ -18,7 +19,8 @@ public class DeleteCategoryCommand extends Command {
     }
 
     @Override
-    public void execute(TransactionList transactions, Ui ui, Storage storage) throws MoneyTrackerException {
+    public void execute(TransactionList transactions, Ui ui, Storage storage,
+                        CategoryList categories) throws MoneyTrackerException {
 
     }
 }

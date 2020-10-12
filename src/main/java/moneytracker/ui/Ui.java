@@ -1,7 +1,10 @@
 package moneytracker.ui;
 
-import moneytracker.transaction.Expense;
+import moneytracker.exception.MoneyTrackerException;
+import moneytracker.transaction.Category;
+import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.Income;
+import moneytracker.transaction.Expense;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 
@@ -31,21 +34,43 @@ public class Ui {
                 + "|_|  |_|\\___/|_| |_|\\___|\\__, |    |_|_|  \\__,_|\\___|_|\\_\\___|_|   " + System.lineSeparator()
                 + "                          __/ |                                    " + System.lineSeparator()
                 + "                         |___/                                     " + System.lineSeparator();
-
-        printLine();
         System.out.println(logo);
         System.out.println("Hello! What can I do for you?");
         printLine();
     }
 
-    public void printAddedTransaction(TransactionList transactions) {
-        System.out.println("Got it! I have added this transaction:");
+    public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {
+        Transaction transactionToPrint = transactions.getTransaction(transactions.getSize() - 1);
+        if (transactionToPrint instanceof Income) {
+            System.out.println("Got it! I have added this income:");
+        } else if (transactionToPrint instanceof Expense) {
+            System.out.println("Got it! I have added this expense:");
+        } else {
+            throw new MoneyTrackerException("The transaction type is invalid");
+        }
         printIndentation();
-        System.out.println(transactions.getTransaction(transactions.getSize() - 1).toString());
+        System.out.println(transactionToPrint.toString());
         printIndentation();
         System.out.println("Now you have " + transactions.getSize() + " transactions in your list.");
         printLine();
     }
+
+    public void printAddedCategory(CategoryList categories) throws MoneyTrackerException {
+        Category categoryToPrint = categories.getCategory(categories.getSize() - 1);
+        if (categoryToPrint.getType().equals("INCOME")) {
+            System.out.println("Got it! I’ve added this income category:");
+        } else if (categoryToPrint.getType().equals("EXPENSE")) {
+            System.out.println("Got it! I’ve added this expense category:");
+        } else {
+            throw new MoneyTrackerException("The category type is invalid");
+        }
+        printIndentation();
+        System.out.println(categoryToPrint);
+        printIndentation();
+        System.out.println("Now you have " + categories.getSize() + " categories in your list.");
+        printLine();
+    }
+
 
     public void printError(String errorMessage) {
         System.out.println("OOPS!! " + errorMessage);
@@ -62,6 +87,11 @@ public class Ui {
         printLine();
     }
 
+    public void printClearAllData() {
+        System.out.println("Noted! I have cleared all data.");
+        printLine();
+    }
+
     public void printLine() {
         System.out.println(LINE);
     }
@@ -74,7 +104,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your records:");
+            System.out.println("Here are your transactions:");
             for (int i = 0; i < transactions.getSize(); i++) {
                 printIndentation();
                 System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
@@ -83,8 +113,8 @@ public class Ui {
         printLine();
     }
 
-    public void printRemovedTransaction(int size, String transactionDescription) {
-        System.out.println("Noted! I've removed this transaction: ");
+    public void printRemovedTransaction(int size, String transactionDescription, String transactionType) {
+        System.out.println("Noted! I've removed this " + transactionType + ": ");
         printIndentation();
         System.out.println(transactionDescription);
         printIndentation();
@@ -111,7 +141,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your expense records:");
+            System.out.println("Here are your expenses:");
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Expense) {
@@ -132,7 +162,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your income records:");
+            System.out.println("Here are your incomes:");
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Income) {
@@ -152,7 +182,7 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            System.out.println("Here are your records for " + listMonthName + " :");
+            System.out.println("Here are your transactions for " + listMonthName + " :");
             for (int i = 0; i < transactions.getSize(); i++) {
                 if (transactions.getTransaction(i).setMonth().equals(listMonthName)) {
                     transactions.addSearchResultIndex(i);   //// add matched index to a new list

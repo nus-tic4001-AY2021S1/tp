@@ -15,6 +15,7 @@ import moneytracker.command.ReportCommand;
 import moneytracker.command.ExitCommand;
 import moneytracker.command.UnknownCommand;
 import moneytracker.exception.MoneyTrackerException;
+import moneytracker.transaction.Category;
 import moneytracker.transaction.Income;
 import moneytracker.transaction.Expense;
 
@@ -28,6 +29,38 @@ public class Parser {
      */
     public static String getCommand(String fullCommand) {
         return fullCommand.split(" ")[0];
+    }
+
+    /**
+     * Creates a <code>Category</code> object.
+     *
+     * @param fullCommand User's full input string.
+     * @return <code>Category</code> object.
+     * @throws MoneyTrackerException If income category is missing.
+     */
+    public static Category createIncomeCategory(String fullCommand) throws MoneyTrackerException {
+        assert !fullCommand.isBlank() : "fullCommand should not be blank";
+        String name = fullCommand.replaceFirst("(?i)addcati", "").toUpperCase().trim();
+        if (name.isEmpty()) {
+            throw new MoneyTrackerException("The income category name is missing.");
+        }
+        return new Category(name, "INCOME");
+    }
+
+    /**
+     * Creates a <code>Category</code> object.
+     *
+     * @param fullCommand User's full input string.
+     * @return <code>Category</code> object.
+     * @throws MoneyTrackerException If expense category is missing.
+     */
+    public static Category createExpenseCategory(String fullCommand) throws MoneyTrackerException {
+        assert !fullCommand.isBlank() : "fullCommand should not be blank";
+        String name = fullCommand.replaceFirst("(?i)addcate", "").toUpperCase().trim();
+        if (name.isEmpty()) {
+            throw new MoneyTrackerException("The expense category name is missing.");
+        }
+        return new Category(name, "EXPENSE");
     }
 
     /**
