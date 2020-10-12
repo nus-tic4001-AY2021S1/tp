@@ -55,6 +55,13 @@ public class DeleteCommand extends Command {
         ui.printRemovedTransaction(transactions.getSize(), transactionDescription, transactionType);
     }
 
+    /**
+     * Gets transaction type from transaction input string.
+     *
+     * @param transaction <code>Transaction</code> object.
+     * @return type of a <code>Transaction</code> object.
+     * @throws MoneyTrackerException when this exceptional condition happens.
+     */
     private String getTransactionType(Transaction transaction) throws MoneyTrackerException {
         String transactionType;
         if (transaction instanceof Income) {
