@@ -1,4 +1,15 @@
 package seedu.tracker.project;
 
-public class NewProject {
+import java.security.PublicKey;
+
+public class NewProject extends Project {
+
+    public NewProject(String Description){
+        super(Description);
+    }
+
+    @Override
+    public String toString() {
+       return description;
+    }
 }
