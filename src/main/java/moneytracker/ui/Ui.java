@@ -58,9 +58,9 @@ public class Ui {
     public void printAddedCategory(CategoryList categories) throws MoneyTrackerException {
         Category categoryToPrint = categories.getCategory(categories.getSize() - 1);
         if (categoryToPrint.getType().equals("INCOME")) {
-            System.out.println("Got it! I’ve added this income category:");
+            System.out.println("Got it! I have added this income category:");
         } else if (categoryToPrint.getType().equals("EXPENSE")) {
-            System.out.println("Got it! I’ve added this expense category:");
+            System.out.println("Got it! I have added this expense category:");
         } else {
             throw new MoneyTrackerException("The category type is invalid");
         }
@@ -114,7 +114,7 @@ public class Ui {
     }
 
     public void printRemovedTransaction(int size, String transactionDescription, String transactionType) {
-        System.out.println("Noted! I've removed this " + transactionType + ": ");
+        System.out.println("Noted! I have removed this " + transactionType + ": ");
         printIndentation();
         System.out.println(transactionDescription);
         printIndentation();

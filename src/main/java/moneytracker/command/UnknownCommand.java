@@ -18,7 +18,7 @@ public class UnknownCommand extends Command {
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories) throws MoneyTrackerException {
+                        CategoryList categories) {
         ui.printError("I'm sorry, I don't know what that means.");
     }
 }
