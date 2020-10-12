@@ -62,7 +62,7 @@ public class ListCommand extends Command {
         } else if ((len == 3) & (Arrays.toString(lineArr).contains("/ti"))) {
             ui.printListTransactionIncomeByMonth(transactions,listMonthName);
         } else if (len < 1) {
-            ui.printError("OOPS!!! The description cannot be empty.");
+            ui.printError("The description cannot be empty.");
         }
     }
 }

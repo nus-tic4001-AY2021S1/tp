@@ -42,8 +42,8 @@ public class ListCategoryCommand extends Command {
 
         } else if ((len == 2) & (lineArr[1].toLowerCase().equals("/ti"))) {
             ui.printListCategoryIncomeOnly(categories);
+        } else {
+            ui.printError("Please enter valid command.");
         }
-
-
     }
 }

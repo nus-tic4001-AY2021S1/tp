@@ -80,19 +80,31 @@ public class CategoryList {
         return false;
     }
 
-
+    /**
+     *Add search result index to a list.
+     * @param searchResultIndex The index of search result.
+     */
     public void addSearchResultIndex(int searchResultIndex) {
         searchResultIndexes.add(searchResultIndex);
     }
 
+    /**
+     *Check initial status.
+     */
     public void setIsInitialized(boolean isInitialized) {
         this.isInitialized = isInitialized;
     }
 
+    /**
+     *Clear search result index in a list.
+     */
     public void clearSearchResultIndexes() {
         searchResultIndexes.clear();
     }
 
+    /**
+     *Get search result index from the list.
+     */
     public ArrayList<Integer> getSearchResultIndexes() {
         return searchResultIndexes;
     }

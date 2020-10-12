@@ -185,7 +185,7 @@ public class Ui {
             System.out.println("Here are your transactions for " + listMonthName + " :");
             for (int i = 0; i < transactions.getSize(); i++) {
                 if (transactions.getTransaction(i).setMonth().equals(listMonthName)) {
-                    transactions.addSearchResultIndex(i);   //// add matched index to a new list
+                    transactions.addSearchResultIndex(i);
                 }
             }
 
