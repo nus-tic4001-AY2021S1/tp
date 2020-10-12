@@ -250,11 +250,48 @@ Here are your expense categories:
 
 
 
+### Viewing monthly report: `report`
+Shows a report that summarises the incomes and expenses for a specified month.
+
+Format: `report MONTH`
+- MONTH must be in yyyy-MM format. E.g. 2020-09.
+- The summary report for the specified month will be displayed.
+
+Example of usage: `report 2020-09`
+
+Expected outcome:
+```
+Here is your report for Sep 2020: Income: $9200.00
+Expense: $2000.00
+Income - Expenses: $7200.00 Average Expense Per Day: $66.67
+
+Highest Income Record:
+  [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
+Highest Expense Record:
+  [E] FOOD $120.00 on 18 Sep 2020 (Dinner with wife.)
+
+Income Categories:
+  [I] SALARY $9000.00 (Highest) 
+  [I] DIVIDEND $200.00
+Highest Frequency Expense Category: 
+  [E] FOOD (87 Records)
+
+Expense Categories:
+  [E] FOOD $848.50 (Highest)
+  [E] ENTERTAINMENT $651.50 [E] RENT $500.00
+```
 
 
 
 
+### Exiting the program: `exit`
+Exits the program. 
 
+Format: `exit`
+
+### Saving the data
+-There is no save command because any change 
+to the data in Money Tracker will be automatically saved.
 
 ## FAQ
 

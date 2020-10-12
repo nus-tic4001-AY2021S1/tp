@@ -29,6 +29,7 @@ public class AddIncomeCommand extends Command {
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
      * @param categories List of categories.
+     * @throws MoneyTrackerException If there is a processing error.
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
