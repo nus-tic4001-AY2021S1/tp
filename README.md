@@ -1,4 +1,4 @@
-# Tracker seedu.tracker.project template
+# Tracker
 
 This is a seedu.tracker.project template for a greenfield Java seedu.tracker.project. It's named after the Java mascot _Tracker_. Given below are instructions on how to use it.
 
