@@ -29,21 +29,17 @@ public class ListCommand extends Command {
             transactions.addSearchResultIndex(i);
         }
 
-
         String listMonthName = null;
-
         int len = this.fullCommand.split(" ").length;
 
-
         String[] lineArr = this.fullCommand.split(" ", 4);
-        assert lineArr.length == 4 : "OOPS!!! There are multiple description inputs.";
+        assert lineArr.length >= 0 : "There should be at least 1 element";
 
         for (String inner : lineArr) {
             if (inner.toLowerCase().contains("/m")) {
                 listMonthName = inner.replace("/m", "").trim();
             }
         }
-
 
         if (len == 1) {
             ui.printListTransaction(transactions);

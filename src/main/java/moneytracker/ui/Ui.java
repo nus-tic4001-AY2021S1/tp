@@ -122,7 +122,7 @@ public class Ui {
         printLine();
     }
 
-    public void printFilteredTasks(TransactionList transactions) {
+    public void printFilteredTransactions(TransactionList transactions) {
         ArrayList<Integer> searchResultIndexes = transactions.getSearchResultIndexes();
         {
             for (int i = 0; i < searchResultIndexes.size(); i++) {
@@ -151,7 +151,7 @@ public class Ui {
 
         }
 
-        printFilteredTasks(transactions);
+        printFilteredTransactions(transactions);
 
     }
 
@@ -171,7 +171,7 @@ public class Ui {
             }
         }
 
-        printFilteredTasks(transactions);
+        printFilteredTransactions(transactions);
     }
 
 
@@ -190,7 +190,7 @@ public class Ui {
             }
 
         }
-        printFilteredTasks(transactions);
+        printFilteredTransactions(transactions);
     }
 
 
@@ -210,7 +210,7 @@ public class Ui {
             }
         }
 
-        printFilteredTasks(transactions);
+        printFilteredTransactions(transactions);
     }
 
     public void printListTransactionExpenseByMonth(TransactionList transactions, String listMonthName) {
@@ -229,8 +229,64 @@ public class Ui {
                 }
             }
         }
-        printFilteredTasks(transactions);
+        printFilteredTransactions(transactions);
     }
 
+    private void printFilteredCategories(CategoryList categories) {
+        ArrayList<Integer> searchResultIndexes = categories.getSearchResultIndexes();
+        {
+            for (int i = 0; i < searchResultIndexes.size(); i++) {
+                printIndentation();
+                System.out.println((i + 1) + ". " + categories.getCategory(searchResultIndexes.get(i)).toString());
+            }
+        }
+        printLine();
+    }
 
+    public void printListCategory(CategoryList categories) {
+        if (categories.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your categories:");
+            for (int i = 0; i < categories.getSize(); i++) {
+                printIndentation();
+                System.out.println((i + 1) + ". " + categories.getCategory(i).toString());
+            }
+        }
+        printLine();
+    }
+
+    public void printListCategoryExpenseOnly(CategoryList categories) {
+        categories.setIsInitialized(true);
+        categories.clearSearchResultIndexes();
+
+        if (categories.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your expenses categories:");
+            for (int i = 0; i < categories.getSize(); i++) {
+                if (categories.getCategory(i).getType().equals("EXPENSE")) {
+                    categories.addSearchResultIndex(i);
+                }
+            }
+        }
+        printFilteredCategories(categories);
+    }
+
+    public void printListCategoryIncomeOnly(CategoryList categories) {
+        categories.setIsInitialized(true);
+        categories.clearSearchResultIndexes();
+
+        if (categories.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here are your income categories:");
+            for (int i = 0; i < categories.getSize(); i++) {
+                if (categories.getCategory(i).getType().equals("INCOME")) {
+                    categories.addSearchResultIndex(i);
+                }
+            }
+        }
+        printFilteredCategories(categories);
+    }
 }
