@@ -2,8 +2,7 @@ package moneytracker.command;
 
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
-import moneytracker.transaction.ExpenseCategoryList;
-import moneytracker.transaction.IncomeCategoryList;
+import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
@@ -19,16 +18,16 @@ public abstract class Command {
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
+     * @param categories List of categories.
      */
     public abstract void execute(TransactionList transactions, Ui ui, Storage storage,
-                                 IncomeCategoryList incomeCategories,
-                                 ExpenseCategoryList expenseCategories) throws MoneyTrackerException;
+                        CategoryList categories) throws MoneyTrackerException;
+
     /**
      * Returns false to prevent Money Tracker from exiting after the command.
      * Subclasses should override this method to return true if Duke
      * needs to exit after the command.
      */
-
     public boolean isExit() {
         return false;
     }
