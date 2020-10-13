@@ -47,7 +47,8 @@ public class Ui {
     public void printTaskRemoved(ProjectList projects, int index) {
         String added = "Okay! We have removed the project as shown below:\n"
             + colorRed(projects.get(index - 1).getDescription()
-            + colorGreen("\nWe now have " + (projects.size() - 1) + " project(s) in your list!"));
+            //    + colorRed(projects.getProject().get(index - 1).toString()
+                + colorGreen("\nWe now have " + (projects.size() - 1) + " project(s) in your list!"));
         printBorderline(added);
     }
 
