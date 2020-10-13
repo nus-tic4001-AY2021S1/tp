@@ -17,7 +17,6 @@ public class Project extends Command {
     @Override
     public void execute() {
 
-        //String newData = "";
         String temp;
 
         ArrayList newProject = new ArrayList();
