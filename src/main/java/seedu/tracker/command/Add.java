@@ -6,10 +6,11 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
-public class Involve extends Command {
-    public static final String word = "--involve";
+public class Add extends Command {
 
-    public Involve(String line, ProjectList projects, Ui ui, Storage storage) {
+    public static final String word = "--add";
+
+    public Add(String line, ProjectList projects, Ui ui, Storage storage) {
         super(line, projects, ui, storage);
     }
 
@@ -29,7 +30,6 @@ public class Involve extends Command {
             }
             else {
 
-                // new Replace(arr2[], arr3[], projects);
                 int he = Integer.parseInt(arr2[1].trim())-1;
                 String line = projects.getProject().get(he).toString();
 
@@ -38,10 +38,11 @@ public class Involve extends Command {
                 String temp3 ;
                 for(int num = 1; num < arr4.length; num++){
                     String arr5[] = arr4[num].split(" ",2);
-                    if (arr2[0].equalsIgnoreCase(arr5[0])){
-                        String temp = arr4[num].replace(arr5[1], arr3[1]);
-                        System.out.println(temp);
-                        temp2 = temp2 + temp+ " ";
+                    if (arr3[0].equalsIgnoreCase(arr5[0])){
+                        String temp = arr5[1] + arr3[1];
+
+                        //System.out.println(temp);
+                        temp2 = temp2 + arr4[num].replace(arr5[1],temp) + " ";
                     }else{
                         temp3 = "--" + arr4[num];
                         temp2 = temp2 + temp3;
@@ -55,5 +56,4 @@ public class Involve extends Command {
             ui.printBorderline(e.getMessage());
         }
     }
-
 }
