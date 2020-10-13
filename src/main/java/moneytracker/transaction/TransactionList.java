@@ -126,4 +126,11 @@ public class TransactionList {
     public int getSearchResultIndex(int resultIndex) {
         return searchResultIndexes.get(resultIndex);
     }
+
+    /**
+     * Clears the <code>TransactionList</code>.
+     */
+    public void clearTransactions() {
+        transactions.clear();
+    }
 }

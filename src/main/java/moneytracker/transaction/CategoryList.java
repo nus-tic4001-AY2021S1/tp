@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * such as adding and deleting categories.
  */
 public class CategoryList {
-    private ArrayList<Category> categoryList = new ArrayList<>();
+    private ArrayList<Category> categories = new ArrayList<>();
     private final ArrayList<Integer> searchResultIndexes = new ArrayList<>();
     private boolean isInitialized = false;
 
@@ -26,7 +26,7 @@ public class CategoryList {
      * @param categories List of categories.
      */
     public CategoryList(ArrayList<Category> categories) {
-        this.categoryList = categories;
+        this.categories = categories;
     }
 
     /**
@@ -36,7 +36,7 @@ public class CategoryList {
      * @return List of categories.
      */
     public Category getCategory(int index) {
-        return categoryList.get(index);
+        return categories.get(index);
     }
 
     /**
@@ -44,7 +44,7 @@ public class CategoryList {
      * @return Size of a <code>CategoryList</code>.
      */
     public int getSize() {
-        return categoryList.size();
+        return categories.size();
     }
 
     /**
@@ -54,7 +54,7 @@ public class CategoryList {
      */
     public void addCategory(Category category) throws MoneyTrackerException {
         if (!checkIfCategoryExists(category.getName(), category.getType())) {
-            categoryList.add(category);
+            categories.add(category);
         } else {
             throw new MoneyTrackerException("This category already exists.");
         }
@@ -68,7 +68,7 @@ public class CategoryList {
      */
     public void removeCategory(int index) throws MoneyTrackerException {
         try {
-            categoryList.remove(categoryList.get(index));
+            categories.remove(categories.get(index));
         } catch (IndexOutOfBoundsException e) {
             throw new MoneyTrackerException("Invalid index");
         }
@@ -81,7 +81,7 @@ public class CategoryList {
      * @param type Type of the category.
      */
     public boolean checkIfCategoryExists(String name, String type) {
-        for (Category category : categoryList) {
+        for (Category category : categories) {
             if (name.equals(category.getName()) && type.equals(category.getType())) {
                 return true;
             }
@@ -130,5 +130,12 @@ public class CategoryList {
      */
     public int getSearchResultIndex(int resultIndex) {
         return searchResultIndexes.get(resultIndex);
+    }
+
+    /**
+     * Clears the <code>CategoryList</code>.
+     */
+    public void clearCategories() {
+        categories.clear();
     }
 }

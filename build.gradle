@@ -33,7 +33,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "moneytracker"
+    archiveBaseName = "MoneyTracker"
     archiveClassifier = null
 }
 
