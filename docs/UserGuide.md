@@ -251,7 +251,7 @@ Noted! I have cleared all data
 Shows a report that summarises the incomes and expenses for a specified month.
 
 Format: `report MONTH`
-- MONTH must be in yyyy-MM format. E.g. 2020-09.
+- `MONTH` must be in yyyy-MM format. E.g. `2020-09`.
 - The summary report for the specified month will be displayed.
 
 Example of usage: `report 2020-09`
