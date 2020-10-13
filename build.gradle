@@ -14,20 +14,29 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
 
-//test {
-//    useJUnitPlatform()
-//    testLogging {
-//        events "passed", "skipped", "failed"
-//        showExceptions true
-//        exceptionFormat "full"
-//        showCauses true
-//        showStackTraces true
-//        showStandardStreams = false
-//    }
-//}
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
+}
+
+jar{
+    manifest {
+        attributes(
+                'Main-Class': 'seedu.tracker.Tracker'
+        )
+    }
+}
+
 
 application {
-    mainClassName = "src.main.java.seedu.tracker.Tracker"
+    mainClassName = "seedu.tracker.Tracker"
 }
 
 shadowJar {

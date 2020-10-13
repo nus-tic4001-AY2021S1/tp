@@ -23,20 +23,12 @@ public class Parser {
                 return new List(projects, ui);
             case Find.word:
                 return new Find(lineWithoutCommand, projects, ui, storage);
-            case InCharge.word:
-                return new InCharge(line, projects, ui, storage);
-            case Name.word:
-                return new Name(line, projects, ui, storage);
-            case StartDate.word:
-                return new StartDate(line, projects, ui, storage);
-            case DueDate.word:
-                return new DueDate(line, projects, ui, storage);
+            case Replace.word:
+                return new Replace(line, projects, ui, storage);
+            case Add.word:
+                return new Add(line, projects, ui, storage);
             case Project.word:
                 return new Project(line, projects, ui, storage);
-            case Involve.word:
-                return new Involve(line, projects, ui, storage);
-            case Description.word:
-                return new Description(line, projects, ui, storage);
             case Exit.word:
             case "":        // also exits when user input is empty
                 return new Exit(ui);
