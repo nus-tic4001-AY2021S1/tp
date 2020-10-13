@@ -22,6 +22,7 @@ public class List extends Command {
         String total = "Here are the projects that you currently have!\n";
         for (int i = 0; i < projects.size(); i++) {
             total = total.concat((i + 1) + ". " + projects.get(i).getDescription()) + "\n";
+            //total = total.concat((i + 1) + ". " + projects.getProject().get(i).toString()) + "\n";
         }
         ui.printBorderline(total);
     }
