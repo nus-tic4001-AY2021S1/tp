@@ -55,12 +55,10 @@ Example of usage: `addcati salary`
 
 Expected outcome:
 ```
-Got it! I’ve added this income category:
+Got it! I have added this income category:
   [I] SALARY
   Now you have 1 categories in your list.
 ```
-
-
 
 ### Adding an expense category: `addcate`
 Adds an expense category. Expense category is used for classifying expense. E.g. FOOD, RENT, ENTERTAINMENT.
@@ -73,14 +71,12 @@ Example of usage: `addcate Food`
 
 Expected outcome:
 ```
-Got it! I’ve added this expense category:
+Got it! I have added this expense category:
   [E] FOOD
   Now you have 2 categories in your list.
 ```
 
-
-
-### Listing all income / expenses categories: `listcat`
+### Listing all income / expense categories: `listcat`
 Shows a list of all income and/or expense categories.
 
 Format: `listcat [/tTYPE]`
@@ -88,8 +84,6 @@ Format: `listcat [/tTYPE]`
 - `TYPE` must either be the letter `i` or `e`. If `TYPE` is `i`, only income categories will be
 listed. Similarly, if `TYPE` is `e`, only expense categories will be listed. If `TYPE` is
 omitted, both income and expense categories will be listed.
-
-
 
 Example of usage: `listcat /te`
 
@@ -112,7 +106,6 @@ Here are your categories:
   5. [E] ENTERTAINMENT
 ```
 
-
 ### Deleting an income / expense category: `deletecat`
 Deletes a specified income or expense category.
 
@@ -131,10 +124,6 @@ Noted! I have removed this expense category:
   [E] ENTERTAINMENT
   Now you have 4 categories in your list.
 ```
-
-
-
-
 
 ### Adding an income: `addi`
 Adds an income.
@@ -174,12 +163,10 @@ Got it! I’ve added this expense:
     Now you have 2 transactions in your list.
 ```
 
-
 ### Listing incomes / expenses: `list`
 Shows a list of incomes / expenses.
 
 Format:  `list [/tTYPE] [/mMONTH]` <br>
-
 
 - `TYPE` must either be the letter `i` or `e`. If `TYPE` is `i`, only incomes will be listed.
 Similarly, if `TYPE` is `e`, only expenses will be listed. If `TYPE` is omitted, both
@@ -187,7 +174,7 @@ incomes and expenses will be listed. (`list` ,or `list [/tTYPE]` , or `list [/mM
 - `MONTH` must be in `yyyy-MM` format. E.g. `2020-09`. Only transactions in this month
 will be listed. If `MONTH` is omitted, all transactions will be listed.
 
-Example of usage: `list /te /m2020-09` or `list /m2020-09 /te`  
+Example of usage: `list /te /m2020-09` 
 
 Expected outcome:
 ```
@@ -196,7 +183,6 @@ Here are your expense records for 2020-09:
   2. [E] FOOD $10.00 on 18 Sep 2020 (Dinner at McDonalds’)
   3. [E] FOOD $3.50 on 20 Sep 2020 (Lunch with boss.)
 ```
-
 
 Example of usage: `list`
 
@@ -232,14 +218,6 @@ Here are your transactions for 2020-09:
   4. [E] FOOD $3.50 on 20 Sep 2020 (Lunch with boss.)
 ```
 
-
-
-
-
-
-
-
-
 ### Deleting an income / expense: `delete`
 Deletes a specified income or expense.
 
@@ -262,21 +240,18 @@ Clears all incomes / expenses and income / expense categories.
 
 Format: `clear`
 
+Example of usage: `clear`
+
 Expected outcome:
 ```
 Noted! I have cleared all data
 ```
 
-
-
-
-
-
 ### Viewing monthly report: `report`
 Shows a report that summarises the incomes and expenses for a specified month.
 
 Format: `report MONTH`
-- MONTH must be in yyyy-MM format. E.g. 2020-09.
+- `MONTH` must be in yyyy-MM format. E.g. `2020-09`.
 - The summary report for the specified month will be displayed.
 
 Example of usage: `report 2020-09`
@@ -284,41 +259,45 @@ Example of usage: `report 2020-09`
 Expected outcome:
 ```
 Here is your report for Sep 2020: 
-Income: $9200.00
-Expense: $2000.00
-Income - Expenses: $7200.00 
+Total Income: $9200.00
+Total Expense: $2000.00
+Balance: $7200.00 
 Average Expense Per Day: $66.67
 
-Highest Income Record:
+Highest Income:
   [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
-Highest Expense Record:
+
+Highest Expense:
   [E] FOOD $120.00 on 18 Sep 2020 (Dinner with wife.)
+
+Highest Frequency Expense Category: 
+  [E] FOOD (87 Records)
 
 Income Categories:
   [I] SALARY $9000.00 (Highest) 
   [I] DIVIDEND $200.00
-Highest Frequency Expense Category: 
-  [E] FOOD (87 Records)
 
 Expense Categories:
   [E] FOOD $848.50 (Highest)
   [E] ENTERTAINMENT $651.50 [E] RENT $500.00
 ```
 
-
-
-
 ### Exiting the program: `exit`
 Exits the program. 
 
 Format: `exit`
 
+Example of usage: `exit`
+
+Expected outcome:
+
+```
+Bye! Hope to see you again soon.
+```
+
 ### Saving the data
--There is no save command because any change 
-to the data in Money Tracker will be automatically saved.
-
-
-
+There is no save command because any change 
+to the data will be automatically saved.
 
 ## FAQ
 
@@ -332,14 +311,14 @@ Click `Yes` if the system prompts you for confirmation of overwriting.
 ## Command Summary
 
 * View help `help`
-* Adding income category `addcati`
-* Adding an expense category `addcate`
-* Listing all income / expenses categories `listcat`
-* Deleting an income / expense category `deletecat`
+* Add income category `addcati INCOME_CATEGORY`
+* Add expense category `addcate EXPENSE_CATEGORY`
+* List income / expense categories `listcat [/tTYPE]`
+* Delete income / expense category `deletecat INDEX`
 * Add income `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eDESCRIPTION]`
 * Add expense `adde /aAMOUNT /cEXPENSE_CATEGORY [/dDATE] [/eDESCRIPTION]`
-* List income / expense transactions `list`  or `list [/tTYPE]`   or `list [/mMONTH]`  or `list [/tTYPE] [/mMONTH]`  or `list [/mMONTH] [/tTYPE]` <br>
+* List incomes / expenses `list [/tTYPE] [/mMONTH]`
 * Delete income / expense `delete INDEX`
 * Clear data `clear`
-* Viewing monthly report `report`
+* View monthly report `report MONTH`
 * Exit program `exit`
