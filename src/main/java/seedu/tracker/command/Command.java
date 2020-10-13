@@ -12,6 +12,8 @@ public abstract class Command {
     public ProjectList projects;
     public Storage storage;
     public Ui ui;
+    public String arr[];
+    public String arr2[];
 
     protected Command(String line, ProjectList projects, Ui ui, Storage storage) {
         this.line = line;
@@ -31,6 +33,9 @@ public abstract class Command {
         this.ui = ui;
     }
 
+    protected Command(String arr[], String arr2[], ProjectList projects) {
+        this.projects=projects;
+    }
     protected Command(Ui ui) {
         this.ui = ui;
     }

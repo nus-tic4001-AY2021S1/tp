@@ -29,6 +29,7 @@ public class Find extends Command{
                 matches = matches.concat((i + 1) + ". " + projects.get(i).getDescription()) + "\n";
                 hasMatch = true;
             }
+
         }
         if (!hasMatch) {
             matches = "It appears that are no matches for '" + searchWord + "'!\n" +

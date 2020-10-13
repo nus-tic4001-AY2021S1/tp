@@ -25,6 +25,7 @@ public class Storage {
         FileWriter fw = new FileWriter("./" + fileName, false);
         for (int i = 0; i < projects.size(); i++) {
             String line = (i + 1) + ". " + projects.get(i).getDescription() + "\n";
+            //String line = (i + 1) + ". " + projects.getProject().get(i).toString() + "\n";
             fw.write(line);
         }
         fw.close();
