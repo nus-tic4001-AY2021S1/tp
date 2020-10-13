@@ -34,7 +34,7 @@ public class Ui {
                 + "    -See all commands          | " + colorGreen("--help\n")
                 + "    -Add a project             | " + colorGreen("--project --name INPUT --description INPUT --involve INPUT --duedate dd/mm/yyyy --startdate dd/mm/yyyy --incharge INPUT\n")
                 + "    -Replace a project detail  | " + colorGreen("--replace <project index number> --name INPUT\n")
-                + "    -Add a project detail      | " + colorGreen("--add <project index number> --name INPUT\n")
+                + "    -Add a extra project detail| " + colorGreen("--add <project index number> --name INPUT\n")
                 + "    -Delete a project          | " + colorGreen("--delete < project index number>\n")
                 + "    -List down all projects    | " + colorGreen("--list\n")
                 + "    -Find word in projects     | " + colorGreen("--find <keyword>\n")
@@ -71,6 +71,11 @@ public class Ui {
         String message = "An existing project file is found!";
         printBorderline(message);
     }
-
+    public void printAddMessage(ProjectList projects){
+          System.out.println("Got it. I've added this information into the project. \n" );
+        }
+    public void printReplaceMessage(ProjectList projects){
+        System.out.println("Got it. I've edit the information into the project. \n" );
+    }
 
 }
