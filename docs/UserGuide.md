@@ -266,6 +266,7 @@ Average Expense Per Day: $66.67
 
 Highest Income:
   [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
+
 Highest Expense:
   [E] FOOD $120.00 on 18 Sep 2020 (Dinner with wife.)
 
