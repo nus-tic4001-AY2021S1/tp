@@ -36,7 +36,7 @@ What you can tell me to do is listed below:
     -Exit my program           | --exit or hit Enter
 ```
 ### Adding a project : `project`
-Adds a new project
+Adds a project
 
 Format:
 `--project --name INPUT --description INPUT --involve INPUT --duedate dd/mm/yyyy --startdate dd/mm/yyyy --incharge INPUT`
