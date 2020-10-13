@@ -264,16 +264,17 @@ Expense: $2000.00
 Income - Expenses: $7200.00 
 Average Expense Per Day: $66.67
 
-Highest Income Record:
+Highest Income:
   [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
-Highest Expense Record:
+Highest Expense:
   [E] FOOD $120.00 on 18 Sep 2020 (Dinner with wife.)
+
+Highest Frequency Expense Category: 
+  [E] FOOD (87 Records)
 
 Income Categories:
   [I] SALARY $9000.00 (Highest) 
   [I] DIVIDEND $200.00
-Highest Frequency Expense Category: 
-  [E] FOOD (87 Records)
 
 Expense Categories:
   [E] FOOD $848.50 (Highest)
