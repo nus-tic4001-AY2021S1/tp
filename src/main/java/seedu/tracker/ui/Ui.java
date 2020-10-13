@@ -32,9 +32,11 @@ public class Ui {
     public void printHelp() {
         String help = "What you can tell me to do is listed below:\n"
             + "    -See all commands          | " + colorGreen("--help\n")
+            + "    -Add a project             | " + colorGreen("--project --name INPUT --description INPUT --involve INPUT --duedate dd/mm/yyyy --startdate dd/mm/yyyy --incharge INPUT\n")
+            + "    -Update a project detail   | " + colorGreen("--commandName <project index number> --replace INPUT\n")
             + "    -Delete a project          | " + colorGreen("--delete < project index number>\n")
             + "    -List down all projects    | " + colorGreen("--list\n")
-            + "    -Find word in projects     | " + colorGreen("--find<word>\n")
+            + "    -Find word in projects     | " + colorGreen("--find <keyword>\n")
             + "    -Exit my program           | " + colorGreen("--exit or hit Enter");
         printBorderline(help);
     }
