@@ -259,9 +259,9 @@ Example of usage: `report 2020-09`
 Expected outcome:
 ```
 Here is your report for Sep 2020: 
-Income: $9200.00
-Expense: $2000.00
-Income - Expenses: $7200.00 
+Total Income: $9200.00
+Total Expense: $2000.00
+Balance: $7200.00 
 Average Expense Per Day: $66.67
 
 Highest Income:
