@@ -40,8 +40,7 @@ public class Replace extends Command{
                     String arr5[] = arr4[num].split(" ",2);
                     if (arr3[0].equalsIgnoreCase(arr5[0])){
                         String temp = arr4[num].replace(arr5[1], arr3[1]);
-                       // System.out.println(temp);
-                        temp2 = temp2 + temp+ " ";
+                        temp2 = temp2 + "--" + temp+ " ";
                     }else{
                         temp3 = "--" + arr4[num];
                         temp2 = temp2 + temp3;
@@ -49,6 +48,7 @@ public class Replace extends Command{
                 }
 
                 projects.set(he,new Project(temp2));
+                ui.printReplaceMessage(projects);
 
             }
         } catch (TrackerException e) {
