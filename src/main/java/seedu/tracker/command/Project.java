@@ -1,10 +1,12 @@
 package seedu.tracker.command;
 
+import seedu.tracker.exception.TrackerException;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Project extends Command {
@@ -16,44 +18,47 @@ public class Project extends Command {
 
     @Override
     public void execute() {
+        try {
+            ArrayList<String> newProject = new ArrayList<>();
+            newProject.add("name");
+            newProject.add("description");
+            newProject.add("involve");
+            newProject.add("startdate");
+            newProject.add("duedate");
+            newProject.add("incharge");
 
-        String temp;
+            String[] splits = line.split("--");
+            Boolean hasMistake = false;
 
-        ArrayList newProject = new ArrayList();
-        newProject.add("name");
-        newProject.add("description");
-        newProject.add("involve");
-        newProject.add("duedate");
-        newProject.add("startdate");
-        newProject.add("incharge");
+            for (String command : newProject) {
+                if (!line.contains("--" + command)) {
+                    System.out.println("The command line is missing for --" + command);
+                    hasMistake = true;
+                }
+            }
+            if (hasMistake) {
+                System.out.println("Please create the project in the correct format:\n"
+                    + "--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT");
+                return;
+            }
 
-        String arr[] = line.split("--");
-        if (arr.length == 8) {
             String newData = "";
-            for(Object obj: newProject){
-                for(int num = 1; num < arr.length; num++){
+            String temp;
 
-                    if(arr[num].contains(obj.toString())){
-                        temp = "--" + arr[num];
-                        newData = newData + temp;
+            for (String command : newProject) {
+                for (int num = 1; num < splits.length; num++) {
+                    if (splits[num].contains(command)) {
+                        temp = "--" + splits[num];
+                        newData = newData.concat(temp);
                     }
-
                 }
             }
-            System.out.println(newData);
             projects.add(new NewProject(newData));
+            ui.printProjectCreated(projects);
+            storage.updateStorage(projects);
+
+        } catch (IOException e) {
+            ui.printBorderline(e.getMessage());
         }
-        else{
-
-            for (Object obj : newProject) {
-                if (line.contains("--"+obj.toString())) {
-
-                } else {
-                    System.out.println("command line is missing " + obj.toString());
-                }
-            }
-        }
-
-
     }
 }

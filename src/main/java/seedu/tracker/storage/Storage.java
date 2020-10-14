@@ -1,6 +1,7 @@
 package seedu.tracker.storage;
 
 import seedu.tracker.command.List;
+import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.ui.Ui;
 
@@ -25,7 +26,6 @@ public class Storage {
         FileWriter fw = new FileWriter("./" + fileName, false);
         for (int i = 0; i < projects.size(); i++) {
             String line = (i + 1) + ". " + projects.get(i).getDescription() + "\n";
-            //String line = (i + 1) + ". " + projects.getProject().get(i).toString() + "\n";
             fw.write(line);
         }
         fw.close();
@@ -40,8 +40,6 @@ public class Storage {
 
         } catch (FileNotFoundException e) {
             ui.printNoFileFound();
-        } catch (IOException e) {
-            ui.printBorderline("IOException encountered: " + e.getMessage());
         }
     }
 
@@ -55,24 +53,36 @@ public class Storage {
         return list;
     }
 
-    public ProjectList extractProjects(ArrayList<String> lines, ProjectList projects, Ui ui, Storage storage)
-        throws IOException {
-        for (String line : lines) {
-            FileWriter fw = new FileWriter(fileName, true);
-            // Format of a project line has to be implemented
-            // before we can extract from projects.txt,
-            // hence the lines belows are commented.
-            /*String taskStatus = line.split("]")[0].substring(line.indexOf("[") + 1);
-            String taskType = line.split("]")[1].substring(line.indexOf("[") - 1);
-            String taskDescription = line.split("]")[2].trim();
+    public ProjectList extractProjects(ArrayList<String> lines, ProjectList projects, Ui ui, Storage storage) {
+        try {
+            for (String line : lines) {
+                FileWriter fw = new FileWriter(fileName, true);
 
-            switch (taskType) {
-                case "Deadline" -> projects.add(new Deadline("[Deadline] " + taskDescription));
-                case "Event" -> projects.add(new Event("[Event]    " + taskDescription));
+                ArrayList<String> newProject = new ArrayList<>();
+                newProject.add("name");
+                newProject.add("description");
+                newProject.add("involve");
+                newProject.add("startdate");
+                newProject.add("duedate");
+                newProject.add("incharge");
+
+                String[] splits = line.split("--");
+                String newData = "";
+                String temp;
+
+                for (String command : newProject) {
+                    for (int num = 1; num < splits.length; num++) {
+                        if (splits[num].contains(command)) {
+                            temp = "--" + splits[num];
+                            newData = newData.concat(temp);
+                        }
+                    }
+                }
+                projects.add(new NewProject(newData));
             }
-            if (taskStatus.equals("\u2713")) {
-                projects.get(projects.size() - 1).setDone();
-            }*/
+
+        } catch (IOException e) {
+            ui.printBorderline(e.getMessage());
         }
         return projects;
     }
