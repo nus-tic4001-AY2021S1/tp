@@ -7,24 +7,15 @@ import java.util.ArrayList;
  */
 public class ProjectList {
     private final ArrayList<Project> projects;
-    //private final ArrayList projects;
 
-    ProjectList(ArrayList<Project> projects) {
-
-        this.projects = projects;
-    }
-
-    public ProjectList() {
-
-        this.projects = new ArrayList<>();
-    }
+    public ProjectList() { this.projects = new ArrayList<>(); }
 
     public int size() {
         return projects.size();
     }
 
-    public void add(Project task) {
-        projects.add(task);
+    public void add(Project project) {
+        projects.add(project);
     }
 
     public void set(int number, Project obj){
@@ -35,13 +26,5 @@ public class ProjectList {
         projects.remove(index - 1);
     }
 
-
-
-    public Project get(int index) {
-        return projects.get(index);
-    }
-
-    public ArrayList<Project> getProject(){
-        return new ArrayList<>(projects);
-    }
+    public Project get(int index) { return projects.get(index); }
 }

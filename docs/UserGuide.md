@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Project Tracker is a desktop app for managing and tracking projects , optimized for use via a Command Line Interface (CLI). It will help the project manager to track the status of each project such as how many projects have been done per year or within a period.
+Project Tracker is a desktop app for managing and tracking projects,  optimized for use via a Command Line Interface (CLI). It will help the project manager to track the status of each project such as how many projects have been done per year or within a period.
 You can refer to [online user guid](https://ay2021s1-tic4001-1.github.io/tp/UserGuide.html) as well.
 
 ## Quick Start
@@ -28,8 +28,8 @@ Expected outcome:
 ```
 What you can tell me to do is listed below:
     -See all commands          | --help
-    -Add a project             | --project --name INPUT --description INPUT --involve INPUT --duedate dd/mm/yyyy --startdate dd/mm/yyyy --incharge INPUT
-    -Update a project detail   | --commandName <project index number> --replace INPUT
+    -Create a new project      | --project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT
+    -Update a project detail   | --commandName INDEX --replace INPUT
     -Delete a project          | --delete < project index number>
     -List down all projects    | --list
     -Find word in projects     | --find <keyword>
@@ -39,14 +39,14 @@ What you can tell me to do is listed below:
 Adds a project
 
 Format:
-`--project --name INPUT --description INPUT --involve INPUT --duedate dd/mm/yyyy --startdate dd/mm/yyyy --incharge INPUT`
+`--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT`
 
 Example of usage:
-<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi`
+<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 
 Expected outcome:
 ```
---name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi
+--name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
 ```
 ### Replacing a project information:`replace`
 Replace a specific project information
@@ -57,7 +57,7 @@ Format:`--replace INDEX --commandName INPUT`
 - The projects indicated by the index number will replace project information.
 
 Example of usage:
-<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi`
+<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 <br/> `--replace 1 --involve Lily, Jessica `
 <br/>`--list`
 
@@ -65,7 +65,7 @@ Expected outcome:
 ```
 Got it. I've edit the information into the project. 
 Here are the projects that you currently have!
-1. --name Clinical Trials --description regarding hospital task --involve Lily, Jessica --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi
+1. --name Clinical Trials --description regarding hospital task --involve Lily, Jessica --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
 ```
 
 ### Adding project information: 'add'
@@ -77,15 +77,15 @@ Format:`--add INDEX --commandName INPUT`
 - The projects indicated by the index number will add in new information into the specific project.
 
 Example of usage:
-<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi`
-<br/> `--add 1 --description ,focus on vaccine system`
+<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
+<br/> `--add 1 --description, focus on vaccine system`
 <br/>`--list`
 
 Expected outcome:
 ```
 Got it. I've added this information into the project. 
 Here are the projects that you currently have!
-1. --name Clinical Trials --description regarding hospital task ,focus on vaccine system --involve Tom, Lucy Luly --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi
+1. --name Clinical Trials --description regarding hospital task, focus on vaccine system --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
 ```
 
 ### Deleting a project : `delete`
@@ -97,13 +97,13 @@ Format: `--delete INDEX`
 - The projects indicated by the index number will be deleted.
 
 Example of usage: 
-<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi`
+<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 <br/>`--delete 1`
 
 Expected outcome:
 ```
 Okay! We have removed the project as shown below:
---name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi
+--name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
 We now have 0 project(s) in your list!
 ```
 
@@ -113,13 +113,13 @@ Shows a list of projects.
 Format: `--list`
 
 Example of usage: 
-<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi`
+<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 <br/> `--list`
 
 Expected outcome:
 ```
 Here are the projects that you currently have!
-1. --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi
+1. --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
 ```
 ### Listing projects by description_keyword:`find` 
 helps to search a project that contain any keyword,and the search is case-insensitive.
@@ -127,13 +127,13 @@ helps to search a project that contain any keyword,and the search is case-insens
 Format:`--find description_keyword[more_keyword]`
 
 Example of usage: 
-<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi`
+<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 <br/> `--find hospital`
 
 Expected outcome:
 ```
 Here are the project that matches 'hospital'!
-1. --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --duedate 11/11/2020 --startdate 12/12/2020 --incharge Desi
+1. --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
 ```
 ### Exiting the program: `exit/hit Enter`
 
@@ -158,10 +158,10 @@ Bye. Hope to see you again soon!
 ## Command Summary
 
 * View help `--help`
-* Add a project `--project --name INPUT --description INPUT --involve INPUT --duedate dd/mm/yyyy --startdate dd/mm/yyyy --incharge INPUT`
+* Create a new project `--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT`
 * Replace project information `--replace INDEX --commandName INPUT`
-* Add an extra information `--add INDEX --commandName INPUT`
+* Add an extra project detail `--add INDEX --commandName INPUT`
 * Delete a project  `--delete INDEX`
 * List down all projects `--list`
-* Find project `--find <word>`
+* Find word(s) in project `--find KEYWORD`
 * Exit program `--exit` or `hit Enter`
