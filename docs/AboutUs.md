@@ -1,9 +1,8 @@
 # About us
 
-Display | Name | Github Profile | Portfolio 
---------|:----:|:--------------:|:---------:
-![](https://via.placeholder.com/100.png?text=Photo) | John Doe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Joe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Ron John | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | John Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
-![](https://via.placeholder.com/100.png?text=Photo) | Don Roe | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md)
+Display | Name | Github Profile 
+--------|:----:|:--------------:
+![](https://via.placeholder.com/100.png?text=Photo) | Lin Qing | https://github.com/linqing42
+![](https://via.placeholder.com/100.png?text=Photo) | Lin Binhui | https://github.com/binbinhui
+![](https://via.placeholder.com/100.png?text=Photo) | Zheng Yiheng | https://github.com/Yiheng0410
+![](https://avatars1.githubusercontent.com/u/44335297?s=460&u=4d8978954c388ade1b78f11adb4c99549c3276b5&v=4) | Wang Zhenquan | https://github.com/Impala36
