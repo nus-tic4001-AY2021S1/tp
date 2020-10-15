@@ -30,6 +30,7 @@ public class List extends Command {
                         +"Due Date:" + projectDetail[4].substring(7)+"\n");
             }
         }
+        
         ui.printBorderline("");
     }
 }
