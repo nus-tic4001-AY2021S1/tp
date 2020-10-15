@@ -13,8 +13,8 @@ import java.io.IOException;
 public class Delete extends Command {
     public static final String word = "--delete";
 
-    public Delete(String projectDescription, ProjectList projects, Ui ui, Storage storage) {
-        super(projectDescription, projects, ui, storage);
+    public Delete(String line, ProjectList projects, Ui ui, Storage storage) {
+        super(line, projects, ui, storage);
     }
 
     @Override
