@@ -32,16 +32,16 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 |v1.0|project manager|update a project information|change or update the project without re-key in whole project information|
 |v1.0|project manager|close the program|exit|
 
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
 
 ## Non-Functional Requirements
 
+* Should work on any Mainstream OS as long as it has Java **11** or above installed.
 * *User-Friendly*: there is nice and helpful UI messages should be very easy for the users to use.
 * *User-Friendly*: the way to display the project should be easier to read.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS * - Windows, Mac and Linux
 
 ## Instructions for manual testing
 
