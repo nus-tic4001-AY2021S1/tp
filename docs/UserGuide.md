@@ -71,7 +71,7 @@ Example of usage:
 
 Expected outcome:
 ```
-Got it. I've edit the information into the project. 
+Got it. I've edited the information in the project.
 
 Here are the projects that you currently have!
 1.
@@ -98,7 +98,7 @@ Example of usage:
 
 Expected outcome:
 ```
-Got it. I've added this information into the project. 
+Got it. I've added this information into the project.
 
 Here are the projects that you currently have!
 1.
