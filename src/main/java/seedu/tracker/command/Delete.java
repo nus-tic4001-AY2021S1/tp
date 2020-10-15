@@ -13,8 +13,8 @@ import java.io.IOException;
 public class Delete extends Command {
     public static final String word = "--delete";
 
-    public Delete(String projectDescription, ProjectList projects, Ui ui, Storage storage) {
-        super(projectDescription, projects, ui, storage);
+    public Delete(String line, ProjectList projects, Ui ui, Storage storage) {
+        super(line, projects, ui, storage);
     }
 
     @Override
@@ -28,10 +28,10 @@ public class Delete extends Command {
             if (line.isEmpty()) {
                 throw new TrackerException(
                     "You almost typed a proper delete command, but you missed out the number!\n"
-                        + "Please type in the '--delete <project index number>' format.");
+                        + "Please type in the '--delete INDEX' format.");
             }
             int index = Integer.parseInt(line);
-            ui.printTaskRemoved(projects, index);
+            ui.printProjectRemoved(projects, index);
             projects.remove(index);
             storage.updateStorage(projects);
 

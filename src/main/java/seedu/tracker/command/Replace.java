@@ -6,7 +6,9 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
-public class Replace extends Command{
+import java.io.IOException;
+
+public class Replace extends Command {
     public static final String word = "--replace";
 
     public Replace(String line, ProjectList projects, Ui ui, Storage storage) {
@@ -16,45 +18,41 @@ public class Replace extends Command{
     @Override
     public void execute() {
         try {
+            String[] splits = line.split("--");
+            String commandWithIndex = splits[1];
+            String commandWithNewDescription = splits[2];
 
-            String arr[]=line.split( "--");
-            String firstWord = arr[1];
-            String secWord = arr[2];
-
-            String arr2[]=firstWord.split(" ",2);
-            String arr3[]=secWord.split(" ", 2);
-            if (arr2[1].isEmpty()) {
-                throw new TrackerException("It seems that you missed out the task description!\n" +
-                        "Please type in the '--inCharge <something>' format.");
+            String projectIndex = commandWithIndex.split(" ", 2)[1];
+            String commandWord = commandWithNewDescription.split(" ", 2)[0];
+            String newDescription = commandWithNewDescription.split(" ", 2)[1];
+            if (projectIndex.isEmpty()) {
+                throw new TrackerException("It seems that you did not type in the correct format!\n" +
+                    "Please type in the '--replace INDEX --commandName INPUT' format.");
             }
-            else {
 
-                // new Replace(arr2[], arr3[], projects);
-                int he = Integer.parseInt(arr2[1].trim())-1;
-                String line = projects.getProject().get(he).toString();
+            int index = Integer.parseInt(projectIndex.trim()) - 1;
+            String line = projects.get(index).toString();
 
-                String arr4[] = line.split("--");
-                String temp2 = "";
-                String temp3 ;
-                for(int num = 1; num < arr4.length; num++){
-                    String arr5[] = arr4[num].split(" ",2);
-                    if (arr3[0].equalsIgnoreCase(arr5[0])){
-                        String temp = arr4[num].replace(arr5[1], arr3[1]);
-                       // System.out.println(temp);
-                        temp2 = temp2 + "--" + temp+ " ";
-                    }else{
-                        temp3 = "--" + arr4[num];
-                        temp2 = temp2 + temp3;
-                    }
+            String[] selectedProject = line.split("--");
+            String newData = "";
+
+            for (int i = 1; i < selectedProject.length; i++) {
+                String currentCommandWord = selectedProject[i].split(" ", 2)[0];
+                String currentDescription = selectedProject[i].split(" ", 2)[1];
+
+                if (commandWord.equalsIgnoreCase(currentCommandWord)) {
+                    String temp = selectedProject[i].replace(currentDescription, newDescription);
+                    newData = newData.concat("--" + temp + " ");
+                } else {
+                    newData = newData.concat("--" + selectedProject[i]);
                 }
-
-                projects.set(he,new Project(temp2));
-                ui.printReplaceMessage(projects);
-
             }
-        } catch (TrackerException e) {
+            projects.set(index, new Project(newData));
+            ui.printReplaceMessage(projects);
+            storage.updateStorage(projects);
+
+        } catch (TrackerException | IOException e) {
             ui.printBorderline(e.getMessage());
         }
     }
-
 }
