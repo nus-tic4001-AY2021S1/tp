@@ -4,7 +4,7 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
-public class Find extends Command{
+public class Find extends Command {
     public static final String word = "--find";
 
     public Find(String line, ProjectList projects, Ui ui, Storage storage) {
@@ -24,19 +24,17 @@ public class Find extends Command{
         }
         String matches = "Here are the project that matches '" + searchWord + "'!\n";
         boolean hasMatch = false;
+
         for (int i = 0; i < projects.size(); i++) {
             if (projects.get(i).getDescription().toLowerCase().contains(searchWord)) {
-                matches = matches.concat((i + 1) + ". " + projects.get(i).getDescription()) + "\n";
+                matches = matches.concat(i + 1 + ".\n" + ui.displayProject(projects.get(i)));
                 hasMatch = true;
             }
-
         }
         if (!hasMatch) {
             matches = "It appears that are no matches for '" + searchWord + "'!\n" +
-                    "Perhaps you could try searching another word?";
+                "Perhaps you could try searching another word?";
         }
         ui.printBorderline(matches);
-
     }
-
 }
