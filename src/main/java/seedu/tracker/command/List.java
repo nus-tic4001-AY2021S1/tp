@@ -4,14 +4,14 @@ package seedu.tracker.command;
         import seedu.tracker.ui.Ui;
 
 /**
- * A command to print out all tasks in the list.
+ * A command to print out all projects in the list.
  */
 public class List extends Command {
     public static final String word = "--list";
     public static String PROJECT_SPLITER = "--";
 
-    public List(ProjectList tasks, Ui ui) {
-        super(tasks, ui);
+    public List(ProjectList projects, Ui ui) {
+        super(projects, ui);
     }
 
     @Override

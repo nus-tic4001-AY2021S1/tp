@@ -19,7 +19,7 @@ public class Find extends Command{
             return;
         }
         if (searchWord.isEmpty()) {
-            ui.printBorderline("Please type in the 'find <word>' format!");
+            ui.printBorderline("Please type in the 'find KEYWORD' format!");
             return;
         }
         String matches = "Here are the project that matches '" + searchWord + "'!\n";
