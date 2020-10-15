@@ -85,4 +85,8 @@ public class Ui {
         printBorderline("Got it. I've edited the information in the project. \n");
     }
 
+    public void printString(String s){
+        System.out.println(s);
+    }
+
 }
