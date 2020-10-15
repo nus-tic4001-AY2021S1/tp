@@ -153,19 +153,24 @@ Start Date: 11/11/2020
 Due Date: 12/12/2020 
 Person in Charge: Derek
 ```
-### Listing projects by description_keyword:`find` 
-helps to search a project that contain any keyword,and the search is case-insensitive.
+### Listing projects by keyword(s):`find` 
+Helps to search a project that contain any keyword(s),and the search is case-insensitive.
 
 Format:`--find KEYWORD`
 
 Example of usage: 
-<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 <br/> `--find hospital`
 
 Expected outcome:
 ```
 Here are the project that matches 'hospital'!
-1. --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek
+1.
+Project Name: Clinical Trials 
+Project Description: regarding hospital task 
+Project Team Members: Tom, Lucy 
+Start Date: 11/11/2020 
+Due Date: 12/12/2020 
+Person in Charge: Derek
 ```
 ### Exiting the program: `exit/hit Enter`
 
