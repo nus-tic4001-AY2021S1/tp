@@ -92,7 +92,6 @@ Format:`--add INDEX --commandName INPUT`
 - The project indicated by the index number will add in new information into the specific project.
 
 Example of usage:
-<br/>`--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek`
 <br/> `--add 1 --description focus on vaccine system`
 <br/>`--list`
 
