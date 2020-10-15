@@ -193,7 +193,7 @@ Bye. Hope to see you again soon!
 
 ## Command Summary
 
-* View help `--help`
+* View help`--help`
 * Create a new project `--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT`
 * Replace project information `--replace INDEX --commandName INPUT`
 * Add an extra project detail `--add INDEX --commandName INPUT`
