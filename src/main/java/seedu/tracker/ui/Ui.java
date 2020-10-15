@@ -78,4 +78,8 @@ public class Ui {
         System.out.println("Got it. I've edit the information into the project. \n" );
     }
 
+    public void printString(String s){
+        System.out.println(s);
+    }
+
 }
