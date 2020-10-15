@@ -3,7 +3,8 @@
 ## Design & implementation
 
 Project Tracker is a desktop app for managing and tracking projects,  optimized for use via a Command Line Interface (CLI). It will help the project manager to track the status of each project such as how many projects have been done per year or within a period.
-You can refer to UML diagram image.![image of UML Class Diagram](UML Class diagram.PNG).
+You can refer to [online website](https://ay2021s1-tic4001-1.github.io/tp/DeveloperGuide.html) and below is o UML diagram image.
+![image of UML Class Diagram](UML Class diagram.png)
 
 
 ## Product scope
