@@ -30,9 +30,18 @@ public class Delete extends Command {
                     "You almost typed a proper delete command, but you missed out the number!\n"
                         + "Please type in the '--delete INDEX' format.");
             }
-            int index = Integer.parseInt(line);
-            ui.printProjectRemoved(projects, index);
-            projects.remove(index);
+            //int index = Integer.parseInt(line);
+            if(line.equalsIgnoreCase("all")){
+                for(int i = 1; i < projects.size(); i++){
+                    ui.printProjectRemoved(projects, i);
+                    projects.remove(i);
+                }
+            }
+            else {
+                int index = Integer.parseInt(line);
+                ui.printProjectRemoved(projects, index);
+                projects.remove(index);
+            }
             storage.updateStorage(projects);
 
         } catch (TrackerException | IOException e) {
