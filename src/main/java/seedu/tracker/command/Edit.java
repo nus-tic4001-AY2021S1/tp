@@ -8,10 +8,10 @@ import seedu.tracker.ui.Ui;
 
 import java.io.IOException;
 
-public class Replace extends Command {
+public class Edit extends Command {
     public static final String word = "--replace";
 
-    public Replace(String line, ProjectList projects, Ui ui, Storage storage) {
+    public Edit(String line, ProjectList projects, Ui ui, Storage storage) {
         super(line, projects, ui, storage);
     }
 
