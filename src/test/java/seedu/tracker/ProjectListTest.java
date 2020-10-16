@@ -13,7 +13,6 @@ public class ProjectListTest {
     Project p3=new Project("--project --name testing project 3--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
 
     @Test
-
     public void testAddMethod(){
 
         ProjectList projects=new ProjectList();
