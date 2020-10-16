@@ -9,10 +9,10 @@ import seedu.tracker.ui.Ui;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Project extends Command {
+public class Create extends Command {
     public static final String word = "--project";
 
-    public Project(String line, ProjectList projects, Ui ui, Storage storage) {
+    public Create(String line, ProjectList projects, Ui ui, Storage storage) {
         super(line, projects, ui, storage);
     }
 
