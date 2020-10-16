@@ -23,6 +23,8 @@ public class Parser {
                 return new List(projects, ui);
             case Find.word:
                 return new Find(lineWithoutCommand, projects, ui, storage);
+            case Send.word:
+                return new Send(lineWithoutCommand, projects, ui);
             case Edit.word:
                 return new Edit(line, projects, ui, storage);
             case Add.word:
