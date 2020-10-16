@@ -2,32 +2,46 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+Project Tracker is a desktop app for managing and tracking projects,  optimized for use via a Command Line Interface (CLI). It will help the project manager to track the status of each project such as how many projects have been done per year or within a period.
+Here is [UML Class Diagram](https://github.com/AY2021S1-TIC4001-1/tp/blob/master/docs/UML%20Class%20diagram.png) and you can refer to [online website](https://ay2021s1-tic4001-1.github.io/tp/DeveloperGuide.html) .
+
 
 
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+The target user is a project manager who can keep tracking various projects, know the progress of each project with  principal members to participate in each project. However, he cannot remember the progress of various projects and who is the member that involve to each specific project.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Project Tracker will help to solve to tracking and managing projects. It will involve person-in-charge, members who involved in each project and the description of each project. Furthermore, the duration of the project will be included in this Project Tracker that helps the project manager to know the timeframe of each project.
 
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|project manager|create a project|put in the project information|
+|v1.0|project manager|add a start and end date to my project| know the timeframe|
+|v1.0|project manager|add employees to the project|know who are involved|
+|v1.0|project manager|add person_on-charge|know who is leading the project|
+|v1.0|project manager|add the description to the project|know what is the project about|
+|v1.0|project manager|save my project|keep a record for reference|
+|v1.0|project manager|delete my project| reduce the clutter|
+|v1.0|project manager|include extra project information |add new member or add extra content in my project information|
+|v1.0|project manager|update a project information|change or update the project without re-key in whole project information|
+|v1.0|project manager|close the program|exit|
+
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+* Should work on any Mainstream OS as long as it has Java **11** or above installed.
+* *User-Friendly*: there is nice and helpful UI messages should be very easy for the users to use.
+* *User-Friendly*: the way to display the project should be easier to read.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS * - Windows, Mac and Linux
 
 ## Instructions for manual testing
 
