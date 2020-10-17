@@ -3,7 +3,6 @@ package seedu.tracker;
 import org.junit.jupiter.api.Test;
 import seedu.tracker.command.Command;
 import seedu.tracker.command.Delete;
-import seedu.tracker.command.Project;
 import seedu.tracker.parser.Parser;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;

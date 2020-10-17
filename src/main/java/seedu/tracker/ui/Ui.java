@@ -20,28 +20,29 @@ public class Ui {
      */
     public void printBorderline(String input) {
         System.out
-            .println(input +
-                "\n________________________________________________________________________________________________________________________________________________________\n");
+                .println(input +
+                        "\n________________________________________________________________________________________________________________________________________________________\n");
     }
 
     public void printGreeting() {
         String greeting = "Hello! I'm Tracker.\n"
-            + "I can help you manage a list of projects!\n";
+                + "I can help you manage a list of projects!\n";
         printBorderline("");
         System.out.print(greeting);
     }
 
     public void printHelp() {
         String help = "What you can tell me to do is listed below:\n"
-            + " - See all commands            | " + colorGreen("--help\n")
-            + " - Create a new project        | " + colorGreen(
-            "--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT\n")
-            + " - Replace a project detail    | " + colorGreen("--replace INDEX --commandName INPUT\n")
-            + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
-            + " - Delete a project            | " + colorGreen("--delete INDEX\n")
-            + " - List down all projects      | " + colorGreen("--list\n")
-            + " - Find word(s) in projects    | " + colorGreen("--find KEYWORD\n")
-            + " - Exit my program             | " + colorGreen("--exit or hit Enter");
+                + " - See all commands            | " + colorGreen("--help\n")
+                + " - Create a new project        | " + colorGreen(
+                "--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT \n")
+                + " - Complete a project          | " + colorGreen("--done INDEX\n")
+                + " - Replace a project detail    | " + colorGreen("--replace INDEX --commandName INPUT\n")
+                + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
+                + " - Delete a project            | " + colorGreen("--delete INDEX\n")
+                + " - List down all projects      | " + colorGreen("--list\n")
+                + " - Find word(s) in projects    | " + colorGreen("--find KEYWORD\n")
+                + " - Exit my program             | " + colorGreen("--exit or hit Enter");
         printBorderline(help);
     }
 
@@ -52,27 +53,27 @@ public class Ui {
 
     public void printProjectCreated(ProjectList projects) {
         String added = "Great! You have created a proper project as shown below:\n"
-            + colorGreen(displayProject(projects.get(projects.size() - 1))
-            + "\nWe now have " + projects.size() + " project(s) in your list!");
+                + colorGreen(displayProject(projects.get(projects.size() - 1))
+                + "\nWe now have " + projects.size() + " project(s) in your list!");
         printBorderline(added);
     }
 
     public void printProjectRemoved(ProjectList projects, int index) {
         String added = "Okay! We have removed the project as shown below:\n"
-            + colorRed(displayProject(projects.get(index - 1))
-            + colorGreen("\nWe now have " + (projects.size() - 1) + " project(s) in your list!"));
+                + colorRed(displayProject(projects.get(index - 1))
+                + colorGreen("\nWe now have " + (projects.size() - 1) + " project(s) in your list!"));
         printBorderline(added);
     }
 
     public void printInvalidCommand() {
         String message = "It seems that you have typed something out of my unfortunately\n"
-            + "limited vocabulary. Can you try again?";
+                + "limited vocabulary. Can you try again?";
         printBorderline(message);
     }
 
     public void printNoFileFound() {
         String message = "It looks like it's your first time as I could not find any existing project file.\n"
-            + "Get started by creating a project!";
+                + "Get started by creating a project!";
         printBorderline(message);
     }
 
@@ -93,10 +94,20 @@ public class Ui {
         String[] projectDetails = project.getDescription().split("--");
 
         return "Project Name: " + projectDetails[1].split(" ", 2)[1] + "\n"
-            + "Project Description: " + projectDetails[2].split(" ", 2)[1] + "\n"
-            + "Project Team Members: " + projectDetails[3].split(" ", 2)[1] + "\n"
-            + "Start Date: " + projectDetails[4].split(" ", 2)[1] + "\n"
-            + "Due Date: " + projectDetails[5].split(" ", 2)[1] + "\n"
-            + "Person in Charge: " + projectDetails[6].split(" ", 2)[1] + "\n";
+                + "Project Description: " + projectDetails[2].split(" ", 2)[1] + "\n"
+                + "Project Team Members: " + projectDetails[3].split(" ", 2)[1] + "\n"
+                + "Client: " + projectDetails[4].split(" ", 2)[1] + "\n"
+                + "Start Date: " + projectDetails[5].split(" ", 2)[1] + "\n"
+                + "Due Date: " + projectDetails[6].split(" ", 2)[1] + "\n"
+                + "Person in Charge: " + projectDetails[7].split(" ", 2)[1] + "\n"
+                + "email: " + projectDetails[8].split(" ", 2)[1] + "\n"
+                + "duration: " + projectDetails[9].split(" ", 2)[1] + "\n";
+    }
+
+    public void printTaskCompleted(int index, ProjectList tasks) {
+        String done = "Nice! You have completed following project:\n"
+                + "[Completed] \033[33mProject [" + index + "] "
+                + tasks.get(index - 1).getDescription() + " set as completed!\033[0m";
+        printBorderline(done);
     }
 }
