@@ -7,7 +7,6 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -22,6 +21,7 @@ public class Tracker {
     private final Storage storage = new Storage("projects.txt", projects, ui);
 
     public static void main(String[] args) {
+        assert (args.length) > 0;
         new Tracker().run();
     }
 

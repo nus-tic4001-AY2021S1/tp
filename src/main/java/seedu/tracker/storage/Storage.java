@@ -63,11 +63,13 @@ public class Storage {
                 newProject.add("name");
                 newProject.add("description");
                 newProject.add("involve");
+                newProject.add("client");
                 newProject.add("startdate");
                 newProject.add("duedate");
                 newProject.add("incharge");
                 newProject.add("email");
                 newProject.add("duration");
+                newProject.add("status");
 
                 String[] splits = line.split("--");
                 String newData = "";
@@ -83,7 +85,7 @@ public class Storage {
                         }
                         if (splits[num].contains("duration")) {
                             String arr[] = splits[num].split(" ", 2);
-                            int day = Integer.parseInt(arr[1]);
+                            int day = Integer.parseInt(arr[1].trim());
                             if (day < 7) {
                                 dataCheck = true;
 
