@@ -23,8 +23,7 @@ public class Send extends Command{
             ui.printBorderline("Please type in the right project");
             return;
         }
-
-        //System.out.println(ui.displayProject(projects.get(projectNumber)));
+        
         new SendEmail(getEmail(projects.get(projectNumber).toString()), ui.displayProject(projects.get(projectNumber)));
 
     }
