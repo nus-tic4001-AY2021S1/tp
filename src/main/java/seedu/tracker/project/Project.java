@@ -2,9 +2,18 @@ package seedu.tracker.project;
 
 public class Project {
     String description;
+    protected boolean isDone;
 
     public Project(String description) {
         this.description = description;
+        this.isDone = false;
+    }
+    public String getStatusIcon() {
+        return (isDone ? "✓" : "X");
+    }
+    public Project markAsDone() {
+        this.isDone = true;
+        return this;
     }
 
     public String getDescription() {
@@ -12,6 +21,7 @@ public class Project {
     }
 
     public String toString(){
-        return description;
+        return "[" + getStatusIcon() + "] " + description;
     }
+
 }

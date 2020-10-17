@@ -10,6 +10,7 @@ public class utils {
         newProject.add("name");
         newProject.add("description");
         newProject.add("involve");
+        newProject.add("client");
         newProject.add("startdate");
         newProject.add("duedate");
         newProject.add("incharge");

@@ -1,11 +1,9 @@
 package seedu.tracker.command;
 
-import seedu.tracker.exception.TrackerException;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
-import seedu.tracker.common.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,10 +22,12 @@ public class Create extends Command {
             newProject.add("name");
             newProject.add("description");
             newProject.add("involve");
+            newProject.add("client");
             newProject.add("startdate");
             newProject.add("duedate");
             newProject.add("incharge");
             newProject.add("email");
+
 
             String[] splits = line.split("--");
             Boolean hasMistake = false;
@@ -41,7 +41,7 @@ public class Create extends Command {
             }
             if (hasMistake) {
                 System.out.println("Please create the project in the correct format:\n"
-                    + "--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT");
+                    + "--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT");
                 return;
             }
 

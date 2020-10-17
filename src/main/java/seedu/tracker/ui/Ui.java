@@ -35,8 +35,9 @@ public class Ui {
         String help = "What you can tell me to do is listed below:\n"
             + " - See all commands            | " + colorGreen("--help\n")
             + " - Create a new project        | " + colorGreen(
-            "--project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT\n")
+            "--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT\n")
             + " - Replace a project detail    | " + colorGreen("--replace INDEX --commandName INPUT\n")
+            + " - Mark as done in a project   | " + colorGreen("--done INDEX\n")
             + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
             + " - Delete a project            | " + colorGreen("--delete INDEX\n")
             + " - List down all projects      | " + colorGreen("--list\n")
@@ -95,8 +96,16 @@ public class Ui {
         return "Project Name: " + projectDetails[1].split(" ", 2)[1] + "\n"
             + "Project Description: " + projectDetails[2].split(" ", 2)[1] + "\n"
             + "Project Team Members: " + projectDetails[3].split(" ", 2)[1] + "\n"
-            + "Start Date: " + projectDetails[4].split(" ", 2)[1] + "\n"
-            + "Due Date: " + projectDetails[5].split(" ", 2)[1] + "\n"
-            + "Person in Charge: " + projectDetails[6].split(" ", 2)[1] + "\n";
+            + "Client: " + projectDetails[4].split(" ", 2)[1] + "\n"
+            + "Start Date: " + projectDetails[5].split(" ", 2)[1] + "\n"
+            + "Due Date: " + projectDetails[6].split(" ", 2)[1] + "\n"
+            + "Person in Charge: " + projectDetails[7].split(" ", 2)[1] + "\n"
+            + "Email: " + projectDetails[8].split(" ", 2)[1] + "\n";
+    }
+    public void printTaskCompleted(int index, ProjectList tasks) {
+        String done = "Nice! I've marked following project as completed:\n"
+                + "[Completed] project [" + index + "] "
+                + tasks.get(index - 1).getDescription() ;
+        printBorderline(done);
     }
 }
