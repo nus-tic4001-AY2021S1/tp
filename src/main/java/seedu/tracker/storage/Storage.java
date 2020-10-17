@@ -63,6 +63,7 @@ public class Storage {
                 newProject.add("name");
                 newProject.add("description");
                 newProject.add("involve");
+                newProject.add("client");
                 newProject.add("startdate");
                 newProject.add("duedate");
                 newProject.add("incharge");
