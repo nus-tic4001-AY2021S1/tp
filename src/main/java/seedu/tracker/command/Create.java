@@ -1,5 +1,6 @@
 package seedu.tracker.command;
 
+import seedu.tracker.common.TimeConverter;
 import seedu.tracker.exception.TrackerException;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
@@ -8,6 +9,7 @@ import seedu.tracker.ui.Ui;
 import seedu.tracker.common.utils;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Create extends Command {
@@ -48,6 +50,8 @@ public class Create extends Command {
             String newData = "";
             String temp;
 
+            String startDate = "";
+            String dueDate = "";
 
             for (String command : newProject) {
                 for (int num = 1; num < splits.length; num++) {
@@ -55,13 +59,26 @@ public class Create extends Command {
                         temp = "--" + splits[num];
                         newData = newData.concat(temp);
                     }
+                    if(splits[num].contains("startdate")){
+                        String arr[]=splits[num].split(" ",2);
+                        startDate = arr[1];
+                    }
+                    if(splits[num].contains("duedate")){
+                        String arr[]=splits[num].split(" ",2);
+                        dueDate = arr[1];
+                    }
                 }
             }
-            projects.add(new NewProject(newData));
-            ui.printProjectCreated(projects);
-            storage.updateStorage(projects);
 
-        } catch (IOException e) {
+
+            if(new TimeConverter(startDate,dueDate).timeChecker(startDate) && new TimeConverter(startDate,dueDate).timeChecker(dueDate)){
+                newData = newData + "--duration "+new TimeConverter(startDate,dueDate).getDateDiff();
+                projects.add(new NewProject(newData));
+                ui.printProjectCreated(projects);
+                storage.updateStorage(projects);
+            }
+
+        } catch (IOException | ParseException e) {
             ui.printBorderline(e.getMessage());
         }
     }

@@ -66,6 +66,7 @@ public class Storage {
                 newProject.add("duedate");
                 newProject.add("incharge");
                 newProject.add("email");
+                newProject.add("duration");
 
                 String[] splits = line.split("--");
                 String newData = "";
