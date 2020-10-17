@@ -6,6 +6,7 @@ import moneytracker.command.AddIncomeCategoryCommand;
 import moneytracker.command.HelpCommand;
 import moneytracker.command.ListCategoryCommand;
 import moneytracker.command.DeleteCategoryCommand;
+import moneytracker.command.EditCategoryCommand;
 import moneytracker.command.AddIncomeCommand;
 import moneytracker.command.AddExpenseCommand;
 import moneytracker.command.ListCommand;
@@ -143,7 +144,7 @@ public class Parser {
      * @return Index of transaction/category.
      * @throws MoneyTrackerException If index is missing or invalid.
      */
-    public static int getIndex(String fullCommand) throws MoneyTrackerException {
+    public static int getDeleteIndex(String fullCommand) throws MoneyTrackerException {
         String commandParameterString =
                 fullCommand.replaceFirst("(?i)deletecat", "")
                         .replaceFirst("(?i)delete", "").trim();
@@ -157,6 +158,25 @@ public class Parser {
             throw new MoneyTrackerException("The index is invalid.");
         }
         return index - 1;
+    }
+
+    /**
+     * Gets parameters for editing category from user's full input string.
+     *
+     * @param fullCommand User's full input string.
+     * @return Parameters for editing category
+     * @throws MoneyTrackerException If index is missing or invalid.
+     */
+    public static String[] getEditParameters(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = fullCommand.replaceFirst("(?i)editcat", "").trim();
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The index is missing.");
+        }
+        String[] editParameters = commandParameterString.split("/n");
+        for (int i = 0; i < editParameters.length; i++) {
+            editParameters[i] = editParameters[i].trim();
+        }
+        return editParameters;
     }
 
     /**
@@ -178,6 +198,8 @@ public class Parser {
             return new ListCategoryCommand(fullCommand);
         case "deletecat":
             return new DeleteCategoryCommand(fullCommand);
+        case "editcat":
+            return new EditCategoryCommand(fullCommand);
         case "addi":
             return new AddIncomeCommand(fullCommand);
         case "adde":

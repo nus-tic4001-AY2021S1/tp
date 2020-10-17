@@ -7,7 +7,7 @@ import moneytracker.exception.MoneyTrackerException;
  * object has an amount, a description, a date and a category.
  */
 public class Expense extends Transaction {
-    protected final String expenseCategory;
+    private String expenseCategory;
 
     /**
      * Initializes an <code>Expense</code> object.
@@ -40,6 +40,13 @@ public class Expense extends Transaction {
      */
     public String getExpenseCategory() {
         return expenseCategory;
+    }
+
+    /**
+     * Sets the category of an <code>Expense</code> object.
+     */
+    public void setExpenseCategory(String expenseCategory) {
+        this.expenseCategory = expenseCategory;
     }
 
     /**
