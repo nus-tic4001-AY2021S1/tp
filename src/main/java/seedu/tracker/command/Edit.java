@@ -9,7 +9,7 @@ import seedu.tracker.ui.Ui;
 import java.io.IOException;
 
 public class Edit extends Command {
-    public static final String word = "--replace";
+    public static final String word = "--edit";
 
     public Edit(String line, ProjectList projects, Ui ui, Storage storage) {
         super(line, projects, ui, storage);

@@ -9,7 +9,7 @@ public class Project {
         this.isDone = false;
     }
     public String getStatusIcon() {
-        return (isDone ? "✓" : "X");
+        return (isDone ? "Completed" : "incomplete");
     }
     public Project markAsDone() {
         this.isDone = true;
