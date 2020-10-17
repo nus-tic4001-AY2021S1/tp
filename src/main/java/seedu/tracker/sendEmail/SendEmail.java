@@ -1,13 +1,6 @@
 package seedu.tracker.sendEmail;
 
 
-import seedu.tracker.project.ProjectList;
-import seedu.tracker.ui.Ui;
-
-import java.util.Properties;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Message;
