@@ -38,8 +38,7 @@ public class DeleteCategoryCommand extends Command {
         if (!(categories.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the listcat command first.");
         }
-        categories.setIsInitialized(false);
-        int categoryIndex = Parser.getIndex(fullCommand);
+        int categoryIndex = Parser.getDeleteIndex(fullCommand);
         Category categoryToDelete;
         try {
             categoryToDelete =
@@ -52,5 +51,6 @@ public class DeleteCategoryCommand extends Command {
         categories.removeCategory(categories.getSearchResultIndex(categoryIndex));
         storage.saveCategories(categories);
         ui.printRemoveCategory(categories.getSize(), description, type);
+        categories.setIsInitialized(false);
     }
 }

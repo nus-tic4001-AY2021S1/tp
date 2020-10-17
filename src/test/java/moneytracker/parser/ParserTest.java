@@ -169,7 +169,7 @@ class ParserTest {
      */
     @Test
     public void testGetTransactionIndex() throws MoneyTrackerException {
-        assertEquals(6, Parser.getIndex("delete 7"));
+        assertEquals(6, Parser.getDeleteIndex("delete 7"));
     }
 
     /**
@@ -179,7 +179,7 @@ class ParserTest {
     public void testGetTransactionIndexWithMissingValue() {
         String errorMessage = "";
         try {
-            Parser.getIndex("delete");
+            Parser.getDeleteIndex("delete");
         } catch (MoneyTrackerException e) {
             errorMessage = e.getMessage();
         }
@@ -193,10 +193,32 @@ class ParserTest {
     public void testGetTransactionIndexWithInvalidValue() {
         String errorMessage = "";
         try {
-            Parser.getIndex("delete WEIRD");
+            Parser.getDeleteIndex("delete WEIRD");
         } catch (MoneyTrackerException e) {
             errorMessage = e.getMessage();
         }
         assertEquals("The index is invalid.", errorMessage);
+    }
+
+    /**
+     * Tests the getEditParameters method with valid input.
+     */
+    @Test void testGetEditParameters() throws MoneyTrackerException {
+        String[] testEditParameters = Parser.getEditParameters("editcat 1 /ndividend");
+        assertEquals("1", testEditParameters[0]);
+        assertEquals("dividend", testEditParameters[1]);
+    }
+
+    /**
+     * Tests the getEditParameters method with incomplete input.
+     */
+    @Test void testGetEditParametersWithMissingValue() {
+        String errorMessage = "";
+        try {
+            Parser.getEditParameters("editcat");
+        } catch (MoneyTrackerException e) {
+            errorMessage = e.getMessage();
+        }
+        assertEquals("The index is missing.", errorMessage);
     }
 }

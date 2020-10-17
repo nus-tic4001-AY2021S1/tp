@@ -6,7 +6,7 @@ package moneytracker.transaction;
  * it is an income or expense.
  */
 public class Category {
-    private final String name;
+    private String name;
     private final String type;
 
     /**
@@ -28,6 +28,13 @@ public class Category {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Sets the name of a <code>Category</code>.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

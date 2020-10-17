@@ -30,6 +30,7 @@ This helps them to stay within their budget and make timely adjustments to their
 |v1.0|new user|list my incomes and expenses|view all my monetary transactions|
 |v1.0|user|clear all my data|start afresh with the app|
 |v1.0|expert user|list my incomes or expenses based on a specified month|view the filtered transactions|
+|v2.0|expert user|edit an income or expense category|change the name of the category|
 
 ## Non-Functional Requirements
 

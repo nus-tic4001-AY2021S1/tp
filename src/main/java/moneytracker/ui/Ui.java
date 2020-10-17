@@ -59,7 +59,7 @@ public class Ui {
         printLine();
     }
 
-    public void printAddedCategory(CategoryList categories) throws MoneyTrackerException {
+    public void printAddCategory(CategoryList categories) throws MoneyTrackerException {
         Category categoryToPrint = categories.getCategory(categories.getSize() - 1);
         if (categoryToPrint.getType().equals("INCOME")) {
             System.out.println("Got it! I have added this income category:");
@@ -72,6 +72,22 @@ public class Ui {
         System.out.println(categoryToPrint);
         printIndentation();
         System.out.println("Now you have " + categories.getSize() + " categories in your list.");
+        printLine();
+    }
+
+    public void printRemoveCategory(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
+        printIndentation();
+        System.out.println(description);
+        printIndentation();
+        System.out.println("Now you have " + size + " categories in the list.");
+        printLine();
+    }
+
+    public void printEditCategory(String oldDescription, String newDescription, String type) {
+        System.out.println("Noted! I have edited this " + type + ": ");
+        printIndentation();
+        System.out.println("From " + oldDescription + " to " + newDescription);
         printLine();
     }
 
@@ -117,15 +133,6 @@ public class Ui {
         printLine();
     }
 
-    public void printRemoveCategory(int size, String description, String type) {
-        System.out.println("Noted! I have removed this " + type + ": ");
-        printIndentation();
-        System.out.println(description);
-        printIndentation();
-        System.out.println("Now you have " + size + " categories in the list.");
-        printLine();
-    }
-
     public void printRemoveTransaction(int size, String description, String type) {
         System.out.println("Noted! I have removed this " + type + ": ");
         printIndentation();
@@ -145,7 +152,6 @@ public class Ui {
         }
         printLine();
     }
-
 
     public void printListTransactionExpenseOnly(TransactionList transactions) {
         transactions.setIsInitialized(true);

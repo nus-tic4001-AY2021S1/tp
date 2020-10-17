@@ -133,4 +133,22 @@ public class TransactionList {
     public void clearTransactions() {
         transactions.clear();
     }
+
+    /**
+     * Updates the category name of <code>Transaction</code> objects in the <code>TransactionList</code>.
+     *
+     * @param currentName Current category name of <code>Transaction</code> objects.
+     * @param newName New category name of <code>Transaction</code> objects.
+     */
+    public void updateTransactionsCategory(String currentName, String newName) {
+        for (int i = 0; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if (transaction instanceof Income && ((Income) transaction).getIncomeCategory().equals(currentName)) {
+                ((Income) transaction).setIncomeCategory(newName);
+            }
+            if (transaction instanceof Expense && ((Expense) transaction).getExpenseCategory().equals(currentName)) {
+                ((Expense) transaction).setExpenseCategory(newName);
+            }
+        }
+    }
 }

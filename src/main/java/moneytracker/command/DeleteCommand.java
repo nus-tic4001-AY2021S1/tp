@@ -40,8 +40,7 @@ public class DeleteCommand extends Command {
         if (!(transactions.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the list command first.");
         }
-        transactions.setIsInitialized(false);
-        int transactionIndex = Parser.getIndex(fullCommand);
+        int transactionIndex = Parser.getDeleteIndex(fullCommand);
         Transaction transactionToDelete;
         try {
             transactionToDelete =
@@ -54,6 +53,7 @@ public class DeleteCommand extends Command {
         transactions.removeTransaction(transactions.getSearchResultIndex(transactionIndex));
         storage.saveTransactions(transactions);
         ui.printRemoveTransaction(transactions.getSize(), description, type);
+        transactions.setIsInitialized(false);
     }
 
     /**
