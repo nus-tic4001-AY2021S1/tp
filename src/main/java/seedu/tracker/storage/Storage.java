@@ -1,6 +1,7 @@
 package seedu.tracker.storage;
 
 import seedu.tracker.command.List;
+import seedu.tracker.command.Send;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.ui.Ui;
@@ -71,6 +72,8 @@ public class Storage {
                 String[] splits = line.split("--");
                 String newData = "";
                 String temp;
+                int dataAlert;
+                Boolean dataCheck = false;
 
                 for (String command : newProject) {
                     for (int num = 1; num < splits.length; num++) {
@@ -78,9 +81,21 @@ public class Storage {
                             temp = "--" + splits[num];
                             newData = newData.concat(temp);
                         }
+                        if (splits[num].contains("duration")) {
+                            String arr[] = splits[num].split(" ", 2);
+                            int day = Integer.parseInt(arr[1]);
+                            if (day < 7) {
+                                dataCheck = true;
+
+                            }
+                        }
                     }
                 }
+                if (!dataCheck) {
+                    new Send(line, projects, ui);
+                }
                 projects.add(new NewProject(newData));
+
             }
 
         } catch (IOException e) {
