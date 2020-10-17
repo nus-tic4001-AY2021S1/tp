@@ -107,8 +107,18 @@ public class Ui {
         printLine();
     }
 
-    public void printClearAllData() {
-        System.out.println("Noted! I have cleared all data.");
+    public void printClearConfirmation() {
+        System.out.println("Are you sure you want to clear all data? Y / N");
+    }
+
+    public void printClearAllData(String confirmation) {
+        if (confirmation.equals("Y")) {
+            System.out.println("Noted! I have cleared all data.");
+        } else if (confirmation.equals("N")) {
+            System.out.println("Noted! Your data is untouched.");
+        } else {
+            System.out.println("Sorry, please enter \"Y\" or \"N\" only");
+        }
         printLine();
     }
 

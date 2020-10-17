@@ -23,9 +23,21 @@ public class ClearCommand extends Command {
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
                         CategoryList categories) throws MoneyTrackerException {
-        categories.clearCategories();
-        transactions.clearTransactions();
-        storage.clearAllData();
-        ui.printClearAllData();
+        ui.printClearConfirmation();
+        while (true) {
+            String confirmation = ui.readUserCommand().toUpperCase();
+            if (confirmation.equals("Y")) {
+                categories.clearCategories();
+                transactions.clearTransactions();
+                storage.clearAllData();
+                ui.printClearAllData(confirmation);
+                break;
+            } else if (confirmation.equals("N")) {
+                ui.printClearAllData(confirmation);
+                break;
+            } else {
+                ui.printClearAllData(confirmation);
+            }
+        }
     }
 }
