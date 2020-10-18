@@ -4,10 +4,7 @@ import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
-import moneytracker.transaction.CategoryList;
-import moneytracker.transaction.Expense;
-import moneytracker.transaction.Transaction;
-import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.*;
 import moneytracker.ui.Ui;
 
 import java.time.LocalDate;
@@ -52,18 +49,9 @@ public class MoneyTracker {
 
     public void run() {
         ui.printWelcome();
-        double exp = 0;
-        double inc = 0;
-        for (Transaction tran : transactions.getTransactions()) {
-            if (LocalDate.now().getMonth() == tran.getLocalDate().getMonth()) {
-                if (tran instanceof Expense) {
-                    exp += tran.getAmountNumber();
-                } else {
-                    inc += tran.getAmountNumber();
-                }
-            }
-
-            ui.printSummary(exp, inc);
+        double exp = calExpSummary();
+        double inc = calIncSummary();
+        ui.printSummary(exp, inc);
 
             boolean isExit = false;
             while (!isExit) {
@@ -77,7 +65,35 @@ public class MoneyTracker {
                 }
             }
         }
+
+    private double calIncSummary() {
+        double inc = 0;
+        for (Transaction tran : transactions.getTransactions()) {
+            if (LocalDate.now().getMonth() == tran.getLocalDate().getMonth()) {
+                if (tran instanceof Income) {
+                    inc += tran.getAmountNumber();
+                }
+            }
+        }
+        return inc;
     }
+
+
+
+    private double calExpSummary() {
+        double exp = 0;
+        for (Transaction tran : transactions.getTransactions()) {
+            if (LocalDate.now().getMonth() == tran.getLocalDate().getMonth()) {
+                if (tran instanceof Expense) {
+                    exp += tran.getAmountNumber();
+                }
+            }
+        }
+        return exp;
+    }
+
+
+
 
     /**
      *  Main method of Money Tracker. This is the starting point of the app.
