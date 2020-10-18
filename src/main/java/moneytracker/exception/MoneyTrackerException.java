@@ -8,4 +8,5 @@ public class MoneyTrackerException extends Exception {
     public MoneyTrackerException(String errorMessage) {
         super(errorMessage);
     }
+
 }
