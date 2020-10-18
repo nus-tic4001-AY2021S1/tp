@@ -41,6 +41,7 @@ public class CategoryList {
 
     /**
      * Gets the size of a <code>CategoryList</code>.
+     *
      * @return Size of a <code>CategoryList</code>.
      */
     public int getSize() {
@@ -82,7 +83,7 @@ public class CategoryList {
      */
     public boolean checkIfCategoryExists(String name, String type) {
         for (Category category : categories) {
-            if (name.equals(category.getName()) && type.equals(category.getType())) {
+            if (name.toUpperCase().equals(category.getName()) && type.toUpperCase().equals(category.getType())) {
                 return true;
             }
         }

@@ -201,21 +201,21 @@ class ParserTest {
     }
 
     /**
-     * Tests the getEditParameters method with valid input.
+     * Tests the getEditCategoryParams method with valid input.
      */
-    @Test void testGetEditParameters() throws MoneyTrackerException {
-        String[] testEditParameters = Parser.getEditParameters("editcat 1 /ndividend");
+    @Test void testGetEditCategoryParams() throws MoneyTrackerException {
+        String[] testEditParameters = Parser.getEditCategoryParams("editcat 1 /ndividend");
         assertEquals("1", testEditParameters[0]);
         assertEquals("dividend", testEditParameters[1]);
     }
 
     /**
-     * Tests the getEditParameters method with incomplete input.
+     * Tests the getEditCategoryParams method with incomplete input.
      */
-    @Test void testGetEditParametersWithMissingValue() {
+    @Test void testGetEditCategoryParamsWithMissingValue() {
         String errorMessage = "";
         try {
-            Parser.getEditParameters("editcat");
+            Parser.getEditCategoryParams("editcat");
         } catch (MoneyTrackerException e) {
             errorMessage = e.getMessage();
         }

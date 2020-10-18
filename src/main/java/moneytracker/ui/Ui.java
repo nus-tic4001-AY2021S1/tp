@@ -21,6 +21,7 @@ public class Ui {
 
     /**
      * Gets the input stream from the user.
+     *
      * @return Input stream from the user.
      */
     public String readUserCommand() {
@@ -28,10 +29,7 @@ public class Ui {
         System.out.print("You:  ");
         return in.nextLine().trim();
     }
-
-    /**
-     * Executes Welcome message.
-     */
+    
     public void printWelcome() {
         String logo = " __  __                          _______             _             " + System.lineSeparator()
                 + "|  \\/  |                        |__   __|           | |            " + System.lineSeparator()
@@ -46,7 +44,7 @@ public class Ui {
         printLine();
     }
 
-    public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {
+    public void printAddTransaction(TransactionList transactions) throws MoneyTrackerException {
         Transaction transactionToPrint = transactions.getTransaction(transactions.getSize() - 1);
         if (transactionToPrint instanceof Income) {
             System.out.println("Got it! I have added this income:");
@@ -87,7 +85,7 @@ public class Ui {
         printLine();
     }
 
-    public void printEditCategory(String oldDescription, String newDescription, String type) {
+    public void printEditItem(String oldDescription, String newDescription, String type) {
         System.out.println("Noted! I have edited this " + type + ": ");
         printIndentation();
         System.out.println("From " + oldDescription + " to " + newDescription);
@@ -140,7 +138,8 @@ public class Ui {
      */
     public void printListTransaction(TransactionList transactions) {
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
             System.out.println("Here are your transactions:");
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -188,7 +187,8 @@ public class Ui {
         int matcheCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -223,7 +223,8 @@ public class Ui {
         int matcheCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -257,7 +258,8 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -275,8 +277,6 @@ public class Ui {
             System.out.println("Here are your transactions for " + listMonthName + " :");
             printFilteredTransactions(transactions);
         }
-
-
     }
 
     /**
@@ -291,7 +291,8 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -370,7 +371,7 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -417,7 +418,7 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
 
@@ -455,7 +456,7 @@ public class Ui {
 
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -485,7 +486,6 @@ public class Ui {
         }
     }
 
-
     /**
      * Executes the Filtered Categories command.
      *
@@ -509,7 +509,7 @@ public class Ui {
      */
     public void printListCategory(CategoryList categories) {
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -530,7 +530,7 @@ public class Ui {
         categories.clearSearchResultIndexes();
 
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your expenses categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -552,7 +552,7 @@ public class Ui {
         categories.clearSearchResultIndexes();
 
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your income categories:");
             for (int i = 0; i < categories.getSize(); i++) {
