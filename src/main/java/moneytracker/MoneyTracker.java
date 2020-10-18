@@ -4,7 +4,11 @@ import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
-import moneytracker.transaction.*;
+import moneytracker.transaction.Expense;
+import moneytracker.transaction.Income;
+import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.CategoryList;
+import moneytracker.transaction.Transaction;
 import moneytracker.ui.Ui;
 
 import java.time.LocalDate;
@@ -53,18 +57,18 @@ public class MoneyTracker {
         double inc = calIncSummary();
         ui.printSummary(exp, inc);
 
-            boolean isExit = false;
-            while (!isExit) {
-                try {
-                    String fullCommand = ui.readUserCommand();
-                    Command c = Parser.parse(fullCommand);
-                    c.execute(transactions, ui, storage, categories);
-                    isExit = c.isExit();
-                } catch (MoneyTrackerException e) {
-                    ui.printError(e.getMessage());
-                }
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readUserCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(transactions, ui, storage, categories);
+                isExit = c.isExit();
+            } catch (MoneyTrackerException e) {
+                ui.printError(e.getMessage());
             }
         }
+    }
 
     private double calIncSummary() {
         double inc = 0;
