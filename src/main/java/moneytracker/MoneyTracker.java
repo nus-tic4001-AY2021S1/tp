@@ -5,8 +5,12 @@ import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
+import moneytracker.transaction.Expense;
+import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
+
+import java.time.LocalDate;
 
 /**
  * Implements an application that allows users to manage monetary transactions.
@@ -48,15 +52,29 @@ public class MoneyTracker {
 
     public void run() {
         ui.printWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readUserCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(transactions, ui, storage, categories);
-                isExit = c.isExit();
-            } catch (MoneyTrackerException e) {
-                ui.printError(e.getMessage());
+        double exp = 0;
+        double inc = 0;
+        for (Transaction tran : transactions.getTransactions()) {
+            if (LocalDate.now().getMonth() == tran.getLocalDate().getMonth()) {
+                if (tran instanceof Expense) {
+                    exp += tran.getAmountNumber();
+                } else {
+                    inc += tran.getAmountNumber();
+                }
+            }
+
+            ui.printSummary(exp, inc);
+
+            boolean isExit = false;
+            while (!isExit) {
+                try {
+                    String fullCommand = ui.readUserCommand();
+                    Command c = Parser.parse(fullCommand);
+                    c.execute(transactions, ui, storage, categories);
+                    isExit = c.isExit();
+                } catch (MoneyTrackerException e) {
+                    ui.printError(e.getMessage());
+                }
             }
         }
     }
@@ -65,6 +83,7 @@ public class MoneyTracker {
      *  Main method of Money Tracker. This is the starting point of the app.
      *  @param args Command line arguments. Not used.
      */
+
     public static void main(String[] args) {
         new MoneyTracker("data/transactions.txt",
                 "data/categories.txt").run();

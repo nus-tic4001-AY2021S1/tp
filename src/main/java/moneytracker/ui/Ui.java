@@ -8,6 +8,7 @@ import moneytracker.transaction.Expense;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -44,6 +45,14 @@ public class Ui {
         System.out.println(logo);
         System.out.println("Hello! What can I do for you?");
         printLine();
+    }
+
+    public void printSummary(double exp, double inc) {
+        System.out.println(
+                "Your total income for " + LocalDate.now().getMonth()
+                + " " + LocalDate.now().getYear() + ": $" + inc
+                + "\nYour total expense for " + LocalDate.now().getMonth()
+                + " " + LocalDate.now().getYear() + ": $" + exp);
     }
 
     public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {

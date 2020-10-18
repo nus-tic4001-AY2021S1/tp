@@ -130,8 +130,13 @@ public class TransactionList {
     /**
      * Clears the <code>TransactionList</code>.
      */
+
     public void clearTransactions() {
         transactions.clear();
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
     }
 
     /**
@@ -140,6 +145,7 @@ public class TransactionList {
      * @param currentName Current category name of <code>Transaction</code> objects.
      * @param newName New category name of <code>Transaction</code> objects.
      */
+
     public void updateTransactionsCategory(String currentName, String newName) {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
