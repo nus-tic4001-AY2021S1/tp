@@ -13,6 +13,7 @@ import moneytracker.ui.Ui;
 import java.util.HashMap;
 
 import static moneytracker.command.Utilities.getTransactionType;
+import static moneytracker.command.Utilities.getTransaction;
 
 /**
  * Contains the methods for user to edit a transaction.
@@ -45,6 +46,18 @@ public class EditCommand extends Command {
             throw new MoneyTrackerException("Please run the list command first.");
         }
         HashMap<String, String> editParams = Parser.getEditTransactionParams(fullCommand);
+        int index = getIndex(editParams);
+        Transaction transactionToEdit = getTransaction(transactions, index);
+        String currentDescription = transactionToEdit.toString();
+        String type = getTransactionType(transactionToEdit).toLowerCase();
+        updateTransaction(transactionToEdit, editParams, categories, type);
+        String newDescription = transactionToEdit.toString();
+        storage.saveTransactions(transactions);
+        ui.printEditItem(currentDescription, newDescription, type);
+        transactions.setIsInitialized(false);
+    }
+
+    private int getIndex(HashMap<String, String> editParams) throws MoneyTrackerException {
         String indexString = editParams.get("index");
         int index;
         try {
@@ -52,17 +65,11 @@ public class EditCommand extends Command {
         } catch (NumberFormatException e) {
             throw new MoneyTrackerException("The index is invalid.");
         }
-        Transaction transactionToEdit;
-        try {
-            transactionToEdit = transactions.getTransaction(transactions.getSearchResultIndex(index));
-        } catch (IndexOutOfBoundsException e) {
-            throw new MoneyTrackerException("The index is invalid.");
-        }
-        String currentDescription = transactionToEdit.toString();
-        String type = getTransactionType(transactionToEdit).toLowerCase();
-        if (editParams.containsKey("amount")) {
-            transactionToEdit.setAmount(Double.parseDouble(editParams.get("amount")));
-        }
+        return index;
+    }
+
+    private void updateTransaction(Transaction transactionToEdit, HashMap<String,
+            String> editParams, CategoryList categories, String type) throws MoneyTrackerException {
         if (editParams.containsKey("category")) {
             String category = editParams.get("category");
             if (!(categories.checkIfCategoryExists(category, type))) {
@@ -75,15 +82,14 @@ public class EditCommand extends Command {
                 ((Expense) transactionToEdit).setExpenseCategory(editParams.get("category"));
             }
         }
+        if (editParams.containsKey("amount")) {
+            transactionToEdit.setAmount(Double.parseDouble(editParams.get("amount")));
+        }
         if (editParams.containsKey("date")) {
             transactionToEdit.setDate(editParams.get("date"));
         }
         if (editParams.containsKey("description")) {
             transactionToEdit.setDescription(editParams.get("description"));
         }
-        String newDescription = transactionToEdit.toString();
-        storage.saveTransactions(transactions);
-        ui.printEditItem(currentDescription, newDescription, type);
-        transactions.setIsInitialized(false);
     }
 }

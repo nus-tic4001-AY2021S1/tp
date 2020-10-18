@@ -9,6 +9,7 @@ import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
 import static moneytracker.command.Utilities.getTransactionType;
+import static moneytracker.command.Utilities.getTransaction;
 
 /**
  * Contains the methods for user to delete a transaction.
@@ -40,17 +41,11 @@ public class DeleteCommand extends Command {
         if (!(transactions.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the list command first.");
         }
-        int transactionIndex = Parser.getDeleteIndex(fullCommand);
-        Transaction transactionToDelete;
-        try {
-            transactionToDelete =
-                    transactions.getTransaction(transactions.getSearchResultIndex(transactionIndex));
-        } catch (IndexOutOfBoundsException e) {
-            throw new MoneyTrackerException("The transaction index is invalid.");
-        }
+        int index = Parser.getDeleteIndex(fullCommand);
+        Transaction transactionToDelete = getTransaction(transactions, index);
         String description = transactionToDelete.toString();
         String type = getTransactionType(transactionToDelete);
-        transactions.removeTransaction(transactions.getSearchResultIndex(transactionIndex));
+        transactions.removeTransaction(transactions.getSearchResultIndex(index));
         storage.saveTransactions(transactions);
         ui.printRemoveTransaction(transactions.getSize(), description, type);
         transactions.setIsInitialized(false);

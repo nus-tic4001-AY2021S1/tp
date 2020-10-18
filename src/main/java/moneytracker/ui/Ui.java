@@ -29,10 +29,7 @@ public class Ui {
         System.out.print("You:  ");
         return in.nextLine().trim();
     }
-
-    /**
-     * Executes Welcome message.
-     */
+    
     public void printWelcome() {
         String logo = " __  __                          _______             _             " + System.lineSeparator()
                 + "|  \\/  |                        |__   __|           | |            " + System.lineSeparator()
