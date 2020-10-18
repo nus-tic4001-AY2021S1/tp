@@ -21,6 +21,7 @@ public class Ui {
 
     /**
      * Gets the input stream from the user.
+     *
      * @return Input stream from the user.
      */
     public String readUserCommand() {
@@ -43,7 +44,7 @@ public class Ui {
         printLine();
     }
 
-    public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {
+    public void printAddTransaction(TransactionList transactions) throws MoneyTrackerException {
         Transaction transactionToPrint = transactions.getTransaction(transactions.getSize() - 1);
         if (transactionToPrint instanceof Income) {
             System.out.println("Got it! I have added this income:");
@@ -84,7 +85,16 @@ public class Ui {
         printLine();
     }
 
-    public void printEditCategory(String oldDescription, String newDescription, String type) {
+    public void printRemoveTransaction(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
+        printIndentation();
+        System.out.println(description);
+        printIndentation();
+        System.out.println("Now you have " + size + " transactions in the list.");
+        printLine();
+    }
+
+    public void printEditItem(String oldDescription, String newDescription, String type) {
         System.out.println("Noted! I have edited this " + type + ": ");
         printIndentation();
         System.out.println("From " + oldDescription + " to " + newDescription);
@@ -140,15 +150,6 @@ public class Ui {
                 System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
             }
         }
-        printLine();
-    }
-
-    public void printRemoveTransaction(int size, String description, String type) {
-        System.out.println("Noted! I have removed this " + type + ": ");
-        printIndentation();
-        System.out.println(description);
-        printIndentation();
-        System.out.println("Now you have " + size + " transactions in the list.");
         printLine();
     }
 
@@ -221,7 +222,6 @@ public class Ui {
         }
         printFilteredTransactions(transactions);
     }
-
 
     public void printListTransactionIncomeByMonth(TransactionList transactions, String listMonthName) {
         transactions.setIsInitialized(true);

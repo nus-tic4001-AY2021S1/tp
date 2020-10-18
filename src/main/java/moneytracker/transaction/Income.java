@@ -12,9 +12,9 @@ public class Income extends Transaction {
     /**
      * Initializes an <code>Income</code> object.
      *
-     * @param amount Amount of money of an income.
-     * @param description Description of an income.
-     * @param date Date of an income.
+     * @param amount Amount of money of an <code>Income</code>.
+     * @param description Description of an <code>Income</code>.
+     * @param date Date of an <code>Income</code>.
      */
     public Income(double amount, String description, String date, String incomeCategory) throws MoneyTrackerException {
         super(amount, description, date);
@@ -24,8 +24,8 @@ public class Income extends Transaction {
     /**
      * Initializes an <code>Income</code> object.
      *
-     * @param amount Amount of money of an income.
-     * @param description Description of an income.
+     * @param amount Amount of money of an <code>Income</code>.
+     * @param description Description of an <code>Income</code>.
      */
     public Income(double amount, String description, String incomeCategory) {
         super(amount, description);
@@ -33,16 +33,17 @@ public class Income extends Transaction {
     }
 
     /**
-     * Gets the category of an <code>Income</code> object.
+     * Gets the category of an <code>Income</code>.
      *
-     * @return Category of an <code>Income</code> object.
+     * @return Category of an <code>Income</code>.
      */
     public String getIncomeCategory() {
         return incomeCategory;
     }
 
     /**
-     * Sets the category of an <code>Expense</code> object.
+     * Sets the category of an <code>Income</code>.
+     * @param incomeCategory Category of an <code>Income</code> .
      */
     public void setIncomeCategory(String incomeCategory) {
         this.incomeCategory = incomeCategory;

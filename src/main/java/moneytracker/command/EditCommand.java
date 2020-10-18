@@ -5,9 +5,14 @@ import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.Transaction;
+import moneytracker.transaction.Income;
+import moneytracker.transaction.Expense;
 import moneytracker.ui.Ui;
 
 import java.util.HashMap;
+
+import static moneytracker.command.Utilities.getTransactionType;
 
 /**
  * Contains the methods for user to edit a transaction.
@@ -39,17 +44,42 @@ public class EditCommand extends Command {
         if (!(transactions.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the list command first.");
         }
-        HashMap<String, String> editParameters = Parser.getEditTransactionParams(fullCommand);
-        String indexString = editParameters.get("index");
+        HashMap<String, String> editParams = Parser.getEditTransactionParams(fullCommand);
+        String indexString = editParams.get("index");
         int index;
         try {
             index = Integer.parseInt(indexString) - 1;
         } catch (NumberFormatException e) {
             throw new MoneyTrackerException("The index is invalid.");
         }
-        
+        Transaction transactionToEdit;
+        try {
+            transactionToEdit = transactions.getTransaction(transactions.getSearchResultIndex(index));
+        } catch (IndexOutOfBoundsException e) {
+            throw new MoneyTrackerException("The index is invalid.");
+        }
+        String currentDescription = transactionToEdit.toString();
+        if (editParams.containsKey("amount")) {
+            transactionToEdit.setAmount(Double.parseDouble(editParams.get("amount")));
+        }
+        if (editParams.containsKey("category")) {
+            if (getTransactionType(transactionToEdit).equals("INCOME")) {
+                ((Income) transactionToEdit).setIncomeCategory(editParams.get("category"));
+            }
+            if (getTransactionType(transactionToEdit).equals("EXPENSE")) {
+                ((Expense) transactionToEdit).setExpenseCategory(editParams.get("category"));
+            }
+        }
+        if (editParams.containsKey("date")) {
+            transactionToEdit.setDate(editParams.get("date"));
+        }
+        if (editParams.containsKey("description")) {
+            transactionToEdit.setDescription(editParams.get("description"));
+        }
+        String newDescription = transactionToEdit.toString();
         storage.saveTransactions(transactions);
+        String type = getTransactionType(transactionToEdit).toLowerCase();
+        ui.printEditItem(currentDescription, newDescription, type);
         transactions.setIsInitialized(false);
-
     }
 }

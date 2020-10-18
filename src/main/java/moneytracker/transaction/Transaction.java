@@ -13,16 +13,17 @@ import java.util.Locale;
  * subclasses with specific implementation of a transaction.
  */
 public abstract class Transaction {
-    private final double amount;
-    private final String description;
+    private double amount;
+    private String description;
     private LocalDate date;
 
     /**
      * Initializes a <code>Transaction</code> object.
      *
-     * @param amount Amount of money in a transaction.
-     * @param description Description of a transaction.
-     * @param date Date of a transaction.
+     * @param amount Amount of money in a <code>Transaction</code>.
+     * @param description Description of a <code>Transaction</code>.
+     * @param date Date of a <code>Transaction</code>.
+     * @throws MoneyTrackerException If date format is invalid.
      */
     public Transaction(double amount, String description, String date) throws MoneyTrackerException {
         this.amount = amount;
@@ -38,8 +39,8 @@ public abstract class Transaction {
     /**
      * Initializes a <code>Transaction</code> object.
      *
-     * @param amount Amount of money in a transaction.
-     * @param description Description of a transaction.
+     * @param amount Amount of money in a <code>Transaction</code>.
+     * @param description Description of a <code>Transaction</code>.
      */
     public Transaction(double amount, String description) {
         this.amount = amount;
@@ -48,28 +49,64 @@ public abstract class Transaction {
     }
 
     /**
-     * Gets the amount of a <code>Transaction</code> object.
-     * @return Amount of a <code>Transaction</code> object.
+     * Gets the amount of a <code>Transaction</code>.
+     *
+     * @return Amount of a <code>Transaction</code>.
      */
     public String getAmount() {
         return String.valueOf(amount);
     }
 
     /**
-     * Gets the description of a <code>Transaction</code> object.
-     * @return Description of a <code>Transaction</code> object.
+     * Sets the amount of a <code>Transaction</code>.
+     *
+     * @param amount Amount of money in a <code>Transaction</code>.
+     */
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * Gets the description of a <code>Transaction</code>.
+     *
+     * @return Description of a <code>Transaction</code>.
      */
     public String getDescription() {
         return description;
     }
 
     /**
+     * Sets the Description of a <code>Transaction</code>.
+     *
+     * @param description Description of a <code>Transaction</code>.
+     * @throws MoneyTrackerException If date format is invalid.
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
      * Gets the date of a <code>Transaction</code>.
      *
-     * @return date of a <code>Transaction</code>.
+     * @return Date of a <code>Transaction</code>.
      */
     public String getDate() {
         return date.toString();
+    }
+
+    /**
+     * Sets the date of a <code>Transaction</code>.
+     *
+     * @param date Date of a <code>Transaction</code>.
+     * @throws MoneyTrackerException If date format is invalid.
+     */
+    public void setDate(String date) throws MoneyTrackerException {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            this.date = LocalDate.parse(date, formatter);
+        } catch (DateTimeParseException e) {
+            throw new MoneyTrackerException("Date should be in yyyy-MM-dd format. E.g. 2020-12-25");
+        }
     }
 
     public String setMonth() {

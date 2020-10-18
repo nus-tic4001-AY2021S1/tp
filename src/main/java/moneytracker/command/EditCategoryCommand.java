@@ -38,23 +38,22 @@ public class EditCategoryCommand extends Command {
         if (!(categories.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the listcat command first.");
         }
-        String[] editParameters = Parser.getEditCategoryParams(fullCommand);
+        String[] editParams = Parser.getEditCategoryParams(fullCommand);
         int index;
         try {
-            index = Integer.parseInt(editParameters[0]) - 1;
+            index = Integer.parseInt(editParams[0]) - 1;
         } catch (NumberFormatException e) {
             throw new MoneyTrackerException("The index is invalid.");
         }
         Category categoryToEdit;
         try {
-            categoryToEdit =
-                    categories.getCategory(categories.getSearchResultIndex(index));
+            categoryToEdit = categories.getCategory(categories.getSearchResultIndex(index));
         } catch (IndexOutOfBoundsException e) {
             throw new MoneyTrackerException("The index is invalid.");
         }
         String newName;
         try {
-            newName = editParameters[1];
+            newName = editParams[1];
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new MoneyTrackerException("The new category name is missing.");
         }
@@ -64,7 +63,7 @@ public class EditCategoryCommand extends Command {
         transactions.updateTransactionsCategory(currentName, newName);
         String type = categoryToEdit.getType().toLowerCase() + " category";
         String newDescription = categoryToEdit.toString();
-        ui.printEditCategory(currentDescription, newDescription, type);
+        ui.printEditItem(currentDescription, newDescription, type);
         storage.saveCategories(categories);
         categories.setIsInitialized(false);
     }

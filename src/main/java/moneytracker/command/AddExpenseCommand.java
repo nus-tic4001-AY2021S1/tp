@@ -36,6 +36,6 @@ public class AddExpenseCommand extends Command {
                         CategoryList categories) throws MoneyTrackerException {
         transactions.addTransaction(Parser.createExpense(fullCommand), categories);
         storage.saveTransactions(transactions);
-        ui.printAddedTransaction(transactions);
+        ui.printAddTransaction(transactions);
     }
 }
