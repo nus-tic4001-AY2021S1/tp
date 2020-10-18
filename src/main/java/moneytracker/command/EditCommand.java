@@ -59,10 +59,15 @@ public class EditCommand extends Command {
             throw new MoneyTrackerException("The index is invalid.");
         }
         String currentDescription = transactionToEdit.toString();
+        String type = getTransactionType(transactionToEdit).toLowerCase();
         if (editParams.containsKey("amount")) {
             transactionToEdit.setAmount(Double.parseDouble(editParams.get("amount")));
         }
         if (editParams.containsKey("category")) {
+            String category = editParams.get("category");
+            if (!(categories.checkIfCategoryExists(category, type))) {
+                throw new MoneyTrackerException("This category does not exist.");
+            }
             if (getTransactionType(transactionToEdit).equals("INCOME")) {
                 ((Income) transactionToEdit).setIncomeCategory(editParams.get("category"));
             }
@@ -78,7 +83,6 @@ public class EditCommand extends Command {
         }
         String newDescription = transactionToEdit.toString();
         storage.saveTransactions(transactions);
-        String type = getTransactionType(transactionToEdit).toLowerCase();
         ui.printEditItem(currentDescription, newDescription, type);
         transactions.setIsInitialized(false);
     }

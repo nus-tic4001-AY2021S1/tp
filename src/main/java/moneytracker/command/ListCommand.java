@@ -3,12 +3,9 @@ package moneytracker.command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
-import moneytracker.transaction.Income;
-import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +53,7 @@ public class ListCommand extends Command {
         /// We have to execute list all records. and return to main screen
         if (commandParameterString.isEmpty()) {
             ui.printListTransaction(transactions);
-            throw new MoneyTrackerException("");
+            return;
         }
 
         for (String innerCommand : commandParametersArray) {

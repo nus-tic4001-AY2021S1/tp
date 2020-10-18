@@ -157,8 +157,12 @@ public class Parser {
             throw new MoneyTrackerException("The command parameters are missing.");
         }
         HashMap<String, String> editParameters;
-        editParameters = getCommandParams(commandParameterString.split(" ", 2)[1].trim());
-        editParameters.put("index", commandParameterString.split(" ", 2)[0].trim());
+        try {
+            editParameters = getCommandParams(commandParameterString.split(" ", 2)[1].trim());
+            editParameters.put("index", commandParameterString.split(" ", 2)[0].trim());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new MoneyTrackerException("The command parameters are invalid.");
+        }
         return editParameters;
     }
 
