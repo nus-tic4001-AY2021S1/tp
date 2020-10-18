@@ -6,13 +6,10 @@ import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.transaction.Category;
-import moneytracker.transaction.Transaction;
-import moneytracker.transaction.Income;
-import moneytracker.transaction.Expense;
 import moneytracker.ui.Ui;
 
 /**
- * Contains the methods for user to add edit a category.
+ * Contains the methods for user to edit a category.
  */
 public class EditCategoryCommand extends Command {
     private final String fullCommand;
@@ -41,17 +38,17 @@ public class EditCategoryCommand extends Command {
         if (!(categories.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the listcat command first.");
         }
-        String[] editParameters = Parser.getEditParameters(fullCommand);
-        int categoryIndex;
+        String[] editParameters = Parser.getEditCategoryParams(fullCommand);
+        int index;
         try {
-            categoryIndex = Integer.parseInt(editParameters[0]) - 1;
+            index = Integer.parseInt(editParameters[0]) - 1;
         } catch (NumberFormatException e) {
             throw new MoneyTrackerException("The index is invalid.");
         }
         Category categoryToEdit;
         try {
             categoryToEdit =
-                    categories.getCategory(categories.getSearchResultIndex(categoryIndex));
+                    categories.getCategory(categories.getSearchResultIndex(index));
         } catch (IndexOutOfBoundsException e) {
             throw new MoneyTrackerException("The index is invalid.");
         }

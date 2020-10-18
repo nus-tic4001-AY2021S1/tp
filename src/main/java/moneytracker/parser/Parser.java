@@ -10,6 +10,7 @@ import moneytracker.command.EditCategoryCommand;
 import moneytracker.command.AddIncomeCommand;
 import moneytracker.command.AddExpenseCommand;
 import moneytracker.command.ListCommand;
+import moneytracker.command.EditCommand;
 import moneytracker.command.DeleteCommand;
 import moneytracker.command.ClearCommand;
 import moneytracker.command.ReportCommand;
@@ -80,12 +81,15 @@ public class Parser {
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The parameters of the command are missing.");
         }
-        HashMap<String, String> commandParameters = getCommandParameters(commandParameterString);
+        HashMap<String, String> commandParameters = getCommandParams(commandParameterString);
         if (!(commandParameters.containsKey("amount"))) {
             throw new MoneyTrackerException("The amount parameter is missing.");
         }
         if (!(commandParameters.containsKey("category"))) {
             throw new MoneyTrackerException("The income category parameter is missing.");
+        }
+        if (!(commandParameters.containsKey("description"))) {
+            commandParameters.put("description", "");
         }
         String amount = commandParameters.get("amount");
         String description = commandParameters.get("description");
@@ -115,12 +119,15 @@ public class Parser {
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The parameters of the command are missing.");
         }
-        HashMap<String, String> commandParameters = getCommandParameters(commandParameterString);
+        HashMap<String, String> commandParameters = getCommandParams(commandParameterString);
         if (!(commandParameters.containsKey("amount"))) {
             throw new MoneyTrackerException("The amount parameter is missing.");
         }
         if (!(commandParameters.containsKey("category"))) {
             throw new MoneyTrackerException("The expense category parameter is missing.");
+        }
+        if (!(commandParameters.containsKey("description"))) {
+            commandParameters.put("description", "");
         }
         String amount = commandParameters.get("amount");
         String description = commandParameters.get("description");
@@ -135,6 +142,24 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
         }
+    }
+
+    /**
+     * Gets parameters for editing transaction from user's full input string.
+     *
+     * @param fullCommand User's full input string.
+     * @return Parameters for editing transaction.
+     * @throws MoneyTrackerException If index is missing or invalid.
+     */
+    public static HashMap<String, String> getEditTransactionParams(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = fullCommand.replaceFirst("(?i)edit", "").trim();
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The command parameters are missing.");
+        }
+        HashMap<String, String> editParameters;
+        editParameters = getCommandParams(commandParameterString.split(" ", 2)[1].trim());
+        editParameters.put("index", commandParameterString.split(" ", 2)[0].trim());
+        return editParameters;
     }
 
     /**
@@ -164,10 +189,10 @@ public class Parser {
      * Gets parameters for editing category from user's full input string.
      *
      * @param fullCommand User's full input string.
-     * @return Parameters for editing category
+     * @return Parameters for editing category.
      * @throws MoneyTrackerException If index is missing or invalid.
      */
-    public static String[] getEditParameters(String fullCommand) throws MoneyTrackerException {
+    public static String[] getEditCategoryParams(String fullCommand) throws MoneyTrackerException {
         String commandParameterString = fullCommand.replaceFirst("(?i)editcat", "").trim();
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The index is missing.");
@@ -208,6 +233,8 @@ public class Parser {
             return new ListCommand(fullCommand);
         case "delete":
             return new DeleteCommand(fullCommand);
+        case "edit":
+            return new EditCommand(fullCommand);
         case "clear":
             return new ClearCommand();
         case "report":
@@ -219,7 +246,7 @@ public class Parser {
         }
     }
 
-    private static HashMap<String, String> getCommandParameters(String commandParameterString) {
+    private static HashMap<String, String> getCommandParams(String commandParameterString) {
         assert !commandParameterString.isBlank() : "commandParameterString should not be blank";
         HashMap<String, String> commandParametersMap = new HashMap<>();
         String[] commandParametersArray = commandParameterString.split("/");
@@ -234,7 +261,6 @@ public class Parser {
                 commandParametersMap.put("description", commandParameter.substring(1).trim());
             }
         }
-        commandParametersMap.putIfAbsent("description", "");
         return commandParametersMap;
     }
 }
