@@ -1,6 +1,6 @@
 package moneytracker.ui;
 
-import moneytracker.budget.Budget;
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Category;
 import moneytracker.transaction.CategoryList;

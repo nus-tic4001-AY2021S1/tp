@@ -1,4 +1,4 @@
-package moneytracker.budget;
+package moneytracker.summary;
 
 /**
  * Represents the monthly budget. A <code>Budget</code> object has a double variable

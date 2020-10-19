@@ -1,6 +1,6 @@
 package moneytracker.command;
 
-import moneytracker.budget.Budget;
+import moneytracker.summary.Budget;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;

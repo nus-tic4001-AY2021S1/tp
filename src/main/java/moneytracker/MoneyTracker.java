@@ -1,6 +1,6 @@
 package moneytracker;
 
-import moneytracker.budget.Budget;
+import moneytracker.summary.Budget;
 import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;

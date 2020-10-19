@@ -1,6 +1,6 @@
 package moneytracker.storage;
 
-import moneytracker.budget.Budget;
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Category;
 import moneytracker.transaction.CategoryList;
@@ -163,11 +163,13 @@ public class Storage {
         } catch (IOException e) {
             throw new MoneyTrackerException("I have problem reading the budget save file.");
         }
+        Double budget;
         try {
-            return Double.valueOf(lines.get(0));
-        } catch (NumberFormatException e) {
-            throw new MoneyTrackerException("I have problem reading the transactions save file.");
+            budget = Double.valueOf(lines.get(0));
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new MoneyTrackerException("I have problem reading the budget save file.");
         }
+        return budget;
     }
 
     /**
@@ -189,6 +191,9 @@ public class Storage {
     private void clearDataInFile(String filePath) throws MoneyTrackerException {
         try {
             FileWriter fw = new FileWriter(filePath);
+            if (filePath.equals(budgetFilePath)) {
+                fw.write("0.0");
+            }
             fw.close();
         } catch (IOException e) {
             throw new MoneyTrackerException("I have problem clearing data in this file: " + filePath);
