@@ -11,6 +11,8 @@ import moneytracker.transaction.TransactionList;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /**
  * Contains methods that interacts with the users such as obtaining commands
@@ -49,10 +51,10 @@ public class Ui {
 
     public void printSummary(double exp, double inc) {
         System.out.println(
-                "Your total income for " + LocalDate.now().getMonth()
-                + " " + LocalDate.now().getYear() + ": $" + inc
-                + "\nYour total expense for " + LocalDate.now().getMonth()
-                + " " + LocalDate.now().getYear() + ": $" + exp);
+                "Your total income for " + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", inc)
+                + "\nYour total expense for " + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", exp));
     }
 
     public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {
