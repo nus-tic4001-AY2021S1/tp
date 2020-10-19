@@ -46,7 +46,6 @@ public class Ui {
                 + "                          __/ |                                    " + System.lineSeparator()
                 + "                         |___/                                     " + System.lineSeparator();
         System.out.println(logo);
-
     }
     
     public void printWelcome() {

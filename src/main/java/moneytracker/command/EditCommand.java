@@ -85,7 +85,16 @@ public class EditCommand extends Command {
             }
         }
         if (editParams.containsKey("amount")) {
-            transactionToEdit.setAmount(Double.parseDouble(editParams.get("amount")));
+            double amount;
+            try {
+                amount = Double.parseDouble(editParams.get("amount"));
+            } catch (NumberFormatException e) {
+                throw new MoneyTrackerException("Amount should be a number. E.g. 3000.00");
+            }
+            if (amount < 0) {
+                throw new MoneyTrackerException("Amount should not be a negative number.");
+            }
+            transactionToEdit.setAmount(amount);
         }
         if (editParams.containsKey("date")) {
             transactionToEdit.setDate(editParams.get("date"));
