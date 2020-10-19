@@ -1,5 +1,6 @@
 package moneytracker;
 
+import moneytracker.budget.Budget;
 import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
@@ -17,16 +18,17 @@ public class MoneyTracker {
     private final Ui ui;
     private TransactionList transactions;
     private CategoryList categories;
+    private Budget budget;
 
     /**
      * Initializes a <code>MoneyTracker</code> object.
      *
      * @param transactionsFilePath Path of the text file used for storing app data.
      */
-    public MoneyTracker(String transactionsFilePath, String categoriesFilePath) {
+    public MoneyTracker(String transactionsFilePath, String categoriesFilePath, String budgetFilePath) {
         assert !transactionsFilePath.isBlank() : "filePath should not be blank";
         ui = new Ui();
-        storage = new Storage(transactionsFilePath, categoriesFilePath);
+        storage = new Storage(transactionsFilePath, categoriesFilePath, budgetFilePath);
         try {
             storage.createDirectory();
         } catch (MoneyTrackerException e) {
@@ -44,6 +46,12 @@ public class MoneyTracker {
             ui.printError(e.getMessage());
             transactions = new TransactionList();
         }
+        try {
+            budget = new Budget(storage.loadBudget(budgetFilePath));
+        } catch (MoneyTrackerException e) {
+            ui.printError(e.getMessage());
+            budget = new Budget();
+        }
     }
 
     public void run() {
@@ -53,7 +61,7 @@ public class MoneyTracker {
             try {
                 String fullCommand = ui.readUserCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(transactions, ui, storage, categories);
+                c.execute(transactions, ui, storage, categories, budget);
                 isExit = c.isExit();
             } catch (MoneyTrackerException e) {
                 ui.printError(e.getMessage());
@@ -67,6 +75,6 @@ public class MoneyTracker {
      */
     public static void main(String[] args) {
         new MoneyTracker("data/transactions.txt",
-                "data/categories.txt").run();
+                "data/categories.txt", "data/budget.txt").run();
     }
 }
