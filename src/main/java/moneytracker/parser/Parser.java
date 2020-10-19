@@ -329,9 +329,7 @@ public class Parser {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
-        int numDays = calendar.getActualMaximum(Calendar.DATE);
-        System.out.println("date: " + numDays);
-        return numDays;
+        return calendar.getActualMaximum(Calendar.DATE);
     }
 
     /**
@@ -427,7 +425,7 @@ public class Parser {
      *
      * @param transactions transactions List of <code>Transaction</code> objects.
      * @param date date date month of <code>Transaction</code> objects.
-     * @return frequent month income category
+     * @return frequency month income category
      */
     public static Object getInCatFreq(TransactionList transactions, String date) {
         ArrayList incomeCate = new ArrayList();
@@ -446,7 +444,7 @@ public class Parser {
      *
      * @param transactions transactions List of <code>Transaction</code> objects.
      * @param date date date month of <code>Transaction</code> objects.
-     * @return frequent month expense category
+     * @return frequency month expense category
      */
     public static Object getExpCatFreq(TransactionList transactions, String date) {
         ArrayList expCate = new ArrayList();
@@ -461,10 +459,10 @@ public class Parser {
     }
 
     /**
-     * get list elements frequent.
+     * get list elements frequency.
      *
      * @param list arraylist
-     * @return map object with list elements and frequent.
+     * @return map object with list elements and frequency.
      */
     public static Map<String, Long> getFrequency(ArrayList list) {
         return (Map<String, Long>) list.stream().collect(Collectors.groupingBy(w -> w, Collectors.counting()));
