@@ -119,6 +119,7 @@ public abstract class Transaction {
      * @param date Date of a <code>Transaction</code>.
      * @throws MoneyTrackerException If date format is invalid.
      */
+
     public void setDate(String date) throws MoneyTrackerException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
