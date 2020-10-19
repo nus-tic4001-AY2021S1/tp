@@ -1,5 +1,7 @@
 package moneytracker.command;
 
+import moneytracker.exception.MoneyTrackerException;
+import moneytracker.parser.Parser;
 import moneytracker.summary.Budget;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
@@ -32,7 +34,8 @@ public class ReportCommand extends Command {
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories, Budget budget) {
-
+                        CategoryList categories,  Budget budget) throws MoneyTrackerException {
+        String date = Parser.getDate(fullCommand);
+        ui.printReport(transactions, date);
     }
 }

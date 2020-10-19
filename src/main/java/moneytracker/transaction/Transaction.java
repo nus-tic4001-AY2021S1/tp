@@ -17,6 +17,7 @@ public abstract class Transaction {
     private String description;
     private LocalDate date;
 
+
     /**
      * Initializes a <code>Transaction</code> object.
      *
@@ -55,6 +56,17 @@ public abstract class Transaction {
      */
     public String getAmount() {
         return String.valueOf(amount);
+    }
+
+
+    /**
+     * Gets the typename of a <code>Transaction</code> object.
+     *
+     * @param description Description of a transaction.
+     * @return typename of a <code>Transaction</code> object.
+     */
+    public String getTypeName(String description) {
+        return description.split(" ")[1];
     }
 
     /**
@@ -111,8 +123,7 @@ public abstract class Transaction {
 
     public String setMonth() {
         DateTimeFormatter formattedMonth = DateTimeFormatter.ofPattern("yyyy-MM", Locale.ENGLISH);
-        String monthName = formattedMonth.format(this.date);
-        return monthName;
+        return formattedMonth.format(this.date);
     }
 
     /**

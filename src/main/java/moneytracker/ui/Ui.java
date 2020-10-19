@@ -2,12 +2,13 @@ package moneytracker.ui;
 
 import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
-import moneytracker.transaction.Category;
-import moneytracker.transaction.CategoryList;
+import moneytracker.parser.Parser;
+import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.Transaction;
 import moneytracker.transaction.Income;
 import moneytracker.transaction.Expense;
-import moneytracker.transaction.Transaction;
-import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.Category;
+import moneytracker.transaction.CategoryList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -571,5 +572,43 @@ public class Ui {
             }
         }
         printFilteredCategories(categories);
+    }
+
+    /**
+     * Gets transaction/category  Month report from user's full input string.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param date month of <code>Transaction</code> objects.
+     */
+    public void printReport(TransactionList transactions, String date) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        printLine();
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            double totalIncome = Parser.getTotalIncome(transactions,date);
+            double totalExpense = Parser.getTotalExpense(transactions,date);
+            double balance = totalIncome - totalExpense;
+            double average = totalExpense / Parser.getDaysOfMonth(date);
+            String highestIncomeTrans = Parser.getHighestIncome(transactions,date);
+            String highestExpTrans = Parser.getHighestExpense(transactions,date);
+            var incomeCatFreq = Parser.getInCatFreq(transactions,date);
+            var expCatFreq = Parser.getExpCatFreq(transactions,date);
+
+            System.out.println("Here is your report for " + date + " :");
+            System.out.println("Total Income: $" + totalIncome);
+            System.out.println("Total Expense: $" + totalExpense);
+            System.out.println("Balance: $" + balance);
+            System.out.printf("Average Expense Per Day: $%.2f\n",(average));
+            System.out.println("          *****          ");
+            System.out.println("Highest Income: \n" + "  " + highestIncomeTrans);
+            System.out.println("Highest Expense: \n" + "  " + highestExpTrans + "");
+            System.out.println("          *****          ");
+            System.out.println("Frequency of Income Category:\n" + "  " + incomeCatFreq);
+            System.out.println("Frequency of Expense Category:\n" + "  " + expCatFreq);
+            printLine();
+        }
     }
 }
