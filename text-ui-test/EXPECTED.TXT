@@ -7,7 +7,9 @@
                           __/ |                                    
                          |___/                                     
 
-Hello! What can I do for you?
+Your total income for Oct 2020: $0.00
+Your total expense for Oct 2020: $0.00
+Hello! What can I do for you? Enter the command "help" to access the user guide.
 ____________________________________________________________________
 You:  Bye! Hope to see you again soon.
 ____________________________________________________________________

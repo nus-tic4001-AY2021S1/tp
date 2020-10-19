@@ -60,10 +60,11 @@ public class MoneyTracker {
     }
 
     public void run() {
-        ui.printWelcome();
+        ui.printLogo();
         double exp = calExpSummary();
         double inc = calIncSummary();
         ui.printSummary(exp, inc);
+        ui.printWelcome();
 
         boolean isExit = false;
         while (!isExit) {
