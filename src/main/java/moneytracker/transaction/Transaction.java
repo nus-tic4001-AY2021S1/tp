@@ -15,7 +15,7 @@ import java.util.Locale;
 public abstract class Transaction {
     private final double amount;
     private final String description;
-    private LocalDate date;
+    private final LocalDate date;
 
     /**
      * Initializes a <code>Transaction</code> object.
@@ -55,6 +55,17 @@ public abstract class Transaction {
         return String.valueOf(amount);
     }
 
+
+    /**
+     * Gets the typename of a <code>Transaction</code> object.
+     *
+     * @param description Description of a transaction.
+     * @return typename of a <code>Transaction</code> object.
+     */
+    public String getTypeName(String description) {
+        return description.split(" ")[1];
+    }
+
     /**
      * Gets the description of a <code>Transaction</code> object.
      * @return Description of a <code>Transaction</code> object.
@@ -74,8 +85,7 @@ public abstract class Transaction {
 
     public String setMonth() {
         DateTimeFormatter formattedMonth = DateTimeFormatter.ofPattern("yyyy-MM", Locale.ENGLISH);
-        String monthName = formattedMonth.format(this.date);
-        return monthName;
+        return formattedMonth.format(this.date);
     }
 
     /**

@@ -16,16 +16,26 @@ import moneytracker.command.ReportCommand;
 import moneytracker.command.ExitCommand;
 import moneytracker.command.UnknownCommand;
 import moneytracker.exception.MoneyTrackerException;
-import moneytracker.transaction.Category;
+import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.Transaction;
 import moneytracker.transaction.Income;
 import moneytracker.transaction.Expense;
+import moneytracker.transaction.Category;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Contains methods that deal with parsing user commands to extract meaningful details from them.
  */
 public class Parser {
+
     /**
      * Gets the command word from user's input string.
      * @param fullCommand User's full input string.
@@ -236,5 +246,182 @@ public class Parser {
         }
         commandParametersMap.putIfAbsent("description", "");
         return commandParametersMap;
+    }
+
+    /**
+     * Gets date from user's full input string.
+     *
+     * @param fullCommand User's full input string.
+     * @return date from user's input string.
+     * @throws MoneyTrackerException if date format incorrect.
+     */
+    public static String getDate(String fullCommand) throws MoneyTrackerException {
+        assert !fullCommand.isBlank() : "fullCommand should not be blank";
+        String date = fullCommand.replaceFirst("report", "").trim();
+        if (date.isEmpty()) {
+            throw new MoneyTrackerException("The report date is missing, e.g. 2020-09.");
+        } else {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+            dateFormat.setLenient(false);
+            try {
+                dateFormat.parse(date);
+            } catch (ParseException e) {
+                throw new MoneyTrackerException("Date should be in yyyy-MM format. E.g. 2020-09");
+            }
+        }
+        return date;
+    }
+
+    /**
+     * Gets days of month from user full command string input.
+     *
+     * @param date date month of <code>Transaction</code> objects.
+     * @return days of month
+     */
+    public static int getDaysOfMonth(String date) {
+        int year = Integer.parseInt(date.split("-")[0]) - 1900;
+        int month = Integer.parseInt(date.split("-")[1]) - 1;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        int numDays = calendar.getActualMaximum(Calendar.DATE);
+        System.out.println("date: " + numDays);
+        return numDays;
+    }
+
+    /**
+     * Gets total month income transactions from user's full input string.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     * @return total month income of transactions
+     */
+    public static double getTotalIncome(TransactionList transactions, String date) {
+        double totalIncome = 0;
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            double amount = Double.parseDouble(transactions.getTransaction(i).getAmount());
+            if (temp instanceof Income & transactions.getTransaction(i).setMonth().equals(date)) {
+                totalIncome = totalIncome + amount;
+            }
+        }
+        return totalIncome;
+    }
+
+    /**
+     * Gets total month expense transactions from user's full input string.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     * @return total month expense of transactions
+     */
+    public static double getTotalExpense(TransactionList transactions, String date) {
+        double totalExpense = 0;
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            double amount = Double.parseDouble(transactions.getTransaction(i).getAmount());
+            if (temp instanceof Expense & transactions.getTransaction(i).setMonth().equals(date)) {
+                totalExpense = totalExpense + amount;
+            }
+        }
+        return totalExpense;
+    }
+
+    /**
+     * Gets highest month income transactions from user's full input string.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     * @return highest month income of transactions
+     */
+    public static String getHighestIncome(TransactionList transactions, String date) {
+        double highestIncome = 0;
+        String highestIncomes = null;
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            double amount = Double.parseDouble(transactions.getTransaction(i).getAmount());
+            if (temp instanceof Income & transactions.getTransaction(i).setMonth().equals(date)) {
+                if (highestIncome < amount) {
+                    highestIncomes = temp.toString();
+                    highestIncome = amount;
+                }
+            }
+        }
+        return highestIncomes;
+    }
+
+    /**
+     * Gets highest month expense transactions from user's full input string.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     * @return highest month expense of transactions
+     */
+    public static String getHighestExpense(TransactionList transactions, String date) {
+        double highestExpense = 0;
+        String highestExpenses = null;
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            double amount = Double.parseDouble(transactions.getTransaction(i).getAmount());
+            if (temp instanceof Expense & transactions.getTransaction(i).setMonth().equals(date)) {
+                if (highestExpense < amount) {
+                    highestExpenses = temp.toString();
+                    highestExpense = amount;
+                }
+            }
+        }
+        return highestExpenses;
+    }
+
+    /**
+     * Gets frequent month income category from user's full input string.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     * @return frequent month income category
+     */
+    public static Object getInCatFreq(TransactionList transactions, String date) {
+        ArrayList incomeCate = new ArrayList();
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            if (temp instanceof Income & transactions.getTransaction(i).setMonth().equals(date)) {
+                incomeCate.add(temp.getTypeName(temp.toString()));
+            }
+        }
+        return getFrequency(incomeCate);
+    }
+
+    /**
+     * Gets frequent month expense category from user's full input string.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     * @return frequent month expense category
+     */
+    public static Object getExpCatFreq(TransactionList transactions, String date) {
+        ArrayList expCate = new ArrayList();
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            if (temp instanceof Expense & transactions.getTransaction(i).setMonth().equals(date)) {
+                expCate.add(temp.getTypeName(temp.toString()));
+            }
+        }
+        return getFrequency(expCate);
+    }
+
+    /**
+     * get list elements frequent.
+     *
+     * @param list arraylist
+     * @return map object with list elements and frequent.
+     */
+    public static Map<String, Long> getFrequency(ArrayList list) {
+        return (Map<String, Long>) list.stream().collect(Collectors.groupingBy(w -> w, Collectors.counting()));
     }
 }
