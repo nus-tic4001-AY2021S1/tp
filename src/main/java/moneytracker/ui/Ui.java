@@ -48,6 +48,7 @@ public class Ui {
         System.out.println(logo);
 
     }
+    
     public void printWelcome() {
         System.out.println("Hello! What can I do for you? Enter the command \"help\" to access the user guide.");
         printLine();
