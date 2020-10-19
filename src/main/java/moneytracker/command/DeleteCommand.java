@@ -1,14 +1,16 @@
 package moneytracker.command;
 
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
-import moneytracker.transaction.Expense;
-import moneytracker.transaction.Income;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
+
+import static moneytracker.command.Utilities.getTransactionType;
+import static moneytracker.command.Utilities.getTransaction;
 
 /**
  * Contains the methods for user to delete a transaction.
@@ -31,47 +33,23 @@ public class DeleteCommand extends Command {
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
-     * @param categories List of categories.
+     * @param categories List of <code>Category</code> objects.
+     * @param budget <code>Budget</code> object.
      * @throws MoneyTrackerException If there is a processing error.
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories) throws MoneyTrackerException {
+                        CategoryList categories, Budget budget) throws MoneyTrackerException {
         if (!(transactions.getIsInitialized())) {
             throw new MoneyTrackerException("Please run the list command first.");
         }
-        int transactionIndex = Parser.getDeleteIndex(fullCommand);
-        Transaction transactionToDelete;
-        try {
-            transactionToDelete =
-                    transactions.getTransaction(transactions.getSearchResultIndex(transactionIndex));
-        } catch (IndexOutOfBoundsException e) {
-            throw new MoneyTrackerException("The transaction index is invalid.");
-        }
+        int index = Parser.getDeleteIndex(fullCommand);
+        Transaction transactionToDelete = getTransaction(transactions, index);
         String description = transactionToDelete.toString();
         String type = getTransactionType(transactionToDelete);
-        transactions.removeTransaction(transactions.getSearchResultIndex(transactionIndex));
+        transactions.removeTransaction(transactions.getSearchResultIndex(index));
         storage.saveTransactions(transactions);
         ui.printRemoveTransaction(transactions.getSize(), description, type);
         transactions.setIsInitialized(false);
-    }
-
-    /**
-     * Gets the type of a <code>Transaction</code> object.
-     *
-     * @param transaction <code>Transaction</code> object.
-     * @return type of a <code>Transaction</code> object.
-     * @throws MoneyTrackerException when this exceptional condition happens.
-     */
-    private String getTransactionType(Transaction transaction) throws MoneyTrackerException {
-        String type;
-        if (transaction instanceof Income) {
-            type = "income";
-        } else if (transaction instanceof Expense) {
-            type = "expense";
-        } else {
-            throw new MoneyTrackerException("The type is invalid");
-        }
-        return type;
     }
 }

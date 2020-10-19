@@ -1,11 +1,13 @@
 package moneytracker.command;
 
+import moneytracker.summary.Budget;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Contains the methods for user to list all transactions.
@@ -28,43 +30,60 @@ public class ListCommand extends Command {
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
-     * @param categories List of categories.
+     * @param categories List of <code>Category</code> objects.
+     * @param budget <code>Budget</code> object.
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories) {
+                        CategoryList categories, Budget budget) {
+        String listMonthName = null;
+        String categoryDetails = null;
+
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
         for (int i = 0; i < transactions.getSize(); i++) {
             transactions.addSearchResultIndex(i);
         }
 
-        String listMonthName = null;
-        int len = this.fullCommand.split(" ").length;
 
-        String[] lineArr = this.fullCommand.split(" ", 4);
-        assert lineArr.length >= 0 : "There should be at least 1 element";
+        String commandParameterString = fullCommand.replaceFirst("(?i)list", "").trim();
+        String[] commandParametersArray = commandParameterString.split("/");
+        final int lenCommandParameters = commandParametersArray.length;
 
-        for (String inner : lineArr) {
-            if (inner.toLowerCase().contains("/m")) {
-                listMonthName = inner.replace("/m", "").trim();
+        /// When there is only one keyword: list, so the commandParameterString is Empty.
+        /// We have to execute list all records. and return to main screen
+        if (commandParameterString.isEmpty()) {
+            ui.printListTransaction(transactions);
+            return;
+        }
+
+        for (String innerCommand : commandParametersArray) {
+            if (innerCommand.toLowerCase().startsWith("m")) {
+                listMonthName = innerCommand.replace("m", "").trim();
+            }
+            if (innerCommand.toLowerCase().startsWith("c")) {
+                categoryDetails = innerCommand.replace("c", "").trim().toUpperCase();
             }
         }
 
-        if (len == 1) {
-            ui.printListTransaction(transactions);
-        } else if ((len == 2) & (lineArr[1].toLowerCase().equals("/te"))) {
+        Arrays.parallelSetAll(commandParametersArray, (i) -> commandParametersArray[i].trim());
+        List<String> list = Arrays.asList(commandParametersArray);
+
+        if ((lenCommandParameters == 2) & (commandParametersArray[1].toLowerCase().equals("te"))) {
             ui.printListTransactionExpenseOnly(transactions);
-        } else if ((len == 2) & (lineArr[1].toLowerCase().equals("/ti"))) {
+        } else if ((lenCommandParameters == 2) & (commandParametersArray[1].toLowerCase().equals("ti"))) {
             ui.printListTransactionIncomeOnly(transactions);
-        } else if ((len == 2) & (lineArr[1].toLowerCase().contains("/m"))) {
+        } else if ((lenCommandParameters == 2) & (commandParametersArray[1].toLowerCase().startsWith("m"))) {
             ui.printListTransactionMonthOnly(transactions,listMonthName);
-        } else if ((len == 3) & (Arrays.toString(lineArr).contains("/te"))) {
+        } else if ((lenCommandParameters == 3) & (list.contains("te") || list.contains("m"))) {
             ui.printListTransactionExpenseByMonth(transactions,listMonthName);
-        } else if ((len == 3) & (Arrays.toString(lineArr).contains("/ti"))) {
+        } else if ((lenCommandParameters == 3) & (list.contains("ti") || list.contains("m"))) {
             ui.printListTransactionIncomeByMonth(transactions,listMonthName);
-        } else if (len < 1) {
-            ui.printError("The description cannot be empty.");
+        } else if ((lenCommandParameters == 4) & (list.contains("ti") || list.contains("m") || list.contains("c"))) {
+            ui.printListTransactionIncomeByMonthByCatDetails(transactions,listMonthName,categoryDetails);
+        } else if ((lenCommandParameters == 4) & (list.contains("te") || list.contains("m") || list.contains("c"))) {
+            ui.printListTransactionExpenseByMonthByCatDetails(transactions,listMonthName,categoryDetails);
         }
+
     }
 }

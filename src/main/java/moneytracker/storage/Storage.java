@@ -1,5 +1,6 @@
 package moneytracker.storage;
 
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Category;
 import moneytracker.transaction.CategoryList;
@@ -23,6 +24,7 @@ public class Storage {
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private final String transactionsFilePath;
     private final String categoriesFilePath;
+    private final String budgetFilePath;
 
     /**
      * Initializes a <code>Storage</code> object.
@@ -30,9 +32,10 @@ public class Storage {
      * @param transactionsFilePath Path of the text file used for storing transactions.
      * @param categoriesFilePath Path of the text file used for storing categories.
      */
-    public Storage(String transactionsFilePath, String categoriesFilePath) {
+    public Storage(String transactionsFilePath, String categoriesFilePath, String budgetFilePath) {
         this.transactionsFilePath = transactionsFilePath;
         this.categoriesFilePath = categoriesFilePath;
+        this.budgetFilePath = budgetFilePath;
     }
 
     /**
@@ -44,7 +47,7 @@ public class Storage {
         try {
             lines = getLines(filePath);
         } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem reading the transactions save file."
+            throw new MoneyTrackerException("I have problem reading the transactions save file."
                     + " Let's start with an empty transaction list instead.");
         }
         for (String line : lines) {
@@ -64,7 +67,7 @@ public class Storage {
         try {
             lines = getLines(filePath);
         } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem reading the categories save file."
+            throw new MoneyTrackerException("I have problem reading the categories save file."
                     + " Let's start with an empty category list instead.");
         }
         for (String line : lines) {
@@ -96,13 +99,13 @@ public class Storage {
                     String expenseCategory = ((Expense) transactions.getTransaction(i)).getExpenseCategory();
                     lineToSave =  "E" + lineToSave + " | " + expenseCategory + System.lineSeparator();
                 } else {
-                    throw new MoneyTrackerException("I've problem saving to the file.");
+                    throw new MoneyTrackerException("I have problem saving to the file.");
                 }
                 fw.write(lineToSave);
             }
             fw.close();
         } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem saving to the file.");
+            throw new MoneyTrackerException("I have problem saving to the file.");
         }
     }
 
@@ -123,26 +126,77 @@ public class Storage {
                 } else if (type.equals("EXPENSE")) {
                     fw.write("E" + " | " + name + System.lineSeparator());
                 } else {
-                    throw new MoneyTrackerException("I've problem saving to the file.");
+                    throw new MoneyTrackerException("I have problem saving to the file.");
                 }
             }
             fw.close();
         } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem saving to the file.");
+            throw new MoneyTrackerException("I have problem saving to the file.");
         }
     }
 
+    /**
+     * Saves information of <code>Budget</code> object to text file.
+     *
+     * @throws MoneyTrackerException If text file is not found or inaccessible.
+     */
+    public void saveBudget(Budget budget) throws MoneyTrackerException {
+        FileWriter fw;
+        try {
+            fw = new FileWriter(budgetFilePath);
+            fw.write(String.valueOf(budget.getAmount()));
+            fw.close();
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I have problem saving to the file.");
+        }
+    }
+
+    /**
+     * Loads information of <code>Budget</code> object from text file.
+     *
+     * @throws MoneyTrackerException If text file is not found or inaccessible.
+     */
+    public Double loadBudget(String filePath) throws MoneyTrackerException {
+        ArrayList<String> lines;
+        try {
+            lines = getLines(filePath);
+        } catch (IOException e) {
+            throw new MoneyTrackerException("I have problem reading the budget save file.");
+        }
+        Double budget;
+        try {
+            budget = Double.valueOf(lines.get(0));
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new MoneyTrackerException("I have problem reading the budget save file.");
+        }
+        return budget;
+    }
+
+    /**
+     * Clear information in all text files.
+     *
+     * @throws MoneyTrackerException If text file is not found or inaccessible.
+     */
     public void clearAllData() throws MoneyTrackerException {
         clearDataInFile(transactionsFilePath);
         clearDataInFile(categoriesFilePath);
+        clearDataInFile(budgetFilePath);
     }
 
+    /**
+     * Clear information in a specified text file.
+     *
+     * @throws MoneyTrackerException If text file is not found or inaccessible.
+     */
     private void clearDataInFile(String filePath) throws MoneyTrackerException {
         try {
             FileWriter fw = new FileWriter(filePath);
+            if (filePath.equals(budgetFilePath)) {
+                fw.write("0.0");
+            }
             fw.close();
         } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem clearing data in this file: " + filePath);
+            throw new MoneyTrackerException("I have problem clearing data in this file: " + filePath);
         }
     }
 
@@ -214,7 +268,7 @@ public class Storage {
                 clearAllData();
             }
         } catch (IOException e) {
-            throw new MoneyTrackerException("I've problem creating the save directory!");
+            throw new MoneyTrackerException("I have problem creating the save directory!");
         }
     }
 }

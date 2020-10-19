@@ -1,5 +1,6 @@
 package moneytracker.ui;
 
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.transaction.TransactionList;
@@ -22,6 +23,7 @@ public class Ui {
 
     /**
      * Gets the input stream from the user.
+     *
      * @return Input stream from the user.
      */
     public String readUserCommand() {
@@ -44,7 +46,7 @@ public class Ui {
         printLine();
     }
 
-    public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {
+    public void printAddTransaction(TransactionList transactions) throws MoneyTrackerException {
         Transaction transactionToPrint = transactions.getTransaction(transactions.getSize() - 1);
         if (transactionToPrint instanceof Income) {
             System.out.println("Got it! I have added this income:");
@@ -85,7 +87,7 @@ public class Ui {
         printLine();
     }
 
-    public void printEditCategory(String oldDescription, String newDescription, String type) {
+    public void printEditItem(String oldDescription, String newDescription, String type) {
         System.out.println("Noted! I have edited this " + type + ": ");
         printIndentation();
         System.out.println("From " + oldDescription + " to " + newDescription);
@@ -94,6 +96,15 @@ public class Ui {
 
     public void printError(String errorMessage) {
         System.out.println("OOPS!! " + errorMessage);
+        printLine();
+    }
+
+    public void printBudget(Budget budget) {
+        double amount = budget.getAmount();
+        String amountString = String.format("%.2f", amount);
+        System.out.println("Got it! I have set your monthly budget to this amount:");
+        printIndentation();
+        System.out.println("$" + amountString);
         printLine();
     }
 
@@ -123,6 +134,15 @@ public class Ui {
         printLine();
     }
 
+    public void printRemoveTransaction(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
+        printIndentation();
+        System.out.println(description);
+        printIndentation();
+        System.out.println("Now you have " + size + " transactions in the list.");
+        printLine();
+    }
+
     public void printLine() {
         System.out.println(LINE);
     }
@@ -131,9 +151,15 @@ public class Ui {
         System.out.print(INDENT);
     }
 
+    /**
+     * Executes the list transactions command.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     */
     public void printListTransaction(TransactionList transactions) {
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
             System.out.println("Here are your transactions:");
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -144,15 +170,11 @@ public class Ui {
         printLine();
     }
 
-    public void printRemoveTransaction(int size, String description, String type) {
-        System.out.println("Noted! I have removed this " + type + ": ");
-        printIndentation();
-        System.out.println(description);
-        printIndentation();
-        System.out.println("Now you have " + size + " transactions in the list.");
-        printLine();
-    }
-
+    /**
+     * Executes the FilteredTransactions command.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     */
     public void printFilteredTransactions(TransactionList transactions) {
         ArrayList<Integer> searchResultIndexes = transactions.getSearchResultIndexes();
         {
@@ -164,104 +186,321 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Executes the list transactions command to only display expense records.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     */
     public void printListTransactionExpenseOnly(TransactionList transactions) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
+        int matcheCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
-            System.out.println("Here are your expenses:");
+
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Expense) {
+                    matcheCount = matcheCount + 1;
                     transactions.addSearchResultIndex(i);
                 }
             }
 
         }
 
-        printFilteredTransactions(transactions);
+
+        if (matcheCount == 0) {
+            System.out.println("Sorry! Cannot find any matched expenses records");
+        } else {
+            System.out.println("Here are your expenses:");
+            printFilteredTransactions(transactions);
+        }
+
 
     }
 
+    /**
+     * Executes the list transactions command to only display income records.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     */
     public void printListTransactionIncomeOnly(TransactionList transactions) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
+        int matcheCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
-            System.out.println("Here are your incomes:");
+
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Income) {
+                    matcheCount = matcheCount + 1;
                     transactions.addSearchResultIndex(i);
                 }
             }
         }
 
-        printFilteredTransactions(transactions);
+        if (matcheCount == 0) {
+            System.out.println("Sorry! Cannot find any matched income records");
+        } else {
+            System.out.println("Here are your incomes:");
+            printFilteredTransactions(transactions);
+        }
+
+
     }
 
-
+    /**
+     * Executes the list transactions command to only display records in selected month.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param listMonthName String of Month from the user input.
+     */
     public void printListTransactionMonthOnly(TransactionList transactions, String listMonthName) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
+        int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
-            System.out.println("Here are your transactions for " + listMonthName + " :");
+
             for (int i = 0; i < transactions.getSize(); i++) {
                 if (transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    matchedMonthCount = matchedMonthCount + 1;
                     transactions.addSearchResultIndex(i);
                 }
             }
 
         }
-        printFilteredTransactions(transactions);
+
+        if (matchedMonthCount == 0) {
+            System.out.println("Sorry! Cannot find any matched transactions for " + listMonthName);
+        } else {
+            System.out.println("Here are your transactions for " + listMonthName + " :");
+            printFilteredTransactions(transactions);
+        }
     }
 
-
+    /**
+     * Executes the list transactions command to only display income records in selected month.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param listMonthName String of Month from the user input.
+     */
     public void printListTransactionIncomeByMonth(TransactionList transactions, String listMonthName) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
+        int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
-            System.out.println("Here are your income records for " + listMonthName + " :");
+
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Income & transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    matchedMonthCount = matchedMonthCount + 1;
                     transactions.addSearchResultIndex(i);
                 }
             }
         }
 
-        printFilteredTransactions(transactions);
+        if (matchedMonthCount == 0) {
+            System.out.println("Sorry! Cannot find any matched income records for " + listMonthName);
+        } else {
+            System.out.println("Here are your income records for " + listMonthName + " :");
+            printFilteredTransactions(transactions);
+        }
     }
 
+    /**
+     * Checks if the records match to the income category.
+     * Return the match counts.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param userInputCategoryDetails String of category details from the user input.
+     */
+    public int checkIncomeCategoryDetails(TransactionList transactions, String userInputCategoryDetails) {
+        String incomeCategoryDetails;
+        int matchedCount = 0;
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction parentRecord = transactions.getTransaction(i);
+            if (parentRecord instanceof Income) {
+                incomeCategoryDetails = ((Income) parentRecord).getIncomeCategory();
+                if (incomeCategoryDetails.contains(userInputCategoryDetails)) {
+                    matchedCount = matchedCount + 1;
+                }
+            }
+        }
+        return matchedCount;
+    }
+
+    /**
+     * Checks if the records match to the expense category.
+     * Return the match counts.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param userInputCategoryDetails String of category details from the user input.
+     */
+    public int checkExpenseCategoryDetails(TransactionList transactions, String userInputCategoryDetails) {
+        String expenseCategoryDetails;
+        int matchedCount = 0;
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction parentRecord = transactions.getTransaction(i);
+            if (parentRecord instanceof Expense) {
+                expenseCategoryDetails = ((Expense) parentRecord).getExpenseCategory();
+                if (expenseCategoryDetails.contains(userInputCategoryDetails)) {
+                    matchedCount = matchedCount + 1;
+                }
+            }
+        }
+        return matchedCount;
+    }
+
+    /**
+     * Executes the list transactions command to only display income records in selected month and category.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param listMonthName String of Month from the user input.
+     * @param categoryDetails String of categoryDetails from the user input.
+     */
+    public void printListTransactionIncomeByMonthByCatDetails(TransactionList transactions,
+                                                              String listMonthName, String categoryDetails) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+        int matchedMonthCategoryDetailsCount = 0;
+        int matchedMonthCount = 0;
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no transaction in your list.");
+        } else {
+
+            for (int i = 0; i < transactions.getSize(); i++) {
+
+                Transaction parentRecord = transactions.getTransaction(i);
+
+                if ((parentRecord instanceof Income)
+                        & (transactions.getTransaction(i).setMonth().equals(listMonthName))) {
+                    matchedMonthCount = matchedMonthCount + 1;
+
+                    if (((Income) parentRecord).getIncomeCategory().equals(categoryDetails)) {
+                        matchedMonthCategoryDetailsCount = matchedMonthCategoryDetailsCount + 1;
+                        transactions.addSearchResultIndex(i);
+                    }
+
+                }
+            }
+        }
+
+
+        if (matchedMonthCount == 0) {
+            System.out.println("Sorry! Cannot find any matched income records for " + listMonthName);
+        }
+        if (checkIncomeCategoryDetails(transactions, categoryDetails) == 0) {
+            System.out.println("Sorry! Cannot find any matched income categories for " + categoryDetails);
+        } else if (matchedMonthCategoryDetailsCount == 0) {
+            System.out.println("Sorry! Cannot find any matched income records ("
+                    + categoryDetails + ") for " + listMonthName);
+        } else {
+            System.out.println("Here are your income records (" + categoryDetails + ") for " + listMonthName + " :");
+            printFilteredTransactions(transactions);
+        }
+    }
+
+    /**
+     * Executes the list transactions command to only display expense records in selected month.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param listMonthName String of Month from the user input.
+     */
     public void printListTransactionExpenseByMonth(TransactionList transactions, String listMonthName) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
+        int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
-            System.out.println("Here are your expense records for " + listMonthName + " :");
+
             for (int i = 0; i < transactions.getSize(); i++) {
                 Transaction parentRecord = transactions.getTransaction(i);
                 if (parentRecord instanceof Expense & transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    matchedMonthCount = matchedMonthCount + 1;
                     transactions.addSearchResultIndex(i);
                 }
             }
         }
-        printFilteredTransactions(transactions);
+
+        if (matchedMonthCount == 0) {
+            System.out.println("Sorry! Cannot find any matched expense records for " + listMonthName);
+        } else {
+            System.out.println("Here are your expense records for " + listMonthName + " :");
+            printFilteredTransactions(transactions);
+        }
+
     }
 
+    /**
+     * Executes the list transactions command to only display expense records in selected month and category.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param listMonthName String of Month from the user input.
+     * @param categoryDetails String of categoryDetails from the user input.
+     */
+    public void printListTransactionExpenseByMonthByCatDetails(TransactionList transactions, String listMonthName,
+                                                               String categoryDetails) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+        int matchedMonthCategoryDetailsCount = 0;
+        int matchedMonthCount = 0;
+
+
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no transaction in your list.");
+        } else {
+
+            for (int i = 0; i < transactions.getSize(); i++) {
+                Transaction parentRecord = transactions.getTransaction(i);
+                if (parentRecord instanceof Expense & transactions.getTransaction(i).setMonth().equals(listMonthName)) {
+                    matchedMonthCount = matchedMonthCount + 1;
+                    if (((Expense) parentRecord).getExpenseCategory().equals(categoryDetails)) {
+                        matchedMonthCategoryDetailsCount = matchedMonthCategoryDetailsCount + 1;
+                        transactions.addSearchResultIndex(i);
+                    }
+                }
+            }
+        }
+
+
+        if (matchedMonthCount == 0) {
+            System.out.println("Sorry! Cannot find any matched expense records for " + listMonthName);
+        }
+        if (checkExpenseCategoryDetails(transactions, categoryDetails) == 0) {
+            System.out.println("Sorry! Cannot find any matched expense categories for " + categoryDetails);
+        } else if (matchedMonthCategoryDetailsCount == 0) {
+            System.out.println("Sorry! Cannot find any matched expense records ("
+                    + categoryDetails + ") for " + listMonthName);
+        } else {
+            System.out.println("Here are your expense records (" + categoryDetails + ") for " + listMonthName + " :");
+            printFilteredTransactions(transactions);
+        }
+    }
+
+    /**
+     * Executes the Filtered Categories command.
+     *
+     * @param categories List of <code>categories</code> objects.
+     */
     private void printFilteredCategories(CategoryList categories) {
         ArrayList<Integer> searchResultIndexes = categories.getSearchResultIndexes();
         {
@@ -273,9 +512,14 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Executes the list category command.
+     *
+     * @param categories List of <code>categories</code> objects.
+     */
     public void printListCategory(CategoryList categories) {
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -286,12 +530,17 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Executes the list category command to display expense categoty only.
+     *
+     * @param categories List of <code>categories</code> objects.
+     */
     public void printListCategoryExpenseOnly(CategoryList categories) {
         categories.setIsInitialized(true);
         categories.clearSearchResultIndexes();
 
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your expenses categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -303,12 +552,17 @@ public class Ui {
         printFilteredCategories(categories);
     }
 
+    /**
+     * Executes the list category command to display income categoty only.
+     *
+     * @param categories List of <code>categories</code> objects.
+     */
     public void printListCategoryIncomeOnly(CategoryList categories) {
         categories.setIsInitialized(true);
         categories.clearSearchResultIndexes();
 
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your income categories:");
             for (int i = 0; i < categories.getSize(); i++) {
