@@ -276,28 +276,24 @@ Example of usage: `report 2020-09`
 
 Expected outcome:
 ```
-Here is your report for Sep 2020: 
-Total Income: $9200.00
-Total Expense: $2000.00
-Balance: $7200.00 
-Average Expense Per Day: $66.67
+Here is your report for 2020-09 :
+Total Income: $27597.4
+Total Expense: $31.0
+Balance: $27566.4
 
-Highest Income:
-  [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
+This month has 30 days.
+Average Expense Per Day: $1.03
 
-Highest Expense:
-  [E] FOOD $120.00 on 18 Sep 2020 (Dinner with wife.)
+Highest Income: 
+  [I] SALARY $9000.00 on 1 Sep 2020 (Given $4000 bonus!)
 
-Highest Frequency Expense Category: 
-  [E] FOOD (87 Records)
+Frequency of Income Category:
+  SALARY=3,
+  HONGBAO=5
 
-Income Categories:
-  [I] SALARY $9000.00 (Highest) 
-  [I] DIVIDEND $200.00
-
-Expense Categories:
-  [E] FOOD $848.50 (Highest)
-  [E] ENTERTAINMENT $651.50 [E] RENT $500.00
+Frequency of Expense Category:
+  DRINK=4,
+  FOOD=2
 ```
 
 ### Exiting the program: `exit`
