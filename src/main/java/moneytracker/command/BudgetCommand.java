@@ -37,7 +37,6 @@ public class BudgetCommand extends Command {
     public void execute(TransactionList transactions, Ui ui, Storage storage,
                         CategoryList categories, Budget budget) throws MoneyTrackerException {
         budget.setBudget(Parser.getBudgetAmount(fullCommand));
-        System.out.println(budget.getAmount());
         storage.saveBudget(budget);
         ui.printBudget(budget);
     }
