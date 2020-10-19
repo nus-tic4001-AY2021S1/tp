@@ -106,12 +106,20 @@ public abstract class Transaction {
         return date.toString();
     }
 
+    public LocalDate getLocalDate() {
+        return date;
+    }
+
+    public double getAmountNumber() {
+        return amount;
+    }
     /**
      * Sets the date of a <code>Transaction</code>.
      *
      * @param date Date of a <code>Transaction</code>.
      * @throws MoneyTrackerException If date format is invalid.
      */
+
     public void setDate(String date) throws MoneyTrackerException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

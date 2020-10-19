@@ -5,9 +5,14 @@ import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
-import moneytracker.transaction.CategoryList;
+import moneytracker.transaction.Expense;
+import moneytracker.transaction.Income;
 import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.CategoryList;
+import moneytracker.transaction.Transaction;
 import moneytracker.ui.Ui;
+
+import java.time.LocalDate;
 
 /**
  * Implements an application that allows users to manage monetary transactions.
@@ -56,6 +61,10 @@ public class MoneyTracker {
 
     public void run() {
         ui.printWelcome();
+        double exp = calExpSummary();
+        double inc = calIncSummary();
+        ui.printSummary(exp, inc);
+
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -69,10 +78,40 @@ public class MoneyTracker {
         }
     }
 
+    private double calIncSummary() {
+        double inc = 0;
+        for (Transaction tran : transactions.getTransactions()) {
+            if (LocalDate.now().getMonth() == tran.getLocalDate().getMonth()) {
+                if (tran instanceof Income) {
+                    inc += tran.getAmountNumber();
+                }
+            }
+        }
+        return inc;
+    }
+
+
+
+    private double calExpSummary() {
+        double exp = 0;
+        for (Transaction tran : transactions.getTransactions()) {
+            if (LocalDate.now().getMonth() == tran.getLocalDate().getMonth()) {
+                if (tran instanceof Expense) {
+                    exp += tran.getAmountNumber();
+                }
+            }
+        }
+        return exp;
+    }
+
+
+
+
     /**
      *  Main method of Money Tracker. This is the starting point of the app.
      *  @param args Command line arguments. Not used.
      */
+
     public static void main(String[] args) {
         new MoneyTracker("data/transactions.txt",
                 "data/categories.txt", "data/budget.txt").run();
