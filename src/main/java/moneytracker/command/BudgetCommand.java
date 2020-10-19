@@ -9,22 +9,21 @@ import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
 /**
- * Contains the methods for user to add an income.
+ * Contains the methods for user to change the monthly budget.
  */
-public class AddIncomeCommand extends Command {
+public class BudgetCommand extends Command {
     private final String fullCommand;
 
     /**
-     * Initializes a <code>AddIncomeCommand</code> object.
+     * Initializes a <code>BudgetCommand</code> object.
      *
      * @param fullCommand User's full input string.
      */
-    public AddIncomeCommand(String fullCommand) {
+    public BudgetCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
-
     /**
-     * Executes the add income command.
+     * Executes the budget command.
      *
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
@@ -33,11 +32,12 @@ public class AddIncomeCommand extends Command {
      * @param budget <code>Budget</code> object.
      * @throws MoneyTrackerException If there is a processing error.
      */
+
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
                         CategoryList categories, Budget budget) throws MoneyTrackerException {
-        transactions.addTransaction(Parser.createIncome(fullCommand), categories);
-        storage.saveTransactions(transactions);
-        ui.printAddTransaction(transactions);
+        budget.setBudget(Parser.getBudgetAmount(fullCommand));
+        storage.saveBudget(budget);
+        ui.printBudget(budget);
     }
 }

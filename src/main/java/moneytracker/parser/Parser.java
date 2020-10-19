@@ -14,6 +14,7 @@ import moneytracker.command.EditCommand;
 import moneytracker.command.DeleteCommand;
 import moneytracker.command.ClearCommand;
 import moneytracker.command.ReportCommand;
+import moneytracker.command.BudgetCommand;
 import moneytracker.command.ExitCommand;
 import moneytracker.command.UnknownCommand;
 import moneytracker.exception.MoneyTrackerException;
@@ -208,6 +209,18 @@ public class Parser {
         return editParameters;
     }
 
+    public static double getBudgetAmount(String fullCommand) throws MoneyTrackerException {
+        String commandParameterString = fullCommand.replaceFirst("(?i)budget", "").trim();
+        if (commandParameterString.isEmpty()) {
+            throw new MoneyTrackerException("The amount is missing.");
+        }
+        try {
+            return Double.parseDouble(commandParameterString);
+        } catch (NumberFormatException e) {
+            throw new MoneyTrackerException("Amount should be a number. E.g. 3000.00");
+        }
+    }
+
     /**
      * Gets <code>Command</code> object from user's full input string.
      *
@@ -243,6 +256,8 @@ public class Parser {
             return new ClearCommand();
         case "report":
             return new ReportCommand(fullCommand);
+        case "budget":
+            return new BudgetCommand(fullCommand);
         case "exit":
             return new ExitCommand();
         default:

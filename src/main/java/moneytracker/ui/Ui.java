@@ -1,5 +1,6 @@
 package moneytracker.ui;
 
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Category;
 import moneytracker.transaction.CategoryList;
@@ -29,7 +30,7 @@ public class Ui {
         System.out.print("You:  ");
         return in.nextLine().trim();
     }
-    
+
     public void printWelcome() {
         String logo = " __  __                          _______             _             " + System.lineSeparator()
                 + "|  \\/  |                        |__   __|           | |            " + System.lineSeparator()
@@ -97,6 +98,15 @@ public class Ui {
         printLine();
     }
 
+    public void printBudget(Budget budget) {
+        double amount = budget.getAmount();
+        String amountString = String.format("%.2f", amount);
+        System.out.println("Got it! I have set your monthly budget to this amount:");
+        printIndentation();
+        System.out.println("$" + amountString);
+        printLine();
+    }
+
     public void printHelp() {
         System.out.println("Please refer this online user guide:");
         System.out.println("https://ay2021s1-tic4001-2.github.io/tp/UserGuide.html");
@@ -120,6 +130,15 @@ public class Ui {
         } else {
             System.out.println("Sorry, please enter \"Y\" or \"N\" only");
         }
+        printLine();
+    }
+
+    public void printRemoveTransaction(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
+        printIndentation();
+        System.out.println(description);
+        printIndentation();
+        System.out.println("Now you have " + size + " transactions in the list.");
         printLine();
     }
 
@@ -147,16 +166,6 @@ public class Ui {
                 System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
             }
         }
-        printLine();
-    }
-
-
-    public void printRemoveTransaction(int size, String description, String type) {
-        System.out.println("Noted! I have removed this " + type + ": ");
-        printIndentation();
-        System.out.println(description);
-        printIndentation();
-        System.out.println("Now you have " + size + " transactions in the list.");
         printLine();
     }
 

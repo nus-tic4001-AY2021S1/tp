@@ -1,5 +1,6 @@
 package moneytracker.command;
 
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
@@ -17,12 +18,13 @@ public class ClearCommand extends Command {
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
-     * @param categories List of categories.
+     * @param categories List of <code>Category</code> objects.
+     * @param budget <code>Budget</code> object.
      * @throws MoneyTrackerException If there is a processing error.
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories) throws MoneyTrackerException {
+                        CategoryList categories, Budget budget) throws MoneyTrackerException {
         ui.printClearConfirmation();
         while (true) {
             String confirmation = ui.readUserCommand().toUpperCase();
