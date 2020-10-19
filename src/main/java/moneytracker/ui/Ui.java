@@ -13,6 +13,7 @@ import moneytracker.transaction.CategoryList;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 /**
  * Contains methods that interacts with the users such as obtaining commands
  * from user input and displaying messages to the users.
@@ -481,7 +482,6 @@ public class Ui {
             }
         }
 
-
         if (matchedMonthCount == 0) {
             System.out.println("Sorry! Cannot find any matched expense records for " + listMonthName);
         }
@@ -594,21 +594,38 @@ public class Ui {
             double average = totalExpense / Parser.getDaysOfMonth(date);
             String highestIncomeTrans = Parser.getHighestIncome(transactions,date);
             String highestExpTrans = Parser.getHighestExpense(transactions,date);
-            var incomeCatFreq = Parser.getInCatFreq(transactions,date);
-            var expCatFreq = Parser.getExpCatFreq(transactions,date);
 
             System.out.println("Here is your report for " + date + " :");
             System.out.println("Total Income: $" + totalIncome);
             System.out.println("Total Expense: $" + totalExpense);
             System.out.println("Balance: $" + balance);
+            System.out.println("\nThis month has " + Parser.getDaysOfMonth(date) + " days.");
             System.out.printf("Average Expense Per Day: $%.2f\n",(average));
-            System.out.println("          *****          ");
+            System.out.println("");
             System.out.println("Highest Income: \n" + "  " + highestIncomeTrans);
-            System.out.println("Highest Expense: \n" + "  " + highestExpTrans + "");
-            System.out.println("          *****          ");
-            System.out.println("Frequency of Income Category:\n" + "  " + incomeCatFreq);
-            System.out.println("Frequency of Expense Category:\n" + "  " + expCatFreq);
+            System.out.println("");
+
+            var incomeCatFreq = Parser.getInCatFreq(transactions,date);
+            System.out.println("Frequency of Income Category:");
+            printFreqHelper(incomeCatFreq);
+
+            var expCatFreq = Parser.getExpCatFreq(transactions,date);
+            System.out.println("\nFrequency of Expense Category:");
+            printFreqHelper(expCatFreq);
             printLine();
+        }
+    }
+
+    /**
+     * Help slip frequency string to words.
+     *
+     * @param object income/expense category frequency.
+     */
+    public void printFreqHelper(Object object) {
+        String line = object.toString();
+        String newline = line.replace("{","").replace("}","");
+        for (String word : newline.split(" ")) {
+            System.out.println("  " + word);
         }
     }
 }
