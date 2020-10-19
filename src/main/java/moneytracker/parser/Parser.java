@@ -102,18 +102,22 @@ public class Parser {
         if (!(commandParams.containsKey("description"))) {
             commandParams.put("description", "");
         }
-        String amount = commandParams.get("amount");
+        Double amount;
+        try {
+            amount = Double.parseDouble(commandParams.get("amount"));
+        } catch (NumberFormatException e) {
+            throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
+        }
+        if (amount < 0) {
+            throw new MoneyTrackerException("Amount should not be a negative number.");
+        }
         String description = commandParams.get("description");
         String date = commandParams.get("date");
         String incomeCategory = commandParams.get("category");
-        try {
-            if (commandParams.containsKey("date")) {
-                return new Income(Double.parseDouble(amount), description, date, incomeCategory);
-            } else {
-                return new Income(Double.parseDouble(amount), description, incomeCategory);
-            }
-        } catch (NumberFormatException e) {
-            throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
+        if (commandParams.containsKey("date")) {
+            return new Income(amount, description, date, incomeCategory);
+        } else {
+            return new Income(amount, description, incomeCategory);
         }
     }
 
@@ -140,18 +144,22 @@ public class Parser {
         if (!(commandParams.containsKey("description"))) {
             commandParams.put("description", "");
         }
-        String amount = commandParams.get("amount");
+        Double amount;
+        try {
+            amount = Double.parseDouble(commandParams.get("amount"));
+        } catch (NumberFormatException e) {
+            throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
+        }
+        if (amount < 0) {
+            throw new MoneyTrackerException("Amount should not be a negative number.");
+        }
         String description = commandParams.get("description");
         String date = commandParams.get("date");
         String expenseCategory = commandParams.get("category");
-        try {
-            if (commandParams.containsKey("date")) {
-                return new Expense(Double.parseDouble(amount), description, date, expenseCategory);
-            } else {
-                return new Expense(Double.parseDouble(amount), description, expenseCategory);
-            }
-        } catch (NumberFormatException e) {
-            throw new MoneyTrackerException("The amount must be a decimal value. E.g. 30.50");
+        if (commandParams.containsKey("date")) {
+            return new Expense(amount, description, date, expenseCategory);
+        } else {
+            return new Expense(amount, description, expenseCategory);
         }
     }
 
@@ -224,11 +232,16 @@ public class Parser {
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The amount is missing.");
         }
+        Double amount;
         try {
-            return Double.parseDouble(commandParameterString);
+            amount = Double.parseDouble(commandParameterString);
         } catch (NumberFormatException e) {
             throw new MoneyTrackerException("Amount should be a number. E.g. 3000.00");
         }
+        if (amount < 0) {
+            throw new MoneyTrackerException("Amount should not be a negative number.");
+        }
+        return amount;
     }
 
     /**
