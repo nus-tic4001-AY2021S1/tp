@@ -36,7 +36,7 @@ public class Ui {
         return in.nextLine().trim();
     }
 
-    public void printWelcome() {
+    public void printLogo() {
         String logo = " __  __                          _______             _             " + System.lineSeparator()
                 + "|  \\/  |                        |__   __|           | |            " + System.lineSeparator()
                 + "| \\  / | ___  _ __   ___ _   _     | |_ __ __ _  ___| | _____ _ __ " + System.lineSeparator()
@@ -46,7 +46,11 @@ public class Ui {
                 + "                          __/ |                                    " + System.lineSeparator()
                 + "                         |___/                                     " + System.lineSeparator();
         System.out.println(logo);
-        System.out.println("Hello! What can I do for you?");
+
+    }
+    
+    public void printWelcome() {
+        System.out.println("Hello! What can I do for you? Enter the command \"help\" to access the user guide.");
         printLine();
     }
 
