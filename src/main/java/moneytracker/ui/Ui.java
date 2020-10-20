@@ -1,15 +1,21 @@
 package moneytracker.ui;
 
+import moneytracker.summary.Budget;
 import moneytracker.exception.MoneyTrackerException;
-import moneytracker.transaction.Category;
-import moneytracker.transaction.CategoryList;
+import moneytracker.parser.Parser;
+import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.Transaction;
 import moneytracker.transaction.Income;
 import moneytracker.transaction.Expense;
-import moneytracker.transaction.Transaction;
-import moneytracker.transaction.TransactionList;
+import moneytracker.transaction.Category;
+import moneytracker.transaction.CategoryList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.format.TextStyle;
+import java.util.Locale;
+
 
 /**
  * Contains methods that interacts with the users such as obtaining commands
@@ -21,6 +27,7 @@ public class Ui {
 
     /**
      * Gets the input stream from the user.
+     *
      * @return Input stream from the user.
      */
     public String readUserCommand() {
@@ -29,10 +36,7 @@ public class Ui {
         return in.nextLine().trim();
     }
 
-    /**
-     * Executes Welcome message.
-     */
-    public void printWelcome() {
+    public void printLogo() {
         String logo = " __  __                          _______             _             " + System.lineSeparator()
                 + "|  \\/  |                        |__   __|           | |            " + System.lineSeparator()
                 + "| \\  / | ___  _ __   ___ _   _     | |_ __ __ _  ___| | _____ _ __ " + System.lineSeparator()
@@ -42,11 +46,22 @@ public class Ui {
                 + "                          __/ |                                    " + System.lineSeparator()
                 + "                         |___/                                     " + System.lineSeparator();
         System.out.println(logo);
-        System.out.println("Hello! What can I do for you?");
+    }
+    
+    public void printWelcome() {
+        System.out.println("Hello! What can I do for you? Enter the command \"help\" to access the user guide.");
         printLine();
     }
 
-    public void printAddedTransaction(TransactionList transactions) throws MoneyTrackerException {
+    public void printSummary(double exp, double inc) {
+        System.out.println(
+                "Your total income for " + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", inc)
+                + "\nYour total expense for " + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", exp));
+    }
+
+    public void printAddTransaction(TransactionList transactions) throws MoneyTrackerException {
         Transaction transactionToPrint = transactions.getTransaction(transactions.getSize() - 1);
         if (transactionToPrint instanceof Income) {
             System.out.println("Got it! I have added this income:");
@@ -87,7 +102,7 @@ public class Ui {
         printLine();
     }
 
-    public void printEditCategory(String oldDescription, String newDescription, String type) {
+    public void printEditItem(String oldDescription, String newDescription, String type) {
         System.out.println("Noted! I have edited this " + type + ": ");
         printIndentation();
         System.out.println("From " + oldDescription + " to " + newDescription);
@@ -96,6 +111,15 @@ public class Ui {
 
     public void printError(String errorMessage) {
         System.out.println("OOPS!! " + errorMessage);
+        printLine();
+    }
+
+    public void printBudget(Budget budget) {
+        double amount = budget.getAmount();
+        String amountString = String.format("%.2f", amount);
+        System.out.println("Got it! I have set your monthly budget to this amount:");
+        printIndentation();
+        System.out.println("$" + amountString);
         printLine();
     }
 
@@ -125,6 +149,15 @@ public class Ui {
         printLine();
     }
 
+    public void printRemoveTransaction(int size, String description, String type) {
+        System.out.println("Noted! I have removed this " + type + ": ");
+        printIndentation();
+        System.out.println(description);
+        printIndentation();
+        System.out.println("Now you have " + size + " transactions in the list.");
+        printLine();
+    }
+
     public void printLine() {
         System.out.println(LINE);
     }
@@ -140,7 +173,8 @@ public class Ui {
      */
     public void printListTransaction(TransactionList transactions) {
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
             System.out.println("Here are your transactions:");
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -148,16 +182,6 @@ public class Ui {
                 System.out.println((i + 1) + ". " + transactions.getTransaction(i).toString());
             }
         }
-        printLine();
-    }
-
-
-    public void printRemoveTransaction(int size, String description, String type) {
-        System.out.println("Noted! I have removed this " + type + ": ");
-        printIndentation();
-        System.out.println(description);
-        printIndentation();
-        System.out.println("Now you have " + size + " transactions in the list.");
         printLine();
     }
 
@@ -188,7 +212,8 @@ public class Ui {
         int matcheCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -223,7 +248,8 @@ public class Ui {
         int matcheCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -257,7 +283,8 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -275,8 +302,6 @@ public class Ui {
             System.out.println("Here are your transactions for " + listMonthName + " :");
             printFilteredTransactions(transactions);
         }
-
-
     }
 
     /**
@@ -291,7 +316,8 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
+            return;
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -370,7 +396,7 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -417,7 +443,7 @@ public class Ui {
         int matchedMonthCount = 0;
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
 
@@ -455,7 +481,7 @@ public class Ui {
 
 
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transaction in your list.");
         } else {
 
             for (int i = 0; i < transactions.getSize(); i++) {
@@ -470,7 +496,6 @@ public class Ui {
             }
         }
 
-
         if (matchedMonthCount == 0) {
             System.out.println("Sorry! Cannot find any matched expense records for " + listMonthName);
         }
@@ -484,7 +509,6 @@ public class Ui {
             printFilteredTransactions(transactions);
         }
     }
-
 
     /**
      * Executes the Filtered Categories command.
@@ -509,7 +533,7 @@ public class Ui {
      */
     public void printListCategory(CategoryList categories) {
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -530,7 +554,7 @@ public class Ui {
         categories.clearSearchResultIndexes();
 
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your expenses categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -552,7 +576,7 @@ public class Ui {
         categories.clearSearchResultIndexes();
 
         if (categories.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no category in your list.");
         } else {
             System.out.println("Here are your income categories:");
             for (int i = 0; i < categories.getSize(); i++) {
@@ -562,5 +586,60 @@ public class Ui {
             }
         }
         printFilteredCategories(categories);
+    }
+
+    /**
+     * Gets transaction/category  Month report from user's full input string.
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param date month of <code>Transaction</code> objects.
+     */
+    public void printReport(TransactionList transactions, String date) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        printLine();
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            double totalIncome = Parser.getTotalIncome(transactions,date);
+            double totalExpense = Parser.getTotalExpense(transactions,date);
+            double balance = totalIncome - totalExpense;
+            double average = totalExpense / Parser.getDaysOfMonth(date);
+            String highestIncomeTrans = Parser.getHighestIncome(transactions,date);
+            String highestExpTrans = Parser.getHighestExpense(transactions,date);
+
+            System.out.println("Here is your report for " + date + " :");
+            System.out.println("Total Income: $" + totalIncome);
+            System.out.println("Total Expense: $" + totalExpense);
+            System.out.println("Balance: $" + balance);
+            System.out.println("\nThis month has " + Parser.getDaysOfMonth(date) + " days.");
+            System.out.printf("Average Expense Per Day: $%.2f\n",(average));
+            System.out.println("");
+            System.out.println("Highest Income: \n" + "  " + highestIncomeTrans);
+            System.out.println("");
+
+            var incomeCatFreq = Parser.getInCatFreq(transactions,date);
+            System.out.println("Frequency of Income Category:");
+            printFreqHelper(incomeCatFreq);
+
+            var expCatFreq = Parser.getExpCatFreq(transactions,date);
+            System.out.println("\nFrequency of Expense Category:");
+            printFreqHelper(expCatFreq);
+            printLine();
+        }
+    }
+
+    /**
+     * Help slip frequency string to words.
+     *
+     * @param object income/expense category frequency.
+     */
+    public void printFreqHelper(Object object) {
+        String line = object.toString();
+        String newline = line.replace("{","").replace("}","");
+        for (String word : newline.split(" ")) {
+            System.out.println("  " + word);
+        }
     }
 }

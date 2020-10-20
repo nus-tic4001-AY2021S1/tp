@@ -1,14 +1,11 @@
 package moneytracker.command;
 
-import moneytracker.exception.MoneyTrackerException;
+import moneytracker.summary.Budget;
 import moneytracker.storage.Storage;
 import moneytracker.transaction.CategoryList;
-import moneytracker.transaction.Income;
-import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,11 +30,12 @@ public class ListCommand extends Command {
      * @param transactions List of <code>Transaction</code> objects.
      * @param ui <code>Ui</code> object for displaying user interactions.
      * @param storage <code>Storage</code> object for loading and saving user data.
-     * @param categories List of categories.
+     * @param categories List of <code>Category</code> objects.
+     * @param budget <code>Budget</code> object.
      */
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
-                        CategoryList categories) throws MoneyTrackerException {
+                        CategoryList categories, Budget budget) {
         String listMonthName = null;
         String categoryDetails = null;
 
@@ -56,7 +54,10 @@ public class ListCommand extends Command {
         /// We have to execute list all records. and return to main screen
         if (commandParameterString.isEmpty()) {
             ui.printListTransaction(transactions);
+<<<<<<< HEAD
             //throw new MoneyTrackerException("");
+=======
+>>>>>>> 381137db49bd1fef02d679b8e6b1a8bb7da9fd31
             return;
         }
 

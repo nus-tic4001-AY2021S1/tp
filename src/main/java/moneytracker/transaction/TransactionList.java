@@ -43,6 +43,7 @@ public class TransactionList {
      * Adds a transaction to the <code>TransactionList</code>.
      *
      * @param transaction <code>Transaction</code>.
+     * @throws MoneyTrackerException If the category does not exist.
      */
     public void addTransaction(Transaction transaction, CategoryList categories) throws MoneyTrackerException {
         String category;
@@ -100,7 +101,7 @@ public class TransactionList {
 
     /**
      * Adds index for a particular transaction listed by the list command.
-     * @param searchResultIndex Index of category listed by the list command.
+     * @param searchResultIndex Index of transaction listed by the list command.
      */
     public void addSearchResultIndex(int searchResultIndex) {
         searchResultIndexes.add(searchResultIndex);
@@ -121,7 +122,8 @@ public class TransactionList {
     }
 
     /**
-     * Gets the index for a particular transaction listed by the list command.
+     * Gets the index for a particular <code>Transaction</code> listed by the list command.
+     * @param resultIndex Index of <code>Transaction</code> in the <code>TransactionList</code>.
      */
     public int getSearchResultIndex(int resultIndex) {
         return searchResultIndexes.get(resultIndex);
@@ -130,8 +132,13 @@ public class TransactionList {
     /**
      * Clears the <code>TransactionList</code>.
      */
+
     public void clearTransactions() {
         transactions.clear();
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
     }
 
     /**
@@ -140,6 +147,7 @@ public class TransactionList {
      * @param currentName Current category name of <code>Transaction</code> objects.
      * @param newName New category name of <code>Transaction</code> objects.
      */
+
     public void updateTransactionsCategory(String currentName, String newName) {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
