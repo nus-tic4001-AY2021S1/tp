@@ -56,7 +56,8 @@ public class ListCommand extends Command {
         /// We have to execute list all records. and return to main screen
         if (commandParameterString.isEmpty()) {
             ui.printListTransaction(transactions);
-            throw new MoneyTrackerException("");
+            //throw new MoneyTrackerException("");
+            return;
         }
 
         for (String innerCommand : commandParametersArray) {
