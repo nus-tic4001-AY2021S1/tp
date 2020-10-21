@@ -188,9 +188,15 @@ Format:  `list [/tTYPE] [/mMONTH]` <br>
 
 - `TYPE` must either be the letter `i` or `e`. If `TYPE` is `i`, only incomes will be listed.
 Similarly, if `TYPE` is `e`, only expenses will be listed. If `TYPE` is omitted, both
-incomes and expenses will be listed. (`list` ,or `list [/tTYPE]` , or `list [/mMONTH]` ,  or `list [/tTYPE] [/mMONTH]` , or `list [/mMONTH] [/tTYPE]` )
+incomes and expenses will be listed. 
 - `MONTH` must be in `yyyy-MM` format. E.g. `2020-09`. Only transactions in this month
 will be listed. If `MONTH` is omitted, all transactions will be listed.
+- `CATEGORY` must be added behind `/c`. `CATEGORY` can be case-insensitive. Only matched transactions in this category will be listed. 
+- Other feasible list commands. Also, the order of filter condition is flexible: <br>
+  * `list` 
+  * `list [/tTYPE]` , or `list [/mMONTH]` , or `list [/cCATEGORY]` 
+  * `list [/tTYPE] [/mMONTH]` , or `list [/mMONTH] [/tTYPE]`,or `list [/mMONTH] [/cCATEGORY]`,or `list [/cCATEGORY] [/mMONTH]`,or `list [/tTYPE] [/cCATEGORY]`,or `list [/cCATEGORY] [/tTYPE] ` 
+  * `list [/tTYPE] [/mMONTH] [/cCATEGORY]`, or `list [/mMONTH] [/cCATEGORY] [/tTYPE]`, or `list [/cCATEGORY] [/mMONTH] [/tTYPE]`
 
 Example of usage: `list /te /m2020-09` 
 
@@ -219,7 +225,7 @@ Example of usage: `list /te`
 
 Expected outcome:
 ```
-Here are your expenses:
+Here are your transactions:
   1. [E] RENT $500 on 01 Aug 2020
   2. [E] RENT $500 on 01 Sep 2020
   3. [E] FOOD $10.00 on 18 Sep 2020 (Dinner at McDonalds’)
@@ -229,11 +235,27 @@ Example of usage: `list /m2020-09`
 
 Expected outcome:
 ```
-Here are your transactions for 2020-09:
+Here are your transactions:
   1. [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
   2. [E] RENT $500 on 01 Sep 2020
   3. [E] FOOD $10.00 on 18 Sep 2020 (Dinner at McDonalds’)
   4. [E] FOOD $3.50 on 20 Sep 2020 (Lunch with boss.)
+```
+Example of usage: `list /cSALARY`  
+
+Expected outcome:
+```
+Here are your transactions:
+  1. [I] SALARY $5000.00 on 01 Aug 2020
+  2. [I] SALARY $9000.00 on 01 Sep 2020 (Given $4000 bonus!)
+```
+Example of usage: `list /te /m2020-09 /cFOOD` 
+
+Expected outcome:
+```
+Here are your expense records for 2020-09:
+  1. [E] FOOD $10.00 on 18 Sep 2020 (Dinner at McDonalds’)
+  2. [E] FOOD $3.50 on 20 Sep 2020 (Lunch with boss.)
 ```
 
 ### Deleting an income / expense: `delete`
