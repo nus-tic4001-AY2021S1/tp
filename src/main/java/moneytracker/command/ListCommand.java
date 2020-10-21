@@ -80,6 +80,12 @@ public class ListCommand extends Command {
     }
 
 
+    /**
+     * To get a list of transactions which satisfies filter requirement
+     *
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param rule String of rule provided by the user input.
+     */
     private  ArrayList<Transaction>  getFilteredList(ArrayList<Transaction> transactions, String rule)
             throws MoneyTrackerException {
 
