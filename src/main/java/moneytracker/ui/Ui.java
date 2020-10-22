@@ -115,6 +115,10 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Print the budget you have set.
+     */
+
     public void printBudget(Budget budget) {
         double amount = budget.getAmount();
         String amountString = String.format("%.2f", amount);
@@ -122,6 +126,16 @@ public class Ui {
         printIndentation();
         System.out.println("$" + amountString);
         printLine();
+    }
+
+    /**
+     * Print the percentage of the budget that has been exceeded.
+     */
+
+    public void printPctOfBudget(String str, double amount) {
+        System.out.println("You have exceeded " + str + " of your budget of " + String.format("%.2f", amount) + " for "
+                + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                + " " + LocalDate.now().getYear());
     }
 
     public void printHelp() {
