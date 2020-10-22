@@ -1,2 +1,0 @@
-1. --name Clinical --description sda --involve Lily --client Lucy --startdate 11/11/2020 --duedate 12/12/2020 --incharge Desi --email linqing4267@gmail.com
-2. --name Clinical --description sda --involve Lily --client Donna --startdate 11/11/2020 --duedate 12/12/2020 --incharge Desi --email linqing4267@gmail.com

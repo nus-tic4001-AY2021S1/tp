@@ -1,6 +1,6 @@
 package seedu.tracker.command;
 
-import seedu.tracker.common.TimeConverter;
+import seedu.tracker.common.DateConverter;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
@@ -69,9 +69,8 @@ public class Create extends Command {
                 }
             }
 
-
-            if(new TimeConverter(startDate,dueDate).timeChecker(startDate) && new TimeConverter(startDate,dueDate).timeChecker(dueDate)){
-                newData = newData + " --duration "+ new TimeConverter(startDate,dueDate).getDateDiff() + " --status" + " Incomplete";
+            if(new DateConverter(startDate,dueDate).dateChecker(startDate) && new DateConverter(startDate,dueDate).dateChecker(dueDate)){
+                newData = newData + " --duration "+ new DateConverter(startDate,dueDate).getDateDiff() + " --status" + " Incomplete";
                 projects.add(new NewProject(newData));
                 ui.printProjectCreated(projects);
                 storage.updateStorage(projects);
