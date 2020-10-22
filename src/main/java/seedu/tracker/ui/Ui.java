@@ -101,13 +101,9 @@ public class Ui {
                 + "Due Date: " + projectDetails[6].split(" ", 2)[1] + "\n"
                 + "Person in Charge: " + projectDetails[7].split(" ", 2)[1] + "\n"
                 + "email: " + projectDetails[8].split(" ", 2)[1] + "\n"
-                + "duration: " + projectDetails[9].split(" ", 2)[1] + "\n";
+                + "duration: " + projectDetails[9].split(" ", 2)[1] + "\n"
+                + "status: " + projectDetails[10].split(" ", 2)[1] + "\n";
     }
 
-    public void printTaskCompleted(int index, ProjectList tasks) {
-        String done = "Nice! You have completed following project:\n"
-                + "[Completed] \033[33mProject [" + index + "] "
-                + tasks.get(index - 1).getDescription() + " set as completed!\033[0m";
-        printBorderline(done);
-    }
+
 }
