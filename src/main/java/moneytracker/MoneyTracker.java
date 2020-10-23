@@ -64,6 +64,11 @@ public class MoneyTracker {
         double exp = calExpSummary();
         double inc = calIncSummary();
         ui.printSummary(exp, inc);
+        if (budget.getAmount() != 0) {
+            if (!budget.calPercentage(exp).equals("0")) {
+                ui.printPctOfBudget(budget.calPercentage(exp),budget.getAmount());
+            }
+        }
         ui.printWelcome();
 
         boolean isExit = false;
