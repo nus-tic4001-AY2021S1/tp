@@ -2,6 +2,7 @@ package seedu.tracker.storage;
 
 import seedu.tracker.command.List;
 import seedu.tracker.command.Send;
+import seedu.tracker.common.DateConverter;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.ui.Ui;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +20,7 @@ import java.util.Scanner;
  */
 public class Storage {
     String fileName;
+
 
     public Storage(String fileName, ProjectList projects, Ui ui) {
         this.fileName = fileName;
@@ -83,12 +86,11 @@ public class Storage {
                             temp = "--" + splits[num];
                             newData = newData.concat(temp);
                         }
-                        if (splits[num].contains("duration")) {
+                        if (splits[num].contains("duedate")) {
                             String arr[] = splits[num].split(" ", 2);
-                            int day = Integer.parseInt(arr[1].trim());
-                            if (day < 7) {
+                            String daysLeft = new DateConverter(arr[1].trim()).getDaysLeft();
+                            if (Integer.parseInt(daysLeft) < 7) {
                                 dataCheck = true;
-
                             }
                         }
                     }
@@ -97,10 +99,8 @@ public class Storage {
                     new Send(line, projects, ui);
                 }
                 projects.add(new NewProject(newData));
-
             }
-
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             ui.printBorderline(e.getMessage());
         }
         return projects;
