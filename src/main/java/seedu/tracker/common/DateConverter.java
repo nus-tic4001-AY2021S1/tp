@@ -14,7 +14,6 @@ public class DateConverter {
     String dueDate;
     String dateDiff;
     String daysLeft;
-    Boolean timeCheck = true;
 
     public DateConverter(String startDate, String dueDate) throws ParseException {
         this.startDate=startDate;
@@ -59,7 +58,7 @@ public class DateConverter {
         Date date = formatter.parse(dateInString);
         return date;
     }
-    
+
     public float calculateDateDiff(String startDate,String endDate){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         float daysBetween=0;
