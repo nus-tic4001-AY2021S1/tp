@@ -1,7 +1,11 @@
 package seedu.tracker.ui;
 
+import seedu.tracker.common.DateConverter;
 import seedu.tracker.project.Project;
 import seedu.tracker.project.ProjectList;
+
+import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * Responsible for displaying all messages and its format to the user except for error-related messages.
@@ -92,6 +96,14 @@ public class Ui {
 
     public String displayProject(Project project) {
         String[] projectDetails = project.getDescription().split("--");
+        String daysLeft=null;
+
+        try {
+            daysLeft = new DateConverter(projectDetails[6].split(" ", 2)[1]).getDaysLeft();
+
+        } catch ( ParseException e) {
+            printBorderline(e.getMessage());
+        }
 
         return "Project Name: " + projectDetails[1].split(" ", 2)[1] + "\n"
                 + "Project Description: " + projectDetails[2].split(" ", 2)[1] + "\n"
@@ -100,10 +112,9 @@ public class Ui {
                 + "Start Date: " + projectDetails[5].split(" ", 2)[1] + "\n"
                 + "Due Date: " + projectDetails[6].split(" ", 2)[1] + "\n"
                 + "Person in Charge: " + projectDetails[7].split(" ", 2)[1] + "\n"
-                + "email: " + projectDetails[8].split(" ", 2)[1] + "\n"
-                + "duration: " + projectDetails[9].split(" ", 2)[1] + "\n"
-                + "status: " + projectDetails[10].split(" ", 2)[1] + "\n";
+                + "Email: " + projectDetails[8].split(" ", 2)[1] + "\n"
+                + "Duration: " + projectDetails[9].split(" ", 2)[1] + "\n"
+                + "Days Left: " + daysLeft + "\n"
+                + "Status: " + projectDetails[10].split(" ", 2)[1] + "\n";
     }
-
-
 }

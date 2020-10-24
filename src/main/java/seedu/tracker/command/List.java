@@ -25,6 +25,5 @@ public class List extends Command {
             message = message.concat(i + 1 + ".\n" + ui.displayProject(projects.get(i)));
         }
         ui.printBorderline(message);
-
     }
 }
