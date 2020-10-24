@@ -309,6 +309,23 @@ Expected outcome:
 Noted! I have cleared all data.
 ```
 
+### Setting monthly budget: `budget`
+Sets monthly budget.
+
+Format: `budget AMOUNT`
+- `AMOUNT` must be `0` or a positive integer or decimal. E.g. `4000`, `3500.5`, `3000.50`.
+- During startup, the app will alert the user when the total expenses for the month exceed 
+50%, 75% and 100% of the budget.
+- if `AMOUNT` is `0`, the budget alert will be disabled.
+
+Example of usage: `budget 5000`
+
+Expected outcome:
+```
+Got it! I have set your monthly budget to this amount:
+   $5000.00
+```
+
 ### Viewing monthly report: `report`
 Shows a report that summarises the incomes and expenses for a specified month.
 
@@ -380,5 +397,6 @@ Click `Yes` if the system prompts you for confirmation of overwriting.
 * Edit income / expense `edit INDEX [/aAMOUNT] [/cCATEGORY] [/dDATE] [/eDESCRIPTION]`
 * Delete income / expense `delete INDEX`
 * Clear data `clear`
+* Set monthly budget `budget AMOUNT`
 * View monthly report `report MONTH`
 * Exit program `exit`
