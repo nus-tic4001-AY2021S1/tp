@@ -63,7 +63,7 @@ public class ListCommand extends Command {
             throw new MoneyTrackerException("Sorry, there is no transaction in your list.");
         }
 
-
+        assert !commandParameterString.isBlank() : "Command Parameter is blank, so execute list all function";
         /// When there is only one keyword: list, so the commandParameterString is Empty.
         /// We have to execute list all records. and return to main screen
         if (commandParameterString.isEmpty()) {
@@ -81,7 +81,7 @@ public class ListCommand extends Command {
 
 
     /**
-     * To get a list of transactions which satisfies filter requirement.
+     * Gets a list of transactions which satisfies filter requirement.
      *
      * @param transactions List of <code>Transaction</code> objects.
      * @param rule String of rule provided by the user input.

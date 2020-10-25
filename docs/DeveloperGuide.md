@@ -26,21 +26,20 @@ This helps them to stay within their budget and make timely adjustments to their
 |v1.0|new user|add an expense|keep track of my expenses|
 |v1.0|new user|add an income category|group my incomes under this category|
 |v1.0|new user|add an expense category|group my expense under this category|
-
-
+|v1.0|new user|list my incomes and expenses|view all my monetary transactions|
+|v1.0|user|list my income and expense categories|view all my income and expense categories|
 |v1.0|user|clear all my data|start afresh with the app|
-
-
+|v1.0|expert user|list my incomes and/or expenses based on a specified month|view my filtered transactions|
 
 
 |v2.0|expert user|edit an income or expense category|change the name of the category|
 |v2.0|expert user|edit an income or expenses|change any of its parameters such as amount and date|
-
+|v2.0|expert user|list my incomes and/or expenses based on a specified category|view my filtered transactions|
 
 ## Non-Functional Requirements
 
 1. The app should work on any mainstream OS with Java `11` or above installed.
-
+2. The response time for each command should not exceed `3` seconds.
 
 
 
