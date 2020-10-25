@@ -30,8 +30,9 @@ This helps them to stay within their budget and make timely adjustments to their
 |v1.0|user|list my income and expense categories|view all my income and expense categories|
 |v1.0|user|clear all my data|start afresh with the app|
 |v1.0|expert user|list my incomes and/or expenses based on a specified month|view my filtered transactions|
+|v2.0|user|view my total income and expense of the month upon app startup|get an overview of my incomes and expenses|
 
-
+|v2.0|user|set a monthly budget|get notified when I exceed 50%, 75% and 100% of my budget|
 |v2.0|expert user|edit an income or expense category|change the name of the category|
 |v2.0|expert user|edit an income or expenses|change any of its parameters such as amount and date|
 |v2.0|expert user|list my incomes and/or expenses based on a specified category|view my filtered transactions|
@@ -40,7 +41,7 @@ This helps them to stay within their budget and make timely adjustments to their
 
 1. The app should work on any mainstream OS with Java `11` or above installed.
 2. The response time for each command should not exceed `3` seconds.
-
+3. A user with average typing speed should be able to enter any one command within `10` seconds.
 
 
 ## Glossary
