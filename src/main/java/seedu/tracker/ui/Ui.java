@@ -42,6 +42,7 @@ public class Ui {
                 + " - Delete a project            | " + colorGreen("--delete INDEX\n")
                 + " - List down all projects      | " + colorGreen("--list\n")
                 + " - Find word(s) in projects    | " + colorGreen("--find KEYWORD\n")
+                + " - Find and replace word(s)    | " + colorGreen("--find KEYWORD --replace KEYWORD\n")
                 + " - Exit my program             | " + colorGreen("--exit or hit Enter");
         printBorderline(help);
     }
