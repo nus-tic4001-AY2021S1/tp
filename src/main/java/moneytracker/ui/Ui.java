@@ -133,9 +133,9 @@ public class Ui {
      */
 
     public void printPctOfBudget(String str, double amount) {
-        System.out.println("You have exceeded " + str + " of your budget of " + String.format("%.2f", amount) + " for "
+        System.out.println("You have exceeded " + str + " of your budget of $" + String.format("%.2f", amount) + " for "
                 + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
-                + " " + LocalDate.now().getYear());
+                + " " + LocalDate.now().getYear() + ".");
     }
 
     public void printHelp() {
