@@ -81,7 +81,7 @@ public class ListCommand extends Command {
 
 
     /**
-     * To get a list of transactions which satisfies filter requirement.
+     * Gets a list of transactions which satisfies filter requirement.
      *
      * @param transactions List of <code>Transaction</code> objects.
      * @param rule String of rule provided by the user input.
