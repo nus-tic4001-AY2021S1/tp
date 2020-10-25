@@ -11,10 +11,11 @@ import moneytracker.transaction.Category;
 import moneytracker.transaction.CategoryList;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 
 /**
@@ -594,7 +595,7 @@ public class Ui {
      * @param transactions List of <code>Transaction</code> objects.
      * @param date month of <code>Transaction</code> objects.
      */
-    public void printReport(TransactionList transactions, String date) {
+    public void printReportByMonth(TransactionList transactions, String date) {
         transactions.setIsInitialized(true);
         transactions.clearSearchResultIndexes();
 
@@ -602,44 +603,72 @@ public class Ui {
         if (transactions.getSize() == 0) {
             System.out.println("Sorry, there is no record in your list.");
         } else {
-            double totalIncome = Parser.getTotalIncome(transactions,date);
-            double totalExpense = Parser.getTotalExpense(transactions,date);
-            double balance = totalIncome - totalExpense;
-            double average = totalExpense / Parser.getDaysOfMonth(date);
-            String highestIncomeTrans = Parser.getHighestIncome(transactions,date);
-            String highestExpTrans = Parser.getHighestExpense(transactions,date);
-
             System.out.println("Here is your report for " + date + " :");
-            System.out.println("Total Income: $" + totalIncome);
-            System.out.println("Total Expense: $" + totalExpense);
-            System.out.println("Balance: $" + balance);
+
+            double totalIncome = Parser.getTotalIncome(transactions,date);
+            System.out.printf("Total Income: $%.2f\n",(totalIncome));
+
+            double totalExpense = Parser.getTotalExpense(transactions,date);
+            System.out.printf("Total Expense: $%.2f\n",(totalExpense));
+
+            double balance = totalIncome - totalExpense;
+            System.out.printf("Balance: $%.2f\n",(balance));
+
+            double average = totalExpense / Parser.getDaysOfMonth(date);
             System.out.println("\nThis month has " + Parser.getDaysOfMonth(date) + " days.");
             System.out.printf("Average Expense Per Day: $%.2f\n",(average));
             System.out.println("");
-            System.out.println("Highest Income: \n" + "  " + highestIncomeTrans);
+
+            String highestIncomeTrans = Parser.getHighestIncome(transactions,date);
+            System.out.println("Highest Income transaction: \n" + "  " + highestIncomeTrans);
             System.out.println("");
 
-            var incomeCatFreq = Parser.getInCatFreq(transactions,date);
-            System.out.println("Frequency of Income Category:");
-            printFreqHelper(incomeCatFreq);
+            String highestExpTrans = Parser.getHighestExpense(transactions,date);
+            System.out.println("Highest Income transaction: \n" + "  " + highestExpTrans);
+            System.out.println("");
 
-            var expCatFreq = Parser.getExpCatFreq(transactions,date);
-            System.out.println("\nFrequency of Expense Category:");
-            printFreqHelper(expCatFreq);
+            System.out.println("Income Category by Frequency(Highest to lowest):");
+            Parser.getInCatFreq(transactions,date);
+
+            System.out.println("\nExpense Category by Frequency(Highest to lowest):");
+            Parser.getExpCatFreq(transactions,date);
+
+            System.out.println("\nIncome Category by Amount(Highest to lowest):");
+            Parser.getInCatAmount(transactions,date);
+
+            System.out.println("\nExpense Category by Amount(Highest to lowest):");
+            Parser.getExpCatAmount(transactions,date);
+
             printLine();
         }
     }
 
     /**
-     * Help slip frequency string to words.
+     * Gets transaction/category last 6 Month report from user's full input string.
      *
-     * @param object income/expense category frequency.
+     * @param transactions List of <code>Transaction</code> objects.
+     * @param dates month list of <code>Transaction</code> objects.
      */
-    public void printFreqHelper(Object object) {
-        String line = object.toString();
-        String newline = line.replace("{","").replace("}","");
-        for (String word : newline.split(" ")) {
-            System.out.println("  " + word);
+    public void printReport(TransactionList transactions, List<String> dates) {
+        transactions.setIsInitialized(true);
+        transactions.clearSearchResultIndexes();
+
+        printLine();
+        if (transactions.getSize() == 0) {
+            System.out.println("Sorry, there is no record in your list.");
+        } else {
+            System.out.println("Here is your last six Months report:");
+            System.out.println(Parser.getLastSixMon());
+
+            var lastSixIncome = Parser.getSixMonIncome(transactions, dates);
+            System.out.println("\nIncome for last 6 months(Highest to lowest):");
+            Parser.printInHelper(lastSixIncome);
+
+            var lastSixExpense = Parser.getSixMonExpense(transactions, dates);
+            System.out.println("\nIncome for last 6 months(Highest to lowest):");
+            Parser.printExpHelper(lastSixExpense);
+
+            printLine();
         }
     }
 }

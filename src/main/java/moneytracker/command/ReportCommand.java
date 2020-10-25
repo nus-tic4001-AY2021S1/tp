@@ -35,7 +35,12 @@ public class ReportCommand extends Command {
     @Override
     public void execute(TransactionList transactions, Ui ui, Storage storage,
                         CategoryList categories,  Budget budget) throws MoneyTrackerException {
-        String date = Parser.getDate(fullCommand);
-        ui.printReport(transactions, date);
+        assert !fullCommand.isBlank() : "fullCommand should not be blank";
+        String date = fullCommand.replaceFirst("report", "").trim();
+        if (date.isEmpty()) {
+            ui.printReport(transactions, Parser.getLastSixMon());
+        } else {
+            ui.printReportByMonth(transactions, Parser.getDate(fullCommand));
+        }
     }
 }

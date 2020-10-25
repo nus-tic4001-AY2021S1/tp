@@ -24,14 +24,23 @@ import moneytracker.transaction.Income;
 import moneytracker.transaction.Expense;
 import moneytracker.transaction.Category;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+
 
 /**
  * Contains methods that deal with parsing user commands to extract meaningful details from them.
@@ -102,7 +111,7 @@ public class Parser {
         if (!(commandParams.containsKey("description"))) {
             commandParams.put("description", "");
         }
-        Double amount;
+        double amount;
         try {
             amount = Double.parseDouble(commandParams.get("amount"));
         } catch (NumberFormatException e) {
@@ -144,7 +153,7 @@ public class Parser {
         if (!(commandParams.containsKey("description"))) {
             commandParams.put("description", "");
         }
-        Double amount;
+        double amount;
         try {
             amount = Double.parseDouble(commandParams.get("amount"));
         } catch (NumberFormatException e) {
@@ -232,7 +241,7 @@ public class Parser {
         if (commandParameterString.isEmpty()) {
             throw new MoneyTrackerException("The amount is missing.");
         }
-        Double amount;
+        double amount;
         try {
             amount = Double.parseDouble(commandParameterString);
         } catch (NumberFormatException e) {
@@ -317,7 +326,7 @@ public class Parser {
         assert !fullCommand.isBlank() : "fullCommand should not be blank";
         String date = fullCommand.replaceFirst("report", "").trim();
         if (date.isEmpty()) {
-            throw new MoneyTrackerException("The report date is missing, e.g. 2020-09.");
+            throw new MoneyTrackerException("Date should be in yyyy-MM format. E.g. 2020-09");
         } else {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
             dateFormat.setLenient(false);
@@ -328,6 +337,19 @@ public class Parser {
             }
         }
         return date;
+    }
+
+    /**
+     * Gets last six months name from system date.
+     *
+     * @return last six months name list.
+     */
+    public static List<String> getLastSixMon() {
+        List<String> months = new ArrayList<>();
+        for (int i = 5; i >= 0; i--) {
+            months.add(LocalDate.now().minusMonths(i).format(DateTimeFormatter.ofPattern("yyyy-MM")));
+        }
+        return months;
     }
 
     /**
@@ -353,7 +375,7 @@ public class Parser {
      * @return total month income of transactions
      */
     public static double getTotalIncome(TransactionList transactions, String date) {
-        double totalIncome = 0;
+        double totalIncome = 0.00;
 
         for (int i = 0; i < transactions.getSize(); i++) {
             Transaction temp = transactions.getTransaction(i);
@@ -362,7 +384,7 @@ public class Parser {
                 totalIncome = totalIncome + amount;
             }
         }
-        return totalIncome;
+        return round(totalIncome,2);
     }
 
     /**
@@ -373,7 +395,7 @@ public class Parser {
      * @return total month expense of transactions
      */
     public static double getTotalExpense(TransactionList transactions, String date) {
-        double totalExpense = 0;
+        double totalExpense = 0.00;
 
         for (int i = 0; i < transactions.getSize(); i++) {
             Transaction temp = transactions.getTransaction(i);
@@ -382,7 +404,24 @@ public class Parser {
                 totalExpense = totalExpense + amount;
             }
         }
-        return totalExpense;
+        return round(totalExpense,2);
+    }
+
+    /**
+     * Gets round double to 2 decimal places.
+     *
+     * @param value double
+     * @param places decimal places
+     * @return double
+     */
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     /**
@@ -393,7 +432,7 @@ public class Parser {
      * @return highest month income of transactions
      */
     public static String getHighestIncome(TransactionList transactions, String date) {
-        double highestIncome = 0;
+        double highestIncome = 0.00;
         String highestIncomes = null;
 
         for (int i = 0; i < transactions.getSize(); i++) {
@@ -406,7 +445,12 @@ public class Parser {
                 }
             }
         }
-        return highestIncomes;
+
+        if (highestIncomes == null || highestIncomes.isEmpty()) {
+            return ("Sorry, Cannot find any Income record in this Month.");
+        } else {
+            return highestIncomes;
+        }
     }
 
     /**
@@ -417,7 +461,7 @@ public class Parser {
      * @return highest month expense of transactions
      */
     public static String getHighestExpense(TransactionList transactions, String date) {
-        double highestExpense = 0;
+        double highestExpense = 0.00;
         String highestExpenses = null;
 
         for (int i = 0; i < transactions.getSize(); i++) {
@@ -430,7 +474,12 @@ public class Parser {
                 }
             }
         }
-        return highestExpenses;
+
+        if (highestExpenses == null || highestExpenses.isEmpty()) {
+            return ("Sorry, Cannot find any Expense record in this Month.");
+        } else {
+            return highestExpenses;
+        }
     }
 
     /**
@@ -438,10 +487,10 @@ public class Parser {
      *
      * @param transactions transactions List of <code>Transaction</code> objects.
      * @param date date date month of <code>Transaction</code> objects.
-     * @return frequency month income category
+     *
      */
-    public static Object getInCatFreq(TransactionList transactions, String date) {
-        ArrayList incomeCate = new ArrayList();
+    public static void getInCatFreq(TransactionList transactions, String date) {
+        ArrayList<String> incomeCate = new ArrayList<>();
 
         for (int i = 0; i < transactions.getSize(); i++) {
             Transaction temp = transactions.getTransaction(i);
@@ -449,7 +498,12 @@ public class Parser {
                 incomeCate.add(temp.getTypeName(temp.toString()));
             }
         }
-        return getFrequency(incomeCate);
+
+        if (incomeCate.isEmpty()) {
+            System.out.println("  Sorry, Cannot find any Income Category record in this Month.");
+        } else {
+            printInHelper(getFrequency(incomeCate));
+        }
     }
 
     /**
@@ -457,10 +511,9 @@ public class Parser {
      *
      * @param transactions transactions List of <code>Transaction</code> objects.
      * @param date date date month of <code>Transaction</code> objects.
-     * @return frequency month expense category
      */
-    public static Object getExpCatFreq(TransactionList transactions, String date) {
-        ArrayList expCate = new ArrayList();
+    public static void getExpCatFreq(TransactionList transactions, String date) {
+        ArrayList<String> expCate = new ArrayList<>();
 
         for (int i = 0; i < transactions.getSize(); i++) {
             Transaction temp = transactions.getTransaction(i);
@@ -468,16 +521,144 @@ public class Parser {
                 expCate.add(temp.getTypeName(temp.toString()));
             }
         }
-        return getFrequency(expCate);
+
+        if (expCate.isEmpty()) {
+            System.out.println("  Sorry, Cannot find any Expense Category record in this Month.");
+        } else {
+            printExpHelper(getFrequency(expCate));
+        }
     }
 
     /**
-     * get list elements frequency.
+     * Gets list elements frequency with descending order.
      *
      * @param list arraylist
      * @return map object with list elements and frequency.
      */
-    public static Map<String, Long> getFrequency(ArrayList list) {
-        return (Map<String, Long>) list.stream().collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+    public static Map<String, Long> getFrequency(ArrayList<String> list) {
+        Map<String, Long> unsortMap = list.stream().collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+        return new TreeMap<>(unsortMap);
+    }
+
+    /**
+     * Help slip frequency string to words.
+     *
+     * @param object income/expense category frequency.
+     */
+    public static void printInHelper(Object object) {
+        String line = object.toString();
+        String newline = line.replace("{","")
+                .replace("}","").replace(",","");
+        for (String word : newline.split(" ")) {
+            System.out.println("  [I] " + word);
+        }
+    }
+
+    /**
+     * Help slip frequency string to words.
+     *
+     * @param object income/expense category frequency.
+     */
+    public static void printExpHelper(Object object) {
+        String line = object.toString();
+        String newline = line.replace("{","")
+                .replace("}","").replace(",","");
+        for (String word : newline.split(" ")) {
+            System.out.println("  [E] " + word);
+        }
+    }
+
+    /**
+     * Get income category list elements amount with descending order.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     */
+    public static void getInCatAmount(TransactionList transactions, String date) {
+        Map<String, Double> incomeCate = new HashMap<>();
+        double sum = 0;
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            double amount = Double.parseDouble(transactions.getTransaction(i).getAmount());
+            if (temp instanceof Income & transactions.getTransaction(i).setMonth().equals(date)) {
+                incomeCate.merge(temp.getTypeName(temp.toString()), sum + amount, Double::sum);
+            }
+        }
+        if (incomeCate.isEmpty()) {
+            System.out.println("  Sorry, Cannot find any Income Category record in this Month.");
+        } else {
+            printInHelper(sortHelper(incomeCate));
+        }
+    }
+
+    /**
+     * Get expense list elements amount with descending order.
+     *
+     * @param transactions transactions List of <code>Transaction</code> objects.
+     * @param date date date month of <code>Transaction</code> objects.
+     */
+    public static void getExpCatAmount(TransactionList transactions, String date) {
+        Map<String, Double> expCate = new HashMap<>();
+        double sum = 0;
+
+        for (int i = 0; i < transactions.getSize(); i++) {
+            Transaction temp = transactions.getTransaction(i);
+            double amount = Double.parseDouble(transactions.getTransaction(i).getAmount());
+            if (temp instanceof Expense & transactions.getTransaction(i).setMonth().equals(date)) {
+                expCate.merge(temp.getTypeName(temp.toString()), sum + amount, Double::sum);
+            }
+        }
+
+        if (expCate.isEmpty()) {
+            System.out.println("  Sorry, Cannot find any Expense Category record in this Month.");
+        } else {
+            printExpHelper(sortHelper(expCate));
+        }
+    }
+
+    /**
+     * Help sort income/expense category Map object.
+     *
+     * @param object unsort income/expense category Map object.
+     * @return sorted object Map
+     */
+    public static Object sortHelper(Map<String, Double> object) {
+        return object.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                    (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+    }
+
+    /**
+     * Gets last six months income transactions with descent order.
+     *
+     * @param transactions transactions transactions List of <code>Transaction</code> objects.
+     * @param dates last six months list
+     * @return sorted object list
+     */
+    public static Object getSixMonIncome(TransactionList transactions, List<String> dates) {
+        Map<String, Double> monthInAmount = new HashMap<>();
+
+        for (String date:dates) {
+            monthInAmount.put(date,Parser.getTotalIncome(transactions, date));
+        }
+        return Parser.sortHelper(monthInAmount);
+    }
+
+    /**
+     * Gets last six months expense transactions with descent order.
+     *
+     * @param transactions transactions transactions List of <code>Transaction</code> objects.
+     * @param dates last six months list
+     * @return sorted object list
+     */
+    public static Object getSixMonExpense(TransactionList transactions, List<String> dates) {
+        Map<String, Double> monthExpAmount = new HashMap<>();
+
+        for (String date:dates) {
+            monthExpAmount.put(date,Parser.getTotalExpense(transactions, date));
+        }
+        return Parser.sortHelper(monthExpAmount);
     }
 }

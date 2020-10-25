@@ -268,6 +268,33 @@ Noted! I have cleared all data
 ### Viewing monthly report: `report`
 Shows a report that summarises the incomes and expenses for a specified month.
 
+Format: `report`
+- The summary report for the last six months will be displayed.
+
+Example of usage: `report`
+
+Expected outcome:
+```
+Here is your last six Months report:
+[2020-05, 2020-06, 2020-07, 2020-08, 2020-09, 2020-10]
+
+Income for last 6 months(Highest to lowest):
+  [I] 2020-09=27597.4
+  [I] 2020-06=0.0
+  [I] 2020-05=0.0
+  [I] 2020-10=0.0
+  [I] 2020-08=0.0
+  [I] 2020-07=0.0
+
+Income for last 6 months(Highest to lowest):
+  [E] 2020-09=31.0
+  [E] 2020-06=0.0
+  [E] 2020-05=0.0
+  [E] 2020-10=0.0
+  [E] 2020-08=0.0
+  [E] 2020-07=0.0
+```
+
 Format: `report MONTH`
 - `MONTH` must be in yyyy-MM format. E.g. `2020-09`.
 - The summary report for the specified month will be displayed.
@@ -277,23 +304,34 @@ Example of usage: `report 2020-09`
 Expected outcome:
 ```
 Here is your report for 2020-09 :
-Total Income: $27597.4
-Total Expense: $31.0
-Balance: $27566.4
+Total Income: $27597.40
+Total Expense: $31.00
+Balance: $27566.40
 
 This month has 30 days.
 Average Expense Per Day: $1.03
 
-Highest Income: 
+Highest Income transaction: 
   [I] SALARY $9000.00 on 1 Sep 2020 (Given $4000 bonus!)
 
-Frequency of Income Category:
-  SALARY=3,
-  HONGBAO=5
+Highest Income transaction: 
+  [E] DRINK $9.50 on 20 Sep 2020 (Lunch with boss.)
 
-Frequency of Expense Category:
-  DRINK=4,
-  FOOD=2
+Income Category by Frequency(Highest to lowest):
+  [I] HONGBAO=5
+  [I] SALARY=3
+
+Expense Category by Frequency(Highest to lowest):
+  [E] DRINK=4
+  [E] FOOD=2
+
+Income Category by Amount(Highest to lowest):
+  [I] SALARY=27000.0
+  [I] HONGBAO=597.4
+
+Expense Category by Amount(Highest to lowest):
+  [E] DRINK=24.0
+  [E] FOOD=7.0
 ```
 
 ### Exiting the program: `exit`
