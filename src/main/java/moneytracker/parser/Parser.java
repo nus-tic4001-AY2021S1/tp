@@ -550,6 +550,7 @@ public class Parser {
         String newline = line.replace("{","")
                 .replace("}","").replace(",","");
         for (String word : newline.split(" ")) {
+            word = word.replace("="," $");
             System.out.println("  [I] " + word);
         }
     }
@@ -564,6 +565,7 @@ public class Parser {
         String newline = line.replace("{","")
                 .replace("}","").replace(",","");
         for (String word : newline.split(" ")) {
+            word = word.replace("="," $");
             System.out.println("  [E] " + word);
         }
     }

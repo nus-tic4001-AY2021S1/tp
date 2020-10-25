@@ -308,9 +308,9 @@ public class Ui {
 
         printLine();
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is no transactions in your list.");
         } else {
-            System.out.println("Here is your report for " + date + " :");
+            System.out.println("Here is your transactions for " + date + " :");
 
             double totalIncome = Parser.getTotalIncome(transactions,date);
             System.out.printf("Total Income: $%.2f\n",(totalIncome));
@@ -362,7 +362,7 @@ public class Ui {
 
         printLine();
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is no record in your list.");
+            System.out.println("Sorry, there is transactions in your list.");
         } else {
             System.out.println("Here is your report:");
             System.out.println(Parser.getLastSixMon());
