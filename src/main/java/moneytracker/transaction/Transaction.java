@@ -13,7 +13,7 @@ import java.util.Locale;
  * a description and a date. This class defines the common behaviours that can be inherited by
  * subclasses with specific implementation of a transaction.
  */
-public abstract class Transaction extends ArrayList<Transaction> {
+public abstract class Transaction {
     private double amount;
     private String description;
     private LocalDate date;
