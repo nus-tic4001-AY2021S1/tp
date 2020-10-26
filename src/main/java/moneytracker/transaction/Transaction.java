@@ -5,6 +5,7 @@ import moneytracker.exception.MoneyTrackerException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Locale;
  * a description and a date. This class defines the common behaviours that can be inherited by
  * subclasses with specific implementation of a transaction.
  */
-public abstract class Transaction {
+public abstract class Transaction extends ArrayList<Transaction> {
     private double amount;
     private String description;
     private LocalDate date;
