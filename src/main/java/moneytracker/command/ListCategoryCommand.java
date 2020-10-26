@@ -41,6 +41,7 @@ public class ListCategoryCommand extends Command {
 
         int len = this.fullCommand.split(" ").length;
         String[] lineArr = this.fullCommand.split(" ", 4);
+        assert lineArr.length >= 0 : "There should be at least 1 element";
 
         if (len == 1) {
             ui.printListCategory(categories);
