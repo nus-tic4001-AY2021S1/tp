@@ -2,6 +2,7 @@ package seedu.tracker.storage;
 
 import seedu.tracker.command.List;
 import seedu.tracker.command.Send;
+import seedu.tracker.common.DateConverter;
 import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.ui.Ui;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +20,7 @@ import java.util.Scanner;
  */
 public class Storage {
     String fileName;
+
 
     public Storage(String fileName, ProjectList projects, Ui ui) {
         this.fileName = fileName;
@@ -56,6 +59,7 @@ public class Storage {
 
     public ProjectList extractProjects(ArrayList<String> lines, ProjectList projects, Ui ui, Storage storage) {
         try {
+            int dataSet = 1;
             for (String line : lines) {
                 FileWriter fw = new FileWriter(fileName, true);
 
@@ -74,8 +78,7 @@ public class Storage {
                 String[] splits = line.split("--");
                 String newData = "";
                 String temp;
-                int dataAlert;
-                Boolean dataCheck = false;
+                String daysLeft = "";
 
                 for (String command : newProject) {
                     for (int num = 1; num < splits.length; num++) {
@@ -83,24 +86,19 @@ public class Storage {
                             temp = "--" + splits[num];
                             newData = newData.concat(temp);
                         }
-                        if (splits[num].contains("duration")) {
+                        if (splits[num].contains("duedate")) {
                             String arr[] = splits[num].split(" ", 2);
-                            int day = Integer.parseInt(arr[1].trim());
-                            if (day < 7) {
-                                dataCheck = true;
-
-                            }
+                            daysLeft = new DateConverter(arr[1].trim()).getDaysLeft();
                         }
                     }
                 }
-                if (!dataCheck) {
-                    new Send(line, projects, ui);
-                }
                 projects.add(new NewProject(newData));
-
+                if (Integer.parseInt(daysLeft) < 7) {
+                    new Send(Integer.toString(dataSet), projects, ui).execute();
+                }
+                dataSet ++;
             }
-
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             ui.printBorderline(e.getMessage());
         }
         return projects;

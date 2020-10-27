@@ -40,6 +40,9 @@ jar{
     }
 }
 
+run {
+    enableAssertions = true
+}
 
 application {
     mainClassName = "seedu.tracker.Tracker"
