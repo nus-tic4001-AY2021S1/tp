@@ -334,16 +334,16 @@ public class Ui {
             System.out.println("Highest Income transaction: \n" + "  " + highestExpTrans);
             System.out.println("");
 
-            System.out.println("Income Category by Frequency (Highest to lowest):");
+            System.out.println("Income Category by Frequency:");
             Parser.getInCatFreq(transactions,date);
 
-            System.out.println("\nExpense Category by Frequency (Highest to lowest):");
+            System.out.println("\nExpense Category by Frequency:");
             Parser.getExpCatFreq(transactions,date);
 
-            System.out.println("\nIncome Category by Amount (Highest to lowest):");
+            System.out.println("\nIncome Category by Amount:");
             Parser.getInCatAmount(transactions,date);
 
-            System.out.println("\nExpense Category by Amount (Highest to lowest):");
+            System.out.println("\nExpense Category by Amount:");
             Parser.getExpCatAmount(transactions,date);
 
             printLine();
@@ -362,13 +362,12 @@ public class Ui {
 
         printLine();
         if (transactions.getSize() == 0) {
-            System.out.println("Sorry, there is transactions in your list.");
+            System.out.println("Sorry, there is no transactions in your list.");
         } else {
             System.out.println("Here is your report:");
-            System.out.println(Parser.getLastSixMon());
 
             var lastSixIncome = Parser.getSixMonIncome(transactions, dates);
-            System.out.println("\nIncome for last 6 months (Highest to lowest):");
+            System.out.println("Income for last 6 months (Highest to lowest):");
             Parser.printInHelper(lastSixIncome);
 
             var lastSixExpense = Parser.getSixMonExpense(transactions, dates);

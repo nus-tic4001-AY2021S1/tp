@@ -1,11 +1,19 @@
 package moneytracker.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Category;
+import moneytracker.transaction.CategoryList;
 import moneytracker.transaction.Transaction;
+import moneytracker.transaction.TransactionList;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * JUnit tests for Parser class.
@@ -220,5 +228,145 @@ class ParserTest {
             errorMessage = e.getMessage();
         }
         assertEquals("The index is missing.", errorMessage);
+    }
+
+    /**
+     * Tests the getDate method with incorrect date month.
+     */
+    @Test
+    void testGetDateWithWrongMonth() {
+        String errorMessage = "";
+        try {
+            Parser.getDate("2020-13");
+        } catch (MoneyTrackerException e) {
+            errorMessage = e.getMessage();
+        }
+        assertEquals("Date should be in yyyy-MM format. E.g. 2020-09", errorMessage);
+    }
+
+    /**
+     * Tests the getDate method with incorrect date format.
+     */
+    @Test
+    void testGetDateWithWrongDateFormat() {
+        String errorMessage = "";
+        try {
+            Parser.getDate("Sep 2020");
+        } catch (MoneyTrackerException e) {
+            errorMessage = e.getMessage();
+        }
+        assertEquals("Date should be in yyyy-MM format. E.g. 2020-09", errorMessage);
+    }
+
+    /**
+     * Tests the getDateOfMonth method with input.
+     */
+    @Test
+    void testGetDaysOfMonth() {
+        assertEquals(30, Parser.getDaysOfMonth("2020-09"));
+        assertEquals(29, Parser.getDaysOfMonth("2020-02"));
+        assertEquals(31, Parser.getDaysOfMonth("2020-07"));
+        assertEquals(31, Parser.getDaysOfMonth("2020-08"));
+    }
+
+    private final TransactionList testTrans = new TransactionList();
+    private final CategoryList testCate = new CategoryList();
+
+    /**
+     * Tests before init input.
+     */
+    @BeforeEach
+    public void init() throws MoneyTrackerException {
+        Category testCate1 = Parser.createIncomeCategory("Salary");
+        Category testCate2 = Parser.createExpenseCategory("Food");
+        testCate.addCategory(testCate1);
+        testCate.addCategory(testCate2);
+        Transaction testIncome1 = Parser.createIncome("addi /a1000 /cSalary /d2020-12-25 /eBonus");
+        Transaction testIncome2 = Parser.createIncome("addi /a5000 /cSalary /d2020-12-25 /eBonus");
+        Transaction testExpense1 = Parser.createExpense("adde /a5.5 /cFood /d2020-12-25 /eFood");
+        Transaction testExpense2 = Parser.createExpense("adde /a4.5 /cFood /d2020-12-25 /eFood");
+        testTrans.addTransaction(testIncome1,testCate);
+        testTrans.addTransaction(testIncome2,testCate);
+        testTrans.addTransaction(testExpense1,testCate);
+        testTrans.addTransaction(testExpense2,testCate);
+    }
+
+    /**
+     * Tests the getTotalIncome method with input.
+     */
+    @Test
+    void testGetTotalIncome() {
+        assertEquals(6000,Parser.getTotalIncome(testTrans,"2020-12"));
+    }
+
+
+    /**
+     * Tests the getTotalExpense method with input.
+     */
+    @Test
+    void testGetTotalExpense() {
+        assertEquals(10.0, Parser.getTotalExpense(testTrans,"2020-12"));
+    }
+
+    /**
+     * Tests the getHighestIncome method with input.
+     */
+    @Test
+    void testGetHighestIncome() {
+        assertEquals("[I] SALARY $5000.00 on 25 Dec 2020 (Bonus)",
+                Parser.getHighestIncome(testTrans,"2020-12"));
+    }
+
+    /**
+     * Tests the getHighestExpense method with input.
+     */
+    @Test
+    void testGetHighestExpense() {
+        assertEquals("[E] FOOD $5.50 on 25 Dec 2020 (Food)",
+                Parser.getHighestExpense(testTrans,"2020-12"));
+    }
+
+    /**
+     * Tests the getHighestIncome method with empty month input.
+     */
+    @Test
+    void testGetHighestIncomeWithEmptyMonth() {
+        assertEquals("  Sorry, Cannot find any Income record in this Month.",
+                Parser.getHighestIncome(testTrans,"2020-11"));
+    }
+
+    /**
+     * Tests the getFrequency method with input.
+     */
+    @Test
+    void testGetFrequency() {
+        ArrayList<String> test = new ArrayList<>();
+        test.add("Food");
+        test.add("Salary");
+        test.add("Food");
+        Parser.getFrequency(test);
+
+        assertEquals("{Food=2, Salary=1}",Parser.getFrequency(test).toString());
+    }
+
+    /**
+     * Tests the sortHelper method with input.
+     */
+    @Test
+    void testSortHelper() {
+        Map<String, Double> testMap = new HashMap<>();
+        testMap.put("Food",5.5);
+        testMap.put("Salary",1000.0);
+        testMap.put("Drink",5.6);
+
+        assertEquals("{Salary=1000.0, Drink=5.6, Food=5.5}",Parser.sortHelper(testMap).toString());
+    }
+
+    /**
+     * After test clear test List.
+     */
+    @AfterEach
+    public void destroy() {
+        testTrans.clearTransactions();
     }
 }

@@ -336,24 +336,22 @@ Example of usage: `report`
 
 Expected outcome:
 ```
-Here is your last six Months report:
-[2020-05, 2020-06, 2020-07, 2020-08, 2020-09, 2020-10]
+Here is your report:
+Income for last 6 months (Highest to lowest):
+  [I] 2020-09 $27597.4
+  [I] 2020-06 $0.0
+  [I] 2020-05 $0.0
+  [I] 2020-10 $0.0
+  [I] 2020-08 $0.0
+  [I] 2020-07 $0.0
 
-Income for last 6 months(Highest to lowest):
-  [I] 2020-09=27597.4
-  [I] 2020-06=0.0
-  [I] 2020-05=0.0
-  [I] 2020-10=0.0
-  [I] 2020-08=0.0
-  [I] 2020-07=0.0
-
-Income for last 6 months(Highest to lowest):
-  [E] 2020-09=31.0
-  [E] 2020-06=0.0
-  [E] 2020-05=0.0
-  [E] 2020-10=0.0
-  [E] 2020-08=0.0
-  [E] 2020-07=0.0
+Income for last 6 months (Highest to lowest):
+  [E] 2020-09 $31.0
+  [E] 2020-06 $0.0
+  [E] 2020-05 $0.0
+  [E] 2020-10 $0.0
+  [E] 2020-08 $0.0
+  [E] 2020-07 $0.0
 ```
 
 Format: `report MONTH`
@@ -364,7 +362,7 @@ Example of usage: `report 2020-09`
 
 Expected outcome:
 ```
-Here is your report for 2020-09 :
+Here is your transactions for 2020-09 :
 Total Income: $27597.40
 Total Expense: $31.00
 Balance: $27566.40
@@ -378,21 +376,23 @@ Highest Income transaction:
 Highest Income transaction: 
   [E] DRINK $9.50 on 20 Sep 2020 (Lunch with boss.)
 
-Income Category by Frequency(Highest to lowest):
-  [I] HONGBAO=5
-  [I] SALARY=3
+Income Category by Frequency:
+  [I] HONGBAO: 5
+  [I] SALARY: 3
 
-Expense Category by Frequency(Highest to lowest):
-  [E] DRINK=4
-  [E] FOOD=2
+Expense Category by Frequency:
+  [E] DRINK: 4
+  [E] FOOD: 2
 
-Income Category by Amount(Highest to lowest):
-  [I] SALARY=27000.0
-  [I] HONGBAO=597.4
+Income Category by Amount:
+  [I] SALARY $27000.0
+  [I] HONGBAO $597.4
 
-Expense Category by Amount(Highest to lowest):
-  [E] DRINK=24.0
-  [E] FOOD=7.0
+Expense Category by Amount:
+  [E] DRINK $24.0
+  [E] FOOD $7.0
+____________________________________________________________________
+You:  
 ```
 
 ### Exiting the program: `exit`
