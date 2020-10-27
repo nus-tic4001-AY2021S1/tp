@@ -21,4 +21,6 @@ public class StorageTest {
         storage.extractProjects(lines, projects, ui, storage);
         assertEquals(projects.get(0).getDescription(), "--name testing project 1--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
     }
+
+
 }

@@ -18,6 +18,12 @@ public class Edit extends Command {
     @Override
     public void execute() {
         try {
+            if (projects.size() == 0) {
+                ui.printBorderline("It appears that you have no projects yet, so you can't edit any!\n"
+                    + "Perhaps you should start creating one?");
+                return;
+            }
+
             String[] splits = line.split("--");
             String commandWithIndex = splits[1];
             String commandWithNewDescription = splits[2];
@@ -27,7 +33,7 @@ public class Edit extends Command {
             String newDescription = commandWithNewDescription.split(" ", 2)[1];
             if (projectIndex.isEmpty()) {
                 throw new TrackerException("It seems that you did not type in the correct format!\n" +
-                    "Please type in the '--replace INDEX --commandName INPUT' format.");
+                    "Please type in the '--edit INDEX --commandName INPUT' format.");
             }
 
             int index = Integer.parseInt(projectIndex.trim()) - 1;
@@ -53,6 +59,12 @@ public class Edit extends Command {
 
         } catch (TrackerException | IOException e) {
             ui.printBorderline(e.getMessage());
+        } catch (NumberFormatException e) {
+            ui.printBorderline(
+                "I'm sorry, but the list goes numerically.\nPerhaps you could type a number for the index?");
+        } catch (IndexOutOfBoundsException e) {
+            ui.printBorderline("It appears that you only have " + projects.size() + " project(s) in your list,\n"
+                + "perhaps you might want to try typing an index number from 1 to " + projects.size() + " instead?");
         }
     }
 }

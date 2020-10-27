@@ -28,11 +28,12 @@ Expected outcome:
 ```
 What you can tell me to do is listed below:
  - See all commands            | --help
- - Create a new project        | --project --name INPUT --description INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT
+ - Create a new project        | --project --name INPUT --description INPUT -- client INPUT --involve INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT
  - Replace a project detail    | --replace INDEX --commandName INPUT
  - Add an extra project detail | --add INDEX --commandName INPUT
  - Delete a project            | --delete INDEX
  - List down all projects      | --list
+ - Send a email to user        | --send INDEX
  - Find word(s) in projects    | --find KEYWORD
  - Exit my program             | --exit or hit Enter
 ```
@@ -77,10 +78,15 @@ Here are the projects that you currently have!
 1.
 Project Name: Clinical Trials 
 Project Description: regarding hospital task 
-Project Team Members: Lily, Jessica 
-Start Date: 11/11/2020 
-Due Date: 12/12/2020 
-Person in Charge: Derek
+Project Team Members: Tom, Lucy 
+Client: haha 
+Start Date: 11/10/2020 
+Due Date: 26/10/2020 
+Person in Charge: Derek 
+Email: zhengyiheng90@gmail.com 
+Duration: 31 
+Days Left: 2
+Status: Incomplete
 ```
 
 ### Adding project information: 'add'
