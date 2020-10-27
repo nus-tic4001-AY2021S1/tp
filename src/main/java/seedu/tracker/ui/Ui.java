@@ -24,8 +24,7 @@ public class Ui {
      */
     public void printBorderline(String input) {
         System.out
-                .println(input +
-                        "\n________________________________________________________________________________________________________________________________________________________\n");
+                .println(input + "\n________________________________________________________________________________________________________________________________________________________\n");
     }
 
     public void printGreeting() {
@@ -44,6 +43,7 @@ public class Ui {
                 + " - Replace a project detail    | " + colorGreen("--replace INDEX --commandName INPUT\n")
                 + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
                 + " - Delete a project            | " + colorGreen("--delete INDEX\n")
+                + " - Send a project by email     | " + colorGreen("--send INDEX\n")
                 + " - List down all projects      | " + colorGreen("--list\n")
                 + " - Find word(s) in projects    | " + colorGreen("--find KEYWORD\n")
                 + " - Find and replace word(s)    | " + colorGreen("--find KEYWORD --replace KEYWORD\n")
@@ -101,8 +101,7 @@ public class Ui {
 
         try {
             daysLeft = new DateConverter(projectDetails[6].split(" ", 2)[1]).getDaysLeft();
-
-        } catch ( ParseException e) {
+        } catch (ParseException e) {
             printBorderline(e.getMessage());
         }
 
