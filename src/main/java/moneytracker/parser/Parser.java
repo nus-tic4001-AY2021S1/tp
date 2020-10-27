@@ -447,7 +447,7 @@ public class Parser {
         }
 
         if (highestIncomes == null || highestIncomes.isEmpty()) {
-            return ("Sorry, Cannot find any Income record in this Month.");
+            return ("  Sorry, Cannot find any Income record in this Month.");
         } else {
             return highestIncomes;
         }
@@ -476,7 +476,7 @@ public class Parser {
         }
 
         if (highestExpenses == null || highestExpenses.isEmpty()) {
-            return ("Sorry, Cannot find any Expense record in this Month.");
+            return ("  Sorry, Cannot find any Expense record in this Month.");
         } else {
             return highestExpenses;
         }
@@ -502,7 +502,7 @@ public class Parser {
         if (incomeCate.isEmpty()) {
             System.out.println("  Sorry, Cannot find any Income Category record in this Month.");
         } else {
-            printInHelper(getFrequency(incomeCate));
+            printFreqInHelper(getFrequency(incomeCate));
         }
     }
 
@@ -525,7 +525,7 @@ public class Parser {
         if (expCate.isEmpty()) {
             System.out.println("  Sorry, Cannot find any Expense Category record in this Month.");
         } else {
-            printExpHelper(getFrequency(expCate));
+            printFreqExpHelper(getFrequency(expCate));
         }
     }
 
@@ -560,12 +560,42 @@ public class Parser {
      *
      * @param object income/expense category frequency.
      */
+    public static void printFreqInHelper(Object object) {
+        String line = object.toString();
+        String newline = line.replace("{","")
+                .replace("}","").replace(",","");
+        for (String word : newline.split(" ")) {
+            word = word.replace("=",": ");
+            System.out.println("  [I] " + word);
+        }
+    }
+
+    /**
+     * Help slip frequency string to words.
+     *
+     * @param object income/expense category frequency.
+     */
     public static void printExpHelper(Object object) {
         String line = object.toString();
         String newline = line.replace("{","")
                 .replace("}","").replace(",","");
         for (String word : newline.split(" ")) {
             word = word.replace("="," $");
+            System.out.println("  [E] " + word);
+        }
+    }
+
+    /**
+     * Help slip frequency string to words.
+     *
+     * @param object income/expense category frequency.
+     */
+    public static void printFreqExpHelper(Object object) {
+        String line = object.toString();
+        String newline = line.replace("{","")
+                .replace("}","").replace(",","");
+        for (String word : newline.split(" ")) {
+            word = word.replace("=",": ");
             System.out.println("  [E] " + word);
         }
     }
