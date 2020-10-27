@@ -11,4 +11,5 @@ public class Project {
         return description;
     }
 
+    public String toString() { return description; }
 }
