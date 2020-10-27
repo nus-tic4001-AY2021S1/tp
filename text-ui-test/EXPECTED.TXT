@@ -10,6 +10,7 @@ What you can tell me to do is listed below:
 [0m - Replace a project detail    | [33m--replace INDEX --commandName INPUT
 [0m - Add an extra project detail | [33m--add INDEX --commandName INPUT
 [0m - Delete a project            | [33m--delete INDEX
+[0m - Send a project by email     | [33m--send INDEX
 [0m - List down all projects      | [33m--list
 [0m - Find word(s) in projects    | [33m--find KEYWORD
 [0m - Find and replace word(s)    | [33m--find KEYWORD --replace KEYWORD
