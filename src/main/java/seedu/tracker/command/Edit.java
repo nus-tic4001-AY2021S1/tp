@@ -1,7 +1,7 @@
 package seedu.tracker.command;
 
 import seedu.tracker.exception.TrackerException;
-import seedu.tracker.project.Project;
+import seedu.tracker.project.NewProject;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
@@ -53,7 +53,7 @@ public class Edit extends Command {
                     newData = newData.concat("--" + selectedProject[i]);
                 }
             }
-            projects.set(index, new Project(newData));
+            projects.set(index, new NewProject(newData));
             ui.printReplaceMessage(projects);
             storage.updateStorage(projects);
 
