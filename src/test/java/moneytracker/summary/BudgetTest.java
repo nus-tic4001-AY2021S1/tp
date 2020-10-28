@@ -36,9 +36,8 @@ public class BudgetTest {
         /**
          * Tests expense exceeded 75 percent.
          */
-        b.setBudget(1000.00);
-        String str2 = b.calPercentage(751.00);
-        assertEquals("You have exceeded 75% of your budget of $1000.00 for Oct 2020.","You have exceeded "
+        String str2 = b.calPercentage(1751.00);
+        assertEquals("You have exceeded 75% of your budget of $2000.00 for Oct 2020.","You have exceeded "
                 + str2 + " of your budget of $" + String.format("%.2f", amount) + " for "
                 + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                 + " " + LocalDate.now().getYear() + ".");
@@ -47,9 +46,8 @@ public class BudgetTest {
         /**
          * Tests the expense exceeded 100 percent.
          */
-        b.setBudget(1500.00);
-        String str3 = b.calPercentage(1500.10);
-        assertEquals("You have exceeded 100% of your budget of $1500.00 for Oct 2020.","You have exceeded "
+        String str3 = b.calPercentage(2500.10);
+        assertEquals("You have exceeded 100% of your budget of $2000.00 for Oct 2020.","You have exceeded "
                 + str3 + " of your budget of $" + String.format("%.2f", amount) + " for "
                 + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                 + " " + LocalDate.now().getYear() + ".");
