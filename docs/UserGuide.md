@@ -294,4 +294,5 @@ Bye. Hope to see you again soon!
 * Delete a project  `--delete INDEX`
 * List down all projects `--list`
 * Find word(s) in project `--find KEYWORD`
+* Find and replace word(s) `--find KEYWORD --replace KEYWORD`
 * Exit program `--exit` or `hit Enter`
