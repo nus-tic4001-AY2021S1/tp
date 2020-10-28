@@ -33,4 +33,5 @@ public class UiTest {
                 + "Person in Charge: Alex" + "\n";
         assertEquals(projectDetail1, projectDetail2);
     }
+
 }

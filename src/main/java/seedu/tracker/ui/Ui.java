@@ -24,8 +24,7 @@ public class Ui {
      */
     public void printBorderline(String input) {
         System.out
-                .println(input +
-                        "\n________________________________________________________________________________________________________________________________________________________\n");
+                .println(input + "\n________________________________________________________________________________________________________________________________________________________\n");
     }
 
     public void printGreeting() {
@@ -44,8 +43,10 @@ public class Ui {
                 + " - Replace a project detail    | " + colorGreen("--replace INDEX --commandName INPUT\n")
                 + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
                 + " - Delete a project            | " + colorGreen("--delete INDEX\n")
+                + " - Send a project by email     | " + colorGreen("--send INDEX\n")
                 + " - List down all projects      | " + colorGreen("--list\n")
                 + " - Find word(s) in projects    | " + colorGreen("--find KEYWORD\n")
+                + " - Find and replace word(s)    | " + colorGreen("--find KEYWORD --replace KEYWORD\n")
                 + " - Exit my program             | " + colorGreen("--exit or hit Enter");
         printBorderline(help);
     }
@@ -64,7 +65,7 @@ public class Ui {
 
     public void printProjectRemoved(ProjectList projects, int index) {
         String added = "Okay! We have removed the project as shown below:\n"
-                + colorRed(displayProject(projects.get(index - 1))
+                + colorRed(displayProject(projects.get(index))
                 + colorGreen("\nWe now have " + (projects.size() - 1) + " project(s) in your list!"));
         printBorderline(added);
     }
@@ -100,8 +101,7 @@ public class Ui {
 
         try {
             daysLeft = new DateConverter(projectDetails[6].split(" ", 2)[1]).getDaysLeft();
-
-        } catch ( ParseException e) {
+        } catch (ParseException e) {
             printBorderline(e.getMessage());
         }
 

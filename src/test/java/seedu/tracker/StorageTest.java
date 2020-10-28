@@ -17,8 +17,10 @@ public class StorageTest {
         ProjectList projects = new ProjectList();
         Storage storage = new Storage("projects.txt", projects, ui);
         ArrayList<String> lines = new ArrayList<>();
-        lines.add("--project --name testing project 1--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
+        lines.add("--project --name testing project 1--description this is a testing project --involve Anna, Tim and Zak --client Lucy --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex --email linqing4267@gmail.com");
         storage.extractProjects(lines, projects, ui, storage);
-        assertEquals(projects.get(0).getDescription(), "--name testing project 1--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
+        assertEquals(projects.get(0).getDescription(), "--name testing project 1--description this is a testing project --involve Anna, Tim and Zak --client Lucy --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex --email linqing4267@gmail.com");
     }
+
+
 }

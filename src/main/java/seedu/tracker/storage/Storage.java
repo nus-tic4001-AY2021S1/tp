@@ -59,6 +59,7 @@ public class Storage {
 
     public ProjectList extractProjects(ArrayList<String> lines, ProjectList projects, Ui ui, Storage storage) {
         try {
+            int dataSet = 1;
             for (String line : lines) {
                 FileWriter fw = new FileWriter(fileName, true);
 
@@ -77,8 +78,7 @@ public class Storage {
                 String[] splits = line.split("--");
                 String newData = "";
                 String temp;
-                int dataAlert;
-                Boolean dataCheck = false;
+                String daysLeft = "";
 
                 for (String command : newProject) {
                     for (int num = 1; num < splits.length; num++) {
@@ -88,17 +88,15 @@ public class Storage {
                         }
                         if (splits[num].contains("duedate")) {
                             String arr[] = splits[num].split(" ", 2);
-                            String daysLeft = new DateConverter(arr[1].trim()).getDaysLeft();
-                            if (Integer.parseInt(daysLeft) < 7) {
-                                dataCheck = true;
-                            }
+                            daysLeft = new DateConverter(arr[1].trim()).getDaysLeft();
                         }
                     }
                 }
-                if (!dataCheck) {
-                    new Send(line, projects, ui);
-                }
                 projects.add(new NewProject(newData));
+                if (Integer.parseInt(daysLeft) < 7) {
+                    new Send(Integer.toString(dataSet), projects, ui).execute();
+                }
+                dataSet ++;
             }
         } catch (IOException | ParseException e) {
             ui.printBorderline(e.getMessage());

@@ -23,7 +23,7 @@ public class ProjectList {
     }
 
     public void remove(int index) {
-        projects.remove(index - 1);
+        projects.remove(index);
     }
 
     public Project get(int index) { return projects.get(index); }
