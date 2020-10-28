@@ -54,7 +54,7 @@ public class Edit extends Command {
                 }
             }
             projects.set(index, new Project(newData));
-            ui.printReplaceMessage(projects);
+            ui.printEditMessage(projects);
             storage.updateStorage(projects);
 
         } catch (TrackerException | IOException e) {
