@@ -24,8 +24,7 @@ public class Ui {
      */
     public void printBorderline(String input) {
         System.out
-                .println(input +
-                        "\n________________________________________________________________________________________________________________________________________________________\n");
+                .println(input + "\n________________________________________________________________________________________________________________________________________________________\n");
     }
 
     public void printGreeting() {
@@ -41,9 +40,10 @@ public class Ui {
                 + " - Create a new project        | " + colorGreen(
                 "--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT \n")
                 + " - Complete a project          | " + colorGreen("--done INDEX\n")
-                + " - Replace a project detail    | " + colorGreen("--replace INDEX --commandName INPUT\n")
+                + " - Edit a project detail    | " + colorGreen("--edit INDEX --commandName INPUT\n")
                 + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
                 + " - Delete a project            | " + colorGreen("--delete INDEX\n")
+                + " - Send a project by email     | " + colorGreen("--send INDEX\n")
                 + " - List down all projects      | " + colorGreen("--list\n")
                 + " - Find word(s) in projects    | " + colorGreen("--find KEYWORD\n")
                 + " - Find and replace word(s)    | " + colorGreen("--find KEYWORD --replace KEYWORD\n")
@@ -91,7 +91,7 @@ public class Ui {
         printBorderline("Got it. I've added this information into the project. \n");
     }
 
-    public void printReplaceMessage(ProjectList projects) {
+    public void printEditMessage(ProjectList projects) {
         printBorderline("Got it. I've edited the information in the project. \n");
     }
 
@@ -101,8 +101,7 @@ public class Ui {
 
         try {
             daysLeft = new DateConverter(projectDetails[6].split(" ", 2)[1]).getDaysLeft();
-
-        } catch ( ParseException e) {
+        } catch (ParseException e) {
             printBorderline(e.getMessage());
         }
 
