@@ -395,22 +395,7 @@ ____________________________________________________________________
 You:  
 ```
 
-### Exiting the program: `exit`
-Exits the program. 
 
-Format: `exit`
-
-Example of usage: `exit`
-
-Expected outcome:
-
-```
-Bye! Hope to see you again soon.
-```
-
-### Saving the data
-There is no save command because any change 
-to the data will be automatically saved.
 
 ## FAQ
 
