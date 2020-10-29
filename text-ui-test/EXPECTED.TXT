@@ -7,7 +7,7 @@ What you can tell me to do is listed below:
  - See all commands            | [33m--help
 [0m - Create a new project        | [33m--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT 
 [0m - Complete a project          | [33m--done INDEX
-[0m - Replace a project detail    | [33m--replace INDEX --commandName INPUT
+[0m - Edit a project detail       | [33m--edit INDEX --commandName INPUT
 [0m - Add an extra project detail | [33m--add INDEX --commandName INPUT
 [0m - Delete a project            | [33m--delete INDEX
 [0m - Send a project by email     | [33m--send INDEX
