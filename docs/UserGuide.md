@@ -33,7 +33,7 @@ What you can tell me to do is listed below:
  - Add an extra project detail | --add INDEX --commandName INPUT
  - Delete a project            | --delete INDEX
  - List down all projects      | --list
- - Send a email to user        | --send INDEX
+ - Send an email to user        | --send INDEX
  - Find word(s) in projects    | --find KEYWORD
  - Find and replace word(s)    | --find KEYWORD --replace KEYWORD
  - Exit my program             | --exit or hit Enter
@@ -293,6 +293,7 @@ Bye. Hope to see you again soon!
 * Add an extra project detail `--add INDEX --commandName INPUT`
 * Delete a project  `--delete INDEX`
 * List down all projects `--list`
+* Send an email to user   `--send INDEX`
 * Find word(s) in project `--find KEYWORD`
 * Find and replace word(s) `--find KEYWORD --replace KEYWORD`
 * Exit program `--exit` or `hit Enter`
