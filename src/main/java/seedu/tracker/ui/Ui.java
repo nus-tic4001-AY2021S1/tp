@@ -40,7 +40,7 @@ public class Ui {
                 + " - Create a new project        | " + colorGreen(
                 "--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT \n")
                 + " - Complete a project          | " + colorGreen("--done INDEX\n")
-                + " - Edit a project detail    | " + colorGreen("--edit INDEX --commandName INPUT\n")
+                + " - Edit a project detail       | " + colorGreen("--edit INDEX --commandName INPUT\n")
                 + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
                 + " - Delete a project            | " + colorGreen("--delete INDEX\n")
                 + " - Send a project by email     | " + colorGreen("--send INDEX\n")
