@@ -3,7 +3,7 @@
 ## Design & implementation
 
 Project Tracker is a desktop app for managing and tracking projects,  optimized for use via a Command Line Interface (CLI). It will help the project manager to track the status of each project such as how many projects have been done per year or within a period.
-Here is [UML Diagram V2](https://github.com/linqing42/tp/blob/master/docs/UML%20V2.png) and you can refer to [online website](https://ay2021s1-tic4001-1.github.io/tp/DeveloperGuide.html) .
+Here is [UML Diagram V2](https://github.com/AY2021S1-TIC4001-1/tp/blob/master/docs/UML%20V2.drawio) and you can refer to [online website](https://ay2021s1-tic4001-1.github.io/tp/DeveloperGuide.html) .
 
 
 
@@ -36,6 +36,7 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 |v2.0|project manager|add a status of project|know how many project still in progress or completed|
 |v2.0|project manager|add a count down day for project|remind myself|
 |v2.0|project manager|know the client|know suitable communication skill with the client|
+
 ## Non-Functional Requirements
 
 * Should work on any Mainstream OS as long as it has Java **11** or above installed.
