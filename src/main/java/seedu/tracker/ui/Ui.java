@@ -4,7 +4,6 @@ import seedu.tracker.common.DateConverter;
 import seedu.tracker.project.Project;
 import seedu.tracker.project.ProjectList;
 
-import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -39,7 +38,7 @@ public class Ui {
                 + " - See all commands            | " + colorGreen("--help\n")
                 + " - Create a new project        | " + colorGreen(
                 "--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT \n")
-                + " - Complete a project          | " + colorGreen("--done INDEX\n")
+                + " - Complete a project          | " + colorGreen("--complete INDEX\n")
                 + " - Edit a project detail       | " + colorGreen("--edit INDEX --commandName INPUT\n")
                 + " - Add an extra project detail | " + colorGreen("--add INDEX --commandName INPUT\n")
                 + " - Delete a project            | " + colorGreen("--delete INDEX\n")
@@ -115,6 +114,11 @@ public class Ui {
                 + "Email: " + projectDetails[8].split(" ", 2)[1] + "\n"
                 + "Duration: " + projectDetails[9].split(" ", 2)[1] + "\n"
                 + "Days Left: " + daysLeft + "\n"
-                + "Status: " + projectDetails[10].split(" ", 2)[1] + "\n";
+                + "Status: " + project.getStatusIcon()+ "\n";
+    }
+    public void printTaskCompleted(int index, ProjectList tasks) {
+        String complete= "Good Job! You have completed:\n"
+                + "\033[33mProject [" + index + "] ";
+        printBorderline(complete);
     }
 }
