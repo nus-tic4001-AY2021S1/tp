@@ -28,6 +28,7 @@ public class UiTest {
         String projectDetail1 = ui.displayProject(projects.get(0));
 
         try {
+
             daysLeft = new DateConverter("12/12/2020").getDaysLeft();
         } catch (ParseException e) {
             ui.printBorderline(e.getMessage());
