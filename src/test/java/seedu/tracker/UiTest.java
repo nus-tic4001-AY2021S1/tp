@@ -28,7 +28,8 @@ public class UiTest {
         String projectDetail1 = ui.displayProject(projects.get(0));
 
         try {
-             daysLeft = new DateConverter("12/12/2020").getDaysLeft();
+
+            daysLeft = new DateConverter("12/12/2020").getDaysLeft();
         } catch (ParseException e) {
             ui.printBorderline(e.getMessage());
         }
@@ -44,7 +45,7 @@ public class UiTest {
                         + "Email: linqing4267@gmail.com "  + "\n"
                         + "Duration: 31 " + "\n"
                         + "Days Left: "+daysLeft+ "\n"
-                        + "Status: Incomplete" + "\n";
+                        + "Status: " + project1.getStatusIcon()+ "\n";
         assertEquals(projectDetail1, projectDetail2);
 
     }
