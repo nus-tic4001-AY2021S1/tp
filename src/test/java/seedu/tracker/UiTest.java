@@ -17,21 +17,27 @@ public class UiTest {
     @Test
     public void testDisplayProject() {
 
-        Project project1=new Project("--name testing project 1 --description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
-        ProjectList projects= new ProjectList();
+        Project project1 = new Project("--name Clinical Trials --description regarding hospital task --involve Tom, Lucy --client Desi --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com --duration 31 --status Incomplete");
+        ProjectList projects = new ProjectList();
         projects.add(project1);
 
         String projectDetail1 = ui.displayProject(projects.get(0));
 
 
         String projectDetail2 =
-                  "Project Name: testing project 1 " + "\n"
-                + "Project Description: this is a testing project " + "\n"
-                + "Project Team Members: Anna, Tim and Zak " + "\n"
-                + "Start Date: 10/10/2020 " + "\n"
-                + "Due Date: 12/12/2020 " + "\n"
-                + "Person in Charge: Alex" + "\n";
+                "Project Name: Clinical Trials " + "\n"
+                        + "Project Description: regarding hospital task " + "\n"
+                        + "Project Team Members: Tom, Lucy " + "\n"
+                        + "Client: Desi " + "\n"
+                        + "Start Date: 11/11/2020 " + "\n"
+                        + "Due Date: 12/12/2020 " + "\n"
+                        + "Person in Charge: Derek " + "\n"
+                        + "Email: linqing4267@gmail.com "  + "\n"
+                        + "Duration: 31 " + "\n"
+                        + "Days Left: 44" + "\n"
+                        + "Status: Incomplete" + "\n";
         assertEquals(projectDetail1, projectDetail2);
+
     }
 
 }
