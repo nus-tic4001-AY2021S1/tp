@@ -7,6 +7,7 @@ public class Project {
     public Project(String description) {
         this.description = description;
     }
+
     public void setComplete() {
         this.isComplete =true;
     }
