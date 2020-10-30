@@ -36,6 +36,7 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 |v2.0|project manager|add a status of project|know how many project still in progress or completed|
 |v2.0|project manager|add a count down day for project|remind myself|
 |v2.0|project manager|know the client|know suitable communication skill with the client|
+
 ## Non-Functional Requirements
 
 * Should work on any Mainstream OS as long as it has Java **11** or above installed.
