@@ -20,9 +20,9 @@ public class ProjectListTest {
         projects.add(p2);
         projects.add(p3);
 
-        assertEquals(projects.get(0).getDescription(),"--project --name testing project 1--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
-        assertEquals(projects.get(1).getDescription(),"--project --name testing project 2--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
-        assertEquals(projects.get(2).getDescription(),"--project --name testing project 3--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
+        assertEquals(projects.get(0).getDescription(),"[Incomplete] --project --name testing project 1--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
+        assertEquals(projects.get(1).getDescription(),"[Incomplete] --project --name testing project 2--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
+        assertEquals(projects.get(2).getDescription(),"[Incomplete] --project --name testing project 3--description this is a testing project --involve Anna, Tim and Zak --startdate 10/10/2020 --duedate 12/12/2020 --incharge Alex");
 
     }
 }

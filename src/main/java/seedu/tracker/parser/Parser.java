@@ -31,6 +31,8 @@ public class Parser {
                 return new Add(line, projects, ui, storage);
             case Create.word:
                 return new Create(line, projects, ui, storage);
+            case Complete.word:
+                return new Complete(lineWithoutCommand, projects, ui, storage);
             case Exit.word:
             case "":        // also exits when user input is empty
                 return new Exit(ui);
