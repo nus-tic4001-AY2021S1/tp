@@ -22,12 +22,15 @@ public class CompleteTest {
         parser.parseInput("--complete 1", ui, projects, storage).execute();
 
         //Adding new projects to list
-        parser.parseInput("--project --name Project 1 --description regarding hospital task --involve " +
-                "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com", ui, projects, storage).execute();
-        parser.parseInput("--project --name Project 2 --description regarding hospital task --involve " +
-                "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com", ui, projects, storage).execute();
-        parser.parseInput("--project --name Project 3 --description regarding hospital task --involve " +
-                "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com", ui, projects, storage).execute();
+        parser.parseInput("--project --name Project 1 --description regarding hospital task --involve "
+                + "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek"
+                + " --email linqing4267@gmail.com", ui, projects, storage).execute();
+        parser.parseInput("--project --name Project 2 --description regarding hospital task --involve "
+                + "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek"
+                + " --email linqing4267@gmail.com", ui, projects, storage).execute();
+        parser.parseInput("--project --name Project 3 --description regarding hospital task --involve "
+                + "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek"
+                + " --email linqing4267@gmail.com", ui, projects, storage).execute();
 
         thrown.expect(IndexOutOfBoundsException.class);
         parser.parseInput("--complete 0", ui, projects, storage).execute();

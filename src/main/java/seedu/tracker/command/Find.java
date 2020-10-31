@@ -1,11 +1,12 @@
 package seedu.tracker.command;
 
+import java.io.IOException;
+import java.text.ParseException;
+import seedu.tracker.common.DateConverter;
 import seedu.tracker.project.Project;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
-
-import java.io.IOException;
 
 public class Find extends Command {
     public static final String word = "--find";
@@ -24,8 +25,8 @@ public class Find extends Command {
                 return;
             }
             if (line.isEmpty()) {
-                ui.printBorderline("You didn't type in any keyword to find!\n" +
-                    "Please type in the '--find KEYWORD' format!");
+                ui.printBorderline("You didn't type in any keyword to find!\n"
+                    + "Please type in the '--find KEYWORD' format!");
                 return;
             }
 
@@ -39,8 +40,8 @@ public class Find extends Command {
                 }
             }
             if (!hasMatch) {
-                matches = "It appears that are no matches for '" + searchWord + "'!\n" +
-                    "Perhaps you could try searching another word?";
+                matches = "It appears that are no matches for '" + searchWord + "'!\n"
+                    + "Perhaps you could try searching another word?";
             }
             if (hasMatch && line.contains("--replace")) {
                 findAndReplace();
@@ -61,6 +62,10 @@ public class Find extends Command {
                 ui.printBorderline("Please type in the '--find KEYWORD --replace KEYWORD' format!");
                 return;
             }
+            if (!new DateConverter(searchWord).dateChecker(searchWord)
+                || !new DateConverter(replaceWord).dateChecker(replaceWord)) {
+                return;
+            }
 
             String changes = "Here are the project(s) that has the word '" + searchWord
                 + "' replaced with '" + replaceWord + "'!\n";
@@ -70,8 +75,8 @@ public class Find extends Command {
                 String[] currentProject = line.split("--");
                 String newData = "";
 
-
                 for (int j = 1; j < currentProject.length; j++) {
+                    String currentCommand = currentProject[j].split(" ", 2)[0];
                     String currentDescription = currentProject[j].split(" ", 2)[1];
 
                     if (currentDescription.toLowerCase().contains(searchWord.toLowerCase())) {
@@ -87,7 +92,7 @@ public class Find extends Command {
             storage.updateStorage(projects);
             ui.printBorderline(changes);
 
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             ui.printBorderline(e.getMessage());
         }
     }
