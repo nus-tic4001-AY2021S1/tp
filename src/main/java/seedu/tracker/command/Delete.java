@@ -1,10 +1,9 @@
 package seedu.tracker.command;
 
+import java.io.IOException;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * A command to delete a project from the project list.

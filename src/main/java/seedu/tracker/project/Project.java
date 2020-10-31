@@ -9,16 +9,18 @@ public class Project {
     }
 
     public void setComplete() {
-        this.isComplete =true;
+        this.isComplete = true;
     }
 
     public String getDescription() {
-        return getStatusIcon() + description;
+        return getStatus() + description;
     }
 
-    public String toString() { return description; }
+    public String toString() {
+        return description;
+    }
 
-    public String getStatusIcon() {
+    public String getStatus() {
         return "[" + (isComplete ? "Complete" : "Incomplete") + "] ";
     }
 }

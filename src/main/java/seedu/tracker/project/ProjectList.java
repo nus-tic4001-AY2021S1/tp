@@ -8,7 +8,9 @@ import java.util.ArrayList;
 public class ProjectList {
     private final ArrayList<Project> projects;
 
-    public ProjectList() { this.projects = new ArrayList<>(); }
+    public ProjectList() {
+        this.projects = new ArrayList<>();
+    }
 
     public int size() {
         return projects.size();
@@ -18,13 +20,15 @@ public class ProjectList {
         projects.add(project);
     }
 
-    public void set(int number, Project obj){
-        projects.set(number,obj);
+    public void set(int number, Project obj) {
+        projects.set(number, obj);
     }
 
     public void remove(int index) {
         projects.remove(index);
     }
 
-    public Project get(int index) { return projects.get(index); }
+    public Project get(int index) {
+        return projects.get(index);
+    }
 }
