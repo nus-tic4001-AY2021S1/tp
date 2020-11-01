@@ -3,9 +3,8 @@ package seedu.tracker;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
-import seedu.tracker.project.Project;
-import seedu.tracker.project.ProjectList;
 import seedu.tracker.parser.Parser;
+import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
@@ -24,8 +23,9 @@ public class EditTest {
         parser.parseInput("--edit 1 --name No Projects", ui, projects, storage).execute();
 
         //Adding new project to list
-        parser.parseInput("--project --name Project 1 --description regarding hospital task --involve " +
-            "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email zhenquan38@gmail.com", ui, projects, storage).execute();
+        parser.parseInput("--project --name Project 1 --description regarding hospital task --involve "
+                + "Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek"
+                + " --email zhenquan38@gmail.com", ui, projects, storage).execute();
 
         thrown.expect(IndexOutOfBoundsException.class);
         parser.parseInput("--edit 0 --name Project 0", ui, projects, storage).execute();

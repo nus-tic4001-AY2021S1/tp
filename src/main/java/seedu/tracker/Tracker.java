@@ -1,14 +1,13 @@
 package seedu.tracker;
 
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import seedu.tracker.command.Command;
 import seedu.tracker.command.Exit;
 import seedu.tracker.parser.Parser;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
-
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public class Tracker {
     /**

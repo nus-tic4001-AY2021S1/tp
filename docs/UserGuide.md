@@ -224,6 +224,8 @@ Status: Incomplete
 Helps to search a project that contain any keyword(s),and the search is case-insensitive.
 
 Is also able to replace all the keyword(s) that matches the new keyword(s), and is case-sensitive.
+This feature is similar to the find all and replace all found in many editors.
+In our project, you can use it to correct common typos, or a complete replacement of an employee who has left the company.
 
 Format:`--find KEYWORD` or `--find KEYWORD --replace KEYWORD`
 

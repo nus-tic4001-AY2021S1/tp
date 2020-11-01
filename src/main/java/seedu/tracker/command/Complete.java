@@ -1,11 +1,10 @@
 package seedu.tracker.command;
 
+import java.io.IOException;
 import seedu.tracker.exception.TrackerException;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
-
-import java.io.IOException;
 
 public class Complete extends Command {
 
@@ -19,27 +18,29 @@ public class Complete extends Command {
     public void execute() {
         try {
             if (projects.size() == 0) {
-                ui.printBorderline("It appears that you have no projects yet, so you can't complete any!\n" +
-                        "Perhaps you should start creating one?");
+                ui.printBorderline("It appears that you have no projects yet, so you can't complete any!\n"
+                    + "Perhaps you should start creating one?");
                 return;
             }
             if (line.isEmpty()) {
-                throw new TrackerException("You almost typed a proper complete command, but you missed out the number!\n" +
-                        "Please type in the '--complete <task index number>' format.");
+                throw new TrackerException(
+                    "You almost typed a proper complete command, but you missed out the number!\n"
+                        + "Please type in the '--complete INDEX' format.");
             }
             int index = Integer.parseInt(line);
             projects.get(index - 1).setComplete();
-            ui.printTaskCompleted(index, projects);
+            ui.printProjectCompleted(index, projects);
 
             storage.updateStorage(projects);
 
         } catch (TrackerException | IOException e) {
             ui.printBorderline(e.getMessage());
         } catch (NumberFormatException e) {
-            ui.printBorderline("I'm sorry, but the list goes numerically.\nPerhaps you could type a number for the index?");
+            ui.printBorderline(
+                "I'm sorry, but the list goes numerically.\nPerhaps you could type a number for the index?");
         } catch (IndexOutOfBoundsException e) {
-            ui.printBorderline("It appears that you only have " + projects.size() + " project(s) in your list,\n" +
-                    "perhaps you might want to try typing an index number from 1 to " + projects.size() + " instead?");
+            ui.printBorderline("It appears that you only have " + projects.size() + " project(s) in your list,\n"
+                + "perhaps you might want to try typing an index number from 1 to " + projects.size() + " instead?");
         }
     }
 }

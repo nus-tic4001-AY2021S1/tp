@@ -1,1 +1,1 @@
-1. [Complete] --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --client Desi --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com --duration 31 --status Incomplete
+1. [Incomplete] --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --client MOH --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email zhenquan38@gmail.com
