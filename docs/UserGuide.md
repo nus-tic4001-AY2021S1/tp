@@ -63,7 +63,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 
 We now have 1 project(s) in your list!
 ```
@@ -95,7 +95,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 ```
 
 ### Adding project information: 'add'
@@ -126,7 +126,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 ```
 ### Marking a specific project: 'complete'
 Marking a specific project to remind the user that he has finished the project.
@@ -178,7 +178,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com` 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 
 We now have 0 project(s) in your list!
 ```
@@ -214,7 +214,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com` 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 .
 .
 .
@@ -243,7 +243,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 
 ```
 ### Listing projects by keyword(s):`find` 
@@ -272,7 +272,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com 
 Duration: 31 
 Days Left: 46
-Status: Incomplete
+Status: [Incomplete]
 ```
 Example of usage: 
 <br/> `--find Lucy --replace Lilian`
@@ -291,7 +291,7 @@ Person in Charge: Derek
 Email: linqing4267@gmail.com
 Duration: 31
 Days Left: 45
-Status: Incomplete
+Status: [Incomplete]
 ```
 ### Exiting the program: `exit/hit Enter`
 
@@ -330,7 +330,7 @@ Expected outcome: save into \tp\projects.txt
 * Create a new project `--project --name INPUT --description INPUT --involve INPUT --client INPUT --startdate dd/mm/yyyy --duedate dd/mm/yyyy --incharge INPUT --email INPUT`
 * Edit project information `--Edit INDEX --commandName INPUT`
 * Add an extra project detail `--add INDEX --commandName INPUT`
-* complete a project  `--delete INDEX`
+* Complete a project  `--delete INDEX`
 * Delete a project  `--delete INDEX`
 * List down all projects `--list`
 * Send an email to user   `--send INDEX`
