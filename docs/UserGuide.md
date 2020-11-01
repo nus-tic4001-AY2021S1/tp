@@ -304,18 +304,7 @@ Expected outcome:
 ```
 Bye. Hope to see you again soon!
 ```
-### Saving the project information:
-It helps to save the tasks in the hard disk automatically after exiting the program, and the format of display will be change when task save in hard disk. It saves the user's time as there is no need to save manually.
 
-Example of usage:
-<br/> `--project --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --client Desi --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com`
-<br/> `--complete 1`
-<br/> `exit/hit Enter`
-
-Expected outcome: save into \tp\projects.txt
-```
-1. [Complete] --name Clinical Trials --description regarding hospital task --involve Tom, Lucy --client Desi --startdate 11/11/2020 --duedate 12/12/2020 --incharge Derek --email linqing4267@gmail.com
-```
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
