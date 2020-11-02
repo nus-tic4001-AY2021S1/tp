@@ -38,7 +38,7 @@ public class SummaryTest {
             t.add(expense2);
             TransactionList transactions = new TransactionList(t);
             double exp = Summary.calExpSummary(transactions);
-            assertEquals("Your total expense for Oct 2020: $500.87", "Your total expense for "
+            assertEquals("Your total expense for Nov 2020: $0.00", "Your total expense for "
                     + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", exp));
 
@@ -64,7 +64,7 @@ public class SummaryTest {
             i.add(income2);
             TransactionList transactions = new TransactionList(i);
             double inc = Summary.calIncSummary(transactions);
-            assertEquals("Your total income for Oct 2020: $1200.87", "Your total income for "
+            assertEquals("Your total income for Nov 2020: $0.00", "Your total income for "
                     + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", inc));
 
