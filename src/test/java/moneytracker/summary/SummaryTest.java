@@ -31,14 +31,16 @@ public class SummaryTest {
         ArrayList<Transaction> t = new ArrayList<>();
 
         try {
-            Expense expense1 = new Expense(300, "dinner", "2020-10-10", "FOOD");
+            Expense expense1 = new Expense(300, "dinner", "2020-11-10", "FOOD");
             t.add(expense1);
 
-            Expense expense2 = new Expense(200.87, "snack", "2020-10-08", "FOOD");
+            Expense expense2 = new Expense(200.87, "snack", "2020-11-08", "FOOD");
             t.add(expense2);
             TransactionList transactions = new TransactionList(t);
             double exp = Summary.calExpSummary(transactions);
-            assertEquals("Your total expense for Oct 2020: $500.87", "Your total expense for "
+            assertEquals("Your total expense for " +
+                    LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                    + " " + LocalDate.now().getYear() + ": $500.87", "Your total expense for "
                     + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", exp));
 
@@ -57,14 +59,16 @@ public class SummaryTest {
         ArrayList<Transaction> i = new ArrayList<>();
 
         try {
-            Income income1 = new Income(1000, "fulltime", "2020-10-10", "SALARY");
+            Income income1 = new Income(1000, "fulltime", "2020-11-10", "SALARY");
             i.add(income1);
 
-            Income income2 = new Income(200.87, "parttime", "2020-10-08", "SALARY");
+            Income income2 = new Income(200.87, "parttime", "2020-11-08", "SALARY");
             i.add(income2);
             TransactionList transactions = new TransactionList(i);
             double inc = Summary.calIncSummary(transactions);
-            assertEquals("Your total income for Oct 2020: $1200.87", "Your total income for "
+            assertEquals("Your total income for " +
+                    LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+                    + " " + LocalDate.now().getYear() + ": $1200.87", "Your total income for "
                     + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", inc));
 
