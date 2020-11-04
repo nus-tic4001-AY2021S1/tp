@@ -5,6 +5,7 @@ import moneytracker.command.Command;
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.parser.Parser;
 import moneytracker.storage.Storage;
+import moneytracker.summary.Reminder;
 import moneytracker.summary.Summary;
 import moneytracker.transaction.Expense;
 import moneytracker.transaction.Income;
@@ -69,6 +70,7 @@ public class MoneyTracker {
                 ui.printPctOfBudget(budget.calPercentage(exp),budget.getAmount());
             }
         }
+        ui.printDueTransaction(Reminder.reminder(transactions));
         ui.printWelcome();
 
         boolean isExit = false;
