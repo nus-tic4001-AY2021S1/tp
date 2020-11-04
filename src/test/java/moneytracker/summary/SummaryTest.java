@@ -38,8 +38,8 @@ public class SummaryTest {
             t.add(expense2);
             TransactionList transactions = new TransactionList(t);
             double exp = Summary.calExpSummary(transactions);
-            assertEquals("Your total expense for " +
-                    LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+            assertEquals("Your total expense for "
+                    + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $500.87", "Your total expense for "
                     + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", exp));
@@ -66,8 +66,8 @@ public class SummaryTest {
             i.add(income2);
             TransactionList transactions = new TransactionList(i);
             double inc = Summary.calIncSummary(transactions);
-            assertEquals("Your total income for " +
-                    LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
+            assertEquals("Your total income for "
+                    + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $1200.87", "Your total income for "
                     + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                     + " " + LocalDate.now().getYear() + ": $" + String.format("%.2f", inc));
