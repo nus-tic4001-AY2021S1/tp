@@ -75,6 +75,5 @@ public class SummaryTest {
         } catch (MoneyTrackerException e) {
             System.out.print(e.getMessage());
         }
-
     }
 }

@@ -60,7 +60,5 @@ public class BudgetTest {
                 + str3 + " of your budget of $" + String.format("%.2f", amount) + " for "
                 + LocalDate.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.US)
                 + " " + LocalDate.now().getYear() + ".");
-
     }
-
 }
