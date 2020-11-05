@@ -16,7 +16,8 @@ public class List extends Command {
     @Override
     public void execute() {
         if (projects.size() == 0) {
-            ui.printBorderline("It appears that you have no projects! Perhaps you should start creating one?");
+            ui.printBorderline("It appears that you have no projects! "
+                + "Perhaps you should start creating one?");
             return;
         }
         String message = "Here are the projects that you currently have!\n";

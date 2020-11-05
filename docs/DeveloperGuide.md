@@ -10,7 +10,7 @@ Here is [UML Diagram V2](https://github.com/AY2021S1-TIC4001-1/tp/blob/master/do
 ## Product scope
 ### Target user profile
 
-The target user is a project manager who can keep tracking various projects, know the progress of each project with  principal members to participate in each project. However, he cannot remember the progress of various projects and who is the member that involve to each specific project.
+The target user is a project manager who can keep tracking various projects, know the progress of each project with  principal members to participate in each project. However, he cannot remember the progress of various projects, who is the member that involve to each specific project and cannot close monitor the progress of each project.
 
 ### Value proposition
 
@@ -35,13 +35,15 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 |v2.0|project manager|have duration of project|know the how many employees need to assign to this project and save manpower|
 |v2.0|project manager|add a status of project|know how many project still in progress or completed|
 |v2.0|project manager|add a count down day for project|remind myself|
-|v2.0|project manager|know the client|know suitable communication skill with the client|
+|v2.0|project manager|know the client|find client's information|
+|v2.0|project manager|receive an email notification when the deadline is only left few days|focus on the project first|
 
 ## Non-Functional Requirements
 
 * Should work on any Mainstream OS as long as it has Java **11** or above installed.
 * *User-Friendly*: there is nice and helpful UI messages should be very easy for the users to use.
 * *User-Friendly*: the way to display the project should be easier to read.
+* *User-Friendly*: Should load from and save to from a text file
 
 ## Glossary
 
