@@ -6,10 +6,10 @@ Project Tracker is a desktop app for managing and tracking projects,  optimized 
 and you can refer to [online website](https://ay2021s1-tic4001-1.github.io/tp/DeveloperGuide.html) .
 ## Design
 
-#### UML diagram 
+### UML diagram 
 ![UML Diagram V2](images/UML%20V2.png) 
 
-#### Storage method: getlines(string fileName)
+### Storage method: getlines(string fileName)
 ![Sequence Diagram](images/StorageGetLine-Page-1.png)
 
 
