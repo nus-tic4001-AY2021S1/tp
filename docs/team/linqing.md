@@ -50,7 +50,7 @@ Given below are my contributions to the
 - Maintaining the issue tracker such as create issue tracker in version 2 and close the issue tracker in version 1, and put a remark on it.
 - Create and include all Developer document: `Design&implementation`, `Product scope`, `target user profile`, `value proposition`, `users stories in version 1` and `version 2`,`non-functional requirement` and `glossary`:[#35](https://github.com/AY2021S1-TIC4001-1/tp/pull/35/commits/e160d66ace079036465a4ec7aaab583cfbbec4ee),[#37](https://github.com/AY2021S1-TIC4001-1/tp/pull/37/commits),[#38](https://github.com/AY2021S1-TIC4001-1/tp/pull/38/commits/d4cbf4bb5cd9b3f2e484ad2e05c69973739791ec),[#39](https://github.com/AY2021S1-TIC4001-1/tp/pull/39/commits),[#87](https://github.com/AY2021S1-TIC4001-1/tp/pull/87)
 - Create and include all User Guide documents: `product introduction`, `quick start`,  `FAQ`, `Command summary`: [#5](https://github.com/AY2021S1-TIC4001-1/tp/pull/5/commits/6965a02f9bc47ce6dc5859a54f6af6d62667e23e),[#4](https://github.com/AY2021S1-TIC4001-1/tp/pull/4/commits/d5e6bc4aa5658592ee91ee04dcd30e16f3a4c495),[#64](https://github.com/AY2021S1-TIC4001-1/tp/pull/64)
-- Create draw io and invite my remembers  
+- Create draw io and invite my teammembers  
 
 ### Community:
 - PRs reviewed (with non-trivial review comments):[#12](https://github.com/AY2021S1-TIC4001-1/tp/pull/12),[#77](https://github.com/AY2021S1-TIC4001-1/tp/issues/77),[#42](https://github.com/AY2021S1-TIC4001-1/tp/issues/42)
