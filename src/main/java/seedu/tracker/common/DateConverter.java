@@ -40,7 +40,15 @@ public class DateConverter {
 
 
     public boolean dateChecker(String dateInString) {
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+
+        if((Integer.parseInt(dateInString.substring(0,2))>=31 || Integer.parseInt(dateInString.substring(0,2))<=0)
+                ||(Integer.parseInt(dateInString.substring(3,5))>=13 || Integer.parseInt(dateInString.substring(3,5))<=0)){
+            System.out.println(dateInString + "is out of correct date range, please enter the correct date");
+            return false;
+        }
+
         try {
             Date date = formatter.parse(dateInString);
             System.out.println(date + " is valid date format");
@@ -63,10 +71,29 @@ public class DateConverter {
             Date dateAfter = formatter.parse(endDate);
             long difference = dateAfter.getTime() - dateBefore.getTime();
             daysBetween = (float) (difference / (1000 * 60 * 60 * 24));
-        } catch (Exception e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return daysBetween;
+    }
+
+    public boolean dateValidator(String startDate, String endDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        boolean isSdEarlierThanEd = false;
+
+        try {
+            Date sd = formatter.parse(startDate);
+            Date ed = formatter.parse(endDate);
+            if (sd.compareTo(ed) < 0) {
+                isSdEarlierThanEd = true;
+            } else {
+                System.out.println("Due Date is earlier than Start Date, please enter the correct date!");
+                isSdEarlierThanEd = false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isSdEarlierThanEd;
     }
 
     public String getDateDiff() {
