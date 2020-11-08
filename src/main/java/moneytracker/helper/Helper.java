@@ -1,4 +1,4 @@
-package moneytracker.command;
+package moneytracker.helper;
 
 import moneytracker.exception.MoneyTrackerException;
 import moneytracker.transaction.Expense;
@@ -6,7 +6,7 @@ import moneytracker.transaction.Income;
 import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 
-public class Utilities {
+public class Helper {
     /**
      * Gets the type of a <code>Transaction</code> object.
      *
@@ -33,7 +33,8 @@ public class Utilities {
      * @return <code>Transaction</code> object.
      * @throws MoneyTrackerException If the index of the transaction is invalid.
      */
-    public static Transaction getTransaction(TransactionList transactions, int index) throws MoneyTrackerException {
+    public static Transaction getTransactionFromList(TransactionList transactions, int index)
+            throws MoneyTrackerException {
         Transaction transaction;
         try {
             transaction = transactions.getTransaction(transactions.getSearchResultIndex(index));

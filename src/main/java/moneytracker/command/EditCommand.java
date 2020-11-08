@@ -13,8 +13,8 @@ import moneytracker.ui.Ui;
 
 import java.util.HashMap;
 
-import static moneytracker.command.Utilities.getTransactionType;
-import static moneytracker.command.Utilities.getTransaction;
+import static moneytracker.helper.Helper.getTransactionType;
+import static moneytracker.helper.Helper.getTransactionFromList;
 
 /**
  * Contains the methods for user to edit a transaction.
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
         }
         HashMap<String, String> editParams = Parser.getEditTransactionParams(fullCommand);
         int index = getIndex(editParams);
-        Transaction transactionToEdit = getTransaction(transactions, index);
+        Transaction transactionToEdit = getTransactionFromList(transactions, index);
         String currentDescription = transactionToEdit.toString();
         String type = getTransactionType(transactionToEdit).toLowerCase();
         updateTransaction(transactionToEdit, editParams, categories, type);

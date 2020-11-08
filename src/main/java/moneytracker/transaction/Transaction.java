@@ -5,7 +5,6 @@ import moneytracker.exception.MoneyTrackerException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -17,7 +16,6 @@ public abstract class Transaction {
     private double amount;
     private String description;
     private LocalDate date;
-
 
     /**
      * Initializes a <code>Transaction</code> object.
@@ -58,7 +56,6 @@ public abstract class Transaction {
     public String getAmount() {
         return String.valueOf(amount);
     }
-
 
     /**
      * Gets the typename of a <code>Transaction</code> object.
