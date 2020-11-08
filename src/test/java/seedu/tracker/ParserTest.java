@@ -1,5 +1,7 @@
 package seedu.tracker;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import seedu.tracker.command.Command;
 import seedu.tracker.command.Delete;
@@ -8,13 +10,11 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 public class ParserTest {
 
     @Test
-    public void testParseInput(){
+    public void testParseInput() {
         Ui ui = new Ui();
         Parser parser = new Parser();
         ProjectList projects = new ProjectList();
@@ -22,9 +22,7 @@ public class ParserTest {
 
         Command first = parser.parseInput("--delete 123", ui, projects, storage);
         Delete second = new Delete("--delete", projects, ui, storage);
-        assertEquals(Delete.class.isAssignableFrom(first.getClass()), Delete.class.isAssignableFrom(second.getClass()));
+        boolean firstClass = Delete.class.isAssignableFrom(first.getClass());
+        assertEquals(firstClass, Delete.class.isAssignableFrom(second.getClass()));
     }
-
-
-
 }

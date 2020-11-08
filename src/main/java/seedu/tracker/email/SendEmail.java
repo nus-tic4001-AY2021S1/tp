@@ -1,8 +1,6 @@
-package seedu.tracker.sendEmail;
-
+package seedu.tracker.email;
 
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -15,10 +13,11 @@ public class SendEmail {
 
     String receiver;
     String messages;
-    public SendEmail(String receiver, String message){
 
-        this.receiver=receiver;
-        this.messages=message;
+    public SendEmail(String receiver, String message) {
+
+        this.receiver = receiver;
+        this.messages = message;
         sendEmail();
 
     }
@@ -30,7 +29,7 @@ public class SendEmail {
         // Sender's email ID needs to be mentioned
         String from = "ProjectTracker@roject.com";
 
-        // Assuming you are sending email from through gmails smtp
+        // Assuming you are sending email from through gmail smtp
         String host = "smtp.gmail.com";
 
         // Get system properties
@@ -70,7 +69,8 @@ public class SendEmail {
             message.setSubject("The New Project");
 
             // Now set the actual message
-            message.setText("Hi Project Leader \n" + "This project has been send you as a notification.\n\n" +messages + "\n Best regards \n Project Tracker");
+            message.setText("Hi Project Leader \n" + "This project has been send you as a notification.\n\n" + messages
+                + "\n Best regards \n Project Tracker");
 
             System.out.println("sending...");
             // Send message

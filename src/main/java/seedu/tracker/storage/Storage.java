@@ -1,12 +1,5 @@
 package seedu.tracker.storage;
 
-import seedu.tracker.command.List;
-import seedu.tracker.command.Send;
-import seedu.tracker.common.DateConverter;
-import seedu.tracker.project.NewProject;
-import seedu.tracker.project.ProjectList;
-import seedu.tracker.ui.Ui;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,6 +7,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import seedu.tracker.command.List;
+import seedu.tracker.command.Send;
+import seedu.tracker.common.DateConverter;
+import seedu.tracker.project.NewProject;
+import seedu.tracker.project.ProjectList;
+import seedu.tracker.ui.Ui;
 
 /**
  * Responsible for all interactions between the in-memory projects and the projects file.
@@ -72,14 +71,11 @@ public class Storage {
                 newProject.add("duedate");
                 newProject.add("incharge");
                 newProject.add("email");
-                newProject.add("duration");
-                newProject.add("status");
 
                 String[] splits = line.split("--");
                 String newData = "";
                 String temp;
                 String daysLeft = "";
-
                 for (String command : newProject) {
                     for (int num = 1; num < splits.length; num++) {
                         if (splits[num].contains(command)) {
@@ -87,16 +83,21 @@ public class Storage {
                             newData = newData.concat(temp);
                         }
                         if (splits[num].contains("duedate")) {
-                            String arr[] = splits[num].split(" ", 2);
+                            String[] arr = splits[num].split(" ", 2);
                             daysLeft = new DateConverter(arr[1].trim()).getDaysLeft();
                         }
                     }
                 }
                 projects.add(new NewProject(newData));
+
+                String projectStatus = splits[0].split(" ", 2)[1].trim();
+                if (projectStatus.equals("[Complete]")) {
+                    projects.get(projects.size() - 1).setComplete();
+                }
                 if (Integer.parseInt(daysLeft) < 7) {
                     new Send(Integer.toString(dataSet), projects, ui).execute();
                 }
-                dataSet ++;
+                dataSet++;
             }
         } catch (IOException | ParseException e) {
             ui.printBorderline(e.getMessage());

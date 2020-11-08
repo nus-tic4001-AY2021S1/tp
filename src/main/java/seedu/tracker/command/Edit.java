@@ -1,12 +1,13 @@
 package seedu.tracker.command;
 
+import java.io.IOException;
+import java.text.ParseException;
+import seedu.tracker.common.DateConverter;
 import seedu.tracker.exception.TrackerException;
 import seedu.tracker.project.Project;
 import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
-
-import java.io.IOException;
 
 public class Edit extends Command {
     public static final String word = "--edit";
@@ -27,23 +28,32 @@ public class Edit extends Command {
             String[] splits = line.split("--");
             String commandWithIndex = splits[1];
             String commandWithNewDescription = splits[2];
-
             String projectIndex = commandWithIndex.split(" ", 2)[1];
             String commandWord = commandWithNewDescription.split(" ", 2)[0];
             String newDescription = commandWithNewDescription.split(" ", 2)[1];
-            if (projectIndex.isEmpty()) {
-                throw new TrackerException("It seems that you did not type in the correct format!\n" +
-                    "Please type in the '--edit INDEX --commandName INPUT' format.");
-            }
 
             if (commandWord.contains("email") || !(newDescription.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
                 throw new TrackerException("Invalid Email format");
             }
 
             int index = Integer.parseInt(projectIndex.trim()) - 1;
-            String line = projects.get(index).toString();
+            String projectLine = projects.get(index).toString();
 
-            String[] selectedProject = line.split("--");
+            if (projectIndex.isEmpty() || !projectLine.contains(commandWord)) {
+                throw new TrackerException("It seems that you did not type in the correct format!\n"
+                    + "Please type in the '--edit INDEX --commandName INPUT' format.");
+            }
+
+            if (commandWord.equals("startdate") || commandWord.equals("duedate")) {
+                if (!new DateConverter(newDescription).dateChecker(newDescription)) {
+                    return;
+                }
+            }
+            if (commandWord.equals("duration")) {
+                throw new TrackerException("Duration is automatically calculated and cannot be changed.");
+            }
+
+            String[] selectedProject = projectLine.split("--");
             String newData = "";
 
             for (int i = 1; i < selectedProject.length; i++) {
@@ -61,7 +71,7 @@ public class Edit extends Command {
             ui.printEditMessage(projects);
             storage.updateStorage(projects);
 
-        } catch (TrackerException | IOException e) {
+        } catch (TrackerException | IOException | ParseException e) {
             ui.printBorderline(e.getMessage());
         } catch (NumberFormatException e) {
             ui.printBorderline(
