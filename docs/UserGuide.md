@@ -338,20 +338,20 @@ Expected outcome:
 ```
 Here is your report:
 Income for last 6 months (Highest to lowest):
-  [I] 2020-09 $27597.4
-  [I] 2020-06 $0.0
-  [I] 2020-05 $0.0
-  [I] 2020-10 $0.0
-  [I] 2020-08 $0.0
-  [I] 2020-07 $0.0
+  [I] 2020-09 $27597.40
+  [I] 2020-06 $4344.00
+  [I] 2020-05 $5666.00
+  [I] 2020-10 $4000.00
+  [I] 2020-08 $6000.00
+  [I] 2020-07 $8880.00
 
 Income for last 6 months (Highest to lowest):
-  [E] 2020-09 $31.0
-  [E] 2020-06 $0.0
-  [E] 2020-05 $0.0
-  [E] 2020-10 $0.0
-  [E] 2020-08 $0.0
-  [E] 2020-07 $0.0
+  [E] 2020-09 $531.00
+  [E] 2020-06 $650.00
+  [E] 2020-05 $660.00
+  [E] 2020-10 $577.00
+  [E] 2020-08 $570.00
+  [E] 2020-07 $550.00
 ```
 
 Format: `report MONTH`
@@ -385,12 +385,12 @@ Expense Category by Frequency:
   [E] FOOD: 2
 
 Income Category by Amount:
-  [I] SALARY $27000.0
-  [I] HONGBAO $597.4
+  [I] SALARY $27000.00
+  [I] HONGBAO $597.40
 
 Expense Category by Amount:
-  [E] DRINK $24.0
-  [E] FOOD $7.0
+  [E] DRINK $24.00
+  [E] FOOD $7.00
 ____________________________________________________________________ 
 ```
 ### Exiting the program: `exit`
