@@ -20,12 +20,13 @@ public class Send extends Command {
                 ui.printBorderline("It appears that you have no project! Perhaps you should start creating one?");
                 return;
             }
-            if (line.isEmpty() || projectNumber > projects.size() || projectNumber < 0){
+            if (line.isEmpty() || projectNumber > projects.size() || projectNumber < 0) {
                 ui.printBorderline("Please type in the right project");
                 return;
             }
-            new SendEmail(getEmail(projects.get(projectNumber).toString()), ui.displayProject(projects.get(projectNumber)));
-        } catch (NumberFormatException ex){
+            String getString = projects.get(projectNumber).toString();
+            new SendEmail(getEmail(getString), ui.displayProject(projects.get(projectNumber)));
+        } catch (NumberFormatException ex) {
             System.out.println(" Please input a number");
         }
     }

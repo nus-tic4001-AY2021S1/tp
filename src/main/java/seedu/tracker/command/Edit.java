@@ -32,7 +32,8 @@ public class Edit extends Command {
             String commandWord = commandWithNewDescription.split(" ", 2)[0];
             String newDescription = commandWithNewDescription.split(" ", 2)[1];
 
-            if (commandWord.contains("email") || !(newDescription.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
+            String emailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            if (commandWord.contains("email") || !(newDescription.matches(emailFormat))) {
                 throw new TrackerException("Invalid Email format");
             }
 
