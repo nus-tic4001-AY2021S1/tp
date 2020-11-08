@@ -139,6 +139,10 @@ public class Ui {
                 + " " + LocalDate.now().getYear() + ".");
     }
 
+    public void printDueTransaction(String str) {
+        System.out.println(str);
+    }
+
     public void printHelp() {
         System.out.println("Please refer this online user guide:");
         System.out.println("https://ay2021s1-tic4001-2.github.io/tp/UserGuide.html");
