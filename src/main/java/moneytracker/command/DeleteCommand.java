@@ -9,8 +9,8 @@ import moneytracker.transaction.Transaction;
 import moneytracker.transaction.TransactionList;
 import moneytracker.ui.Ui;
 
-import static moneytracker.command.Utilities.getTransactionType;
-import static moneytracker.command.Utilities.getTransaction;
+import static moneytracker.helper.Helper.getTransactionType;
+import static moneytracker.helper.Helper.getTransactionFromList;
 
 /**
  * Contains the methods for user to delete a transaction.
@@ -44,7 +44,7 @@ public class DeleteCommand extends Command {
             throw new MoneyTrackerException("Please run the list command first.");
         }
         int index = Parser.getDeleteIndex(fullCommand);
-        Transaction transactionToDelete = getTransaction(transactions, index);
+        Transaction transactionToDelete = getTransactionFromList(transactions, index);
         String description = transactionToDelete.toString();
         String type = getTransactionType(transactionToDelete);
         transactions.removeTransaction(transactions.getSearchResultIndex(index));

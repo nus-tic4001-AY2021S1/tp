@@ -4,6 +4,8 @@ import moneytracker.exception.MoneyTrackerException;
 
 import java.util.ArrayList;
 
+import static moneytracker.helper.Helper.getTransactionType;
+
 /**
  * Manages the in-memory transaction list. It contains an ArrayList that stores
  * individual <code>Transaction</code> objects and methods to perform operations
@@ -148,13 +150,18 @@ public class TransactionList {
      * @param newName New category name of <code>Transaction</code> objects.
      */
 
-    public void updateTransactionsCategory(String currentName, String newName) {
-        for (int i = 0; i < transactions.size(); i++) {
-            Transaction transaction = transactions.get(i);
-            if (transaction instanceof Income && ((Income) transaction).getIncomeCategory().equals(currentName)) {
+    public void updateTransactionsCategory(String currentName, String newName,String type)
+            throws MoneyTrackerException {
+        for (Transaction transaction : transactions) {
+            String transactionType = getTransactionType(transaction);
+            if (transactionType.equals(type)
+                    && transaction instanceof Income
+                    && ((Income) transaction).getIncomeCategory().equals(currentName)) {
                 ((Income) transaction).setIncomeCategory(newName);
             }
-            if (transaction instanceof Expense && ((Expense) transaction).getExpenseCategory().equals(currentName)) {
+            if (transactionType.equals(type)
+                    && transaction instanceof Expense
+                    && ((Expense) transaction).getExpenseCategory().equals(currentName)) {
                 ((Expense) transaction).setExpenseCategory(newName);
             }
         }
