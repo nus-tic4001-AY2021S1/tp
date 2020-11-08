@@ -36,6 +36,7 @@ This helps them to stay within their budget and make timely adjustments to their
 |v2.0|expert user|edit an income or expense category|change the name of the category|
 |v2.0|expert user|edit an income or expenses|change any of its parameters such as amount and date|
 |v2.0|expert user|list my incomes and/or expenses based on a specified category|view my filtered transactions|
+|v3.0|expert user|view the total incomes and expenses for the past six months|see the trend of my monthly incomes and expenses|
 
 ## Non-Functional Requirements
 
