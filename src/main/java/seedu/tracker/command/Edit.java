@@ -36,6 +36,10 @@ public class Edit extends Command {
                     "Please type in the '--edit INDEX --commandName INPUT' format.");
             }
 
+            if (commandWord.contains("email") || !(newDescription.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
+                throw new TrackerException("Invalid Email format");
+            }
+
             int index = Integer.parseInt(projectIndex.trim()) - 1;
             String line = projects.get(index).toString();
 

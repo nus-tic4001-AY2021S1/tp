@@ -29,6 +29,9 @@ public class Add extends Command {
                 throw new TrackerException("It seems that you did not type in the correct format!\n" +
                     "Please type in the '--add INDEX --commandName INPUT' format.");
             }
+            if (commandWord.contains("startdate") || commandWord.contains("duedate") || commandWord.contains("email")) {
+                throw new TrackerException(" Start date, Due date and Email do not allow in Add command");
+            }
 
             int index = Integer.parseInt(projectIndex.trim()) - 1;
             String line = projects.get(index).toString();
