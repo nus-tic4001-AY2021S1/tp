@@ -9,6 +9,7 @@
 
 Your total income for Nov 2020: $0.00
 Your total expense for Nov 2020: $0.00
+
 Hello! What can I do for you? Enter the command "help" to access the user guide.
 ____________________________________________________________________
 You:  Bye! Hope to see you again soon.
