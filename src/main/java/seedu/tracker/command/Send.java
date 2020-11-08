@@ -13,18 +13,22 @@ public class Send extends Command {
 
     @Override
     public void execute() {
-        int projectNumber = Integer.parseInt(line.trim()) - 1;
-        if (projects.size() == 0) {
-            ui.printBorderline("It appears that you have no project! Perhaps you should start creating one?");
-            return;
-        }
-        if (line.isEmpty() || projectNumber > projects.size()) {
-            ui.printBorderline("Please type in the right project");
-            return;
-        }
+        try {
+            int projectNumber = Integer.parseInt(line.trim()) - 1;
 
-        new SendEmail(getEmail(projects.get(projectNumber).toString()), ui.displayProject(projects.get(projectNumber)));
-
+            if (projects.size() == 0) {
+                ui.printBorderline("It appears that you have no project! Perhaps you should start creating one?");
+                return;
+            }
+            if (line.isEmpty() || projectNumber > projects.size() || projectNumber < 0) {
+                ui.printBorderline("Please type in the right project");
+                return;
+            }
+            String getString = projects.get(projectNumber).toString();
+            new SendEmail(getEmail(getString), ui.displayProject(projects.get(projectNumber)));
+        } catch (NumberFormatException ex) {
+            System.out.println(" Please input a number");
+        }
     }
 
     public String getEmail(String line) {

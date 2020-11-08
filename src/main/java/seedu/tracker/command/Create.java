@@ -38,6 +38,11 @@ public class Create extends Command {
                     System.out.println("The command line is missing for --" + command);
                     hasMistake = true;
                 }
+                if (line.contains("--email") && !(line.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
+                    System.out.println("Invalid Email Format");
+                    hasMistake = true;
+                    break;
+                }
             }
             if (hasMistake) {
                 System.out.println("Please create the project in the correct format:\n"
