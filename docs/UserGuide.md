@@ -153,6 +153,7 @@ Duration: 31
 Days Left: 41
 Status: [Complete]
 ```
+*Note: Make sure Start Date is earlier than Due Date, and the date you entered is in correct format, otherwise system will prompt error message when you create new project. 
 
 ### Deleting a project : `delete`
 Deletes the specified project, or all the projects.
