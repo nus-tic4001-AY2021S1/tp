@@ -43,8 +43,10 @@ public class DateConverter {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
-        if((Integer.parseInt(dateInString.substring(0,2))>=31 || Integer.parseInt(dateInString.substring(0,2))<=0)
-                ||(Integer.parseInt(dateInString.substring(3,5))>=13 || Integer.parseInt(dateInString.substring(3,5))<=0)){
+        if ((Integer.parseInt(dateInString.substring(0,2)) >= 31
+                || Integer.parseInt(dateInString.substring(0,2)) <= 0)
+                || (Integer.parseInt(dateInString.substring(3,5)) >= 13
+                || Integer.parseInt(dateInString.substring(3,5)) <= 0)) {
             System.out.println(dateInString + "is out of correct date range, please enter the correct date");
             return false;
         }
