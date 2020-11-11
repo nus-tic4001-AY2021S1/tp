@@ -47,11 +47,15 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 
 ## Non-Functional Requirements
 
-* Should work on any Mainstream OS as long as it has Java **11** or above installed.
-* *User-Friendly*: there is nice and helpful UI messages should be very easy for the users to use.
-* *User-Friendly*: the way to display the project should be easier to read.
-* *User-Friendly*: Should load from and save to from a text file
-
+* Operation Environment: Project tracker works on any Mainstream OS as long as it has Java **11** or above installed. 
+* Usability: A command line interface application, user will use specified command to interact with the system.
+* Capacity: Project tracker should be able to record at least 1,000 project records. 
+* Reliability / Availability: Once the project tracker has been successfully deployed on user's computer, availability is 24/7.   
+* Scalability: The current version of project tracker only support local data file storage, users are unable to share a centralised project data.
+               If the need of having a centralised data storage raised in the future, it can be added as system enhancement. 
+* Security: User login is not required. The project tracker use user's computer login as authentication.
+* Maintainability: A updated JAR file will be released to user if there is any update to the current version of the project tracker.                 
+               
 ## Glossary
 
 * *Mainstream OS * - Windows, Mac and Linux
