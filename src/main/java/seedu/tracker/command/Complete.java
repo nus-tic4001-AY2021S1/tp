@@ -6,6 +6,11 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+
+/**
+ * This is a complete class to make one project to be done.
+ */
+
 public class Complete extends Command {
 
     public static final String word = "--complete";

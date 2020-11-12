@@ -9,6 +9,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * This is a email class where sending out the mail to user.
+ * Credit goes to https://pepipost.com/tutorials/send-email-in-java-using-gmail-smtp/
+ */
+
 public class SendEmail {
 
     String receiver;

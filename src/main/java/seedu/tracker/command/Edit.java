@@ -9,6 +9,10 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * THis is a edit class to edit the current project's description.
+ */
+
 public class Edit extends Command {
     public static final String word = "--edit";
 

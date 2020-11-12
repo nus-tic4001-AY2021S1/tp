@@ -7,6 +7,10 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * This is a Add class for user to add new description behind the current description.
+ */
+
 public class Add extends Command {
     public static final String word = "--add";
 
