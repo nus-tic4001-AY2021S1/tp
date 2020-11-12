@@ -1,8 +1,104 @@
 # Developer Guide
 
+## **Design**
+### Architecture
+<br> <img src="docs/images/ArchitectureDiagram.png" width="450" /> <br>
+
+The ***Architecture Diagram*** given above explains the high-level design of the Money Tracker App.
+
+MoneyTracker is the `Main` class. It is responsible for:
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components.
+
+
+The App consists of the following components.
+* `UI`: The UI of the App.
+* `Parser`: The parser executor.
+* `Exception`: The exception executor.
+* `Transaction`: Holds the transaction related records such as Category, Expense, Income.
+* `Command`: The command executor.
+* `Summary`: The summary executor and holds the Budget.
+* `Storage`: Reads data from and writes data to the hard disk.
+
+
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design of Command Component: List, ListCategory**
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
+<br> <img src="docs/images/ArchitectureSequenceDiagramListCommand.png" width="574" /> <br>
+The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
+<br> <img src="docs/images/ArchitecturClassDiagramListCommand.png" width="574" /> <br>
+
+The Command Component: List, ListCategory
+* can list `transaction` objects to users based on the command rules.
+* can list `category` objects to users based on the command rules.
+
+
+
+## **Implementation of Command Component: List, ListCategory**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+
+### \[Enhanced\] list feature
+
+#### Enhanced Implementation
+The enhanced list feature was implement for *ListCommand*. It extends ListCommand with more *flexibility* and *variety*. The users can enter the list command to filter the result as what they require such as list by income category, by expense category, by year month, by type. Also, the order of filter condition is flexible. 
+
+
+* `list /te`: Lists all expense categories.
+* `list /m2020-09`: Lists all transaction happened in 2020 September.
+* `list /cSALARY`: Lists all SALARY.
+* `list /te /cfood /m2020-09`: Lists all Food expense happened in 2020 September
+* `list /m2020-09 /te`: Lists all expense happened in 2020 September
+
+
+
+These operations are exposed in the `ListCommand()` class.
+* Step 1: The user executes list command. 
+* Step 2: The ListCommand() class will parser the user instruction keywords and save as rules. 
+* Step 3: Then check the rules one by one and return matched transaction records by calling the method `getFilteredList`
+* Step 4: Display the matched transaction records to the user.
+
+
+The following sequence diagram shows how the list operation works:
+<br> <img src="docs/images/ArchitectureSequenceDiagramListCommand.png" width="574" /> <br>
+
+
+The following activity diagram summarizes what happens when a user executes a list command:
+<br> <img src="docs/images/ArchitectureActivityDiagramListCommand.png" width="574" /> <br>
+
+
+#### Design consideration:
+##### Aspect: How to check the list command rules
+
+* **Alternative 1 (current choice):** Use Streams filter to check the list command rules.
+  * Pros: Streams can succinctly express quite sophisticated behaviour. It encourages looser coupling and less mutability. This is because it is a more declarative approach that tells the application what we want to achieve, not how we want to achieve it. Easy to implement by using streams filter.
+  * Cons: May have performance issues in terms of memory usage. Streams may be novel for some programmers.
+
+* **Alternative 2:** Use “loop” and “if else” to check the list command rules.
+  * Pros:  we are familiar with “loop” and “if else”. Will use less memory.
+  * Cons: The logic of checking list command rules can become very complex, especially when there are multiple rules and order of rules is various every time. We must tell the application how we want to achieve based on the complex logic. We must ensure that the logic of checking can satisfy each case.
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 ## Product scope
 ### Target user profile
