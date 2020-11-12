@@ -2,7 +2,7 @@ package seedu.tracker.project;
 
 
 /**
- * a abstract class for all the project
+ * A abstract class for all the project.
  */
 public class Project {
     String description;
