@@ -17,7 +17,7 @@ Users can record their inflows and outflows of money and then view monthly repor
     - `addcate lunch`: Adds an expense category.
     - `listcat /te`: Lists all expense categories.
     - `adde /a3.50 /cFood /d2020-09-20 /eLunch with boss.`: Adds an expense.
-    - `list /te /m2020-09`: Lists all expenses in Sep 2020.
+    - `list /te /m2020-09 /cFood`: Lists all Food expenses in Sep 2020.
     - `report 2020-09`: Displays summary report for Sep 2020.
 7. Refer to **Features** below for details of each command.
 
@@ -29,7 +29,7 @@ E.g. `DESCRIPTION` in the command `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eD
 - Parameters in square brackets are optional.<br />
 E.g. `TYPE` in the command `listcat [/tTYPE]` can be omitted.
 - Parameters can be in any order.<br />
-E.g. The command `list [/tTYPE] [/mMONTH]` can also be in this form: `list [/mMONTH] [/tTYPE]`.
+E.g. The command `list [/tTYPE] [/mMONTH] [/cCATEGORY]` can also be in this form: `list [/mMONTH] [/tTYPE] [/cCATEGORY]`.
 
 ### Viewing help: `help`
 Shows the URL of the user manual.
@@ -184,7 +184,7 @@ Got it! I’ve added this expense:
 ### Listing incomes / expenses: `list`
 Shows a list of incomes / expenses.
 
-Format:  `list [/tTYPE] [/mMONTH]` <br>
+Format:  `list [/tTYPE] [/mMONTH] [/cCATEGORY]` <br>
 
 - `TYPE` must either be the letter `i` or `e`. If `TYPE` is `i`, only incomes will be listed.
 Similarly, if `TYPE` is `e`, only expenses will be listed. If `TYPE` is omitted, both
@@ -430,7 +430,7 @@ Click `Yes` if the system prompts you for confirmation of overwriting.
 * Delete income / expense category `deletecat INDEX`
 * Add income `addi /aAMOUNT /cINCOME_CATEGORY [/dDATE] [/eDESCRIPTION]`
 * Add expense `adde /aAMOUNT /cEXPENSE_CATEGORY [/dDATE] [/eDESCRIPTION]`
-* List incomes / expenses `list [/tTYPE] [/mMONTH]`
+* List incomes / expenses `list [/tTYPE] [/mMONTH] [/cCATEGORY]`
 * Edit income / expense `edit INDEX [/aAMOUNT] [/cCATEGORY] [/dDATE] [/eDESCRIPTION]`
 * Delete income / expense `delete INDEX`
 * Clear data `clear`
