@@ -10,7 +10,7 @@ NET is an app for managing expenses, optimized for use via a Command Line Interf
   * What it does: Allows the user to see their total expenses made so far  
   * Justification: This feature is the highlight of the product because other than keying the expenses, user would also wish to see the total expense so far. 
 
-* Enhancement: Enhance the total ability to view total expenses within a time period. [#](https://github.com/AY2021S1-TIC4001-4/tp/pull/17)
+* Enhancement: Enhance the total ability to view total expenses within a time period. ([#74](https://github.com/AY2021S1-TIC4001-4/tp/pull/74))
    * What it does: allow the user to see their total expenses made within the given period they are interested in.
    * Justification: This enhancement will allow the user to see how much they during the week that they are interested in. 
    
