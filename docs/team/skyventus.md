@@ -9,7 +9,11 @@ NET is an app for managing expenses, optimized for use via a Command Line Interf
 ([#17](https://github.com/AY2021S1-TIC4001-4/tp/pull/17)).
   * What it does: Allows the user to see their total expenses made so far  
   * Justification: This feature is the highlight of the product because other than keying the expenses, user would also wish to see the total expense so far. 
-  
+
+* Enhancement: Enhance the total ability to view total expenses within a time period. [#](https://github.com/AY2021S1-TIC4001-4/tp/pull/17)
+   * What it does: allow the user to see their total expenses made within the given period they are interested in.
+   * Justification: This enhancement will allow the user to see how much they during the week that they are interested in. 
+   
 * New Feature: Added the storage ability to load and save expenses.
 ([#35](https://github.com/AY2021S1-TIC4001-4/tp/pull/35)).
   * What it does: Allow the user to keep all the expenses record they have when they use the systems. 
@@ -39,4 +43,7 @@ NET is an app for managing expenses, optimized for use via a Command Line Interf
   * Developer Guide:
     * Added implementation details of the Storage and ```total``` feature.
     * Added non function requirement for NET.
+    * Added Storage encoded and decoded object diagram
+    * Added TotalCommand Sequence diagram. 
+    * Added the v3.0 total command enhancements 
 	
