@@ -41,6 +41,6 @@ NET is an app for managing expenses, optimized for use via a Command Line Interf
     * Added documentation for the features Update 
     * Developer Guide:
       * Added Report Feature implementations ([#78](https://github.com/AY2021S1-TIC4001-4/tp/pull/78))
-      * Added Add Command Sequence Diagram ([#89](https://github.com/AY2021S1-TIC4001-4/tp/pull/89))
+      * Added Add Command Sequence Diagram ([#90](https://github.com/AY2021S1-TIC4001-4/tp/pull/90))
 * Community:
   * Our application was created using a combination of pair-programming and adhoc coding sessions. During each session lasting between an hour to four or more, all group members sat in a meeting session while coding/ implementing their assigned components. If a concern was raised or support was needed, they shared their screen via the meeting session and everyone participated or assisted to clear the obstacle. Using this method we've successfully cleared v1.0 to v3.0 of our project milestones. 
