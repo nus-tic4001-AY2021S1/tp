@@ -2,7 +2,7 @@
 
 ## **Design**
 ### Architecture
-<br> <img src="docs/images/ArchitectureDiagram.png" width="450" /> <br>
+<br> <img src="images/ArchitectureDiagram.png" width="450" /> <br>
 
 The ***Architecture Diagram*** given above explains the high-level design of the Money Tracker App.
 
@@ -20,23 +20,15 @@ The App consists of the following components.
 * `Summary`: The summary executor and holds the Budget.
 * `Storage`: Reads data from and writes data to the hard disk.
 
-
-
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
-
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Design of Command Component: List, ListCategory**
+### **Design of Command Component: List, ListCategory**
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
-<br> <img src="docs/images/ArchitectureSequenceDiagramListCommand.png" width="574" /> <br>
+<br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="574" /> <br>
 The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
-<br> <img src="docs/images/ArchitecturClassDiagramListCommand.png" width="574" /> <br>
+<br> <img src="images/ArchitecturClassDiagramListCommand.png" width="574" /> <br>
 
 The Command Component: List, ListCategory
 * can list `transaction` objects to users based on the command rules.
@@ -44,7 +36,7 @@ The Command Component: List, ListCategory
 
 
 
-## **Implementation of Command Component: List, ListCategory**
+### **Implementation of Command Component: List, ListCategory**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -71,11 +63,11 @@ These operations are exposed in the `ListCommand()` class.
 
 
 The following sequence diagram shows how the list operation works:
-<br> <img src="docs/images/ArchitectureSequenceDiagramListCommand.png" width="574" /> <br>
+<br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="574" /> <br>
 
 
 The following activity diagram summarizes what happens when a user executes a list command:
-<br> <img src="docs/images/ArchitectureActivityDiagramListCommand.png" width="574" /> <br>
+<br> <img src="images/ArchitectureActivityDiagramListCommand.png" width="574" /> <br>
 
 
 #### Design consideration:
@@ -88,17 +80,6 @@ The following activity diagram summarizes what happens when a user executes a li
 * **Alternative 2:** Use “loop” and “if else” to check the list command rules.
   * Pros:  we are familiar with “loop” and “if else”. Will use less memory.
   * Cons: The logic of checking list command rules can become very complex, especially when there are multiple rules and order of rules is various every time. We must tell the application how we want to achieve based on the complex logic. We must ensure that the logic of checking can satisfy each case.
-
-
-
-
-
---------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
 
 ## Product scope
 ### Target user profile
