@@ -44,13 +44,13 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 |v2.0|project manager|add a count down day for project|remind myself|
 |v2.0|project manager|know the client|find client's information|
 |v2.0|project manager|receive an email notification when the deadline is only left few days|focus on the project first|
-|v3.0|project manager|Check date format in Find,Edit|
-|v3.0|project manager|Ensure duration is not negative and days left to Not Applicable|
-|v3.0|project manager|Catch all input exceptions for Send command|
-|v3.0|project manager|validate email format|
-|v3.0|project manager|create complete command to set a project to complete|
-|v3.0|project manager|add not allowed to start date, due date and email|
-|v3.0|project manager|Fix all checkstyle errors|
+|v3.0|project manager|Check date format in Find,Edit| so that only valid date allows|
+|v3.0|project manager|Ensure duration is not negative and days left to Not Applicable| so that no negative number appear|
+|v3.0|project manager|Catch all input exceptions for Send command| ensure is valid input in send|
+|v3.0|project manager|validate email format| ensure correct email address|
+|v3.0|project manager|create complete command to set a project to complete| Ensure project can update to be done|
+|v3.0|project manager|add not allowed to start date, due date and email| limite the add, only meaningful data allow|
+|v3.0|project manager|Fix all checkstyle errors| inorder to pass the CI test|
 
 ## Non-Functional Requirements
 
