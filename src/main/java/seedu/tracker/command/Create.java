@@ -9,6 +9,9 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * This is a create project class, all project will be created from here and validate the command line.
+ */
 public class Create extends Command {
     public static final String word = "--project";
 
@@ -37,6 +40,11 @@ public class Create extends Command {
                 if (!line.contains("--" + command)) {
                     System.out.println("The command line is missing for --" + command);
                     hasMistake = true;
+                }
+                if (line.contains("--email") && !(line.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
+                    System.out.println("Invalid Email Format");
+                    hasMistake = true;
+                    break;
                 }
             }
             if (hasMistake) {

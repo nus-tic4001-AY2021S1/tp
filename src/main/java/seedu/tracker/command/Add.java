@@ -7,6 +7,10 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * This is a Add class for user to add new description behind the current description.
+ */
+
 public class Add extends Command {
     public static final String word = "--add";
 
@@ -27,6 +31,9 @@ public class Add extends Command {
             if (projectIndex.isEmpty()) {
                 throw new TrackerException("It seems that you did not type in the correct format!\n"
                     + "Please type in the '--add INDEX --commandName INPUT' format.");
+            }
+            if (commandWord.contains("startdate") || commandWord.contains("duedate") || commandWord.contains("email")) {
+                throw new TrackerException(" Start date, Due date and Email do not allow in Add command");
             }
 
             int index = Integer.parseInt(projectIndex.trim()) - 1;

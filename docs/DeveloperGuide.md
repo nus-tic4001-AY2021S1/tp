@@ -44,14 +44,25 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 |v2.0|project manager|add a count down day for project|remind myself|
 |v2.0|project manager|know the client|find client's information|
 |v2.0|project manager|receive an email notification when the deadline is only left few days|focus on the project first|
+|v3.0|project manager|Check date format in Find,Edit| so that only valid date allows|
+|v3.0|project manager|Ensure duration is not negative and days left to Not Applicable| so that no negative number appear|
+|v3.0|project manager|Catch all input exceptions for Send command| ensure is valid input in send|
+|v3.0|project manager|validate email format| ensure correct email address|
+|v3.0|project manager|create complete command to set a project to complete| Ensure project can update to be done|
+|v3.0|project manager|add not allowed to start date, due date and email| limite the add, only meaningful data allow|
+|v3.0|project manager|Fix all checkstyle errors| inorder to pass the CI test|
 
 ## Non-Functional Requirements
 
-* Should work on any Mainstream OS as long as it has Java **11** or above installed.
-* *User-Friendly*: there is nice and helpful UI messages should be very easy for the users to use.
-* *User-Friendly*: the way to display the project should be easier to read.
-* *User-Friendly*: Should load from and save to from a text file
-
+* Operation Environment: Project tracker works on any Mainstream OS as long as it has Java **11** or above installed. 
+* Usability: A command line interface application, user will use specified command to interact with the system.
+* Capacity: Project tracker should be able to record at least 1,000 project records. 
+* Reliability / Availability: Once the project tracker has been successfully deployed on user's computer, availability is 24/7.   
+* Scalability: The current version of project tracker only support local data file storage, users are unable to share a centralised project data.
+               If the need of having a centralised data storage raised in the future, it can be added as system enhancement. 
+* Security: User login is not required. The project tracker use user's computer login as authentication.
+* Maintainability: A updated JAR file will be released to user if there is any update to the current version of the project tracker.                 
+               
 ## Glossary
 
 * *Mainstream OS * - Windows, Mac and Linux

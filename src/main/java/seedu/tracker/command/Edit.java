@@ -9,6 +9,10 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * THis is a edit class to edit the current project's description.
+ */
+
 public class Edit extends Command {
     public static final String word = "--edit";
 
@@ -31,6 +35,11 @@ public class Edit extends Command {
             String projectIndex = commandWithIndex.split(" ", 2)[1];
             String commandWord = commandWithNewDescription.split(" ", 2)[0];
             String newDescription = commandWithNewDescription.split(" ", 2)[1];
+
+            String emailFormat = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+            if (commandWord.contains("email") || !(newDescription.matches(emailFormat))) {
+                throw new TrackerException("Invalid Email format");
+            }
 
             int index = Integer.parseInt(projectIndex.trim()) - 1;
             String projectLine = projects.get(index).toString();

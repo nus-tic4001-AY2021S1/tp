@@ -8,6 +8,11 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * THis is a find class, finding keyword and finding keyword then replace all the keywords with another one.
+ *
+ */
+
 public class Find extends Command {
     public static final String word = "--find";
 

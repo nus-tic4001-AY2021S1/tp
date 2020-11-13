@@ -15,9 +15,9 @@ public class UiTest {
     @Test
     public void testDisplayProject() {
 
-        Project project1 = new Project("--name Clinical Trials --description regarding hospital task" +
-                "--involve Tom, Lucy --client Desi --startdate 11/11/2020 --duedate 12/12/2020" +
-                "--incharge Derek --email linqing4267@gmail.com");
+        Project project1 = new Project("--name Clinical Trials --description regarding hospital task"
+                + "--involve Tom, Lucy --client Desi --startdate 11/11/2020 --duedate 12/12/2020"
+                + "--incharge Derek --email linqing4267@gmail.com");
         ProjectList projects = new ProjectList();
         projects.add(project1);
         String daysLeft = null;
@@ -40,7 +40,7 @@ public class UiTest {
                         + "Person in Charge: Derek " + "\n"
                         + "Email: linqing4267@gmail.com" + "\n"
                         + "Duration: 31" + "\n"
-                        + "Days Left: " + daysLeft+ "\n"
+                        + "Days Left: " + daysLeft + "\n"
                         + "Status: " + project1.getStatus() + "\n";
         assertEquals(projectDetail1, projectDetail2);
     }
