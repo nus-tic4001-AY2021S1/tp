@@ -2,7 +2,7 @@
 
 ## Overview
 ### Project: Project Tracker
-Project Tracker is a desktop app for managing and tracking projects, optimized for use via a Command Line Interface (CLI).
+Project Tracker is a desktop app for managing and tracking projects, optimized for use via a Command Line Interface (CLI) and the [website](https://linqing42.github.io/tp/team/linqing)
 
 ### Summary of Contributions
 
