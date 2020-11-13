@@ -4,6 +4,10 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.email.SendEmail;
 import seedu.tracker.ui.Ui;
 
+/**
+ * A send class, send email to the project incharge.
+ */
+
 public class Send extends Command {
     public static final String word = "--send";
 

@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
+/**
+ * DateConverter class, is a common class, all the data validation or conversion will be done here.
+ *
+ */
 public class DateConverter {
     String startDate;
     String dueDate;

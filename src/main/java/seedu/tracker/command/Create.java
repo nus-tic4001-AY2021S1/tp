@@ -9,6 +9,9 @@ import seedu.tracker.project.ProjectList;
 import seedu.tracker.storage.Storage;
 import seedu.tracker.ui.Ui;
 
+/**
+ * This is a create project class, all project will be created from here and validate the command line.
+ */
 public class Create extends Command {
     public static final String word = "--project";
 

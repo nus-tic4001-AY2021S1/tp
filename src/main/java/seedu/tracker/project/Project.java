@@ -1,5 +1,9 @@
 package seedu.tracker.project;
 
+
+/**
+ * A abstract class for all the project.
+ */
 public class Project {
     String description;
     private boolean isComplete;
