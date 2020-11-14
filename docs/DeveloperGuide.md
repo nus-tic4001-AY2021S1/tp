@@ -116,11 +116,11 @@ The *Sequence Diagram* below shows how the components interact with each other f
 The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command ``report / report MONTH``.
 <br> <img src="images/ArchitectureReportCommandClassDiagram.png" width="800" /> <br>
 
-### **Implementation of Command Component: ``report / report MONTH``**
+### **Implementation of Command Component: `report / report MONTH`**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Enhanced] list feature
+### [Enhanced] `report / report MONTH` feature
 
 #### Enhanced Implementation
 
