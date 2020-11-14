@@ -66,7 +66,14 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 ## Glossary
 
 * *Mainstream OS * - Windows, Mac and Linux
+- JDK - Java Development Kit - [Java SE](https://www.oracle.com/sg/java/technologies/javase-downloads.html "Java SE Downloads")
+- Gradle - Gradle Build Tool - [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html "Build Automation Tool - Docs")
+- Intellij / IDE - Intellij Integrated Development Environment - [IntelliJ IDEA](https://www.jetbrains.com/idea/ "JVM IDE") 
+
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Initial launch
+    1. Download the jar file and copy into an empty folder
+    2. Use Command Prompt to run jar file with `java -jar` command.
+    3. type exit command to exit from the program.
