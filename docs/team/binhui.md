@@ -48,7 +48,8 @@ Given below are my contributions to the
 
 - standarise the commond line
 - pvovide help on the workflow
-- help debuging and technical guide
+- help debuging and fixed bugs
+- giving technical guide for the teammate
 - creating milestone and labels
 - oversea the progress, keep track of the issues.
 - Doing QA test
