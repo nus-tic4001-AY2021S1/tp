@@ -159,9 +159,6 @@ These operations are exposed in the `ReportCommand()` class.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user start the program and get the `Expense Summary`.
 <br> <img src="images/ExpenseSummarySequenceDiagram.png" width="800" /> <br>
 
-### [Enhanced] list feature
-
-#### Enhanced Implementation
 
 When the program started the ``Transaction`` will load the data store in data folder and put in arraylist, the ``Summary`` class will take 
 the data from `Transaction` and use `LocalDate` libary to check if the data is within the Month. After take all the expense/income in the 
@@ -221,6 +218,7 @@ This helps them to stay within their budget and make timely adjustments to their
 |v2.0|expert user|edit an income or expenses|change any of its parameters such as amount and date|
 |v2.0|expert user|list my incomes and/or expenses based on a specified category|view my filtered transactions|
 |v3.0|expert user|view the total incomes and expenses for the past six months|see the trend of my monthly incomes and expenses|
+|v3.0|user|view my upcoming transactions upon app startup|know which of my transactions are due soon|
 
 ## Non-Functional Requirements
 
