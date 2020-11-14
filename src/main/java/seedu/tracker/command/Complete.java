@@ -34,7 +34,7 @@ public class Complete extends Command {
             }
             int index = Integer.parseInt(line);
             projects.get(index - 1).setComplete();
-            ui.printProjectCompleted(index, projects);
+            ui.printProjectCompleted(projects);
 
             storage.updateStorage(projects);
 
