@@ -159,9 +159,6 @@ These operations are exposed in the `ReportCommand()` class.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user start the program and get the `Expense Summary`.
 <br> <img src="images/ExpenseSummarySequenceDiagram.png" width="800" /> <br>
 
-### [Enhanced] list feature
-
-#### Enhanced Implementation
 
 When the program started the ``Transaction`` will load the data store in data folder and put in arraylist, the ``Summary`` class will take 
 the data from `Transaction` and use `LocalDate` libary to check if the data is within the Month. After take all the expense/income in the 
