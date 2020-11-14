@@ -1,69 +1,45 @@
 @startuml
-!include style.puml
+participant ":AddExpenseCommand" as AddExpenseCommand
+participant "<color:red><<Class>></color>\n:Parser" as Parser
+participant "e:Expense" as Expense
+participant "t:TransactionList" as TransactionList
+participant ":Storage" as Storage
+participant ":Ui" as Ui
 
-box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
-end box
+activate AddExpenseCommand
+[-> AddExpenseCommand : execute(transactions, storage, ui, ...)
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
+AddExpenseCommand -> Parser : createExpense(fullCommand)
+activate Parser
 
-[-> LogicManager : execute("delete 1")
-activate LogicManager
+create Expense
+Parser -> Expense : Expense(...)
+activate Expense
+Expense --> Parser : e
+deactivate Expense
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+Parser --> AddExpenseCommand : e
+deactivate Parser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+AddExpenseCommand -> TransactionList : addTransaction(e, ...)
+activate TransactionList
+|||
+TransactionList --> AddExpenseCommand
+deactivate TransactionList
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+AddExpenseCommand -> Storage : saveTransactions(t)
+activate Storage
+|||
+Storage --> AddExpenseCommand
+deactivate Storage
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+AddExpenseCommand -> Ui : printAddTransaction(t)
+activate Ui
+|||
+Ui --> AddExpenseCommand
+deactivate Ui
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+[<-- AddExpenseCommand
+deactivate AddExpenseCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
-
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
-
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
-
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
-
-DeleteCommand -> Model : deletePerson(1)
-activate Model
-
-Model --> DeleteCommand
-deactivate Model
-
-create CommandResult
-DeleteCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> DeleteCommand
-deactivate CommandResult
-
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml

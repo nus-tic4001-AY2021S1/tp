@@ -39,8 +39,9 @@ Finally, the `execute` method will execute the following steps:
 3. Calls `storage#saveTransactions(transactions)` to save all transactions to text file;
 4. Calls `ui#printAddTransaction(transactions)` to print out the details of `expense`.
 
-The following sequence diagram shows how the add expense operation works:
-
+The following sequence diagram shows the object interactions when the `MoneyTracker` object calls the `execute` method
+of an `AddExpenseCommand` object:
+<br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseSequenceDiagram" /><br>
 
 ### **Design of Command Component: List, ListCategory**
 **How the architecture components interact with each other**
