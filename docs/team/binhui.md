@@ -40,7 +40,9 @@ Given below are my contributions to the
 
 #### Developer Guide:
 - Add a UML diagram [#71](https://github.com/AY2021S1-TIC4001-1/tp/pull/71/commits/f1200c1a18d2cf99b73e8a7b916b699df49d9296)
-- Create object diagrams & Draw UML class diagrams.
+- Add a Object diagram[#102](https://github.com/AY2021S1-TIC4001-1/tp/pull/102/commits/8a3ccba7466a23fe1fdbca9a4f46045eb5d8136b)
+- Edit the developer Guide [#103](https://github.com/AY2021S1-TIC4001-1/tp/pull/103/commits/84ce49a448d143ffa886f784978282ef7726ec56)[#99](https://github.com/AY2021S1-TIC4001-1/tp/pull/99/commits/ee992b916dcbf42e52fabb9c013558cf8448bfe7)
+- Edit UML class diagrams.
 
 ### Contributions to team-based tasks :
 
