@@ -47,12 +47,12 @@ Given below are my contributions to the
 
 ### Contributions to team-based tasks :
 
-- standarise the commond line
-- pvovide help on the workflow
-- help debuging and fixed bugs
-- giving technical guide for the teammate
-- creating milestone and labels
-- oversea the progress, keep track of the issues.
+- Standarise the commond line
+- Pvovide help on the workflow
+- Help debuging and fixed bugs
+- Giving technical guide for the teammate
+- Creating milestone and labels
+- Oversea the progress, keep track of the issues.
 - Doing QA test
 
 ### Tools
