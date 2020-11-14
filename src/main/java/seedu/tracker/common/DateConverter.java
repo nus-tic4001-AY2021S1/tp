@@ -49,6 +49,7 @@ public class DateConverter {
         dateConverter(dueDate);
         Float day = calculateDateDiff(currentDate, dueDate);
         daysLeft = String.format("%.0f", day);
+       
     }
 
     public boolean dateChecker(String dateInString, boolean displayError) {
