@@ -30,6 +30,7 @@ jobs:
           java-version: '11'
           java-package: jdk+fx
 
+      # disable the checkStyle
       - name: Build and check with Gradle
         run: ./gradlew check
 
