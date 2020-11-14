@@ -30,9 +30,17 @@ lists to store 'due tomorrow' tasks and 'due the day after tomorrow' tasks.
 [RepoSense link](https://nus-tic4001-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chenduo1412)
 
 **Contributions to documentation:**
+ * User Guide:
+     * Added documentation for the features `calExpSummary` `calIncSummary` `reminder` `calPercentage` (Pull requests [\#104](https://github.com/AY2021S1-TIC4001-2/tp/pull/104)
+ * Develop Guide:
+     * Added user story for the `Budget` `Summary` function. (Pull requests [\#109](https://github.com/AY2021S1-TIC4001-2/tp/pull/109)
+     * Added develop guide for the `Budget``Reminder``Summary` class. (Pull requests [\#150](https://github.com/AY2021S1-TIC4001-2/tp/pull/150) (Pull requests [\#97](https://github.com/AY2021S1-TIC4001-2/tp/pull/97)
+     
 
-**Contributions to the DG:**
+- **Community**
+  - Add Junit Test (Pull requests [\#107](https://github.com/AY2021S1-TIC4001-2/tp/pull/107)
+  - Help teammates to trouble shoot the problem during merge process .
+  - Updating user/developer docs that are not specific to a feature.
+  - Brainstorming and update product scope, user stories, non functional requirements with team every weekend.
 
-**Contributions to team-based tasks:**
 
-**Review/mentoring contributions:**

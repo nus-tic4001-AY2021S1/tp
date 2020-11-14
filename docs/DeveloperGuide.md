@@ -152,17 +152,12 @@ These operations are exposed in the `ReportCommand()` class.
   - Pros: Use less memory compare with Hashmap, for example, use on Android apps.
   - Cons: Performance was slightly slowly than HashMap.
   
-### **Design of Function: `Summary`**
+### **Implement of Function: `Summary`**
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user start the program and get the `Expense Summary`.
 <br> <img src="images/ExpenseSummarySequenceDiagram.png" width="800" /> <br>
-
-
-### **Implementation of Component: ``Summary``**
-
-This section describes some noteworthy details on how certain features are implementent.
 
 ### [Enhanced] list feature
 
