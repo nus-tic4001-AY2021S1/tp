@@ -2,7 +2,7 @@
 
 ## **Design**
 ### Architecture
-<br> <img src="images/ArchitectureDiagram.png" width="500" /> <br>
+<br> <img src="images/ArchitectureDiagram.png" width="800" /> <br>
 
 The ***Architecture Diagram*** given above explains the high-level design of the Money Tracker App.
 
@@ -47,9 +47,9 @@ of an `AddExpenseCommand` object:
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
-<br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="700" /> <br>
+<br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="800" /> <br>
 The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
-<br> <img src="images/ArchitecturClassDiagramListCommand.png" width="700" /> <br>
+<br> <img src="images/ArchitecturClassDiagramListCommand.png" width="800" /> <br>
 
 The Command Component: List, ListCategory
 * can list `transaction` objects to users based on the command rules.
@@ -81,11 +81,11 @@ These operations are exposed in the `ListCommand()` class.
 
 
 The following sequence diagram shows how the list operation works:
-<br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="700" /> <br>
+<br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="800" /> <br>
 
 
 The following activity diagram summarizes what happens when a user executes a list command:
-<br> <img src="images/ArchitectureActivityDiagramListCommand.png" width="700" /> <br>
+<br> <img src="images/ArchitectureActivityDiagramListCommand.png" width="800" /> <br>
 
 
 #### Design consideration:
@@ -105,10 +105,10 @@ The following activity diagram summarizes what happens when a user executes a li
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `report / report MONTH`.
-<br> <img src="images/ArchitectureReportCommandSequencyDiagram.png" width="700" /> <br>
+<br> <img src="images/ArchitectureReportCommandSequencyDiagram.png" width="800" /> <br>
 
 The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command ``report / report MONTH``.
-<br> <img src="images/ArchitectureReportCommandClassDiagram.png" width="700" /> <br>
+<br> <img src="images/ArchitectureReportCommandClassDiagram.png" width="800" /> <br>
 
 ### **Implementation of Command Component: ``report / report MONTH``**
 
