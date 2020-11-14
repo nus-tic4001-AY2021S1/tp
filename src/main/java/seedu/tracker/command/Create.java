@@ -79,15 +79,15 @@ public class Create extends Command {
                 }
             }
 
-            if (new DateConverter(startDate, dueDate).dateChecker(startDate)
-                && new DateConverter(startDate, dueDate).dateChecker(dueDate)
+            if (new DateConverter(startDate, dueDate).dateChecker(startDate, true)
+                && new DateConverter(startDate, dueDate).dateChecker(dueDate, true)
                     &&  new DateConverter(startDate, dueDate).dateValidator(startDate, dueDate)) {
                 projects.add(new NewProject(newData));
                 ui.printProjectCreated(projects);
                 storage.updateStorage(projects);
             }
 
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             ui.printBorderline(e.getMessage());
         }
     }

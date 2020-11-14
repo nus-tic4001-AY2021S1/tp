@@ -99,7 +99,7 @@ public class Storage {
                 }
                 dataSet++;
             }
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             ui.printBorderline(e.getMessage());
         }
         return projects;

@@ -67,9 +67,11 @@ public class Find extends Command {
                 ui.printBorderline("Please type in the '--find KEYWORD --replace KEYWORD' format!");
                 return;
             }
-            if (!new DateConverter(searchWord).dateChecker(searchWord)
-                || !new DateConverter(replaceWord).dateChecker(replaceWord)) {
-                return;
+
+            if (new DateConverter(ui).dateChecker(searchWord, false)) {
+                if (!new DateConverter(ui).dateChecker(replaceWord, true)) {
+                    return;
+                }
             }
 
             String changes = "Here are the project(s) that has the word '" + searchWord
@@ -97,7 +99,7 @@ public class Find extends Command {
             storage.updateStorage(projects);
             ui.printBorderline(changes);
 
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             ui.printBorderline(e.getMessage());
         }
     }
