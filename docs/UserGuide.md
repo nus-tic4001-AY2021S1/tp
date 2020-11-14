@@ -33,7 +33,7 @@ What you can tell me to do is listed below:
  - Add an extra project detail | --add INDEX --commandName INPUT
  - Complete a project          | --complete INDEX
  - Delete a project            | --delete INDEX
- - List down all projects      | --list
+ - List down all projects      | --list INDEX
  - Send an email to user       | --send INDEX
  - Find word(s) in projects    | --find KEYWORD
  - Find and replace word(s)    | --find KEYWORD --replace KEYWORD
@@ -150,7 +150,7 @@ Due Date: 12/12/2020
 Person in Charge: Derek 
 Email: linqing4267@gmail.com
 Duration: 31
-Days Left: 41
+Days Left: 46
 Status: [Complete]
 ```
 *Note: Make sure Start Date is earlier than Due Date, and the date you entered is in correct format, otherwise system will prompt error message when you create new project. 
@@ -291,7 +291,7 @@ Due Date: 12/12/2020
 Person in Charge: Derek
 Email: linqing4267@gmail.com
 Duration: 31
-Days Left: 45
+Days Left: 46
 Status: [Incomplete]
 ```
 ### Exiting the program: `exit/hit Enter`
