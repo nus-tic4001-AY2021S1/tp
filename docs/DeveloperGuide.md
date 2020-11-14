@@ -105,10 +105,10 @@ The following activity diagram summarizes what happens when a user executes a li
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `report / report MONTH`.
-![](.DeveloperGuide_images/ReportCommand Sequency Diagram.png)
+<br> <img src="images/ArchitectureReportCommandSequencyDiagram.png" width="700" /> <br>
 
 The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command ``report / report MONTH``.
-![](.DeveloperGuide_images/ReportCommand Class Diagram.png)
+<br> <img src="images/ArchitectureReportCommandClassDiagram.png" width="700" /> <br>
 
 ### **Implementation of Command Component: ``report / report MONTH``**
 
