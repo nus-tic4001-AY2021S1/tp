@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes add expense command;
+if (Checks format of input command) then
+    :Add expense to TransactionList;
+    :Save all transactions to save file;
+    :Display information of newly-added expense;
+    stop
+else (Invalid format)
+    :Display error message;
+stop
+@enduml

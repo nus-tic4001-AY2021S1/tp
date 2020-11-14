@@ -1,6 +1,8 @@
 # Developer Guide
 
-## **Design**
+## **System design**
+This section provides an overview of how the Money Tracker app is designed.
+
 ### Architecture
 <br> <img src="images/ArchitectureDiagram.png" width="500" /> <br>
 
@@ -20,9 +22,10 @@ The App consists of the following components.
 * `Summary`: The summary executor and holds the Budget.
 * `Storage`: Reads data from and writes data to the hard disk.
 
-## Design & implementation
+## Design & implementation of features
+This section describes how certain features are designed and implemented.
 
-### **Implementation of add expense feature**
+### **Design & Implementation of add expense feature**
 The add expense operation is implemented using `AddExpenseCommand`, which extends `Command`.
 Upon receiving an input string that has `adde` as the first word, the `MoneyTracker` object will instantiate an
 `AddExpenseCommand` object with the `fullCommand` string, which is the input entered by the user. The `MoneyTracker`
@@ -40,8 +43,11 @@ Finally, the `execute` method will execute the following steps:
 4. Calls `ui#printAddTransaction(transactions)` to print out the details of `expense`.
 
 The following sequence diagram shows the object interactions when the `MoneyTracker` object calls the `execute` method
-of an `AddExpenseCommand` object:
-<br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseSequenceDiagram" /><br>
+of the `AddExpenseCommand` object:
+<br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseSequenceDiagram" width="800"/><br>
+
+The following activity diagram shows what happens when a user executes an add expense command:
+<br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseActivityDiagram"/><br>
 
 ### **Design of Command Component: List, ListCategory**
 **How the architecture components interact with each other**
@@ -195,4 +201,8 @@ use all the app features without having to reference the user guide.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Download `budget.txt`, `categories.txt` and `transactions.txt`
+[here](https://github.com/AY2021S1-TIC4001-2/tp/tree/master/sample-data).
+Go to Money Tracker's root folder in the current computer.
+Create a folder named `data` if it does not exist.
+Copy the downloaded txt files to this folder.
