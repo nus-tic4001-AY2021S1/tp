@@ -49,7 +49,7 @@ of an `AddExpenseCommand` object:
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
 <br> <img src="images/ArchitectureSequenceDiagramListCommand.png" width="800" /> <br>
 The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command `list /cSalary`.
-<br> <img src="images/ArchitecturClassDiagramListCommand.png" width="800" /> <br>
+<br> <img src="images/ArchitectureClassDiagramListCommand.png" width="800" /> <br>
 
 The Command Component: List, ListCategory
 * can list `transaction` objects to users based on the command rules.
