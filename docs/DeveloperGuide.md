@@ -22,6 +22,27 @@ The App consists of the following components.
 
 ## Design & implementation
 
+### **Implementation of add expense feature**
+The add expense operation is implemented using `AddExpenseCommand`, which extends `Command`.
+Upon receiving an input string that has `adde` as the first word, the `MoneyTracker` object will instantiate an
+`AddExpenseCommand` object with the `fullCommand` string, which is the input entered by the user. The `MoneyTracker`
+object will then call the `execute` method in the `AddExpenseCommand` object with the following arguments:
+1. `transactions`: a `TransactionList` object;
+2. `ui`: a `Ui` object;
+3. `storage`: a `Storage` object;
+4. `budget`: a `Budget` object;
+5. `categories`: a `CategoryList` object.
+
+Finally, the `execute` method will execute the following steps:
+1. Calls `Parser#createExpense(fullCommand)` to get an `Expense` object `expense`;
+2. Calls `transactions#addTransaction(expense, category)` to add `expense` to `transactions`;
+3. Calls `storage#saveTransactions(transactions)` to save all transactions to text file;
+4. Calls `ui#printAddTransaction(transactions)` to print out the details of `expense`.
+
+The following sequence diagram shows the object interactions when the `MoneyTracker` object calls the `execute` method
+of an `AddExpenseCommand` object:
+<br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseSequenceDiagram" /><br>
+
 ### **Design of Command Component: List, ListCategory**
 **How the architecture components interact with each other**
 
@@ -37,9 +58,6 @@ The Command Component: List, ListCategory
 
 
 ### **Implementation of Command Component: List, ListCategory**
-
-This section describes some noteworthy details on how certain features are implemented.
-
 
 ### \[Enhanced\] list feature
 
