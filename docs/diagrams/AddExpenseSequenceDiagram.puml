@@ -1,0 +1,45 @@
+@startuml
+participant ":AddExpenseCommand" as AddExpenseCommand
+participant "<color:red><<Class>></color>\n:Parser" as Parser
+participant "e:Expense" as Expense
+participant "t:TransactionList" as TransactionList
+participant ":Storage" as Storage
+participant ":Ui" as Ui
+
+activate AddExpenseCommand
+[-> AddExpenseCommand : execute(transactions, storage, ui, ...)
+
+AddExpenseCommand -> Parser : createExpense(fullCommand)
+activate Parser
+
+create Expense
+Parser -> Expense : Expense(...)
+activate Expense
+Expense --> Parser : e
+deactivate Expense
+
+Parser --> AddExpenseCommand : e
+deactivate Parser
+
+AddExpenseCommand -> TransactionList : addTransaction(e, ...)
+activate TransactionList
+|||
+TransactionList --> AddExpenseCommand
+deactivate TransactionList
+
+AddExpenseCommand -> Storage : saveTransactions(t)
+activate Storage
+|||
+Storage --> AddExpenseCommand
+deactivate Storage
+
+AddExpenseCommand -> Ui : printAddTransaction(t)
+activate Ui
+|||
+Ui --> AddExpenseCommand
+deactivate Ui
+
+[<-- AddExpenseCommand
+deactivate AddExpenseCommand
+
+@enduml
