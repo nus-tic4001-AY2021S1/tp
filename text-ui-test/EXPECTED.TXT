@@ -1,5 +1,4 @@
-Hello from
- ____        _        
+ ____        _
 |  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
@@ -7,3 +6,4 @@ Hello from
 
 What is your name?
 Hello James Gosling
+What would you like to do?

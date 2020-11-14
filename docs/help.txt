@@ -1,0 +1,70 @@
+ ____        _
+|  _ \ _   _| | _____
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+ITLogger
+
+Introduction:
+This is a logging software which allows tracking of software issues & assign them to the development team.
+
+Usage:
+  help
+    -- Print out help information
+
+  exit
+    -- Exit from the program
+
+  add t/<TITLE> s/<STATUS> sv/<SEVERITY in integer from 0 to 10> dl/<DEADLINE in dd-mm-yyyy format> o/<OWNER>
+    -- Add a defect into the list
+
+  view v/<TICKET in integer>
+    -- View a defect which is indicated
+
+  delete d/<TICKET in integer>
+    -- Delete a defect which is indicated
+
+  list
+    -- List all defects in the list
+    
+  list sv/a
+    -- List all defects in the list in ascending severity order
+
+  list sv/d
+    -- List all defects in the list in descending severity order
+    
+  list dl/a
+    -- List all defects in the list in ascending deadline order
+    
+  list dl/d
+    -- List all defects in the list in descending deadline order
+    
+  list dr/a
+    -- List all defects in the list in ascending date raised order
+    
+  list dl/d
+    -- List all defects in the list in descending date raised order
+    
+  update u/<TICKET in integer>
+    -- Go into update mode for a defect which is indicated
+
+  update t/<NEW TITLE>
+    -- When in update mode, update the title of the defect
+
+  update sv/<NEW SEVERITY in integer from 0 to 10>
+    -- When in update mode, update the severity of the defect
+    
+  search /title /<title>
+    -- Search the defects match the <title> in the issue list
+    
+  search /status /<status>
+    -- Search the defects match the <status> in the issue list
+    
+  search /severity /<severityNum>
+    -- Search the defects match the <severityNum> in the issue list
+    
+  search /owner /<owner>
+    -- Search the defects match the <owner> in the issue list
+    
+  search /deadline /<deadlineDateString(dd-MM-yyyy)>
+    -- Search the defects match the <deadline> in the issue list
