@@ -18,6 +18,12 @@ public class Send extends Command {
     @Override
     public void execute() {
         try {
+            if (projects.size() == 0) {
+                ui.printBorderline("It appears that you have no projects yet, so you can't edit any!\n"
+                        + "Perhaps you should start creating one?");
+                return;
+            }
+
             int projectNumber = Integer.parseInt(line.trim()) - 1;
 
             if (projects.size() == 0) {
@@ -29,6 +35,11 @@ public class Send extends Command {
                 return;
             }
             String getString = projects.get(projectNumber).toString();
+
+            if (!(getEmail(getString).matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
+                System.out.println("Invalid Email Format");
+                return;
+            }
             new SendEmail(getEmail(getString), ui.displayProject(projects.get(projectNumber)));
         } catch (NumberFormatException ex) {
             System.out.println(" Please input a number");

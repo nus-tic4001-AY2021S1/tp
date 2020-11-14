@@ -130,6 +130,9 @@ public class Ui {
         String dueDate = projectDetails[6].split(" ", 2)[1];
         String duration = new DateConverter(startDate, dueDate).getDateDiff();
         String daysLeft = new DateConverter(dueDate).getDaysLeft();
+        if (Integer.parseInt(daysLeft.trim()) < 0) {
+            daysLeft = "Overdue";
+        }
 
         display = "Project Name: " + projectDetails[1].split(" ", 2)[1] + "\n"
             + "Project Description: " + projectDetails[2].split(" ", 2)[1] + "\n"
