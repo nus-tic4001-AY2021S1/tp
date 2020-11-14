@@ -152,7 +152,47 @@ These operations are exposed in the `ReportCommand()` class.
   - Pros: Use less memory compare with Hashmap, for example, use on Android apps.
   - Cons: Performance was slightly slowly than HashMap.
   
+### **Design of Function: `Summary`**
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user start the program and get the `Expense Summary`.
+<br> <img src="images/ExpenseSummarySequenceDiagram.png" width="800" /> <br>
+
+
+### **Implementation of Component: ``Summary``**
+
+This section describes some noteworthy details on how certain features are implementent.
+
+### [Enhanced] list feature
+
+#### Enhanced Implementation
+
+When the program started the ``Transaction`` will load the data store in data folder and put in arraylist, the ``Summary`` class will take 
+the data from `Transaction` and use `LocalDate` libary to check if the data is within the Month. After take all the expense/income in the 
+same month the `Ui` class will use `printSummary` function to display the monthly income/expense on welcome page.
+
+These operations are exposed in the `Summary` class.
+
+- Step 1: The user executes the program.
+
+- Step 2: The ``Transaction`` class will load the user stored information from the file in data folder and put in array list.
+
+- Step 3: Then the ``Summary`` class will take the data from the arraylist from ``Transaction`` and start to check the date.
+
+- Step 4: Then ``Ui`` class will call the function `printSummary` to display the expense/income of the month on welcome page.
+
   
+
+#### Design consideration:
+
+##### Aspect: How to confirm the transaction in same month.
+
+- **Alternative 1 (current choice):** Loop transaction list and use getMonth() function to find transaction in same month as current month.
+    -Pros: Use the arraylist to check one by one, the program is stable and clear in logic.
+    -Cons: User will get a slightly slow loading time when the list is too big.
+
+ 
 ## Product scope
 ### Target user profile
 
