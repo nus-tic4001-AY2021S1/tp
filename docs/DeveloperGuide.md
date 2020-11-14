@@ -73,7 +73,7 @@ Project Tracker will help to solve to tracking and managing projects. It will in
 
 ## Instructions for manual testing
 
-Initial launch
-    1. Download the jar file and copy into an empty folder
-    2. Use Command Prompt to run jar file with `java -jar` command.
-    3. type exit command to exit from the program.
+* *Start the program
+*    1. Download the Jar file and copy into an empty folder
+*    2. Use terminal/CMD to run jar file with `java -jar` command.
+*    3. type exit command or double enter to exit the program.
