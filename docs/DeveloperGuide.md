@@ -99,6 +99,54 @@ The following activity diagram summarizes what happens when a user executes a li
   * Pros:  we are familiar with “loop” and “if else”. Will use less memory.
   * Cons: The logic of checking list command rules can become very complex, especially when there are multiple rules and order of rules is various every time. We must tell the application how we want to achieve based on the complex logic. We must ensure that the logic of checking can satisfy each case.
 
+
+### **Design of Command Component: `report / report MONTH`**
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `report / report MONTH`.
+![](.DeveloperGuide_images/ReportCommand Sequency Diagram.png)
+
+The *Class Diagram* below shows how the components interact with each other for the scenario where the user issues the command ``report / report MONTH``.
+![](.DeveloperGuide_images/ReportCommand Class Diagram.png)
+
+### **Implementation of Command Component: ``report / report MONTH``**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### [Enhanced] list feature
+
+#### Enhanced Implementation
+
+The enhanced list feature was implement for *ReportCommand*. It extends ReportCommand with more *flexibility* and *variety*. The users can enter the report command to review the result as what their transactions detail such as month total expense , month total income, highest transactions by income / expense, highest category by income / expense category, highest frequency category by  income / expense  category.  Also, the last six months transactions report by income / expense.
+
+- report:  the summary report for the last six months will be displayed.
+- `report MONTH: the summary report for the specified month will  be displayed.
+
+These operations are exposed in the `ReportCommand()` class.
+
+- Step 1: The user executes report command.
+
+- Step 2: The ReportCommand() class will parser the user instruction keywords and save as rules.
+
+- Step 3: Then check the rules one by one and return matched transaction records by calling the method  printReportByMonth or printReport.
+
+- Step 4: Display the matched transaction records and generate the summary report for the user.
+
+  
+
+#### Design consideration:
+
+##### Aspect: How to check match every transactions to correct categories and generate the result with  descending order.
+
+- **Alternative 1 (current choice):** Use Hashmap to match the  transactions to correct categories.
+  - Pros: This enhancement needs to determine what category each transaction belongs to first, then use different category names as keys, and the sum of each transaction in the same category as the value to hashmap them and sort by value. Another function uses the number of transaction frequency in the same category as the value to hashmap and sort. And the clearly present the result in the monthly report.
+  - Cons: Due to the fixed matching mode, the hash value must be related to the key properties, if the user requirements change, hashmap can not be flexible and simple to change their functions.
+- **Alternative 2:** Use ArrayMap to replace Hashmap.
+  - Pros: Use less memory compare with Hashmap, for example, use on Android apps.
+  - Cons: Performance was slightly slowly than HashMap.
+  
+  
 ## Product scope
 ### Target user profile
 
