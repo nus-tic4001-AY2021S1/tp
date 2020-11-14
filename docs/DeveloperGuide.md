@@ -47,7 +47,7 @@ of the `AddExpenseCommand` object:
 <br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseSequenceDiagram" width="800"/><br>
 
 The following activity diagram shows what happens when a user executes an add expense command:
-<br><img src="images/AddExpenseSequenceDiagram.png" alt="AddExpenseActivityDiagram"/><br>
+<br><img src="images/AddExpenseActivityDiagram.png" alt="AddExpenseActivityDiagram"/><br>
 
 ### **Design of Command Component: List, ListCategory**
 **How the architecture components interact with each other**
